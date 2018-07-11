@@ -1,6 +1,10 @@
 # settings/local.py
 from .base import *
 
+#SECRET_KEY will pull from environment variable which is set locally in:
+# ~./virtualenv/(project)/scripts/activate.ps1 file
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
