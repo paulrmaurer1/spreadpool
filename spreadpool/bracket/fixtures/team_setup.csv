@@ -1,0 +1,65 @@
+id,seed,short_name,long_name,school
+1,1,Virginia,Virginia Cavaliers,University of Virginia
+2,2,Cincinnati,Cincinnati Bearcats,University of Cincinnati
+3,3,Tennessee,Tennessee Volunteers,University of Tennessee
+4,4,Arizona,Arizona Wildcats,University of Arizona
+5,5,Kentucky,Kentucky Wildcats,University of Kentucky
+6,6,Miami (FL),Miami Hurricanes,University of Miami
+7,7,Nevada,Nevada Wolf Pack,"University of Nevada, Reno"
+8,8,Creighton,Creighton Bluejays,Creighton University
+9,9,Kansas St,Kansas State Wildcats,Kansas State University
+10,10,Texas,Texas Longhorns,University of Texas at Austin
+11,11,Loyola Chi,Loyola Ramblers,Loyola University Chicago
+12,12,Davidson,Davidson Wildcats,Davidson College
+13,13,Buffalo,Buffalo Bulls,"University at Buffalo, SUNY"
+14,14,Wright St,Wright State Raiders,Wright State University
+15,15,Georgia St,Georgia State Panthers,Georgia State University
+16,16,UMBC,UMBC Retrievers,"University of Maryland, Baltimore County"
+17,1,Xavier,Xavier Musketeers,Xavier University
+18,2,N Carolina,North Carolina Tar Heels,University of North Carolina at Chapel Hill
+19,3,Michigan,Michigan Wolverines,University of Michigan
+20,4,Gonzaga,Gonzaga Bulldogs,Gonzaga University
+21,5,Ohio St,Ohio State Buckeyes,Ohio State University
+22,6,Houston,Houston Cougars,University of Houston
+23,7,Texas A&M,Texas A&M Aggies,Texas A&M University
+24,8,Missouri,Missouri Tigers,University of Missouri
+25,9,Florida St,Florida State Seminoles,Florida State University
+26,10,Providence,Providence Friars,Providence College
+27,11,S Diego St,San Diego State Aztecs,San Diego State University
+28,12,S Dakot St,South Dakota State Jackrabbits,South Dakota State University
+29,13,UNCG,UNC Greensboro Spartans,University of North Carolina at Greensboro
+30,14,Montana,Montana Grizzlies,University of Montana
+31,15,Lipscomb,Lipscomb Bisons,Lipscomb University
+32,16,Tx South,Texas Southern Tigers,Texas Southern University
+33,1,Villanova,Villanova Wildcats,Villanova University
+34,2,Purdue,Purdue Boilermakers,Purdue University
+35,3,Texas Tech,Texas Tech Red Raiders,Texas Tech University
+36,4,Wichita,Wichita State Shockers,Wichita State University
+37,5,W Virginia,West Virginia Mountaineers,West Virginia University
+38,6,Florida,Florida Gators,University of Florida
+39,7,Arkansas,Arkansas Razorbacks,University of Arkansas
+40,8,Va Tech,Virginia Tech Hokies,Virginia Polytechnic Institute and State University
+41,9,Alabama,Alabama Crimson Tide,University of Alabama
+42,10,Butler,Butler Bulldogs,Butler University
+43,11,St Bonnie,St. Bonaventure Bonnies,St. Bonaventure University
+44,12,Murray St,Murray State Racers,Murray State University
+45,13,Marshall,Marshall Thundering Herd,Marshall University
+46,14,SF Austin,Stephen F. Austin Lumberjacks,Stephen F. Austin State University
+47,15,CSU Full,Cal State Fullerton Titans,"California State University, Fullerton"
+48,16,Radford,Radford Highlanders,Radford University
+49,1,Kansas,Kansas Jayhawks,University of Kansas
+50,2,Duke,Duke Blue Devils,Duke University
+51,3,Mich St,Michigan State Spartans,Michigan State University
+52,4,Auburn,Auburn Tigers,Auburn University
+53,5,Clemson,Clemson Tigers,Clemson University
+54,6,TCU,TCU Horned Frogs,Texas Christian University
+55,7,Rhode Isl,Rhode Island Rams,University of Rhode Island
+56,8,Seton Hall,Seton Hall Pirates,Seton Hall University
+57,9,NC State,NC State Wolfpack,North Carolina State University
+58,10,Oklahoma,Oklahoma Sooners,University of Oklahoma
+59,11,Syracuse,Syracuse Orange,Syracuse University
+60,12,New Mex St,New Mexico State Aggies,New Mexico State University
+61,13,Charleston,College of Charleston Cougars,College of Charleston
+62,14,Bucknell,Bucknell Bison,Bucknell University
+63,15,Iona,Iona Gaels,Iona College
+64,16,Penn,Penn Quakers,University of Pennsylvania

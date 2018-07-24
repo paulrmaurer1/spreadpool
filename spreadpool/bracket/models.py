@@ -32,25 +32,42 @@ class Team(models.Model):
 	def __str__(self):
 		return self.short_name
 
+class Region(models.Model):
+	#Track information about each Region
+	class Meta:
+		db_table = 'region'
+
+	name = models.CharField(  #Unique name for each region
+		max_length=10,
+		unique = True
+		)
+
+	def __str__(self):
+		return self.name
+
 class Game(models.Model):
 	# Table which contains information about each of the 63 games in each tourney bracket
+	# auto id will be populated via a fixture by the integer 1-63 to represent each game in tourney
 	class Meta:
 		db_table = 'game'
 
-	num = models.IntegerField(  #Game number 1-63
-		primary_key = True, 
-		unique = True
-		)
-	t_round = models.IntegerField(default=1)  #Tournament round 1-6
+	region = models.ForeignKey(  #Region in which game is played
+		Region,
+		on_delete=models.CASCADE)
+	t_round = models.IntegerField()  #Tournament round 1-6
 	team1 = models.ForeignKey(  #Team that appears on top in this pairing
 		Team,
 		on_delete=models.CASCADE,
-		related_name="team1"
+		related_name="team1",
+		null=True,
+		blank=True
 		)
 	team2 = models.ForeignKey(  #Team that appears on bottom in this pairing
 		Team,
 		on_delete=models.CASCADE,
-		related_name="team2"
+		related_name="team2",
+		null=True,
+		blank=True
 		)
 	favorite = models.IntegerField(default=1)  #Team (1 or 2) that is favored in the pairing
 	team1_score = models.IntegerField(default=0)  #Team 1 final score
@@ -59,17 +76,19 @@ class Game(models.Model):
 		'self',
 		on_delete=models.CASCADE,
 		related_name="p_game1",
-		null=True
+		null=True,
+		blank=True
 		)
 	parent_game2 = models.ForeignKey(  #The feeder game, at bottom, of this pairing
 		'self',
 		on_delete=models.CASCADE,
 		related_name="p_game2",
-		null=True
+		null=True,
+		blank=True
 		)
 
 	def __str__(self):
-		return "Game #: {}".format(str(self.num))
+		return "Game #: {}".format(str(self.id))
 
 class Tbracket(models.Model):
 	#Tracks info about each Tournament Bracket
