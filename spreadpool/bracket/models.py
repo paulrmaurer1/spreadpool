@@ -127,6 +127,7 @@ class Entry(models.Model):
 	#Track information about each Player's entry (players can have multiple entries)
 	class Meta:
 		db_table = 'entry'
+		verbose_name_plural = 'entries'
 
 	player = models.ForeignKey(  #User associated with this entry
 		settings.AUTH_USER_MODEL,
