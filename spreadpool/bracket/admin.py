@@ -5,7 +5,8 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User
 from .models import Team, Game, Tbracket, Matchup, Entry
 
-admin.site.register(User, UserAdmin)
+#admin.site.register(UserAdmin)
+admin.site.register(User)
 admin.site.register(Team)
 admin.site.register(Game)
 admin.site.register(Tbracket)

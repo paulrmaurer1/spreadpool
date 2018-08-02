@@ -5,18 +5,34 @@ from django.conf import settings  #to reference User Class Foreign Key as 'setti
 # Create your models here.
 class User(AbstractUser):
 	# Table which contains key user and profile data
+	# Email will be only required field for login
 	class Meta:
 		db_table = 'user'
 
+	MULTIPLE_ENTRY_CHOICES = (
+		('D', 'Different Brackets'),
+		('S', 'Same Bracket'),
+	)
+
+	#standard Abstract User fields, overriding default values where needed
 	email = models.EmailField(unique=True)
 	username = models.CharField(blank=True, null=True, max_length=150)
+	
+	#custom user profile fields
+	num_entries = models.IntegerField(default=1)
+	mult_entry_type = models.CharField(
+		max_length=1,
+		choices = MULTIPLE_ENTRY_CHOICES,
+		default = 'D',
+		)
+
 	REQUIRED_FIELDS = ['username']
 	USERNAME_FIELD = 'email'
 
 	def __str__(self):
 		return self.email
 
-	def get_name(self):
+	def get_fullname(self):
 		return self.first_name + " " + self.last_name
 
 class Team(models.Model):
