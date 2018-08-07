@@ -1,36 +1,30 @@
-"""spreadpool URL Configuration
+# spreadpool/urls.py
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+#Django modules
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls import url, include
+from django.contrib.auth import views as auth_views
 
 #REST framework modules
-from django.conf.urls import url, include
 from rest_framework import routers
+
+#App: bracket views
 from bracket import views
 
 #REST framework router class definitions
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'users', views.UserViewSet)
+# router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-#   path('bracket/', include('bracket.urls')),
+    path('admin/', admin.site.urls),  #Django admin site, default
+    url(r'^login/$', auth_views.login, name='login'),  #point login/ to default Django Login form
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+	# path('signup/', views.SignUp.as_view(), name='signup'),
+	url(r'', include('bracket.urls')),  #point home URL to urls in bracket app
+    
     #REST framework urlpatterns
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # url(r'^', include(router.urls)),
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
-

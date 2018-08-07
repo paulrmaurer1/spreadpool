@@ -1,0 +1,21 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<h1>Spreadpool Site</h1>
+</head>
+
+<body>
+{% block content %}
+{% endblock %}
+
+
+<form action = "{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Logout</button>
+</form> 
+
+</body>
+
+</html>
