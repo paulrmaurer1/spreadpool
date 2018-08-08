@@ -2,5 +2,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Home Page</h2>
+  <h2>Home Page</h2>
+
+  <h3>Spreadpool Roster</h3>
+  {% for user in user_list %}
+    <li>{{user.first_name}} {{user.last_name}}</li>
+  {% endfor %}
+  <br>
 {% endblock %}

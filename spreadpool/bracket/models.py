@@ -34,6 +34,7 @@ class User(AbstractUser):
 
 	def get_fullname(self):
 		return self.first_name + " " + self.last_name
+	#for full name, use standard method: get_full_name()
 
 class Team(models.Model):
 	# Table which contains all of the Tournament team names, seeds, and affiliate school
