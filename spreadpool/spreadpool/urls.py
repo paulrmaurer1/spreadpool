@@ -21,8 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
     url(r'^login/$', auth_views.login, name='login'),  #point login/ to default Django Login form
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
-	# path('signup/', views.SignUp.as_view(), name='signup'),
-	url(r'', include('bracket.urls')),  #point home URL to urls in bracket app
+    url(r'', include('bracket.urls')),  #point home URL to urls in bracket app
     
     #REST framework urlpatterns
     # url(r'^', include(router.urls)),
