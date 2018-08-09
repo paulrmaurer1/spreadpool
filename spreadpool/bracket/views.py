@@ -25,7 +25,7 @@ class HomeView(LoginRequiredMixin, generic.ListView):
 	login_url = '/login/'
 	# redirect_field_name = 'redirect_to'
 
-	def get_queryset(self):
+	def get_queryset(self):  # this is called as 'user_list', by default in template
 		return User.objects.order_by('-date_joined').exclude(username='admin')
 
 def signup(request):
@@ -33,7 +33,7 @@ def signup(request):
 		form = SignupForm(request.POST)
 		if form.is_valid():
 			new_user = form.save(commit=False)
-			# create a default username from first & last name, required by User model
+			# create a default username from first & last name since required by User model
 			new_user.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower()
 			new_user.save()
 			email = form.cleaned_data.get('email')
@@ -44,6 +44,8 @@ def signup(request):
 	else:
 		form = SignupForm()
 	return render(request, 'bracket/signup.html', {'form': form})
+
+
 
 #REST framework ViewSet classes
 class UserViewSet(viewsets.ModelViewSet):
