@@ -1,7 +1,7 @@
 #bracket/views.py
 
 #Django modules
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import get_user_model, login, authenticate
@@ -16,7 +16,7 @@ User = get_user_model()
 from rest_framework import viewsets
 from bracket.serializers import UserSerializer, GroupSerializer
 
-from .forms import SignupForm
+from .forms import SignupForm, ProfileForm
 
 # Create your views here.
 
@@ -45,8 +45,26 @@ def signup(request):
 		form = SignupForm()
 	return render(request, 'bracket/signup.html', {'form': form})
 
+class ProfileView(LoginRequiredMixin, generic.DetailView):
+	login_url = '/login/'
+	# redirect_field_name = 'redirect_to'
+	model = User
+	template_name = 'bracket/profile.html'
+
+@login_required
+def profile_edit(request, pk):
+	user_to_edit = get_object_or_404(User, pk=pk)
+	if request.method == "POST":
+		form = ProfileForm(request.POST, instance=user_to_edit)
+		if form.is_valid():
+			form.save()
+			return redirect('bracket:profile', pk=user_to_edit.pk)
+	else:
+		form = ProfileForm(instance=user_to_edit)
+	return render(request, 'bracket/profile_edit.html', {'form': form})
 
 
+	
 #REST framework ViewSet classes
 class UserViewSet(viewsets.ModelViewSet):
     """

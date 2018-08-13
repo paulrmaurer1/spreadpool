@@ -32,9 +32,10 @@ class User(AbstractUser):
 	def __str__(self):
 		return self.email
 
-	def get_fullname(self):
-		return self.first_name + " " + self.last_name
-	#for full name, use standard method: get_full_name()
+	@property
+	def full_name(self):
+		return self.first_name + ' ' + self.last_name
+	#for full name, can also use standard User method: get_full_name()
 
 class Team(models.Model):
 	# Table which contains all of the Tournament team names, seeds, and affiliate school

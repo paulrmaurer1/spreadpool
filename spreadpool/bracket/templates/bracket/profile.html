@@ -1,0 +1,26 @@
+<!-- bracket/templates/bracket/profile.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Profile for {{ user.full_name }}</h2>
+
+  <h4>Email: {{ user.email }}</h4>
+  <h4>Number of Entries: {{ user.num_entries }}</h4>
+  <h4>(S)ame or (D)ifferent Brackets: {{ user.mult_entry_type }}</h4>
+
+<form action = "{% url 'bracket:profile_edit' user.id %}">
+	
+<button type="submit">Edit</button>
+</form>
+
+{% endblock %}
+
+
+{% block profile %}
+{% comment %}
+Don't show link to Profile in this view by calling profile block
+from base.html and overriding with Back to Home link
+{% endcomment %}
+<h4><a href = "{% url 'bracket:home' %}">Back to Home</a></h4>
+
+{% endblock %}

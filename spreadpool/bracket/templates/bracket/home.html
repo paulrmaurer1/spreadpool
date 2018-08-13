@@ -6,7 +6,7 @@
 
   <h3>Spreadpool Roster</h3>
   {% for user in user_list %}
-    <li>{{user.first_name}} {{user.last_name}}</li>
+    <li>{{user.full_name}}</li>
   {% endfor %}
   <br>
 {% endblock %}

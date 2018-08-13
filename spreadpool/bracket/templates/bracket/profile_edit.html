@@ -1,0 +1,20 @@
+<!-- bracket/templates/bracket/profile_edit.html -->
+
+{% block content %}
+<h2>Edit Profile</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+<button type="submit">Save</button>
+</form>
+
+{% endblock %}
+
+{% block profile %}
+{% comment %}
+Don't show link to Profile in this view by calling profile block
+from base.html and overriding with nothing within block
+{% endcomment %}
+
+
+{% endblock %}

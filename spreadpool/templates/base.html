@@ -14,7 +14,12 @@
 <form action = "{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Logout</button>
-</form> 
+</form>
+
+<br>
+{% block profile %}
+<a href = "{% url 'bracket:profile' user.id %}">Profile</a>
+{% endblock %}
 
 </body>
 
