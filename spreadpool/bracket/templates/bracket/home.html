@@ -5,6 +5,7 @@
   <h2>Home Page</h2>
 
   <h3>Spreadpool Roster</h3>
+  <li><strong>{{logged_in_user.full_name}} *</strong></li>
   {% for user in user_list %}
     <li>{{user.full_name}}</li>
   {% endfor %}

@@ -19,3 +19,9 @@ class ProfileForm(ModelForm):
 	class Meta:
 		model = User
 		fields = ('first_name', 'last_name', 'email', 'num_entries', 'mult_entry_type',)
+
+class DeleteProfileForm(ModelForm):
+
+	class Meta:
+		model = User
+		fields = ()

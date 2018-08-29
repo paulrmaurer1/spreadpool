@@ -5,28 +5,42 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import get_user_model, login, authenticate
-from django.views import generic
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 #Since we overrode standard User with bracket.User
 #i.e. AUTH_USER_MODEL = 'bracket.User' in settings file
 #need to update User with this line
 User = get_user_model()
 
+#Other modules
+
 #REST framework modules
 from rest_framework import viewsets
 from bracket.serializers import UserSerializer, GroupSerializer
 
-from .forms import SignupForm, ProfileForm
+from .forms import SignupForm, ProfileForm, DeleteProfileForm
 
 # Create your views here.
 
-class HomeView(LoginRequiredMixin, generic.ListView):
+class HomeView(LoginRequiredMixin, ListView):
 	template_name = 'bracket/home.html'
 	login_url = '/login/'
 	# redirect_field_name = 'redirect_to'
 
 	def get_queryset(self):  # this is called as 'user_list', by default in template
-		return User.objects.order_by('-date_joined').exclude(username='admin')
+		# Create list that exludes admin and the user who is logged in, sorted by most recent joined
+		custom_user_list = User.objects.exclude(username='admin')
+		custom_user_list = custom_user_list.exclude(email=self.request.user.email)
+		custom_user_list = custom_user_list.order_by('-date_joined')
+		return custom_user_list
+
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super(HomeView, self).get_context_data(**kwargs)
+		# Pass back the currently logged in user
+		context['logged_in_user'] = User.objects.get(email=self.request.user.email)
+		return context
+		
 
 def signup(request):
 	if request.method == "POST":  #after Sign-up form is submitted
@@ -45,7 +59,7 @@ def signup(request):
 		form = SignupForm()
 	return render(request, 'bracket/signup.html', {'form': form})
 
-class ProfileView(LoginRequiredMixin, generic.DetailView):
+class ProfileView(LoginRequiredMixin, DetailView):
 	login_url = '/login/'
 	# redirect_field_name = 'redirect_to'
 	model = User
@@ -63,6 +77,17 @@ def profile_edit(request, pk):
 		form = ProfileForm(instance=user_to_edit)
 	return render(request, 'bracket/profile_edit.html', {'form': form})
 
+@login_required
+def profile_delete(request, pk):
+	user_to_delete = get_object_or_404(User, pk=pk)
+	if request.method == "POST":
+		form = DeleteProfileForm(request.POST, instance = user_to_delete)
+		if form.is_valid():
+			user_to_delete.delete()
+			return redirect('logout')
+	else:
+		form = DeleteProfileForm(instance=user_to_delete)
+	return render(request, 'bracket/profile_delete.html', {'form': form})
 
 	
 #REST framework ViewSet classes

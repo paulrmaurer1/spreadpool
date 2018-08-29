@@ -19,12 +19,18 @@ class User(AbstractUser):
 	username = models.CharField(blank=True, null=True, max_length=150)
 	
 	#custom user profile fields
-	num_entries = models.IntegerField(default=1)
+	num_entries = models.IntegerField(
+		default=1,
+		verbose_name="Number of Entries"  #Text on form widget
+		)
 	mult_entry_type = models.CharField(
 		max_length=1,
 		choices = MULTIPLE_ENTRY_CHOICES,
 		default = 'D',
+		verbose_name="(S)ame or (D)ifferent Brackets"  #Text on form widget
 		)
+
+	
 
 	REQUIRED_FIELDS = ['username']
 	USERNAME_FIELD = 'email'
