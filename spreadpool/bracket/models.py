@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser  #to subclass AbstractUser for User
 from django.conf import settings  #to reference User Class Foreign Key as 'settings.AUTH_USER_MODEL'
+from django.urls import reverse
 
 # Create your models here.
 class User(AbstractUser):
@@ -30,7 +31,9 @@ class User(AbstractUser):
 		verbose_name="(S)ame or (D)ifferent Brackets"  #Text on form widget
 		)
 
-	
+	# Used by views.ProfileEdit(UpdateView) to return to standard profile view
+	def get_absolute_url(self):
+		return reverse('bracket:profile', kwargs={'pk': self.pk})	
 
 	REQUIRED_FIELDS = ['username']
 	USERNAME_FIELD = 'email'

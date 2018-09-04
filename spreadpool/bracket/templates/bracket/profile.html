@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Profile for {{ user.full_name }}</h2>
+<h2>Profile for: {{ user.full_name }}</h2>
 
   <h4>Email: {{ user.email }}</h4>
   <h4>Number of Entries: {{ user.num_entries }}</h4>
@@ -12,7 +12,7 @@
 <button type="submit">Edit</button>
 </form>
 
-<form action = "{% url 'bracket:profile_delete' user.id%}" method="post">
+<form action = "{% url 'bracket:profile_delete' user.id%}" method="GET">
 	{% csrf_token %}
 <button type="submit">Delete</button>
 </form>

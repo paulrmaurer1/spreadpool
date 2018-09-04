@@ -5,8 +5,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import get_user_model, login, authenticate
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.http import Http404
 #Since we overrode standard User with bracket.User
 #i.e. AUTH_USER_MODEL = 'bracket.User' in settings file
 #need to update User with this line
@@ -59,35 +61,59 @@ def signup(request):
 		form = SignupForm()
 	return render(request, 'bracket/signup.html', {'form': form})
 
+class LoggedInUserMixin(object):
+	# Ensure that logged in User is the one attempting to delete/change their Profile
+	model = User
+
+	def get_object(self, queryset=None):
+		obj = super(LoggedInUserMixin, self).get_object()
+		if not obj.email == self.request.user.email:
+			raise Http404
+		user = User.objects.get(id=obj.id)
+		self.user = user
+		return obj
+
 class ProfileView(LoginRequiredMixin, DetailView):
 	login_url = '/login/'
-	# redirect_field_name = 'redirect_to'
 	model = User
 	template_name = 'bracket/profile.html'
 
-@login_required
-def profile_edit(request, pk):
-	user_to_edit = get_object_or_404(User, pk=pk)
-	if request.method == "POST":
-		form = ProfileForm(request.POST, instance=user_to_edit)
-		if form.is_valid():
-			form.save()
-			return redirect('bracket:profile', pk=user_to_edit.pk)
-	else:
-		form = ProfileForm(instance=user_to_edit)
-	return render(request, 'bracket/profile_edit.html', {'form': form})
+class ProfileEdit(LoggedInUserMixin, LoginRequiredMixin, UpdateView):
+	login_url = '/login/'
+	form_class = ProfileForm
+	template_name = 'bracket/profile_edit.html'
+	
+class ProfileDelete(LoggedInUserMixin, LoginRequiredMixin, DeleteView):
+	login_url = '/login/'
+	success_url = reverse_lazy('login')
+	template_name = 'bracket/user_confirm_delete.html'
 
-@login_required
-def profile_delete(request, pk):
-	user_to_delete = get_object_or_404(User, pk=pk)
-	if request.method == "POST":
-		form = DeleteProfileForm(request.POST, instance = user_to_delete)
-		if form.is_valid():
-			user_to_delete.delete()
-			return redirect('logout')
-	else:
-		form = DeleteProfileForm(instance=user_to_delete)
-	return render(request, 'bracket/profile_delete.html', {'form': form})
+'''
+FBV approach to above
+'''
+# @login_required
+# def profile_edit(request, pk):
+# 	user_to_edit = get_object_or_404(User, pk=pk)
+# 	if request.method == "POST":
+# 		form = ProfileForm(request.POST, instance=user_to_edit)
+# 		if form.is_valid():
+# 			form.save()
+# 			return redirect('bracket:profile', pk=user_to_edit.pk)
+# 	else:
+# 		form = ProfileForm(instance=user_to_edit)
+# 	return render(request, 'bracket/profile_edit.html', {'form': form})
+
+# @login_required
+# def profile_delete(request, pk):
+# 	user_to_delete = get_object_or_404(User, pk=pk)
+# 	if request.method == "POST":
+# 		form = DeleteProfileForm(request.POST, instance = user_to_delete)
+# 		if form.is_valid():
+# 			user_to_delete.delete()
+# 			return redirect('logout')
+# 	else:
+# 		form = DeleteProfileForm(instance=user_to_delete)
+# 	return render(request, 'bracket/profile_delete.html', {'form': form})
 
 	
 #REST framework ViewSet classes

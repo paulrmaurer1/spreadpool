@@ -1,0 +1,19 @@
+<!-- bracket/templates/bracket/user_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Delete Profile</h2>
+
+<p>{{user.first_name}}, are you sure you want to delete your profile?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete">
+</form>
+
+<form action="{% url 'bracket:profile' user.id %}">
+  <input type="submit" value="No, go back">
+</form>
+
+{% endblock %}

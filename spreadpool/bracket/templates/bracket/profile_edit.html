@@ -3,10 +3,13 @@
 
 {% block content %}
 <h2>Edit Profile</h2>
-<form method="post">
+<form method="POST">
   {% csrf_token %}
+  {% if form.num_entries.errors %}
+    <font color="red">{{ form.num_entries.errors }}</font>
+  {% endif %}
   {{ form.as_p }}
-<button type="submit">Save</button>
+<button type="submit" value="Submit">Save</button>
 </form>
 
 {% endblock %}
