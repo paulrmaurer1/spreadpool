@@ -3,11 +3,15 @@
 
 {% block content %}
   <h2>Home Page</h2>
-
   <h3>Spreadpool Roster</h3>
+  {% comment %}
+  List logged in user's name first with asterisk
+  Then list rest of roster in most recently created users
+  {% endcomment %}
   <li><strong>{{logged_in_user.full_name}} *</strong></li>
   {% for user in user_list %}
     <li>{{user.full_name}}</li>
   {% endfor %}
   <br>
+
 {% endblock %}

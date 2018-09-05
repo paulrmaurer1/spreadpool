@@ -9,12 +9,12 @@
   <h4>(S)ame or (D)ifferent Brackets: {{ user.mult_entry_type }}</h4>
 
 <form action = "{% url 'bracket:profile_edit' user.id %}">
-<button type="submit">Edit</button>
+  <button type="submit">Edit</button>
 </form>
 
 <form action = "{% url 'bracket:profile_delete' user.id%}" method="GET">
-	{% csrf_token %}
-<button type="submit">Delete</button>
+  {% csrf_token %}
+  <button type="submit">Delete</button>
 </form>
 
 {% endblock %}

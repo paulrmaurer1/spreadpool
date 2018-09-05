@@ -10,15 +10,15 @@
   {% endif %}
   {{ form.as_p }}
 <button type="submit" value="Submit">Save</button>
-</form>
-
 {% endblock %}
 
 {% block profile %}
 {% comment %}
-Don't show link to Profile in this view by calling profile block
-from base.html and overriding with nothing within block
+Modify profile block from base.html slightly
+with button that says, 'Back to Profile' in case
+user wants to leave Edit mode
 {% endcomment %}
-
-
+<form action = "{% url 'bracket:profile' user.id %}">
+  <button type="submit">Back to Profile</button>
+</form>
 {% endblock %}

@@ -19,8 +19,9 @@ from bracket import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
-    url(r'^login/$', auth_views.login, name='login'),  #point login/ to default Django Login form
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^login/$', auth_views.login, name='login'),  #Direct login to default Django Login form
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'), #Direct logout to default Django logout with next_page as destination
+    url('^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
     url(r'', include('bracket.urls')),  #point home URL to urls in bracket app
     
     #REST framework urlpatterns

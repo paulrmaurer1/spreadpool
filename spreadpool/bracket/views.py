@@ -5,22 +5,23 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import get_user_model, login, authenticate
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.http import Http404
-#Since we overrode standard User with bracket.User
-#i.e. AUTH_USER_MODEL = 'bracket.User' in settings file
-#need to update User with this line
+'''
+Since we overrode standard User with bracket.User
+i.e. AUTH_USER_MODEL = 'bracket.User' in settings file
+need to update User with following line
+'''
 User = get_user_model()
 
 #Other modules
+from .forms import SignupForm, ProfileForm
 
 #REST framework modules
 from rest_framework import viewsets
 from bracket.serializers import UserSerializer, GroupSerializer
-
-from .forms import SignupForm, ProfileForm, DeleteProfileForm
 
 # Create your views here.
 
@@ -43,23 +44,41 @@ class HomeView(LoginRequiredMixin, ListView):
 		context['logged_in_user'] = User.objects.get(email=self.request.user.email)
 		return context
 		
+class SignUp(CreateView):
+	form_class = SignupForm
+	# success_url = reverse_lazy('bracket:home')
+	template_name = 'bracket/signup.html'
 
-def signup(request):
-	if request.method == "POST":  #after Sign-up form is submitted
-		form = SignupForm(request.POST)
-		if form.is_valid():
-			new_user = form.save(commit=False)
-			# create a default username from first & last name since required by User model
-			new_user.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower()
-			new_user.save()
-			email = form.cleaned_data.get('email')
-			raw_password = form.cleaned_data.get('password1')
-			user = authenticate(email=email, password=raw_password)
-			login(request, user)
-			return redirect('bracket:home')
-	else:
-		form = SignupForm()
-	return render(request, 'bracket/signup.html', {'form': form})
+	#Create username and login user during form validation & saving process
+	def form_valid(self, form):
+		model = form.save(commit=False)
+		model.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower()
+		model.save()
+		email = form.cleaned_data.get('email')
+		raw_password = form.cleaned_data.get('password1')
+		user = authenticate(email=email, password=raw_password)
+		login(self.request, user)
+		return redirect('bracket:home')
+
+'''
+FBV approach to above
+'''
+# def signup(request):
+# 	if request.method == "POST":  #after Sign-up form is submitted
+# 		form = SignupForm(request.POST)
+# 		if form.is_valid():
+# 			new_user = form.save(commit=False)
+# 			# create a default username from first & last name since required by User model
+# 			new_user.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower()
+# 			new_user.save()
+# 			email = form.cleaned_data.get('email')
+# 			raw_password = form.cleaned_data.get('password1')
+# 			user = authenticate(email=email, password=raw_password)
+# 			login(request, user)
+# 			return redirect('bracket:home')
+# 	else:
+# 		form = SignupForm()
+# 	return render(request, 'bracket/signup.html', {'form': form})
 
 class LoggedInUserMixin(object):
 	# Ensure that logged in User is the one attempting to delete/change their Profile

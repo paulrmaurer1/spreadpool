@@ -8,5 +8,10 @@
   <button type="submit">Login</button>
 </form>
 
+<form action = "{% url 'password_reset' %}">
+	<button type="submit">Reset Password</button>
+</form>
+
 <a href = "{% url 'bracket:signup' %}">Sign-up</a>
+
 {% endblock %}

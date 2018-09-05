@@ -106,3 +106,7 @@ AUTH_USER_MODEL = 'bracket.User'
 
 # Set the home view as redirect URL
 LOGIN_REDIRECT_URL = '/'
+
+# To support Django's built-in contrib.auth password reset functionality
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
