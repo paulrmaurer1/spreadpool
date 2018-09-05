@@ -9,6 +9,10 @@ from django.forms import ModelForm
 User = get_user_model()
 
 class CheckNumEntriesMixin(object):
+	'''
+	Mixin to ensure that # of entries is between 1-4
+	either when signing up or editing one's own profile
+	'''
 	def clean_num_entries(self):
 		_num_entries = self.cleaned_data['num_entries']
 		if _num_entries > 4 or _num_entries < 0:

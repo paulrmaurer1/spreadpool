@@ -16,7 +16,7 @@ need to update User with following line
 '''
 User = get_user_model()
 
-#Other modules
+#Internal modules
 from .forms import SignupForm, ProfileForm
 
 #REST framework modules
@@ -26,6 +26,8 @@ from bracket.serializers import UserSerializer, GroupSerializer
 # Create your views here.
 
 class HomeView(LoginRequiredMixin, ListView):
+	# Main Page with roster list during signup period
+	# **TO DO** Create view of brackets on main page after signup period
 	template_name = 'bracket/home.html'
 	login_url = '/login/'
 	# redirect_field_name = 'redirect_to'
@@ -45,6 +47,7 @@ class HomeView(LoginRequiredMixin, ListView):
 		return context
 		
 class SignUp(CreateView):
+	# Sign up page for people to enter pool
 	form_class = SignupForm
 	# success_url = reverse_lazy('bracket:home')
 	template_name = 'bracket/signup.html'
@@ -81,7 +84,7 @@ FBV approach to above
 # 	return render(request, 'bracket/signup.html', {'form': form})
 
 class LoggedInUserMixin(object):
-	# Ensure that logged in User is the one attempting to delete/change their Profile
+	# Ensure that logged in User is only one allowed to delete/change their Profile
 	model = User
 
 	def get_object(self, queryset=None):
@@ -93,16 +96,19 @@ class LoggedInUserMixin(object):
 		return obj
 
 class ProfileView(LoginRequiredMixin, DetailView):
+	# View user Profile
 	login_url = '/login/'
 	model = User
 	template_name = 'bracket/profile.html'
 
 class ProfileEdit(LoggedInUserMixin, LoginRequiredMixin, UpdateView):
+	# Edit user Profile
 	login_url = '/login/'
 	form_class = ProfileForm
 	template_name = 'bracket/profile_edit.html'
 	
 class ProfileDelete(LoggedInUserMixin, LoginRequiredMixin, DeleteView):
+	# Delete user Profile
 	login_url = '/login/'
 	success_url = reverse_lazy('login')
 	template_name = 'bracket/user_confirm_delete.html'
@@ -121,7 +127,7 @@ FBV approach to above
 # 	else:
 # 		form = ProfileForm(instance=user_to_edit)
 # 	return render(request, 'bracket/profile_edit.html', {'form': form})
-
+#
 # @login_required
 # def profile_delete(request, pk):
 # 	user_to_delete = get_object_or_404(User, pk=pk)
