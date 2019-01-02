@@ -1,0 +1,94 @@
+<!-- bracket/templates/bracket/admin_page.html -->
+{% extends 'base.html' %}
+
+{% block scripts %}
+{% load static %}
+<script src="{% static "bracket/ajax_cookie.js" %}"></script>
+
+  <script>
+	$(document).ready(function() {
+		$('#game1update').click(function(){
+			event.preventDefault();
+			// this approach uses a function call to create key-value pairs in a dict based
+			// on input type html elements name = "" from within form id='game1':
+			//
+			// var data = $('#game1').serializeArray().reduce(function(obj, item) {
+   			// 	obj[item.name] = item.value;
+   			//	return obj;
+			// }, {});
+
+			// this approach uses html ids to capture data and create a data dict of values
+			//
+			var data = {};
+			// only include values that are entered; otherwise, don't overwrite existing value
+			var _spread = $('#game1spread').val();
+			if (_spread) {
+				data.spread = _spread}
+			var _team1_score = $('#game1_team1score').val();
+			if (_team1_score) {
+				data.team1_score = _team1_score}
+			var _team2_score = $('#game1_team2score').val();
+			if (_team2_score) {
+				data.team2_score = _team2_score}
+
+			$.ajax({
+				type: "PUT",
+				url : "http://127.0.0.1:8000/api/games/1/",
+				//csrfmiddlewaretoken: "{{ csrf_token }}",
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				//dataType: "json",
+				// headers: {
+				// 	'Accept': 'application/json',
+				// 	'Content-Type': 'application/json'
+				// },
+				success: function () {
+					alert("Saved!");
+					console.log(data);
+					// Clear out form's input elements with the following:
+					$('#game1 input[type="number"]').each(function() {
+						$(this).val('');
+					});
+				}, // end success : function
+				error: function() {
+    				console.log(data);
+    			} 
+			}); // end ajax
+		}) // end click
+	}); // end ready
+  </script>
+{% endblock %}
+
+
+{% block content %}
+  <br>
+  <h2>Admin Page</h2>
+  <br>
+  <form action = "{% url 'bracket:tbracket_page' %}">
+    <button type="submit">Brackets</button>
+  </form>
+  <div>
+  	<h3>Game 1</h3>
+  	<form id="game1">
+  		<h4>Spread:</h4>
+	  	<input name="spread" type="number" id="game1spread">
+	  	<h4>Team 1 Score:</h4>
+	  	<input name="team1_score" type="number" id="game1_team1score">
+	  	<h4>Team 2 Score:</h4>
+	  	<input name="team2_score" type="number" id="game1_team2score">
+	  	<input name="game1update" type="submit" id="game1update" value="Update Game 1">
+  	</form>
+  </div>
+  <br>
+
+
+{% endblock %}
+
+{% block profile %}
+{% comment %}
+Don't show link to Profile in this view by calling profile block
+from base.html and overriding with Back to Home link
+{% endcomment %}
+<h4><a href = "{% url 'bracket:home' %}">Back to Home</a></h4>
+
+{% endblock %}

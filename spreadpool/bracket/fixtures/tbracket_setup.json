@@ -1,0 +1,16 @@
+[
+    {
+        "model": "bracket.Tbracket",
+        "pk": 1,
+        "fields": {
+            "name": "Maize"
+        }
+    },
+    {
+        "model": "bracket.Tbracket",
+        "pk": 2,
+        "fields": {
+            "name": "Blue"
+        }
+    }
+]

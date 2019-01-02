@@ -7,24 +7,35 @@ from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 
 #REST framework modules
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
+
+#REST jwt (JSON Web Token) modules
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 #App: bracket views
 from bracket import views
 
-#REST framework router class definitions
-# router = routers.DefaultRouter()
-# router.register(r'users', views.UserViewSet)
-# router.register(r'groups', views.GroupViewSet)
+#Create a router and register our viewsets with it. This takes care of needing to explicitly create a set of views from ViewSets
+router = DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'entries', views.EntryViewSet)
+router.register(r'rawentries', views.RawEntryViewSet)
+# router.register(r'player_entries', views.EntryViewSetByPlayer)
+router.register(r'games', views.GameViewSet)
+router.register(r'matchups', views.MatchupViewSet)
+router.register(r'tbrackets', views.TbracketViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
-    url(r'^login/$', auth_views.login, name='login'),  #Direct login to default Django Login form
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'), #Direct logout to default Django logout with next_page as destination
+    url(r'^login/$', auth_views.LoginView.as_view(), name='login'),  #Direct login to default Django Login form
+    url(r'^logout/$', auth_views.LogoutView.as_view(), {'next_page': '/'}, name='logout'), #Direct logout to default Django logout with next_page as destination
     url('^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
     url(r'', include('bracket.urls')),  #point home URL to urls in bracket app
     
-    #REST framework urlpatterns
-    # url(r'^', include(router.urls)),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # REST framework urlpatterns
+    url(r'^api/', include(router.urls)), # Specify that all API calls need to be prefaced with api/*
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # Standard login, logout views for browsable API
+    path(r'api/api-token-auth/', obtain_jwt_token),  # jwt endpoint to obtain token & allow authentication via api, with prepended 'api/'
+    path(r'api/api-token-refresh/', refresh_jwt_token),  # jwt endpoint to request a new token, with prepended 'api/'
 ]

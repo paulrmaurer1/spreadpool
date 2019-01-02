@@ -1,642 +1,642 @@
 [
     {
         "pk": 1,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Virginia Cavaliers",
             "seed": 1,
+            "long_name": "Virginia Cavaliers",
             "short_name": "Virginia",
             "school": "University of Virginia"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 2,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Cincinnati Bearcats",
             "seed": 2,
+            "long_name": "Cincinnati Bearcats",
             "short_name": "Cincinnati",
             "school": "University of Cincinnati"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 3,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Tennessee Volunteers",
             "seed": 3,
+            "long_name": "Tennessee Volunteers",
             "short_name": "Tennessee",
             "school": "University of Tennessee"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 4,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Arizona Wildcats",
             "seed": 4,
+            "long_name": "Arizona Wildcats",
             "short_name": "Arizona",
             "school": "University of Arizona"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 5,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Kentucky Wildcats",
             "seed": 5,
+            "long_name": "Kentucky Wildcats",
             "short_name": "Kentucky",
             "school": "University of Kentucky"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 6,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Miami Hurricanes",
             "seed": 6,
+            "long_name": "Miami Hurricanes",
             "short_name": "Miami (FL)",
             "school": "University of Miami"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 7,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Nevada Wolf Pack",
             "seed": 7,
+            "long_name": "Nevada Wolf Pack",
             "short_name": "Nevada",
             "school": "University of Nevada, Reno"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 8,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Creighton Bluejays",
             "seed": 8,
+            "long_name": "Creighton Bluejays",
             "short_name": "Creighton",
             "school": "Creighton University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 9,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Kansas State Wildcats",
             "seed": 9,
+            "long_name": "Kansas State Wildcats",
             "short_name": "Kansas St",
             "school": "Kansas State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 10,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Texas Longhorns",
             "seed": 10,
+            "long_name": "Texas Longhorns",
             "short_name": "Texas",
             "school": "University of Texas at Austin"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 11,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Loyola Ramblers",
             "seed": 11,
+            "long_name": "Loyola Ramblers",
             "short_name": "Loyola Chi",
             "school": "Loyola University Chicago"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 12,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Davidson Wildcats",
             "seed": 12,
+            "long_name": "Davidson Wildcats",
             "short_name": "Davidson",
             "school": "Davidson College"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 13,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Buffalo Bulls",
             "seed": 13,
+            "long_name": "Buffalo Bulls",
             "short_name": "Buffalo",
             "school": "University at Buffalo, SUNY"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 14,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Wright State Raiders",
             "seed": 14,
+            "long_name": "Wright State Raiders",
             "short_name": "Wright St",
             "school": "Wright State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 15,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Georgia State Panthers",
             "seed": 15,
+            "long_name": "Georgia State Panthers",
             "short_name": "Georgia St",
             "school": "Georgia State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 16,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "UMBC Retrievers",
             "seed": 16,
+            "long_name": "UMBC Retrievers",
             "short_name": "UMBC",
             "school": "University of Maryland, Baltimore County"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 17,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Xavier Musketeers",
             "seed": 1,
+            "long_name": "Xavier Musketeers",
             "short_name": "Xavier",
             "school": "Xavier University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 18,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "North Carolina Tar Heels",
             "seed": 2,
+            "long_name": "North Carolina Tar Heels",
             "short_name": "N Carolina",
             "school": "University of North Carolina at Chapel Hill"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 19,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Michigan Wolverines",
             "seed": 3,
+            "long_name": "Michigan Wolverines",
             "short_name": "Michigan",
             "school": "University of Michigan"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 20,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Gonzaga Bulldogs",
             "seed": 4,
+            "long_name": "Gonzaga Bulldogs",
             "short_name": "Gonzaga",
             "school": "Gonzaga University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 21,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Ohio State Buckeyes",
             "seed": 5,
+            "long_name": "Ohio State Buckeyes",
             "short_name": "Ohio St",
             "school": "Ohio State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 22,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Houston Cougars",
             "seed": 6,
+            "long_name": "Houston Cougars",
             "short_name": "Houston",
             "school": "University of Houston"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 23,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Texas A&M Aggies",
             "seed": 7,
+            "long_name": "Texas A&M Aggies",
             "short_name": "Texas A&M",
             "school": "Texas A&M University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 24,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Missouri Tigers",
             "seed": 8,
+            "long_name": "Missouri Tigers",
             "short_name": "Missouri",
             "school": "University of Missouri"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 25,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Florida State Seminoles",
             "seed": 9,
+            "long_name": "Florida State Seminoles",
             "short_name": "Florida St",
             "school": "Florida State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 26,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Providence Friars",
             "seed": 10,
+            "long_name": "Providence Friars",
             "short_name": "Providence",
             "school": "Providence College"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 27,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "San Diego State Aztecs",
             "seed": 11,
+            "long_name": "San Diego State Aztecs",
             "short_name": "S Diego St",
             "school": "San Diego State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 28,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "South Dakota State Jackrabbits",
             "seed": 12,
+            "long_name": "South Dakota State Jackrabbits",
             "short_name": "S Dakot St",
             "school": "South Dakota State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 29,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "UNC Greensboro Spartans",
             "seed": 13,
+            "long_name": "UNC Greensboro Spartans",
             "short_name": "UNCG",
             "school": "University of North Carolina at Greensboro"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 30,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Montana Grizzlies",
             "seed": 14,
+            "long_name": "Montana Grizzlies",
             "short_name": "Montana",
             "school": "University of Montana"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 31,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Lipscomb Bisons",
             "seed": 15,
+            "long_name": "Lipscomb Bisons",
             "short_name": "Lipscomb",
             "school": "Lipscomb University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 32,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Texas Southern Tigers",
             "seed": 16,
+            "long_name": "Texas Southern Tigers",
             "short_name": "Tx South",
             "school": "Texas Southern University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 33,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Villanova Wildcats",
             "seed": 1,
+            "long_name": "Villanova Wildcats",
             "short_name": "Villanova",
             "school": "Villanova University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 34,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Purdue Boilermakers",
             "seed": 2,
+            "long_name": "Purdue Boilermakers",
             "short_name": "Purdue",
             "school": "Purdue University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 35,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Texas Tech Red Raiders",
             "seed": 3,
+            "long_name": "Texas Tech Red Raiders",
             "short_name": "Texas Tech",
             "school": "Texas Tech University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 36,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Wichita State Shockers",
             "seed": 4,
+            "long_name": "Wichita State Shockers",
             "short_name": "Wichita",
             "school": "Wichita State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 37,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "West Virginia Mountaineers",
             "seed": 5,
+            "long_name": "West Virginia Mountaineers",
             "short_name": "W Virginia",
             "school": "West Virginia University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 38,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Florida Gators",
             "seed": 6,
+            "long_name": "Florida Gators",
             "short_name": "Florida",
             "school": "University of Florida"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 39,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Arkansas Razorbacks",
             "seed": 7,
+            "long_name": "Arkansas Razorbacks",
             "short_name": "Arkansas",
             "school": "University of Arkansas"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 40,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Virginia Tech Hokies",
             "seed": 8,
+            "long_name": "Virginia Tech Hokies",
             "short_name": "Va Tech",
             "school": "Virginia Polytechnic Institute and State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 41,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Alabama Crimson Tide",
             "seed": 9,
+            "long_name": "Alabama Crimson Tide",
             "short_name": "Alabama",
             "school": "University of Alabama"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 42,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Butler Bulldogs",
             "seed": 10,
+            "long_name": "Butler Bulldogs",
             "short_name": "Butler",
             "school": "Butler University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 43,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "St. Bonaventure Bonnies",
             "seed": 11,
+            "long_name": "St. Bonaventure Bonnies",
             "short_name": "St Bonnie",
             "school": "St. Bonaventure University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 44,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Murray State Racers",
             "seed": 12,
+            "long_name": "Murray State Racers",
             "short_name": "Murray St",
             "school": "Murray State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 45,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Marshall Thundering Herd",
             "seed": 13,
+            "long_name": "Marshall Thundering Herd",
             "short_name": "Marshall",
             "school": "Marshall University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 46,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Stephen F. Austin Lumberjacks",
             "seed": 14,
+            "long_name": "Stephen F. Austin Lumberjacks",
             "short_name": "SF Austin",
             "school": "Stephen F. Austin State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 47,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Cal State Fullerton Titans",
             "seed": 15,
+            "long_name": "Cal State Fullerton Titans",
             "short_name": "CSU Full",
             "school": "California State University, Fullerton"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 48,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Radford Highlanders",
             "seed": 16,
+            "long_name": "Radford Highlanders",
             "short_name": "Radford",
             "school": "Radford University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 49,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Kansas Jayhawks",
             "seed": 1,
+            "long_name": "Kansas Jayhawks",
             "short_name": "Kansas",
             "school": "University of Kansas"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 50,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Duke Blue Devils",
             "seed": 2,
+            "long_name": "Duke Blue Devils",
             "short_name": "Duke",
             "school": "Duke University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 51,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Michigan State Spartans",
             "seed": 3,
+            "long_name": "Michigan State Spartans",
             "short_name": "Mich St",
             "school": "Michigan State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 52,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Auburn Tigers",
             "seed": 4,
+            "long_name": "Auburn Tigers",
             "short_name": "Auburn",
             "school": "Auburn University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 53,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Clemson Tigers",
             "seed": 5,
+            "long_name": "Clemson Tigers",
             "short_name": "Clemson",
             "school": "Clemson University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 54,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "TCU Horned Frogs",
             "seed": 6,
+            "long_name": "TCU Horned Frogs",
             "short_name": "TCU",
             "school": "Texas Christian University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 55,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Rhode Island Rams",
             "seed": 7,
+            "long_name": "Rhode Island Rams",
             "short_name": "Rhode Isl",
             "school": "University of Rhode Island"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 56,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Seton Hall Pirates",
             "seed": 8,
+            "long_name": "Seton Hall Pirates",
             "short_name": "Seton Hall",
             "school": "Seton Hall University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 57,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "NC State Wolfpack",
             "seed": 9,
+            "long_name": "NC State Wolfpack",
             "short_name": "NC State",
             "school": "North Carolina State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 58,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Oklahoma Sooners",
             "seed": 10,
+            "long_name": "Oklahoma Sooners",
             "short_name": "Oklahoma",
             "school": "University of Oklahoma"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 59,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Syracuse Orange",
             "seed": 11,
+            "long_name": "Syracuse Orange",
             "short_name": "Syracuse",
             "school": "Syracuse University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 60,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "New Mexico State Aggies",
             "seed": 12,
+            "long_name": "New Mexico State Aggies",
             "short_name": "New Mex St",
             "school": "New Mexico State University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 61,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "College of Charleston Cougars",
             "seed": 13,
+            "long_name": "College of Charleston Cougars",
             "short_name": "Charleston",
             "school": "College of Charleston"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 62,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Bucknell Bison",
             "seed": 14,
+            "long_name": "Bucknell Bison",
             "short_name": "Bucknell",
             "school": "Bucknell University"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 63,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Iona Gaels",
             "seed": 15,
+            "long_name": "Iona Gaels",
             "short_name": "Iona",
             "school": "Iona College"
-        }
+        },
+        "model": "bracket.Team"
     },
     {
         "pk": 64,
-        "model": "bracket.Team",
         "fields": {
-            "long_name": "Penn Quakers",
             "seed": 16,
+            "long_name": "Penn Quakers",
             "short_name": "Penn",
             "school": "University of Pennsylvania"
-        }
+        },
+        "model": "bracket.Team"
     }
 ]

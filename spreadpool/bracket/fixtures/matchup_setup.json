@@ -1,0 +1,1010 @@
+[
+    {
+        "model": "bracket.Matchup",
+        "pk": 1,
+        "fields": {
+            "tbracket": 1,
+            "game": 1
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 2,
+        "fields": {
+            "tbracket": 1,
+            "game": 2
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 3,
+        "fields": {
+            "tbracket": 1,
+            "game": 3
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 4,
+        "fields": {
+            "tbracket": 1,
+            "game": 4
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 5,
+        "fields": {
+            "tbracket": 1,
+            "game": 5
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 6,
+        "fields": {
+            "tbracket": 1,
+            "game": 6
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 7,
+        "fields": {
+            "tbracket": 1,
+            "game": 7
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 8,
+        "fields": {
+            "tbracket": 1,
+            "game": 8
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 9,
+        "fields": {
+            "tbracket": 1,
+            "game": 9
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 10,
+        "fields": {
+            "tbracket": 1,
+            "game": 10
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 11,
+        "fields": {
+            "tbracket": 1,
+            "game": 11
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 12,
+        "fields": {
+            "tbracket": 1,
+            "game": 12
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 13,
+        "fields": {
+            "tbracket": 1,
+            "game": 13
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 14,
+        "fields": {
+            "tbracket": 1,
+            "game": 14
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 15,
+        "fields": {
+            "tbracket": 1,
+            "game": 15
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 16,
+        "fields": {
+            "tbracket": 1,
+            "game": 16
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 17,
+        "fields": {
+            "tbracket": 1,
+            "game": 17
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 18,
+        "fields": {
+            "tbracket": 1,
+            "game": 18
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 19,
+        "fields": {
+            "tbracket": 1,
+            "game": 19
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 20,
+        "fields": {
+            "tbracket": 1,
+            "game": 20
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 21,
+        "fields": {
+            "tbracket": 1,
+            "game": 21
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 22,
+        "fields": {
+            "tbracket": 1,
+            "game": 22
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 23,
+        "fields": {
+            "tbracket": 1,
+            "game": 23
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 24,
+        "fields": {
+            "tbracket": 1,
+            "game": 24
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 25,
+        "fields": {
+            "tbracket": 1,
+            "game": 25
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 26,
+        "fields": {
+            "tbracket": 1,
+            "game": 26
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 27,
+        "fields": {
+            "tbracket": 1,
+            "game": 27
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 28,
+        "fields": {
+            "tbracket": 1,
+            "game": 28
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 29,
+        "fields": {
+            "tbracket": 1,
+            "game": 29
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 30,
+        "fields": {
+            "tbracket": 1,
+            "game": 30
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 31,
+        "fields": {
+            "tbracket": 1,
+            "game": 31
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 32,
+        "fields": {
+            "tbracket": 1,
+            "game": 32
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 33,
+        "fields": {
+            "tbracket": 1,
+            "game": 33
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 34,
+        "fields": {
+            "tbracket": 1,
+            "game": 34
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 35,
+        "fields": {
+            "tbracket": 1,
+            "game": 35
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 36,
+        "fields": {
+            "tbracket": 1,
+            "game": 36
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 37,
+        "fields": {
+            "tbracket": 1,
+            "game": 37
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 38,
+        "fields": {
+            "tbracket": 1,
+            "game": 38
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 39,
+        "fields": {
+            "tbracket": 1,
+            "game": 39
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 40,
+        "fields": {
+            "tbracket": 1,
+            "game": 40
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 41,
+        "fields": {
+            "tbracket": 1,
+            "game": 41
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 42,
+        "fields": {
+            "tbracket": 1,
+            "game": 42
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 43,
+        "fields": {
+            "tbracket": 1,
+            "game": 43
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 44,
+        "fields": {
+            "tbracket": 1,
+            "game": 44
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 45,
+        "fields": {
+            "tbracket": 1,
+            "game": 45
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 46,
+        "fields": {
+            "tbracket": 1,
+            "game": 46
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 47,
+        "fields": {
+            "tbracket": 1,
+            "game": 47
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 48,
+        "fields": {
+            "tbracket": 1,
+            "game": 48
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 49,
+        "fields": {
+            "tbracket": 1,
+            "game": 49
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 50,
+        "fields": {
+            "tbracket": 1,
+            "game": 50
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 51,
+        "fields": {
+            "tbracket": 1,
+            "game": 51
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 52,
+        "fields": {
+            "tbracket": 1,
+            "game": 52
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 53,
+        "fields": {
+            "tbracket": 1,
+            "game": 53
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 54,
+        "fields": {
+            "tbracket": 1,
+            "game": 54
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 55,
+        "fields": {
+            "tbracket": 1,
+            "game": 55
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 56,
+        "fields": {
+            "tbracket": 1,
+            "game": 56
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 57,
+        "fields": {
+            "tbracket": 1,
+            "game": 57
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 58,
+        "fields": {
+            "tbracket": 1,
+            "game": 58
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 59,
+        "fields": {
+            "tbracket": 1,
+            "game": 59
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 60,
+        "fields": {
+            "tbracket": 1,
+            "game": 60
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 61,
+        "fields": {
+            "tbracket": 1,
+            "game": 61
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 62,
+        "fields": {
+            "tbracket": 1,
+            "game": 62
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 63,
+        "fields": {
+            "tbracket": 1,
+            "game": 63
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 64,
+        "fields": {
+            "tbracket": 1,
+            "game": 1
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 65,
+        "fields": {
+            "tbracket": 2,
+            "game": 2
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 66,
+        "fields": {
+            "tbracket": 2,
+            "game": 3
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 67,
+        "fields": {
+            "tbracket": 2,
+            "game": 4
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 68,
+        "fields": {
+            "tbracket": 2,
+            "game": 5
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 69,
+        "fields": {
+            "tbracket": 2,
+            "game": 6
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 70,
+        "fields": {
+            "tbracket": 2,
+            "game": 7
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 71,
+        "fields": {
+            "tbracket": 2,
+            "game": 8
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 72,
+        "fields": {
+            "tbracket": 2,
+            "game": 9
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 73,
+        "fields": {
+            "tbracket": 2,
+            "game": 10
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 74,
+        "fields": {
+            "tbracket": 2,
+            "game": 11
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 75,
+        "fields": {
+            "tbracket": 2,
+            "game": 12
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 76,
+        "fields": {
+            "tbracket": 2,
+            "game": 13
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 77,
+        "fields": {
+            "tbracket": 2,
+            "game": 14
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 78,
+        "fields": {
+            "tbracket": 2,
+            "game": 15
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 79,
+        "fields": {
+            "tbracket": 2,
+            "game": 16
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 80,
+        "fields": {
+            "tbracket": 2,
+            "game": 17
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 81,
+        "fields": {
+            "tbracket": 2,
+            "game": 18
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 82,
+        "fields": {
+            "tbracket": 2,
+            "game": 19
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 83,
+        "fields": {
+            "tbracket": 2,
+            "game": 20
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 84,
+        "fields": {
+            "tbracket": 2,
+            "game": 21
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 85,
+        "fields": {
+            "tbracket": 2,
+            "game": 22
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 86,
+        "fields": {
+            "tbracket": 2,
+            "game": 23
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 87,
+        "fields": {
+            "tbracket": 2,
+            "game": 24
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 88,
+        "fields": {
+            "tbracket": 2,
+            "game": 25
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 89,
+        "fields": {
+            "tbracket": 2,
+            "game": 26
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 90,
+        "fields": {
+            "tbracket": 2,
+            "game": 27
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 91,
+        "fields": {
+            "tbracket": 2,
+            "game": 28
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 92,
+        "fields": {
+            "tbracket": 2,
+            "game": 29
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 93,
+        "fields": {
+            "tbracket": 2,
+            "game": 30
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 94,
+        "fields": {
+            "tbracket": 2,
+            "game": 31
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 95,
+        "fields": {
+            "tbracket": 2,
+            "game": 32
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 96,
+        "fields": {
+            "tbracket": 2,
+            "game": 33
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 97,
+        "fields": {
+            "tbracket": 2,
+            "game": 34
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 98,
+        "fields": {
+            "tbracket": 2,
+            "game": 35
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 99,
+        "fields": {
+            "tbracket": 2,
+            "game": 36
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 100,
+        "fields": {
+            "tbracket": 2,
+            "game": 37
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 101,
+        "fields": {
+            "tbracket": 2,
+            "game": 38
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 102,
+        "fields": {
+            "tbracket": 2,
+            "game": 39
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 103,
+        "fields": {
+            "tbracket": 2,
+            "game": 40
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 104,
+        "fields": {
+            "tbracket": 2,
+            "game": 41
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 105,
+        "fields": {
+            "tbracket": 2,
+            "game": 42
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 106,
+        "fields": {
+            "tbracket": 2,
+            "game": 43
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 107,
+        "fields": {
+            "tbracket": 2,
+            "game": 44
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 108,
+        "fields": {
+            "tbracket": 2,
+            "game": 45
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 109,
+        "fields": {
+            "tbracket": 2,
+            "game": 46
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 110,
+        "fields": {
+            "tbracket": 2,
+            "game": 47
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 111,
+        "fields": {
+            "tbracket": 2,
+            "game": 48
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 112,
+        "fields": {
+            "tbracket": 2,
+            "game": 49
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 113,
+        "fields": {
+            "tbracket": 2,
+            "game": 50
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 114,
+        "fields": {
+            "tbracket": 2,
+            "game": 51
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 115,
+        "fields": {
+            "tbracket": 2,
+            "game": 52
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 116,
+        "fields": {
+            "tbracket": 2,
+            "game": 53
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 117,
+        "fields": {
+            "tbracket": 2,
+            "game": 54
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 118,
+        "fields": {
+            "tbracket": 2,
+            "game": 55
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 119,
+        "fields": {
+            "tbracket": 2,
+            "game": 56
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 120,
+        "fields": {
+            "tbracket": 2,
+            "game": 57
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 121,
+        "fields": {
+            "tbracket": 2,
+            "game": 58
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 122,
+        "fields": {
+            "tbracket": 2,
+            "game": 59
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 123,
+        "fields": {
+            "tbracket": 2,
+            "game": 60
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 124,
+        "fields": {
+            "tbracket": 2,
+            "game": 61
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 125,
+        "fields": {
+            "tbracket": 2,
+            "game": 62
+        }
+    },
+    {
+        "model": "bracket.Matchup",
+        "pk": 126,
+        "fields": {
+            "tbracket": 2,
+            "game": 63
+        }
+    }
+]

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import os
+import os, datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,11 +31,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -101,6 +103,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 # Set Abstract User class (User)
 AUTH_USER_MODEL = 'bracket.User'
 
@@ -110,3 +113,30 @@ LOGIN_REDIRECT_URL = '/'
 # To support Django's built-in contrib.auth password reset functionality
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
+    # 'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+    # 'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)
+    #
+    # These settings are needed for the djangorestframework-jwt (JSON Web Token)
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    'rest_framework.authentication.SessionAuthentication',
+    'rest_framework.authentication.BasicAuthentication',
+    ],
+}
+
+# Specify to installed package, django-cors-headers, which origin hostnames 
+# are authorized to make cross-site HTTP requests, e.g. Angular server
+CORS_ORIGIN_WHITELIST = (
+    'localhost:4200',
+)
+
+# Configuration settings for djangorestframework-jwt (JSON Web Token)
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,  # enables ability to request a refreshed token with a new expiration date
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),  # configurable life span of token (default = 5 minutes)
+}

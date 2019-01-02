@@ -1,0 +1,514 @@
+[
+    {
+        "fields": {
+            "team_d": 61,
+            "player": 2,
+            "team_a": 13,
+            "orig_team_b": 19,
+            "orig_team_d": 61,
+            "tbracket": 1,
+            "team_c": 36,
+            "orig_team_a": 13,
+            "orig_team_c": 36,
+            "team_b": 19
+        },
+        "pk": 1,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 51,
+            "player": 3,
+            "team_a": 3,
+            "orig_team_b": 28,
+            "orig_team_d": 51,
+            "tbracket": 1,
+            "team_c": 40,
+            "orig_team_a": 3,
+            "orig_team_c": 40,
+            "team_b": 28
+        },
+        "pk": 2,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 54,
+            "player": 4,
+            "team_a": 7,
+            "orig_team_b": 30,
+            "orig_team_d": 54,
+            "tbracket": 1,
+            "team_c": 43,
+            "orig_team_a": 7,
+            "orig_team_c": 43,
+            "team_b": 30
+        },
+        "pk": 3,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 56,
+            "player": 5,
+            "team_a": 11,
+            "orig_team_b": 23,
+            "orig_team_d": 56,
+            "tbracket": 1,
+            "team_c": 41,
+            "orig_team_a": 11,
+            "orig_team_c": 41,
+            "team_b": 23
+        },
+        "pk": 4,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 57,
+            "player": 6,
+            "team_a": 8,
+            "orig_team_b": 18,
+            "orig_team_d": 57,
+            "tbracket": 1,
+            "team_c": 39,
+            "orig_team_a": 8,
+            "orig_team_c": 39,
+            "team_b": 18
+        },
+        "pk": 5,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 55,
+            "player": 7,
+            "team_a": 14,
+            "orig_team_b": 29,
+            "orig_team_d": 55,
+            "tbracket": 1,
+            "team_c": 47,
+            "orig_team_a": 14,
+            "orig_team_c": 47,
+            "team_b": 29
+        },
+        "pk": 6,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 58,
+            "player": 8,
+            "team_a": 1,
+            "orig_team_b": 27,
+            "orig_team_d": 58,
+            "tbracket": 1,
+            "team_c": 37,
+            "orig_team_a": 1,
+            "orig_team_c": 37,
+            "team_b": 27
+        },
+        "pk": 7,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 53,
+            "player": 9,
+            "team_a": 4,
+            "orig_team_b": 25,
+            "orig_team_d": 53,
+            "tbracket": 1,
+            "team_c": 38,
+            "orig_team_a": 4,
+            "orig_team_c": 38,
+            "team_b": 25
+        },
+        "pk": 8,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 60,
+            "player": 10,
+            "team_a": 15,
+            "orig_team_b": 24,
+            "orig_team_d": 60,
+            "tbracket": 1,
+            "team_c": 48,
+            "orig_team_a": 15,
+            "orig_team_c": 48,
+            "team_b": 24
+        },
+        "pk": 9,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 50,
+            "player": 11,
+            "team_a": 10,
+            "orig_team_b": 26,
+            "orig_team_d": 50,
+            "tbracket": 1,
+            "team_c": 35,
+            "orig_team_a": 10,
+            "orig_team_c": 35,
+            "team_b": 26
+        },
+        "pk": 10,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 64,
+            "player": 12,
+            "team_a": 6,
+            "orig_team_b": 22,
+            "orig_team_d": 64,
+            "tbracket": 1,
+            "team_c": 34,
+            "orig_team_a": 6,
+            "orig_team_c": 34,
+            "team_b": 22
+        },
+        "pk": 11,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 49,
+            "player": 13,
+            "team_a": 2,
+            "orig_team_b": 17,
+            "orig_team_d": 49,
+            "tbracket": 1,
+            "team_c": 33,
+            "orig_team_a": 2,
+            "orig_team_c": 33,
+            "team_b": 17
+        },
+        "pk": 12,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 62,
+            "player": 14,
+            "team_a": 16,
+            "orig_team_b": 20,
+            "orig_team_d": 62,
+            "tbracket": 1,
+            "team_c": 45,
+            "orig_team_a": 16,
+            "orig_team_c": 45,
+            "team_b": 20
+        },
+        "pk": 13,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 59,
+            "player": 15,
+            "team_a": 5,
+            "orig_team_b": 21,
+            "orig_team_d": 59,
+            "tbracket": 1,
+            "team_c": 46,
+            "orig_team_a": 5,
+            "orig_team_c": 46,
+            "team_b": 21
+        },
+        "pk": 14,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 63,
+            "player": 16,
+            "team_a": 9,
+            "orig_team_b": 32,
+            "orig_team_d": 63,
+            "tbracket": 1,
+            "team_c": 44,
+            "orig_team_a": 9,
+            "orig_team_c": 44,
+            "team_b": 32
+        },
+        "pk": 15,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 52,
+            "player": 17,
+            "team_a": 12,
+            "orig_team_b": 31,
+            "orig_team_d": 52,
+            "tbracket": 1,
+            "team_c": 42,
+            "orig_team_a": 12,
+            "orig_team_c": 42,
+            "team_b": 31
+        },
+        "pk": 16,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 55,
+            "player": 18,
+            "team_a": 6,
+            "orig_team_b": 26,
+            "orig_team_d": 55,
+            "tbracket": 2,
+            "team_c": 35,
+            "orig_team_a": 6,
+            "orig_team_c": 35,
+            "team_b": 26
+        },
+        "pk": 17,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 54,
+            "player": 19,
+            "team_a": 8,
+            "orig_team_b": 23,
+            "orig_team_d": 54,
+            "tbracket": 2,
+            "team_c": 33,
+            "orig_team_a": 8,
+            "orig_team_c": 33,
+            "team_b": 23
+        },
+        "pk": 18,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 62,
+            "player": 20,
+            "team_a": 2,
+            "orig_team_b": 31,
+            "orig_team_d": 62,
+            "tbracket": 2,
+            "team_c": 36,
+            "orig_team_a": 2,
+            "orig_team_c": 36,
+            "team_b": 31
+        },
+        "pk": 19,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 56,
+            "player": 21,
+            "team_a": 7,
+            "orig_team_b": 32,
+            "orig_team_d": 56,
+            "tbracket": 2,
+            "team_c": 41,
+            "orig_team_a": 7,
+            "orig_team_c": 41,
+            "team_b": 32
+        },
+        "pk": 20,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 59,
+            "player": 22,
+            "team_a": 1,
+            "orig_team_b": 21,
+            "orig_team_d": 59,
+            "tbracket": 2,
+            "team_c": 37,
+            "orig_team_a": 1,
+            "orig_team_c": 37,
+            "team_b": 21
+        },
+        "pk": 21,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 58,
+            "player": 23,
+            "team_a": 14,
+            "orig_team_b": 20,
+            "orig_team_d": 58,
+            "tbracket": 2,
+            "team_c": 34,
+            "orig_team_a": 14,
+            "orig_team_c": 34,
+            "team_b": 20
+        },
+        "pk": 22,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 52,
+            "player": 24,
+            "team_a": 12,
+            "orig_team_b": 29,
+            "orig_team_d": 52,
+            "tbracket": 2,
+            "team_c": 38,
+            "orig_team_a": 12,
+            "orig_team_c": 38,
+            "team_b": 29
+        },
+        "pk": 23,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 60,
+            "player": 25,
+            "team_a": 13,
+            "orig_team_b": 19,
+            "orig_team_d": 60,
+            "tbracket": 2,
+            "team_c": 47,
+            "orig_team_a": 13,
+            "orig_team_c": 47,
+            "team_b": 19
+        },
+        "pk": 24,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 57,
+            "player": 26,
+            "team_a": 15,
+            "orig_team_b": 17,
+            "orig_team_d": 57,
+            "tbracket": 2,
+            "team_c": 39,
+            "orig_team_a": 15,
+            "orig_team_c": 39,
+            "team_b": 17
+        },
+        "pk": 25,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 53,
+            "player": 27,
+            "team_a": 16,
+            "orig_team_b": 30,
+            "orig_team_d": 53,
+            "tbracket": 2,
+            "team_c": 42,
+            "orig_team_a": 16,
+            "orig_team_c": 42,
+            "team_b": 30
+        },
+        "pk": 26,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 64,
+            "player": 28,
+            "team_a": 3,
+            "orig_team_b": 28,
+            "orig_team_d": 64,
+            "tbracket": 2,
+            "team_c": 44,
+            "orig_team_a": 3,
+            "orig_team_c": 44,
+            "team_b": 28
+        },
+        "pk": 27,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 50,
+            "player": 29,
+            "team_a": 4,
+            "orig_team_b": 25,
+            "orig_team_d": 50,
+            "tbracket": 2,
+            "team_c": 48,
+            "orig_team_a": 4,
+            "orig_team_c": 48,
+            "team_b": 25
+        },
+        "pk": 28,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 63,
+            "player": 30,
+            "team_a": 11,
+            "orig_team_b": 27,
+            "orig_team_d": 63,
+            "tbracket": 2,
+            "team_c": 43,
+            "orig_team_a": 11,
+            "orig_team_c": 43,
+            "team_b": 27
+        },
+        "pk": 29,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 49,
+            "player": 31,
+            "team_a": 5,
+            "orig_team_b": 22,
+            "orig_team_d": 49,
+            "tbracket": 2,
+            "team_c": 46,
+            "orig_team_a": 5,
+            "orig_team_c": 46,
+            "team_b": 22
+        },
+        "pk": 30,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 61,
+            "player": 32,
+            "team_a": 9,
+            "orig_team_b": 24,
+            "orig_team_d": 61,
+            "tbracket": 2,
+            "team_c": 40,
+            "orig_team_a": 9,
+            "orig_team_c": 40,
+            "team_b": 24
+        },
+        "pk": 31,
+        "model": "bracket.Entry"
+    },
+    {
+        "fields": {
+            "team_d": 51,
+            "player": 33,
+            "team_a": 10,
+            "orig_team_b": 18,
+            "orig_team_d": 51,
+            "tbracket": 2,
+            "team_c": 45,
+            "orig_team_a": 10,
+            "orig_team_c": 45,
+            "team_b": 18
+        },
+        "pk": 32,
+        "model": "bracket.Entry"
+    }
+]

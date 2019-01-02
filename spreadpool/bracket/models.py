@@ -35,29 +35,19 @@ class User(AbstractUser):
 	def get_absolute_url(self):
 		return reverse('bracket:profile', kwargs={'pk': self.pk})	
 
+	# When subclassing AbstractUser, below is required to define primary key, i.e. email
+	# But still must include 'username' as REQUIRED_FIELDS to ensure default Django behavior
 	REQUIRED_FIELDS = ['username']
 	USERNAME_FIELD = 'email'
 
 	def __str__(self):
-		return self.email
+		# return self.email
+		return self.first_name + ' ' + self.last_name
 
 	@property
 	def full_name(self):
 		return self.first_name + ' ' + self.last_name
 	#for full name, can also use standard User method: get_full_name()
-
-class Team(models.Model):
-	# Table which contains all of the Tournament team names, seeds, and affiliate school
-	class Meta:
-		db_table = 'team'
-
-	seed = models.IntegerField()
-	short_name = models.CharField(max_length=10)
-	long_name = models.CharField(max_length=255)
-	school = models.CharField(max_length=255)
-
-	def __str__(self):
-		return self.short_name
 
 class Region(models.Model):
 	#Track information about each Region
@@ -71,6 +61,24 @@ class Region(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Team(models.Model):
+	# Table which contains all of the Tournament team names, seeds, and affiliate school
+	# When populating table, primary key must be from 1 - 64
+	class Meta:
+		db_table = 'team'
+
+	seed = models.IntegerField()
+	region = models.ForeignKey(  #Region in which team is seeded
+		Region,
+		on_delete=models.CASCADE)
+	short_name = models.CharField(max_length=10)
+	long_name = models.CharField(max_length=255)
+	school = models.CharField(max_length=255)
+
+	# Below is what is returned when printing Team and by Entry API endpoint
+	def __str__(self):
+		return '%d-%s' % (self.seed, self.short_name)
 
 class Game(models.Model):
 	# Table which contains information about each of the 63 games in each tourney bracket
@@ -96,6 +104,7 @@ class Game(models.Model):
 		null=True,
 		blank=True
 		)
+	spread = models.IntegerField(default=0)  #Point Spread for game
 	favorite = models.IntegerField(default=1)  #Team (1 or 2) that is favored in the pairing
 	team1_score = models.IntegerField(default=0)  #Team 1 final score
 	team2_score = models.IntegerField(default=0)  #Team 2 final score
@@ -132,7 +141,7 @@ class Tbracket(models.Model):
 		return self.name
 
 class Matchup(models.Model):
-	#Intermediary model to associate Games with Brackets
+	#Through model to associate Games with Brackets (many to many)
 	class Meta:
 		db_table = 'matchup'
 
@@ -164,23 +173,43 @@ class Entry(models.Model):
 		Tbracket,
 		on_delete=models.CASCADE,
 		)
-	team_a = models.ForeignKey(  #1st Team of the entry
+	team_a = models.ForeignKey(  #Region 1 Current Team
 		Team,
 		on_delete=models.CASCADE,
 		related_name="team_a"
 		)
-	team_b = models.ForeignKey(  #2nd Team of the entry
+	team_b = models.ForeignKey(  #Region 2 Current Team
 		Team,
 		on_delete=models.CASCADE,
 		related_name="team_b"
 		)
-	team_c = models.ForeignKey(  #3rd Team of the entry
+	team_c = models.ForeignKey(  #Region 3 Current Team
 		Team,
 		on_delete=models.CASCADE,
 		related_name="team_c"
 		)
-	team_d = models.ForeignKey(  #4th Team of the entry
+	team_d = models.ForeignKey(  #Region 4 Current Team
 		Team,
 		on_delete=models.CASCADE,
 		related_name="team_d"
+		)
+	orig_team_a = models.ForeignKey(  #Region 1 Original Team
+		Team,
+		on_delete=models.CASCADE,
+		related_name="orig_team_a"
+		)
+	orig_team_b = models.ForeignKey(  #Region 2 Original Team
+		Team,
+		on_delete=models.CASCADE,
+		related_name="orig_team_b"
+		)
+	orig_team_c = models.ForeignKey(  #Region 3 Original Team
+		Team,
+		on_delete=models.CASCADE,
+		related_name="orig_team_c"
+		)
+	orig_team_d = models.ForeignKey(  #Region 4 Original Team
+		Team,
+		on_delete=models.CASCADE,
+		related_name="orig_team_d"
 		)

@@ -1,12 +1,15 @@
 # /bracket/forms/forms.py
 
+#Django modules
 from django import forms
-
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.forms import ModelForm
 User = get_user_model()
+
+#Internal modules
+from .models import Tbracket
 
 class CheckNumEntriesMixin(object):
 	'''
@@ -37,3 +40,27 @@ class DeleteProfileForm(ModelForm):
 	class Meta:
 		model = User
 		fields = ()
+
+class TbracketUpdateForm(ModelForm):
+
+	class Meta:
+		model = Tbracket
+		fields = ('name',)
+		widgets = {
+			'name': forms.TextInput(attrs={
+				'id': 'tbracket-name', 
+				'required': True,
+			}),
+		}
+
+class TbracketNewForm(ModelForm):
+
+	class Meta:
+		model = Tbracket
+		fields = ('name',)
+		widgets = {
+			'name': forms.TextInput(attrs={
+				'id': 'tbracket-new-name', 
+				'required': True,
+			}),
+		}

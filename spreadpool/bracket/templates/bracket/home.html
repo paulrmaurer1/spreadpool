@@ -1,6 +1,71 @@
 <!-- bracket/templates/bracket/home.html -->
 {% extends 'base.html' %}
 
+{% block scripts %}
+  <script>
+    $(document).ready(function() {
+      //*****getJSON code for logged in user & list first*******
+      // $.getJSON('http://127.0.0.1:8000/users/{{logged_in_user.id}}/', function(data) {
+      //     var logged_in_user_HTML="";
+      //     logged_in_user_HTML += "<li><strong>" + data.full_name + "*</strong></li>";
+      //     $('#roster').html(logged_in_user_HTML);
+      // }); //end getJSON
+      //*****getJSON code*******
+      // $.getJSON('http://127.0.0.1:8000/users', function (data) {
+      //     var rosterHTML="";
+      //     $.each(data, function(i, user) {
+      //       if (user.username !== 'admin') {
+      //         rosterHTML += "<li>" + user.full_name + "</li>";
+      //       }
+      //     });
+      //     $('#roster').html(rosterHTML);
+      // }); //end getJSON
+      
+      //*****AJAX code*******
+      
+      $.ajax({
+        url : "http://127.0.0.1:8000/api/users",
+        dataType: "json",
+        success : function (data) {
+          var rosterHTML="", logged_in_user_HTML="";
+          $.each(data, function(i, user) {
+            if (user.id == {{logged_in_user.id}}) {
+              logged_in_user_HTML += '<div id="logged_in_user"><li><strong>' + user.full_name + "*</strong></li></div>";
+              logged_in_user_HTML += '<div id="l_i_u_teams"></div>';
+            }
+              else {
+              rosterHTML += "<li>" + user.full_name + "</li>";} // end if - else
+            }); // end each
+          $('#roster').html(logged_in_user_HTML + rosterHTML);
+          $('#l_i_u_teams').hide();
+          // GET logged_in_user assigned teams and put in hidden div block
+          $.ajax({
+            url : "http://127.0.0.1:8000/api/entries/?playerid={{logged_in_user.id}}",
+            dataType: "json",
+            success : function(data) {
+              var l_i_u_teamsHTML="";
+              if (data) {
+              l_i_u_teamsHTML += "<li>" + data[0].team_a + "</li>";
+              l_i_u_teamsHTML += "<li>" + data[0].team_b + "</li>";
+              l_i_u_teamsHTML += "<li>" + data[0].team_c + "</li>";
+              l_i_u_teamsHTML += "<li>" + data[0].team_d + "</li>";}
+              else {l_i_u_teamsHTML="<li>NO TEAMS ASSIGNED YET!</li>"}
+              $('#l_i_u_teams').html(l_i_u_teamsHTML);
+            } // end success : function
+          }); // end ajax
+          // Create event so assigned teams are shown when hover over logged_in_user entry in Roster
+          $('#logged_in_user').hover(function() {
+            $('#l_i_u_teams').show();
+            }, function() {
+            $('#l_i_u_teams').hide();
+          }); //end hover
+        } // end success : function
+      }); // end ajax
+
+    }); // end ready
+  </script>
+{% endblock %}
+
 {% block content %}
   <h2>Home Page</h2>
   <h3>Spreadpool Roster</h3>
@@ -8,10 +73,19 @@
   List logged in user's name first with asterisk
   Then list rest of roster in most recently created users
   {% endcomment %}
-  <li><strong>{{logged_in_user.full_name}} *</strong></li>
+
+  <form action = "{% url 'bracket:admin_page' %}">
+    <button type="submit">Admin</button>
+  </form>
+
+  <div id="roster">
+  </div>  
+  
+  <!--Old way of showing roster in Django template -->
+  <!-- <li><strong>{{logged_in_user.full_name}} *</strong></li>
   {% for user in user_list %}
     <li>{{user.full_name}}</li>
-  {% endfor %}
+  {% endfor %} -->
   <br>
 
 {% endblock %}

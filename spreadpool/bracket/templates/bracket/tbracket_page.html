@@ -1,0 +1,176 @@
+<!-- bracket/templates/bracket/tbracket_page.html -->
+{% extends 'base.html' %}
+
+{% block scripts %}
+{% load static %}
+<script src="{% static "bracket/ajax_cookie.js" %}"></script>
+
+  <script>
+	$(document).ready(function() {
+		$('#tbracket_update').hide();
+
+		$('#tbracket_new_form').on('submit', function(event) {
+			event.preventDefault();
+			var data = {};
+			data.name = $('#tbracket-new-name').val();
+			$.ajax({
+					type: "POST",
+					url : "http://127.0.0.1:8000/api/tbrackets/",
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					success: function () {
+						alert(data.name + " Bracket Added!");
+						console.log(data);
+						$('#tbracket-new-name').val('');  // clear out value in Update Name text box
+						$('#brackets_table').load(location.href+" #brackets_table>*","");  // reload the #brackets_list div
+					}, // end success : function
+					error: function(xhr, err) {
+						alert(xhr.responseText);
+	    				console.log(data);
+	    			} 
+				}); // end ajax
+		}) //end submit
+
+		//$('#brackets_list a').click(function(event) {
+		$('#brackets_list').on('click', 'a', function(event) {	
+			event.preventDefault();
+			//console.log("Click JQuery loaded..");
+			var tbracket_id=$(this).attr('id');
+			var tbracket_oldname=$(this).attr('name');
+			$('#tbracket_update').show();
+			$('#tbracket-name').val(tbracket_oldname);
+			
+			$('#tbracket_update').on('submit', '#tbracket_update_form', function(event) {
+				event.preventDefault();
+				var data = {};
+				data.name = $('#tbracket-name').val();
+				//console.log(data);
+				$.ajax({
+					type: "PUT",
+					url : "http://127.0.0.1:8000/api/tbrackets/"+tbracket_id+"/",
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					success: function () {
+						alert(tbracket_oldname + " Bracket updated to: " + data.name + " !");
+						//console.log(data.name + " bracket updated!");
+						$('#brackets_table').load(location.href+" #brackets_table>*","");  // reload the #brackets_table div
+						$('#tbracket_update').hide();  // hide the Update Name entry form
+						$('#tbracket_update').off('submit');  // unbind event handler from form until next submit
+					}, // end success : function
+					error: function(xhr, err) {
+						alert(data.name + " Bracket update error");
+						console.log(xhr.responseText);
+						$('#tbracket_update').off('submit');  // unbind event handler from form until next submit
+	    			} 
+				}); // end ajax
+				console.log("Ajax call finished..")
+			}); // end on submit
+		}); // end click
+			// function(event) {
+			// 	event.preventDefault();
+			// 	$('#tbracket_update').hide();
+			// } // end function
+		
+	
+		//$('#brackets_list :button[name="tbracket_delete"]').click(function(event) {
+		$('#brackets_list').on('click', ':button[name="tbracket_delete"]', function(event) {
+			// actions when the "delete" button next to a bracket is clicked
+			event.preventDefault();
+			var tbracket_id=$(this).attr('id');
+			console.log("delete button pressed");
+			$.ajax({
+				type: "DELETE",
+				url : "http://127.0.0.1:8000/api/tbrackets/"+tbracket_id+"/",
+				contentType: "application/json",
+				success: function () {
+					alert("Delete Successful!");
+					console.log(tbracket_id);
+					// Refresh tbracket listing
+					$('#brackets_table').load(location.href+" #brackets_table>*","");  // reload the #brackets_table div
+				}, // end success : function
+				error: function(xhr, err) {
+					alert(xhr.responseText);
+					console.log("Delete Unsuccessful.");
+				} 
+			}); // end ajax
+		}); // end click
+
+		$('#brackets_list :button[name="tbracket_reassign"]').click(function(event) {
+			// actions when the "reassign" button next to a bracket is clicked
+			event.preventDefault();
+			tbracket_id=$(this).attr('id');
+			console.log("reassign button pressed", tbracket_id);
+			
+			$.ajax({
+				// invoke tbracket_reassign_teams view to re-assign teams to players for clicked bracket
+				type: "POST",
+				url: "{% url 'bracket:tbracket_reassign' %}",
+				data: { tbracketid: tbracket_id },
+				success: function(json) {
+					alert(json + " bracket reassigned!");
+				}, //end success
+				error: function(xhr, err) {
+					alert(xhr.responseText);
+				} //end error
+
+			})
+
+		}); // end click
+
+	}); //end ready
+  </script>
+{% endblock %}
+
+
+{% block content %}
+  <br>
+  <h2>Brackets Page</h2>
+  <br>
+  <div id="tbracket_add">
+  	<form method="POST" id="tbracket_new_form">
+  		{% csrf_token %}
+  		{{new_form.as_p}}
+  		<button type="submit">Add Bracket</button>
+  	</form>
+  </div>
+  <br>
+  <div id="brackets_list">
+  	<table id="brackets_table">
+	  	<tr>
+	  		<th colspan="2">Brackets</th>
+	  		<th colspan="3">Action</th>
+	  	</tr>
+		{% for tbracket in tbracket_list %}
+			<tr>
+				<td>{{tbracket.name}}</td>
+				<td>{{tbracket.num_assigned}}
+				<td><a id="{{tbracket.id}}" name="{{tbracket.name}}" href = "">Edit</a></td>
+				<td><button type="submit" id="{{tbracket.id}}" name="tbracket_delete">Delete</button></td>
+				<td><button type="submit" id="{{tbracket.id}}" name="tbracket_reassign">Re-assign</button></td>
+			</tr>
+		{% endfor %}
+	  </table>
+  </div>
+
+  <div id="tbracket_update">
+  	<br>
+  	<form method="POST" id="tbracket_update_form">
+  		{% csrf_token %}
+  		{{form.as_p}}
+  		<button type="submit">Update Name</button>
+  	</form>
+  </div>
+  <br>
+  <br>
+
+
+{% endblock %}
+
+{% block profile %}
+{% comment %}
+Don't show link to Profile in this view by calling profile block
+from base.html and overriding with Back to Home link
+{% endcomment %}
+<h4><a href = "{% url 'bracket:admin_page' %}">Back to Admin</a></h4>
+
+{% endblock %}
