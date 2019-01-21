@@ -31,29 +31,63 @@ from bracket.serializers import UserSerializer, GroupSerializer, EntrySerializer
 GameSerializer, MatchupSerializer, TbracketSerializer, RawEntrySerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_jwt.settings import api_settings
 
 # Create your views here.
 
-class HomeView(LoginRequiredMixin, ListView):
-	# Main Page with roster list during signup period
-	# **TO DO** Create view of brackets on main page after signup period
-	template_name = 'bracket/home.html'
+class IndexView(LoginRequiredMixin, ListView):
+	# This is view within which to render all Angular pages
+	template_name = 'bracket/index.html'
 	login_url = '/login/'
-	# redirect_field_name = 'redirect_to'
-
-	def get_queryset(self):  # this is referenced as 'user_list' by default in template
-		# Create list that exludes admin and the user who is logged in, sorted by most recent joined
-		custom_user_list = User.objects.exclude(username='admin')
-		custom_user_list = custom_user_list.exclude(email=self.request.user.email)
-		custom_user_list = custom_user_list.order_by('-date_joined')
-		return custom_user_list
+	model = User
+	path = ''
 
 	def get_context_data(self, **kwargs):
 		# Call the base implementation first to get a context
-		context = super(HomeView, self).get_context_data(**kwargs)
-		# Pass back the currently logged in user as 'logged_in_user'
-		context['logged_in_user'] = User.objects.get(email=self.request.user.email)
+		context = super(IndexView, self).get_context_data(**kwargs)
+		
+		# Retrieve currently logged in user
+		user = User.objects.get(email=self.request.user.email)
+		
+		# Create new JWT token manually
+		jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+		jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+		payload = jwt_payload_handler(user)
+		token = jwt_encode_handler(payload)
+		
+		# Return token to view for localStorage.setItem within template for passing to Angular
+		context['token'] = token
+		context['id'] = self.request.user.id
 		return context
+
+
+# @login_required
+# def index(request, path = ''):
+# 	"""
+# 	Renders the Angular Single Page App (SPA)
+# 	"""
+# 	return render(request, 'bracket/index.html')
+
+# class HomeView(LoginRequiredMixin, ListView):
+# 	# Main Page with roster list during signup period
+# 	# **TO DO** Create view of brackets on main page after signup period
+# 	template_name = 'bracket/home.html'
+# 	login_url = '/login/'
+# 	# redirect_field_name = 'redirect_to'
+
+# 	def get_queryset(self):  # this is referenced as 'user_list' by default in template
+# 		# Create list that exludes admin and the user who is logged in, sorted by most recent joined
+# 		custom_user_list = User.objects.exclude(username='admin')
+# 		custom_user_list = custom_user_list.exclude(email=self.request.user.email)
+# 		custom_user_list = custom_user_list.order_by('-date_joined')
+# 		return custom_user_list
+
+# 	def get_context_data(self, **kwargs):
+# 		# Call the base implementation first to get a context
+# 		context = super(HomeView, self).get_context_data(**kwargs)
+# 		# Pass back the currently logged in user as 'logged_in_user'
+# 		context['logged_in_user'] = User.objects.get(email=self.request.user.email)
+# 		return context
 		
 class SignUp(CreateView):
 	# Sign up page for people to enter pool
@@ -323,7 +357,8 @@ class TbracketViewSet(ModelViewSet):
 
 def tbracket_reassign_teams(request):
 	"""
-	Reassign teams to players within Entry model, acto upon bracket id sent by Ajax call to this view
+	Use this API endpoint once 16 players are assigned a bracket (though will work with less)
+	Reassign teams to players within Entry model, based upon bracket id sent by API call to this view
 	"""
 	if request.method == 'POST':
 		tbracketid = request.POST.get('tbracketid')

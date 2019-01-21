@@ -4,34 +4,25 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Spreadpool</title>
-	<h1>Spreadpool Site</h1>
-
+	<base href="/">
 
 {% load static %}
 <script src="{% static "bracket/jquery.min.js" %}"></script>
 <link href="{% static "bracket/site.css" %}" rel="stylesheet">
+<link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+{% block header %}
+<title>Spreadpool</title>
+<h1>Spreadpool Site</h1>
+{% endblock %}
 
 {% block scripts %}
-
 {% endblock %}
 
 </head>
 
 <body>
 {% block content %}
-{% endblock %}
-
-{% block logout %}
-<form action = "{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Logout</button>
-</form>
-{% endblock %}
-
-<br>
-{% block profile %}
-<a href = "{% url 'bracket:profile' user.id %}">Profile</a>
 {% endblock %}
 
 </body>

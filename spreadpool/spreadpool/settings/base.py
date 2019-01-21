@@ -107,8 +107,9 @@ STATIC_URL = '/static/'
 # Set Abstract User class (User)
 AUTH_USER_MODEL = 'bracket.User'
 
-# Set the home view as redirect URL
-LOGIN_REDIRECT_URL = '/'
+# Set the home view as redirect URL for both login & logout views
+LOGIN_REDIRECT_URL = 'bracket:home'
+LOGOUT_REDIRECT_URL = 'bracket:home'
 
 # To support Django's built-in contrib.auth password reset functionality
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
@@ -117,15 +118,22 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
-    # 'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
-    # 'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)
+    'DEFAULT_PERMISSION_CLASSES': [
+    # This is the most permissable permission setting
+        'rest_framework.permissions.AllowAny'
+    # This setting is default permission class
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    # This setting ensures jwt authentication, via token, of REST API update, create, patch
+        # 'rest_framework.permissions.IsAuthenticated'
+    ],
+    #   'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+    #   'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)
     #
     # These settings are needed for the djangorestframework-jwt (JSON Web Token)
     'DEFAULT_AUTHENTICATION_CLASSES': [
-    'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    'rest_framework.authentication.SessionAuthentication',
-    'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ],
 }
 
@@ -133,6 +141,7 @@ REST_FRAMEWORK = {
 # are authorized to make cross-site HTTP requests, e.g. Angular server
 CORS_ORIGIN_WHITELIST = (
     'localhost:4200',
+    '127.0.0.1:8000',
 )
 
 # Configuration settings for djangorestframework-jwt (JSON Web Token)

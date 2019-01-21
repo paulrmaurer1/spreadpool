@@ -1,0 +1,5 @@
+<!--roster.component.html-->
+
+<h3>Spreadpool Roster</h3>
+<li><strong>{{ _loggedInUser.full_name }}*</strong></li>
+<li *ngFor = "let user of rosterString">{{user}}</li>

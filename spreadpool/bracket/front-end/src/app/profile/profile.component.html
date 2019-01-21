@@ -1,0 +1,10 @@
+<!--profile.component.html-->
+
+<h3>My Teams</h3>
+<br>
+<h3>Profile for: {{ user.full_name }}</h3>
+<app-profile-details [player] = "user"></app-profile-details>
+
+<br>
+<button (click)="delete()">Delete</button>
+

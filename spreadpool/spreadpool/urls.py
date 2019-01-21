@@ -2,7 +2,7 @@
 
 #Django modules
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path,re_path, include
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 
@@ -28,14 +28,17 @@ router.register(r'tbrackets', views.TbracketViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
-    url(r'^login/$', auth_views.LoginView.as_view(), name='login'),  #Direct login to default Django Login form
-    url(r'^logout/$', auth_views.LogoutView.as_view(), {'next_page': '/'}, name='logout'), #Direct logout to default Django logout with next_page as destination
-    url('^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
-    url(r'', include('bracket.urls')),  #point home URL to urls in bracket app
+    re_path(r'^login/$', auth_views.LoginView.as_view(), name='login'),  #Direct login to default Django Login form
+    re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'), #Direct logout to LOGOUT_REDIRECT_URL setting
+    re_path('^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
+    re_path(r'', include('bracket.urls')),  #point home URL to urls in bracket app
     
     # REST framework urlpatterns
     url(r'^api/', include(router.urls)), # Specify that all API calls need to be prefaced with api/*
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # Standard login, logout views for browsable API
     path(r'api/api-token-auth/', obtain_jwt_token),  # jwt endpoint to obtain token & allow authentication via api, with prepended 'api/'
     path(r'api/api-token-refresh/', refresh_jwt_token),  # jwt endpoint to request a new token, with prepended 'api/'
+
+    # Catch-all url pattern for compatibility with Angular routes
+	url(r'^(?P<path>.*)/$', views.IndexView.as_view()),
 ]

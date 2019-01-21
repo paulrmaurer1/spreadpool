@@ -1,0 +1,12 @@
+<!--base.component.html-->
+
+<!-- Navigation Menu for main page -->
+<h2> Spreadpool Links </h2>
+<br>
+<a [routerLink]="['/home']">Home</a>
+<a [routerLink]="['/profile']">My Teams</a>
+<button (click)="logout()">Log Out</button>
+
+<router-outlet>
+<!-- Displays what is specified in pathmatch = 'full' to start, then whatever is clicked above -->
+</router-outlet>
