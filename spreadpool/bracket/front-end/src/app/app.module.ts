@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoreModule } from './core/core.module';
 
+import { appStoreProviders } from './app.store';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +36,7 @@ import { BaseComponent } from './base/base.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ ],
+  providers: [ appStoreProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

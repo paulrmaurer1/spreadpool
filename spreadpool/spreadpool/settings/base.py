@@ -123,7 +123,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     # This setting is default permission class
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    # This setting ensures jwt authentication, via token, of REST API update, create, patch
+    # This setting mandates jwt token authentication for REST API update, create, patch (Production)
         # 'rest_framework.permissions.IsAuthenticated'
     ],
     #   'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),

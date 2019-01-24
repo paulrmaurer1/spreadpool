@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './core/user.service';
+import { IUserData } from './shared/interfaces';
+
+import { Store } from 'redux';
+import { AppStore } from './app.store';
+import { AppState } from './app.state';
+import * as UserActions from './core/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +16,15 @@ import { UserService } from './core/user.service';
 export class AppComponent {
   title = 'front-end';
   token_id : object;
+  currentUser : IUserData;
   
-  constructor(private router: Router, private _userService: UserService) {
+  constructor(
+    private router: Router, 
+    private _userService: UserService, 
+    // @Inject(AppStore) private store: Store<AppState>
+    ) {
+      // store.subscribe(() => this.readState());
+      // this.readState();
   };
 
   ngOnInit() {
@@ -26,7 +39,7 @@ export class AppComponent {
       this._userService.refreshToken();
       window.localStorage.clear();
     }
-      // Login via _userService with preset values ***for testing purposes in Angular only
+      // Login via _userService to establish token with preset values *** (for testing purposes in Angular only)
     else {
       this._userService.id = 11;
       this._userService.login({'email': 'jlester@cubs.com', 'password': 'cubbies1'});
@@ -39,4 +52,15 @@ export class AppComponent {
     this._userService.logout();
     this.router.navigate(['/logout']);
   }
+
+  // These are Redux store functions
+  // readState() {
+  //   const state: AppState = this.store.getState() as AppState;
+  //   this.currentUser = state.currentUser;
+  // }
+
+  // setCurrentUser(user: IUserData) {
+  //   this.store.dispatch(UserActions.setCurrentUser(user))
+  // }
+
 }

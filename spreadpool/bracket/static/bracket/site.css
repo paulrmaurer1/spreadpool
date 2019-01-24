@@ -1,4 +1,7 @@
-/* reset */
+/* ./bracket/static/bracket/site.css*/
+
+@import '../../front-end/src/styles/bootstrap-4.2.1-dist/css/bootstrap.min.css';
+
 html, body, div, span, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

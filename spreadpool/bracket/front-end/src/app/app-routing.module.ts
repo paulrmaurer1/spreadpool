@@ -42,4 +42,5 @@ const routes: Routes = [
     UserResolver,
   ],
 })
+
 export class AppRoutingModule { }
