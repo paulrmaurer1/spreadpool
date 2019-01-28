@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { UserResolver } from './user-resolver';
+import { UserResolver } from './core/user-resolver';
 import { HomeComponent } from './home/home.component';
 import { RosterComponent } from './roster/roster.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -9,6 +9,7 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BaseComponent } from './base/base.component';
+import { BracketsComponent } from './brackets/brackets.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: { loggedInUser: UserResolver } },
   { path: 'profile', component: ProfileComponent },
+  { path: 'brackets', component: BracketsComponent },
 	{ path: 'logout', 
       component: LogoutComponent,
       resolve: {url: 'externalUrlRedirectResolver'},

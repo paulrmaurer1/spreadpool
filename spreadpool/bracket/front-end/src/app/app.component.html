@@ -1,11 +1,33 @@
 <!--app.component.html-->
 
 <!-- Navigation Menu for main page -->
-<h2> Spreadpool Links </h2>
-<br>
-<a [routerLink]="['/home']">Home</a>
-<a [routerLink]="['/profile']">My Teams</a>
-<button (click)="logout()">Log Out</button>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+	<div class="container-fluid">
+		<a class="navbar-brand" [routerLink]="['/home']">Spreadpool</a>
+			<button type="button" class="navbar-toggler" data-toggle="collapse"
+			data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+			aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+		<div class="collapse navbar-collapse" id="navbar" [collapse]="isCollapsed">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item" [routerLinkActive]="['active']">
+	            	<a class="nav-link" [routerLink]="['/home']">Home</a>
+	            </li>
+	            <li class="nav-item" [routerLinkActive]="['active']">
+	            	<a class="nav-link" [routerLink]="['/profile']">My Teams</a>
+	            </li>
+	            <li class="nav-item" [routerLinkActive]="['active']">
+	            	<a class="nav-link" [routerLink]="['/brackets']">Brackets</a>
+	            </li>
+	        </ul>
+	        <span class="navbar-text">{{ _userService.username }}</span>
+        	<form class="form-inline">
+		    	<button type="button" class="btn btn-outline-light" (click)="logout()">Log Out</button>
+		  	</form>
+	  	</div> <!--/.navbar-collapse -->
+  	</div> <!-- /.container-fluid -->
+</nav>
 
 <router-outlet>
 <!-- Displays what is specified in path: '' to start, then whatever is clicked above -->

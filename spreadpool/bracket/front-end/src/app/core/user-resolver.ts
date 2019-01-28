@@ -7,8 +7,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from './core/user.service';
-import { IUserData } from './shared/interfaces';
+import { UserService } from './user.service';
+import { IUserData } from '../shared/interfaces';
 
 @Injectable()
 

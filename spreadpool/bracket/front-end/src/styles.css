@@ -1,43 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-@import './styles/bootstrap-4.2.1-dist/css/bootstrap.min.css';
+@import './styles/bootstrap-4.2.1-dist/css/bootstrap.css';
 
-html, body, div, span, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+/* Added to increase space between navbar elements*/
+.navbar-nav > li{
+  padding-left:20px;
 }
 
-h1, h2, h3, li, form, p {
-	font-family: 'ColaborateRegular', Arial, sans-serif;
+.navbar-text {
+	font-size: 10px;
+	padding-right: 10px;
 }
 
-h1 {
-	font-size: 24px;
+/*Add white underline to clicked navbar element*/
+.navbar-nav > li {
+  float: left;
+  position: relative;
 }
-
-h2 {
-	font-size: 20px;
-}
-
-h3 {
-	font-size: 16px;
-}
-
-li, form, p {
-	font-size: 14px;
-}
-
-table, th, td {
-    border: 1px solid black;
+.navbar-dark .navbar-nav .active a::after {
+  border-bottom: 5px solid #ffffff;
+  bottom: -5px;
+  content: " ";
+  left: 0;
+  position: absolute;
+  right: 0;
 }

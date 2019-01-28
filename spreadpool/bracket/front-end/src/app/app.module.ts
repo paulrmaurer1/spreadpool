@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 
 import { appStoreProviders } from './app.store';
 
+import { AppBootstrapModule } from './app-bootstrap.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +18,7 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BaseComponent } from './base/base.component';
+import { BracketsComponent } from './brackets/brackets.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { BaseComponent } from './base/base.component';
     ProfileEditComponent,
     LogoutComponent,
     BaseComponent,
+    BracketsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,7 @@ import { BaseComponent } from './base/base.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AppBootstrapModule
   ],
   providers: [ appStoreProviders ],
   bootstrap: [AppComponent]

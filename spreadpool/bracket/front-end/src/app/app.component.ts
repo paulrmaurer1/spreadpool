@@ -17,6 +17,7 @@ export class AppComponent {
   title = 'front-end';
   token_id : object;
   currentUser : IUserData;
+  isCollapsed = true;
   
   constructor(
     private router: Router, 
