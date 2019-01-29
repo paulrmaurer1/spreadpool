@@ -17,16 +17,12 @@ export class AppComponent {
   title = 'front-end';
   token_id : object;
   currentUser : IUserData;
-  isCollapsed = true;
+  // isCollapsed = true;
   
   constructor(
     private router: Router, 
     private _userService: UserService, 
-    // @Inject(AppStore) private store: Store<AppState>
-    ) {
-      // store.subscribe(() => this.readState());
-      // this.readState();
-  };
+    ) { };
 
   ngOnInit() {
     // Check to see if app is being intiatiated from Django shell or directly from terminal
@@ -45,23 +41,5 @@ export class AppComponent {
       this._userService.id = 11;
       this._userService.login({'email': 'jlester@cubs.com', 'password': 'cubbies1'});
     }
-
   }
-
-  // Invoke logout() method on userService and re-direct user to "/logout/"
-  logout() {
-    this._userService.logout();
-    this.router.navigate(['/logout']);
-  }
-
-  // These are Redux store functions
-  // readState() {
-  //   const state: AppState = this.store.getState() as AppState;
-  //   this.currentUser = state.currentUser;
-  // }
-
-  // setCurrentUser(user: IUserData) {
-  //   this.store.dispatch(UserActions.setCurrentUser(user))
-  // }
-
 }

@@ -1,3 +1,5 @@
+// ./src/app/app-routing.module.ts
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -8,19 +10,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LogoutComponent } from './logout/logout.component';
-import { BaseComponent } from './base/base.component';
 import { BracketsComponent } from './brackets/brackets.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '',
- 	// 	component: BaseComponent, 
- 	// 	resolve: { loggedInUser: UserResolver },
- 	// 	children: [
- 	// 		{ path: 'home', component: HomeComponent },
- 	// 		{ path: 'profile', component: ProfileComponent },
- 	// 	] 
- 	// },
   { path: 'home',
     component: HomeComponent,
     resolve: { loggedInUser: UserResolver } },
