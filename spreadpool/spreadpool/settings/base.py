@@ -14,6 +14,10 @@ import os, datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+print ("base_dir", BASE_DIR)
+print ("project_root", PROJECT_ROOT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -50,7 +54,7 @@ ROOT_URLCONF = 'spreadpool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates'], # (original) 'DIRS': [os.path.join(PROJECT_ROOT, 'templates')]
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,8 +104,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 
 # Set Abstract User class (User)
@@ -120,11 +129,12 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
     # This is the most permissable permission setting
-        'rest_framework.permissions.AllowAny'
+        # 'rest_framework.permissions.AllowAny'
     # This setting is default permission class
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     # This setting mandates jwt token authentication for REST API update, create, patch (Production)
         # 'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
     #   'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
     #   'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)

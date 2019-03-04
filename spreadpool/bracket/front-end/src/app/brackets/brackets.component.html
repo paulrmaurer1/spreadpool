@@ -1,3 +1,44 @@
-<p>
-  brackets works!
-</p>
+<!--brackets.component.html-->
+<br>
+<nav class="navbar">
+	<div class="container">
+		<ul class="nav nav-pills" *ngFor = "let tbracket of tbracketList">
+			<li class = "nav-item">
+				<a class = "nav-link" [routerLink]="['/brackets', tbracket.id]"
+				[class.active]="isActive(tbracket.id)"
+				>{{ tbracket.name }}</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<br>
+<div>
+  <tabset>
+    <tab heading="South">
+    	<app-bracket-detail *ngIf="activeBracket && southGames" [bracket]="activeBracket" 
+    		[region]="'South'" [bracketGames]="southGames" [bracketOwners]="southOwners">
+    	</app-bracket-detail>
+    </tab>
+    <tab heading="West">
+    	<app-bracket-detail *ngIf="activeBracket && westGames" [bracket]="activeBracket" 
+    		[region]="'West'" [bracketGames]="westGames" [bracketOwners]="westOwners">
+    	</app-bracket-detail>
+    </tab>
+    <tab heading="East">
+    	<app-bracket-detail *ngIf="activeBracket && eastGames" [bracket]="activeBracket" 
+    		[region]="'East'" [bracketGames]="eastGames" [bracketOwners]="eastOwners">
+    	</app-bracket-detail>
+    </tab>
+    <tab heading="Midwest">
+    	<app-bracket-detail *ngIf="activeBracket && midwestGames" [bracket]="activeBracket" 
+    		[region]="'Midwest'" [bracketGames]="midwestGames" [bracketOwners]="midwestOwners">
+    	</app-bracket-detail>
+    </tab>
+    <tab heading="Final Four">
+    	<app-bracketff-detail *ngIf="activeBracket && ffourGames" [bracket]="activeBracket"
+    		[bracketGames]="ffourGames" [bracketOwners]="ffourOwners">
+    	</app-bracketff-detail>
+    </tab>
+  </tabset>
+</div>
+

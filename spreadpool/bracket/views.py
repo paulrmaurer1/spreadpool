@@ -24,14 +24,17 @@ User = get_user_model()
 #Internal modules
 from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket
+from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries
 
 #REST framework modules
 from rest_framework.viewsets import ModelViewSet
 from bracket.serializers import UserSerializer, GroupSerializer, EntrySerializer, \
-GameSerializer, MatchupSerializer, TbracketSerializer, RawEntrySerializer
+GameSerializer, MatchupSerializer, TbracketSerializer, GameWithOwnersSerializer, \
+EntryPlayerByBracketAndTeamSerializer, EntryBracketsByPlayerSerializer, GameWithMatchupDataSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
+from rest_framework.decorators import action
 
 # Create your views here.
 
@@ -98,7 +101,7 @@ class SignUp(CreateView):
 	#Create username and login user during form validation & saving process
 	def form_valid(self, form):
 		model = form.save(commit=False)
-		model.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower()
+		model.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower().replace(" ", "")
 		model.save()
 		# Log in user that just signed up and direct to Home page
 		email = form.cleaned_data.get('email')
@@ -253,6 +256,8 @@ class EntryViewSet(ModelViewSet):
 		tbracketid = self.request.query_params.get('tbracketid', None)
 		if tbracketid is not None:
 			queryset = queryset.filter(tbracket=tbracketid)
+		if 'no_bracket' in self.request.query_params:
+			queryset = queryset.filter(tbracket=None)
 		playerid = self.request.query_params.get('playerid', None)
 		if playerid is not None:
 			queryset = queryset.filter(player=playerid)
@@ -264,31 +269,60 @@ class EntryViewSet(ModelViewSet):
 				)
 		return queryset
 
-class RawEntryViewSet(ModelViewSet):
+	@action(detail=False)
+	def reset_all(self, request):
+		"""
+		Delete all, then Create new Entry records based on User data (i.e. num_entries & (S) or (D))
+		"""
+		entries = Entry.objects.all().delete()
+		create_entries()
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class EntryPlayerByBracketAndTeamViewSet(ModelViewSet):
 	"""
-	API endpoint that returns raw keys for player and team fields
+	API endpoint to retrieve names associated with entries
+	Optional GET parameters include: ?tbracketid= 
+	If no tbracketid, will retrive all users whose entries match either team 1 or team 2
 	"""
 	queryset = Entry.objects.all()
-	serializer_class = RawEntrySerializer
+	serializer_class = EntryPlayerByBracketAndTeamSerializer
 
 	def get_queryset(self):
 		"""
-		Optionally filter entries by tbracketid
+		Optionally filter entries by tbracketid, teamid
 		"""
-		queryset = Entry.objects.all()
+		queryset = Entry.objects.all().order_by('e_name')
 		tbracketid = self.request.query_params.get('tbracketid', None)
 		if tbracketid is not None:
 			queryset = queryset.filter(tbracket=tbracketid)
+		if 'no_bracket' in self.request.query_params:
+			queryset = queryset.filter(tbracket=None)
+		teamid = self.request.query_params.get('teamid', None)
+		# Find entry(ies) where team_a, team_b, team_c, or team_d = teamid
+		if teamid is not None:
+			queryset = queryset.filter(
+				Q(team_a=teamid) | Q(team_b=teamid) | Q(team_c=teamid) | Q(team_d=teamid)
+				)
 		return queryset
 
-# class EntryViewSetByPlayer(ModelViewSet):
-# 	"""
-# 	API endpoint that allows entries to be looked up by playerid
-# 	e.g. player_entries/player_id/ i.e. player_entries/4/
-# 	"""
-# 	queryset = Entry.objects.all()
-# 	serializer_class = EntryByPlayerSerializer
-# 	lookup_field = 'player'  # this substitutes player_id for default pk (id) in url
+class EntryBracketsByPlayerViewSet(ModelViewSet):
+	"""
+	API endpoint that allows entry brackets to be looked up by playerid
+	Optional GET parameters include: ?playerid=  e.g. entry_brackets?playerid=11
+	"""
+	queryset = Entry.objects.all()
+	serializer_class = EntryBracketsByPlayerSerializer
+
+	def get_queryset(self):
+		"""
+		Optionally filter entries by playerid, tbracketid or teamid
+		"""
+		queryset = Entry.objects.all()
+		playerid = self.request.query_params.get('playerid', None)
+		if playerid is not None:
+			queryset = queryset.filter(player=playerid)
+		return queryset
 
 class GameViewSet(ModelViewSet):
 	"""
@@ -301,13 +335,69 @@ class GameViewSet(ModelViewSet):
 
 	def get_queryset(self):
 		"""
-		Optionally filter games by tbracket_id
+		Optionally filter games by regionid or teamid
 		"""
 		queryset = Game.objects.all()
 		regionid = self.request.query_params.get('regionid', None)
 		if regionid is not None:
 			queryset = queryset.filter(region=regionid)
+		teamid = self.request.query_params.get('teamid', None)
+		if teamid is not None:
+			queryset = queryset.filter(Q(team1=teamid) | Q(team2=teamid))
+			queryset = queryset.order_by('-t_round')
 		return queryset
+
+	@action(detail=True)
+	def reset(self, request, pk=None):
+		"""
+		Clear scores and spread of each game; clear team_owners and winner from related Matchups
+		"""
+		game = self.get_object()
+		gameid = game.id
+		reset_game(gameid)
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+	@action(detail=False)
+	def reset_all(self, request):
+		"""
+		Clear scores and spread of each game; clear team_owners and winner from related Matchups
+		"""
+		games = Game.objects.all().order_by('id')
+		for game in games:
+			gameid = game.id
+			reset_game(gameid)
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+	@action(detail=False)
+	def replay_all(self, request):
+		"""
+		Clear scores and spread of each game; clear team_owners and winner from related Matchups
+		"""
+		games = Game.objects.filter(team1_score__gt=0, team2_score__gt=0, team1__isnull=False, team2__isnull=False).order_by('id')
+		for game in games:
+			print ("Game #: " + str(game.id) + " updating...")
+			game_update(game)
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+	
+
+class GameWithTeamOwnersViewSet(ModelViewSet):
+	"""
+	API endpoint that allows Games to be viewed with respective owner of each team1 & team2
+	Games can be filtered by game table id, e.g. api/games/18
+	Optional GET parameters include: ?tbracketid=
+	"""
+	queryset = Game.objects.all()
+	serializer_class = GameWithOwnersSerializer
+
+class GameWithMatchupDataViewSet(ModelViewSet):
+	"""
+	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
+	Games can be filtered by game table id, e.g. api/games/18
+	Optional GET parameters include: ?tbracketid=
+	"""
+	queryset = Game.objects.all()
+	serializer_class = GameWithMatchupDataSerializer
 
 class MatchupViewSet(ModelViewSet):
 	"""
@@ -353,7 +443,32 @@ class TbracketViewSet(ModelViewSet):
 			pass
 		return Response(status=status.HTTP_204_NO_CONTENT)
 
-#Functional responses
+	@action(detail=True)
+	def reassign(self, request, pk=None):
+		"""
+		Assign teams or re-assign teams randomly to entries that match the called Tbracket
+		Only should perform this after Tbracket has just been created
+		"""
+		tbracket = self.get_object()
+		tbracketid = tbracket.id
+		reassign_bracket(tbracketid)
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+	@action(detail=True)
+	def reset(self, request, pk=None):
+		"""
+		Reset all Bracket Matchup to default values
+		Restore all Entry Active Teams to Original Active Teams
+		Update all First Round Matchups with restored Owners
+		No Games are affected
+		"""
+		tbracket = self.get_object()
+		tbracketid = tbracket.id
+		reset_bracket(tbracketid)
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+#Functional views for (old) Django pages
 
 def tbracket_reassign_teams(request):
 	"""
@@ -378,11 +493,13 @@ def tbracket_reassign_teams(request):
 			region2.append(teams[1])
 			region3.append(teams[2])
 			region4.append(teams[3])
+		
 		# randomly assign teams within each region
 		random.shuffle(region1)
 		random.shuffle(region2)
 		random.shuffle(region3)
 		random.shuffle(region4)
+		
 		#update Entry objects
 		n = 0
 		for entry in entry_team_assignments:

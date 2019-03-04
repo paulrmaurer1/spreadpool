@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import './styles/bootstrap-4.2.1-dist/css/bootstrap.css';
+/*@import '../node_modules/font-awesome/css/font-awesome.css';*/
 @import "~font-awesome/css/font-awesome.css";
+@import './styles/brackets.css';
+/*@import './styles/new_brackets.css';*/
+
+
+/*CUSTOM STYLES BELOW TO APPLY ON TOP OF ABOVE IMPORTS*/
 
 /* Added to increase space between navbar elements*/
 .navbar-nav > li{
@@ -24,4 +30,65 @@
   left: 0;
   position: absolute;
   right: 0;
+}
+
+/*To center navbar elements !!NOT WORKING!!*/
+.navbar.center .navbar-collapse {
+    text-align: center;
+}
+
+.navbar.center .navbar-collapse .navbar-nav {
+    display:inline-block;
+    float: none;
+}
+
+/*To modify font size of navbar main men items*/
+/*.navbar-nav > li {
+  font-size: 20px;
+  }*/
+
+/*To modify font size of navbar drop-down menu items*/
+.dropdown-menu {
+    font-size: 10px;
+  }
+
+
+/*To turn cursor into a pointer, so user sees an element can be clicked*/
+/*e.g. for pendil edit icon on Roster page*/
+.cursor-pointer{
+  cursor: pointer;
+}
+
+/*To turn any text into a=href click to navigate ui*/
+/*e.g. for bracket names on User Profile*/
+.text-pointer{
+  cursor: pointer;
+}
+
+.text-pointer:hover{
+  text-decoration: underline;
+}
+
+/*For top margin on table or grid rows*/
+.top5 { margin-top:5px; }
+.top7 { margin-top:7px; }
+.top10 { margin-top:10px; }
+.top15 { margin-top:15px; }
+.top17 { margin-top:17px; }
+.top30 { margin-top:30px; }
+
+/*For applying a custom width to buttons*/
+.custom {
+    width: 78px !important;
+}
+
+/*For making non Form elements look like Form input elements*/
+/*Used on Update Game Form*/
+.non-form-element {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
 }

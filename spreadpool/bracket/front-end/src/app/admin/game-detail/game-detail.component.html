@@ -1,0 +1,45 @@
+<!--game-detail.component.html-->
+<form [formGroup]="gameUpdateForm" (ngSubmit)="updateGame(gameUpdateForm.value)">
+	<div class="container">
+		<div class="form-row">
+			<div class="col-md-6 non-form-element"><strong>Game id: </strong>{{ _game.id }}</div>
+			<div class="col-md-6 non-form-element"><strong>Region: </strong>{{ _game.region }}</div>
+		</div>
+			
+		<div class="form-row align-items-center">
+			<div class="col-md-4 non-form-element"><strong>Team 1: </strong>{{ _game.team1 }}</div>
+			<div class="form-group col-md-4">
+				<label for="team1_score">Team 1 Score:</label>
+			    <input type="number" class="form-control"
+			    id="team1_score" [formControl] = "team1_score">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="spread">Game Spread:</label>
+			    <input type="number" class="form-control"
+			    id="spread" [formControl] = "spread">
+			</div>
+		</div>
+		<div class="form-row align-items-center">
+			<div class="col-md-4 non-form-element"><strong>Team 2: </strong>{{ _game.team2 }}</div>
+			<div class="form-group col-md-4">
+				<label for="team2_score">Team 2 Score:</label>
+			    <input type="number" class="form-control"
+			    id="team2_score" [formControl] = "team2_score">
+			</div>
+			<div class="form-group col-md-4"></div>
+		</div>
+		<div class="form-row">
+			<button type="submit" id="submit" class="btn btn-success">Update Game</button>
+			&nbsp;
+		</div>
+	</div>
+</form>
+<br>
+<div class = "container">
+	<div class="row justify-content-start">
+		<div class = "col">
+			<button class="btn btn-info" (click)="resetGame()">Reset Game</button>
+		</div>
+	</div>
+</div>
+<br>

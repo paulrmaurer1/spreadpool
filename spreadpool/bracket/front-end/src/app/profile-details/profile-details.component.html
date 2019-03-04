@@ -1,3 +1,44 @@
-  <h4>Email: {{ _player.email }}</h4>
-  <h4>Number of Entries: {{ _player.num_entries }}</h4>
-  <h4>(S)ame or (D)ifferent Brackets: {{ _player.mult_entry_type }}</h4>
+  <!--profile-details.component.html-->
+
+<div class = "container">
+	<div class = "row justify-content-start">
+		<div class = "col-sm-auto">Name:</div>
+		<div class = "col" class="text-muted">{{ _player.full_name }}</div>
+	</div>
+	<div class = "row justify-content-start">
+		<div class = "col-sm-auto">Email:</div>
+		<div class = "col" class="text-muted">{{ _player.email }}</div>
+	</div>
+	<div class = "row justify-content-start">
+		<div class = "col-sm-auto">Number of Entries:</div>
+		<div class = "col" class="text-muted">{{ _player.num_entries }}</div>
+	</div>
+	<div class = "row justify-content-start">
+		<div class = "col-sm-auto">(S)ame or (D)ifferent Brackets:</div>
+		<div class = "col" class="text-muted">{{ _player.mult_entry_type }}</div>
+	</div>
+	<div class = "row justify-content-start top10">
+		<div class = "col-sm-auto">
+			<button class="btn btn-secondary custom" (click)="openModal(template)">Delete</button>
+		</div>
+		<div class = "col-sm-auto">
+			<button class="btn btn-primary custom" (click)="openProfileModal()">Edit</button>
+		</div>
+	</div>
+</div>
+
+<ng-template #template>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">Delete Profile</h4>
+		<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		Are you sure you want to delete your Profile?
+	</div>
+	<div class="modal-footer">
+			<button class="btn btn-secondary custom" 
+			(click)="modalRef.hide(); delete()">Delete</button>
+	</div>
+</ng-template>

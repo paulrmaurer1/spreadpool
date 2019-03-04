@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private route: ActivatedRoute,
+    // Using Redux store to capture logged in user details
     @Inject(AppStore) private store: Store<AppState>
     ) {
       store.subscribe(() => this.readState());
@@ -30,8 +31,10 @@ export class HomeComponent implements OnInit {
     this.loggedInUser = this.route.snapshot.data.loggedInUser;
     this._userService.loggedInUser = this.loggedInUser;
     this.setCurrentUser(this.loggedInUser);
+    console.log("The current Redux user is", this.currentUser)
   }
 
+  // Redux store methods
   readState() {
     const state: AppState = this.store.getState() as AppState;
     this.currentUser = state.currentUser;

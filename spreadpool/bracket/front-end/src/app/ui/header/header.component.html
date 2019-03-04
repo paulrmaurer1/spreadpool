@@ -2,7 +2,7 @@
 
 <!-- Navigation Menu for site -->
 
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar center navbar-expand-md navbar-dark bg-primary">
 	<div class="container-fluid">
 		<a class="navbar-brand" [routerLink]="['/home']">Spreadpool</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -18,12 +18,26 @@
 	            <li class="nav-item" [routerLinkActive]="['active']">
 	            	<a class="nav-link" [routerLink]="['/profile']">My Teams</a>
 	            </li>
-	            <li class="nav-item" [routerLinkActive]="['active']">
-	            	<a class="nav-link" [routerLink]="['/brackets']">Brackets</a>
+	            <li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
+	            	<a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]">Brackets</a>
 	            </li>
+
+	            <li class="nav-item dropdown" dropdown *ngIf="isUserAdmin()">
+<!-- 	            	<span dropdown (onShown)="onShown()" (onHidden)="onHidden()" 
+	            	(isOpenChange)="isOpenChange()"> -->
+				        <a class="nav-link dropdown-toggle" dropdownToggle (click)="false" 
+				        href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          Admin
+				        </a>
+			        <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" [routerLink]="['/admin/c-brackets']">Create Brackets</a>
+			          <a class="dropdown-item" [routerLink]="['/admin/a-brackets', _bracketToShow]">Assign Entries</a>
+			          <a class="dropdown-item" [routerLink]="['/admin/u-games']">Update Games</a>
+			        </div>
+				</li>
 	        </ul>
-	        <span class="navbar-text">{{ _userService.username }}</span>
-        	<form class="form-inline">
+	        <a class="navbar-text" [routerLink]="['/profile']">{{ _userService.username }}</a>
+	        <form class="form-inline">
 		    	<button type="button" class="btn btn-outline-light" (click)="logout()">Log Out</button>
 		  	</form>
 	  	</div> <!--/.navbar-collapse -->

@@ -1,0 +1,40 @@
+<!--update-gamess.component.html-->
+<br>
+<h5><strong>Retrieve Game</strong></h5>
+<div class="container">
+	<div class = "row">
+		<div class = "col">
+			<form [formGroup]="gameRetrieveForm" (ngSubmit)="retrieveGame(gameRetrieveForm.value)">
+				<div class="container">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<!-- <label for="bracket_name">Bracket</label> -->
+						    <input type="number" min = "1" max = "63" class="form-control" placeholder="Enter game id to Update.." 
+						    id="game_id" [formControl] = "game_id">
+						</div>
+						<div class="col-md-6">
+							<button type="submit" id="submit" class="btn btn-success" 
+							[disabled]="!gameRetrieveForm.valid">Retrieve Game</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div> <!--Update Game Form column-->
+		<div class = "col">
+			<button class="btn btn-dark" (click)="replayAllGames()">Replay All Games</button>
+			&nbsp;
+			<button class="btn btn-warning" (click)="resetAllGames()">Reset All Games (Testing Only)</button>
+		</div> <!--Other Game Actions column-->
+	</div> <!--row-->
+</div> <!--container-->
+<br>
+<!-- <div class = "container">
+	<div class="row justify-content-start">
+		<div class = "col">
+			<button class="btn btn-info" (click)="">Reset Game</button>
+		</div>
+	</div>
+</div> -->
+<h5><strong>Update Game</strong></h5>
+<br>
+<app-game-detail *ngIf="_currentGame" [game]="_currentGame"></app-game-detail>

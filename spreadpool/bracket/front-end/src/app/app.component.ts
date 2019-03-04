@@ -38,6 +38,8 @@ export class AppComponent {
     }
       // Login via _userService to establish token with preset values *** (for testing purposes in Angular only)
     else {
+      // this._userService.id = 36;
+      // this._userService.login({'email': 'jgarcia@cubs.com', 'password': 'Maddon55'});
       this._userService.id = 11;
       this._userService.login({'email': 'jlester@cubs.com', 'password': 'cubbies1'});
     }

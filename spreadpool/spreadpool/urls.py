@@ -1,5 +1,4 @@
 # spreadpool/urls.py
-
 #Django modules
 from django.contrib import admin
 from django.urls import path,re_path, include
@@ -20,18 +19,20 @@ router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'entries', views.EntryViewSet)
-router.register(r'rawentries', views.RawEntryViewSet)
-# router.register(r'player_entries', views.EntryViewSetByPlayer)
+router.register(r'entry_names', views.EntryPlayerByBracketAndTeamViewSet)
+router.register(r'entry_brackets', views.EntryBracketsByPlayerViewSet)
 router.register(r'games', views.GameViewSet)
 router.register(r'matchups', views.MatchupViewSet)
 router.register(r'tbrackets', views.TbracketViewSet)
+router.register(r'games_owners', views.GameWithTeamOwnersViewSet)
+router.register(r'games_matchups', views.GameWithMatchupDataViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
     re_path(r'^login/$', auth_views.LoginView.as_view(), name='login'),  #Direct login to default Django Login form
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'), #Direct logout to LOGOUT_REDIRECT_URL setting
-    re_path('^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
-    re_path(r'', include('bracket.urls')),  #point home URL to urls in bracket app
+    re_path(r'^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
+    re_path(r'^', include('bracket.urls')),  #point home URL to urls in bracket app
     
     # REST framework urlpatterns
     url(r'^api/', include(router.urls)), # Specify that all API calls need to be prefaced with api/*

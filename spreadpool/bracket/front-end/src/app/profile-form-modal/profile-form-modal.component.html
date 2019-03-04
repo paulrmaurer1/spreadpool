@@ -1,0 +1,74 @@
+<!-- profile-form-modal.component.html -->
+
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{title}} {{profile_user.full_name}}</h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
+	<div class="modal-body">
+		<div class="container">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="first_name">First Name</label>
+				    <input type="text" class="form-control"
+				    id="first_name" [formControl] = "first_name"
+				    [class.is-invalid] = "first_name.invalid">
+				    <span *ngIf="first_name.invalid" class="text-danger">
+    					First Name is required
+  					</span>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="last_name">Last Name</label>
+				    <input type="text" class="form-control"
+				    id="last_name" [formControl] = "last_name"
+				    [class.is-invalid] = "last_name.invalid">
+				    <span *ngIf="last_name.invalid" class="text-danger">
+    					Last Name is required
+  					</span>
+				</div>
+			</div>
+			<div class = "form-group">
+				<label for="email">Email</label>
+			    <input type="email" class="form-control"
+			    id="email" [formControl] = "email"
+			    [class.is-invalid] = "email.invalid">
+			    <span *ngIf="email.invalid && email.errors.required" class="text-danger">
+    					Email is required
+  				</span>
+  				<span *ngIf="email.invalid && email.errors.email" class="text-danger">
+    					Email must be a valid address
+  				</span>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="num_entries">Number of Entries</label>
+				    <input type="number" min = "1" max = "4" class="form-control" #entries
+				    id="num_entries" [formControl] = "num_entries"
+				    [class.is-invalid] = "num_entries.invalid">
+				    <span *ngIf="num_entries.invalid && num_entries.errors.required" class="text-danger">
+    					Number of Entries is required
+  					</span>
+  					<span *ngIf="num_entries.invalid && (num_entries.errors.minlength || num_entries.errors.maxlength)" class="text-danger">
+    					Must submit a number between 1-4
+  					</span>
+				</div>
+				<div class="form-group col-md-6" *ngIf="entries.value>1">
+					<label for="mult_entry_type">(S)ame or (D)ifferent</label>
+				    <select class="form-control"
+				    id="mult_entry_type" [formControl] = "mult_entry_type">
+				    	<option>S</option>
+				    	<option>D</option>
+				    </select>
+				</div>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<button type="submit" id="submit" class="btn btn-success" 
+			[disabled]="!profileForm.valid"
+			(click)="bsModalRef.hide()">{{closeBtnName}}</button>
+		</div>
+	</div>  <!-- end modal-body-->
+</form>

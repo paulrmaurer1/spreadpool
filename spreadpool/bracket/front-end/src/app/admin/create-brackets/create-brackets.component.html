@@ -1,0 +1,77 @@
+<!--create-brackets.component.html-->
+<br>
+<h6><strong>Add Bracket</strong></h6>
+<div class="container">
+	<div class = "row">
+		<div class = "col">
+			<form [formGroup]="bracketAddForm" (ngSubmit)="addBracket(bracketAddForm.value)">
+				<div class="container">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<!-- <label for="bracket_name">Bracket</label> -->
+						    <input type="text" class="form-control" placeholder="Type bracket name.." 
+						    id="bracket_name" [formControl] = "bracket_name">
+						</div>
+						<div class="col-md-6">
+							<button type="submit" id="submit" class="btn btn-success" 
+							[disabled]="!bracketAddForm.valid">Add Bracket</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class = "col">
+			<!-- <button class="btn btn-dark" >Delete/Create All Entries</button> -->
+			<button class="btn btn-dark" (click)="resetEntries()">Delete/Create All Entries</button>
+			&nbsp;
+		</div>
+	</div>
+</div>
+
+<br>
+<h6><strong>Brackets</strong></h6>
+<br>
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col" style="width: 10%">Num Entries</th>
+			<th scope="col" style="width: 10%">Id</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let tbracket of _tbracketList; let i = index">
+			<th scope="row">{{i + 1}}</th>
+			<td>{{ tbracket.name }}</td>
+			<td>{{ tbracket.entry_count}}</td>
+			<td>{{ tbracket.id }}</td>
+			<td>
+				<button class="btn btn-danger custom" (click)="openDeleteModal(tbracket.id, tbracket.name)">Delete</button>
+				&nbsp;
+				<button class="btn btn-warning" (click)="reassignBracket(tbracket.id, tbracket.name)">Re-assign</button>
+				&nbsp;
+				<button class="btn btn-info custom" (click)="resetBracket(tbracket.id, tbracket.name)">Reset</button>
+				&nbsp;
+				<button class="btn btn-success" (click)="navToAssign(tbracket.id)">Assign Entries</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- <ng-template #template>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">Delete Bracket</h4>
+		<button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalRef.hide()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		Are you sure you want to delete this Bracket?
+	</div>
+	<div class="modal-footer">
+			<button class="btn btn-danger custom" 
+			(click)="deleteModalRef.hide(); deleteBracket()">Delete</button>
+	</div>
+</ng-template>  -->

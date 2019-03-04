@@ -30,6 +30,7 @@ class User(AbstractUser):
 		default = 'D',
 		verbose_name="(S)ame or (D)ifferent Brackets"  #Text on form widget
 		)
+	is_staff = models.IntegerField()  #1 = Admin; 0 = Regular
 
 	# Used by views.ProfileEdit(UpdateView) to return to standard profile view
 	def get_absolute_url(self):
@@ -42,7 +43,11 @@ class User(AbstractUser):
 
 	def __str__(self):
 		# return self.email
-		return self.first_name + ' ' + self.last_name
+		# return self.first_name + ' ' + self.last_name
+		if self.last_name != '':
+			return self.first_name + ' ' + self.last_name[0] + '.'
+		else:
+			return self.first_name + ' ' + self.last_name
 
 	@property
 	def full_name(self):
@@ -104,7 +109,7 @@ class Game(models.Model):
 		null=True,
 		blank=True
 		)
-	spread = models.IntegerField(default=0)  #Point Spread for game
+	spread = models.IntegerField(null=True)  #Point Spread for game
 	favorite = models.IntegerField(default=1)  #Team (1 or 2) that is favored in the pairing
 	team1_score = models.IntegerField(default=0)  #Team 1 final score
 	team2_score = models.IntegerField(default=0)  #Team 2 final score
@@ -153,8 +158,21 @@ class Matchup(models.Model):
 		Game,
 		on_delete=models.CASCADE
 		)
-	winner = models.ForeignKey(  #Winner of pairing (once game is concluded)
+	winner = models.ForeignKey(  #Winner, i.e. Team owner that moved on to next round
 		settings.AUTH_USER_MODEL,
+		related_name="winner",
+		on_delete=models.CASCADE,
+		null=True
+		)
+	team1_owner = models.ForeignKey(  #Original Team 1 owner of related game & tbracket
+		settings.AUTH_USER_MODEL,
+		related_name="team1_owner",
+		on_delete=models.CASCADE,
+		null=True
+		)
+	team2_owner = models.ForeignKey(  #Original Team 2 owner of related game & tbracket
+		settings.AUTH_USER_MODEL,
+		related_name="team2_owner",
 		on_delete=models.CASCADE,
 		null=True
 		)
@@ -172,44 +190,63 @@ class Entry(models.Model):
 	tbracket = models.ForeignKey(  #Bracket to which Entry is assigned
 		Tbracket,
 		on_delete=models.CASCADE,
+		null=True,
+		blank=True
 		)
 	team_a = models.ForeignKey(  #Region 1 Current Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="team_a"
+		related_name="team_a",
+		null=True,
+		blank=True
 		)
 	team_b = models.ForeignKey(  #Region 2 Current Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="team_b"
+		related_name="team_b",
+		null=True,
+		blank=True
 		)
 	team_c = models.ForeignKey(  #Region 3 Current Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="team_c"
+		related_name="team_c",
+		null=True,
+		blank=True
 		)
 	team_d = models.ForeignKey(  #Region 4 Current Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="team_d"
+		related_name="team_d",
+		null=True,
+		blank=True
 		)
 	orig_team_a = models.ForeignKey(  #Region 1 Original Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="orig_team_a"
+		related_name="orig_team_a",
+		null=True,
+		blank=True
 		)
 	orig_team_b = models.ForeignKey(  #Region 2 Original Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="orig_team_b"
+		related_name="orig_team_b",
+		null=True,
+		blank=True
 		)
 	orig_team_c = models.ForeignKey(  #Region 3 Original Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="orig_team_c"
+		related_name="orig_team_c",
+		null=True,
+		blank=True
 		)
 	orig_team_d = models.ForeignKey(  #Region 4 Original Team
 		Team,
 		on_delete=models.CASCADE,
-		related_name="orig_team_d"
+		related_name="orig_team_d",
+		null=True,
+		blank=True
 		)
+	e_name = models.CharField(max_length=255, default='')  #To make it easy for user to assign to brackets

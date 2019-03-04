@@ -1,0 +1,28 @@
+<!--assign-brackets.component.html-->
+<br>
+<div class = "container">
+	<div class = "row justify-content-start">
+		<div class = "col align-self-center">
+			<h6 *ngIf="_activeBracket"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>
+		</div>
+		<div class = "col">
+			<button class="btn btn-secondary" (click)="goBack()">Go Back</button>
+			&nbsp;
+			<button class="btn btn-success" (click)="saveAndGoBack()">Save Assignments & Go Back</button>
+		</div>
+	</div>
+</div>
+<br>
+<div *ngIf="_unassignedEntries && _assignedEntries">
+	<p-pickList [source] = "_unassignedEntries" [target] = "_assignedEntries" sourceHeader="Unassigned Entries" 
+	targetHeader="{{_activeBracket.name}} Bracket Entries" [responsive]="true" filterBy="e_name" dragdrop="true" 
+	sourceFilterPlaceholder="Search by entry name" targetFilterPlaceholder="Search by entry name" 
+	[sourceStyle]="{'height':'500px'}" [targetStyle]="{'height':'500px'}">
+		<ng-template let-entry pTemplate="item">
+			<div class="ui-helper-clearfix">
+				{{ entry.e_name }}
+			</div>
+		</ng-template>
+	</p-pickList>
+</div>
+<br>

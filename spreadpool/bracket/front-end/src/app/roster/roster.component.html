@@ -1,5 +1,34 @@
 <!--roster.component.html-->
-
-<h3>Spreadpool Roster</h3>
-<li><strong>{{ _loggedInUser.full_name }}*</strong></li>
-<li *ngFor = "let user of rosterString">{{user}}</li>
+<h3>Roster</h3>
+<br>
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col">Num Entries</th>
+			<th scope="col">(S)ame/(D)iff</th>
+			<th scope="col" style="width: 5%">Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr on-mouseover="hoveredIndex=_loggedInUser.id" on-mouseleave="hoveredIndex=null">
+			<th scope="row">1</th>
+			<td><strong>{{ _loggedInUser.full_name }}*</strong></td>
+			<td><strong>{{ _loggedInUser.num_entries }}</strong></td>
+			<td><strong>{{ _loggedInUser.mult_entry_type }}</strong></td>
+			<td>
+				<i *ngIf="hoveredIndex==_loggedInUser.id" class="fa fa-pencil cursor-pointer"
+				tooltip = "Edit Profile" (click)="openProfileModal()">
+				</i>
+			</td>
+		</tr>
+		<tr *ngFor = "let player of roster; let i = index">
+			<th scope="row">{{i + 2}}</th>
+			<td>{{ player.full_name }}</td>
+			<td>{{ player.num_entries }}</td>
+			<td>{{ player.mult_entry_type }}</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
