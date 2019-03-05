@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath spreadpool spreadpool.wsgi --log-file -
