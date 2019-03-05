@@ -7,7 +7,7 @@ from .base import *
 # from boto.s3.connection import S3Connection
 # SECRET_KEY = S3Connection(os.environ['SECRET_KEY'])
 
-SECRET_KEY = os.environ('SECRET_KEY')
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
