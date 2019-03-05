@@ -33,7 +33,8 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # This will parse the values of the DATABASE_URL environment variable 
 # and convert them to something Django can understand.
 import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=True) }
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 INSTALLED_APPS += ("gunicorn",)
