@@ -15,7 +15,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 ALLOWED_HOSTS = ['spreadpool.herokuapp.com']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # STATIC_ROOT declaration
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
