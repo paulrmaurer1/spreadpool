@@ -51,7 +51,7 @@ ROOT_URLCONF = 'spreadpool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'], # (original) 'DIRS': [os.path.join(PROJECT_ROOT, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, '../templates')], # (original)'DIRS': ['templates']
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
