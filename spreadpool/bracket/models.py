@@ -30,7 +30,9 @@ class User(AbstractUser):
 		default = 'D',
 		verbose_name="(S)ame or (D)ifferent Brackets"  #Text on form widget
 		)
-	is_staff = models.IntegerField()  #1 = Admin; 0 = Regular
+	is_staff = models.IntegerField(
+		default = 0
+		)  #1 = Admin; 0 = Regular
 
 	# Used by views.ProfileEdit(UpdateView) to return to standard profile view
 	def get_absolute_url(self):
