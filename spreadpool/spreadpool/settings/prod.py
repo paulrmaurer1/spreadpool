@@ -2,7 +2,6 @@
 # This is the settings.py file to use when deploying/running on Heroku
 
 from .base import *
-import django_heroku 
 
 #SECRET_KEY will pull from environment variable in heroku which is set in config vars
 
@@ -34,6 +33,3 @@ INSTALLED_APPS += ("gunicorn",)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-#Django Heroku configuration
-django_heroku.settings(locals())
