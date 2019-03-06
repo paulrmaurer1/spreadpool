@@ -98,7 +98,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+# STATIC_ROOT is the directory or location where your static files are deployed when you run collectstatic.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL is the url that is prepended to your static files and is used by the static method in Django templates mostly
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 # Set Abstract User class (User)
 AUTH_USER_MODEL = 'bracket.User'

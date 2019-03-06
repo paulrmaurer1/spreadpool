@@ -1,5 +1,5 @@
 # /spreadpool/spreadpool/settings/prod.py
-# This is the settings.py file to use when running on Heroku
+# This is the settings.py file to use when deploying/running on Heroku
 
 from .base import *
 
@@ -14,14 +14,6 @@ ALLOWED_HOSTS = ['spreadpool.herokuapp.com']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-# STATIC_ROOT declaration
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 # Update database for Heroku, psycopg2 required to read from environment variable
 import psycopg2

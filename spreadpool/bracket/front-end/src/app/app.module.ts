@@ -7,6 +7,7 @@ import { appStoreProviders } from './app.store';
 import { AppBootstrapModule } from './app-bootstrap.module';
 import { UiModule } from './ui/ui.module';
 import { AdminModule } from './admin/admin.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { TeamNextupComponent } from './team-nextup/team-nextup.component';
     AppBootstrapModule,
     UiModule,
     AdminModule,
+    AngularFontAwesomeModule,
   ],
   providers: [ appStoreProviders ],
   bootstrap: [ AppComponent ],

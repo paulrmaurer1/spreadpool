@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { AppBootstrapModule } from '../app-bootstrap.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, FooterComponent],
@@ -13,6 +14,7 @@ import { AppBootstrapModule } from '../app-bootstrap.module';
     CommonModule,
     AppRoutingModule,
     AppBootstrapModule,
+    AngularFontAwesomeModule,
   ],
   exports: [LayoutComponent]
 })

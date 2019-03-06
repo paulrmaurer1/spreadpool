@@ -7,6 +7,7 @@ import {
   Routes
 } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
 import { PickListModule } from 'primeng/picklist'; //Needed for Assign Entries page, assign-brackets.component
 
@@ -39,7 +40,8 @@ export const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PickListModule
+    PickListModule,
+    AngularFontAwesomeModule
   ]
 
 })

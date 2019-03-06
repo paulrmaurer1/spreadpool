@@ -18,9 +18,9 @@
 			<td><strong>{{ _loggedInUser.num_entries }}</strong></td>
 			<td><strong>{{ _loggedInUser.mult_entry_type }}</strong></td>
 			<td>
-				<i *ngIf="hoveredIndex==_loggedInUser.id" class="fa fa-pencil cursor-pointer"
+				<fa *ngIf="hoveredIndex==_loggedInUser.id" name="far fa-pencil" class = "cursor-pointer"
 				tooltip = "Edit Profile" (click)="openProfileModal()">
-				</i>
+				</fa>
 			</td>
 		</tr>
 		<tr *ngFor = "let player of roster; let i = index">

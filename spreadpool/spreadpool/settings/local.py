@@ -1,4 +1,6 @@
-# settings/local.py
+# /spreadpool/spreadpool/settings/local.py
+# This is the file that's used locally on PC to run app
+
 from .base import *
 
 #SECRET_KEY will pull from environment variable which is set locally in:
