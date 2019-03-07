@@ -9,12 +9,12 @@ import { TBracketData, GameData, GameWithOwnerData } from '../shared/interfaces'
 })
 export class BracketDetailComponent implements OnInit {
 
-	private _bracket: TBracketData; //bracket object that gets passed from parent
-	private _bracketOwners: GameWithOwnerData[]; //array to capture game owners
-	private _r1_game_numbers: number[]; //array to capture game numbers on bracket
-	private _r2_game_numbers: number[]; //array to capture game numbers on bracket
-	private _r3_game_numbers: number[]; //array to capture game numbers on bracket
-	private _r4_game_numbers: number[]; //array to capture game numbers on bracket
+	_bracket: TBracketData; //bracket object that gets passed from parent
+	_bracketOwners: GameWithOwnerData[]; //array to capture game owners
+	_r1_game_numbers: number[]; //array to capture game numbers on bracket
+	_r2_game_numbers: number[]; //array to capture game numbers on bracket
+	_r3_game_numbers: number[]; //array to capture game numbers on bracket
+	_r4_game_numbers: number[]; //array to capture game numbers on bracket
 
 	
 	@Input() get bracket(): TBracketData {

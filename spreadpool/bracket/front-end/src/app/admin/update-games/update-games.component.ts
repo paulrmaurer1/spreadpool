@@ -11,10 +11,9 @@ import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/fo
 export class UpdateGamesComponent implements OnInit {
 
 	// Retrieve Game form variables
-	private gameRetrieveForm: FormGroup;
-	private game_id : AbstractControl;
-	
-	private _currentGame : GameData;
+	gameRetrieveForm: FormGroup;
+	game_id : AbstractControl;
+	_currentGame : GameData;
 	
 
 	constructor(

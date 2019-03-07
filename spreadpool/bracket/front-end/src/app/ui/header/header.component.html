@@ -36,7 +36,7 @@
 			        </div>
 				</li>
 	        </ul>
-	        <a class="navbar-text" [routerLink]="['/profile']">{{ _userService.username }}</a>
+	        <a *ngIf="currentUser" class="navbar-text" [routerLink]="['/profile']">{{ currentUser.email }}</a>
 	        <form class="form-inline">
 		    	<button type="button" class="btn btn-outline-light" (click)="logout()">Log Out</button>
 		  	</form>

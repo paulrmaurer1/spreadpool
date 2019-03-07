@@ -12,8 +12,8 @@ import { EntryData, GameData, EntryNameData } from '../shared/interfaces';
 })
 export class BracketGameComponent implements OnInit, OnChanges {
 
-	private _bracket_id: number; //bracket id that gets passed from bracket-detail.component
-	private _team_owner: string; //player name that belongs to team id sent from bracket-detail.component
+	_bracket_id: number; //bracket id that gets passed from bracket-detail.component
+	_team_owner: string; //player name that belongs to team id sent from bracket-detail.component
 
 
 	@Input() get bracket_id(): number {

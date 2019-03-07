@@ -12,7 +12,7 @@ import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-mo
   styleUrls: ['./profile-details.component.css']
 })
 export class ProfileDetailsComponent implements OnInit {
-	private _player: IUserData;
+	_player: IUserData;
 	@Input() get player(): IUserData {
 		return this._player;
 	}

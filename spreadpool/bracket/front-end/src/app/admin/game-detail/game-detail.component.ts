@@ -12,12 +12,11 @@ import { Router } from '@angular/router';
 export class GameDetailComponent implements OnInit {
 
 	// Update Game form variables
-	private gameUpdateForm: FormGroup;
-	private spread : AbstractControl;
-	private team1_score : AbstractControl;
-	private team2_score : AbstractControl;
-
-	private _game: GameData;
+	gameUpdateForm: FormGroup;
+	spread : AbstractControl;
+	team1_score : AbstractControl;
+	team2_score : AbstractControl;
+	_game: GameData;
 	
 	@Input() get game(): GameData {
 		return this._game;

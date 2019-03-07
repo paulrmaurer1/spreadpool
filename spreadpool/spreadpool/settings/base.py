@@ -101,6 +101,7 @@ USE_TZ = True
 
 # STATIC_ROOT is the directory or location where your static files are deployed when you run collectstatic.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+print ("static root : ", STATIC_ROOT)
 # STATIC_URL is the url that is prepended to your static files and is used by the static method in Django templates mostly
 STATIC_URL = '/static/'
 

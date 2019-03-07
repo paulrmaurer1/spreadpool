@@ -12,9 +12,9 @@ import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-mo
   styleUrls: ['./roster.component.css']
 })
 export class RosterComponent implements OnInit {
-	private roster: IUserData[];
-	private _loggedInUser: IUserData; // to capture loggedInUser object from parent component
-	private hoveredIndex: number; // to user which row a user hovers on
+	roster: IUserData[];
+	_loggedInUser: IUserData; // to capture loggedInUser object from parent component
+	hoveredIndex: number; // to user which row a user hovers on
 	
 	// Retrieve loggedInUser from parent component
 	@Input() get loggedInUser(): IUserData {

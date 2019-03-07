@@ -14,7 +14,7 @@ import * as UserActions from '../core/user.actions';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private loggedInUser : IUserData;
+  loggedInUser : IUserData;
   private currentUser : IUserData;
 
   constructor(

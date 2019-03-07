@@ -13,13 +13,13 @@ import { GameService } from '../core/game.service';
 })
 export class TeamDetailsComponent implements OnInit {
 
-	private _player: IUserData;
-	private _entryList: EntryData[];
+	_player: IUserData;
+	_entryList: EntryData[];
 	// private _bracketTeams: {[bracket: string] : EntryData}[];
-	private _nextGame: GameData;
-	private _nextMatchup: MatchupData;
-	private _nextOpponent: string;
-	private _nextTeam: string;
+	_nextGame: GameData;
+	_nextMatchup: MatchupData;
+	_nextOpponent: string;
+	_nextTeam: string;
 
 	@Input() get player(): IUserData {
 		return this._player;

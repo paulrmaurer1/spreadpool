@@ -8,10 +8,10 @@ import { TBracketData, GameData, GameWithOwnerData } from '../shared/interfaces'
 })
 export class BracketffDetailComponent implements OnInit {
 
-	private _bracket: TBracketData; //bracket object that gets passed from parent
-	private _bracketOwners: GameWithOwnerData[]; //array to capture game owners
-	private _r5_game_numbers: number[]; //array to capture game numbers on bracket
-	private _r6_game_numbers: number[]; //array to capture game numbers on bracket
+	_bracket: TBracketData; //bracket object that gets passed from parent
+	_bracketOwners: GameWithOwnerData[]; //array to capture game owners
+	_r5_game_numbers: number[]; //array to capture game numbers on bracket
+	_r6_game_numbers: number[]; //array to capture game numbers on bracket
 
 	@Input() get bracket(): TBracketData {
 		return this._bracket;

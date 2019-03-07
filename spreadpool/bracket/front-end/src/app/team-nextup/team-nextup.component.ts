@@ -13,8 +13,8 @@ export class TeamNextupComponent implements OnInit {
 
 	@Input('bracket') _bracket_id: number;
 	@Input('team') _team_id: number;
-	private _nextup_game: string;
-	private _nextGame: GameData;
+	_nextup_game: string;
+	_nextGame: GameData;
 
 	constructor(
 	  	private router: Router,

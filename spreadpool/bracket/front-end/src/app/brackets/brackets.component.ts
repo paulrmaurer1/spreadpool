@@ -10,7 +10,7 @@ import { TBracketData, GameData, GameWithOwnerData } from '../shared/interfaces'
   styleUrls: ['./brackets.component.css']
 })
 export class BracketsComponent implements OnInit {
-	private tbracketList: TBracketData[];
+	tbracketList: TBracketData[];
 	private id: number; //capture tbracket id url parameter
 	activeBracket: TBracketData;
 	// To capture each regions' games for passing to child component

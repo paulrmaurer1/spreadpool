@@ -17,9 +17,8 @@ import { AppState } from '../../app.state';
 })
 export class HeaderComponent implements OnInit {
 	isCollapsed = true;
-	// private _entryList: EntryBracketData[];
-	private _bracketToShow: number;
-	private currentUser : IUserData;
+	_bracketToShow: number;
+	currentUser : IUserData;
 
 	constructor(
 		private router: Router,
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit {
 		}
 
 	ngOnInit() {
-		// this._entryList = []
 		this._bracketToShow = null;
 		// Retrieve the logged in player's entries to set default bracket to show
 		// when click on Bracket navbar option

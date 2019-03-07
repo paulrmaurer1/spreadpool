@@ -14,10 +14,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CreateBracketsComponent implements OnInit {
 
-	private _tbracketList: TBracketData[];
-	private bracketAddForm: FormGroup;
-	private bracket_name : AbstractControl;
-	private new_bracket : TBracketData;
+	_tbracketList: TBracketData[];
+	bracketAddForm: FormGroup;
+	bracket_name : AbstractControl;
+	new_bracket : TBracketData;
 	deleteModalRef: BsModalRef;
 
 	constructor(

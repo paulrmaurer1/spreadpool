@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-	private user: IUserData; // for passing player info to sub-components (profile-details & profile-edit)
+	user: IUserData; // for passing player info to sub-components (profile-details & profile-edit)
 	
 	constructor(private route: ActivatedRoute) { }
 
