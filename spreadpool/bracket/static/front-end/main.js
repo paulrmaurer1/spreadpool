@@ -115,7 +115,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--assign-brackets.component.html-->\r\n<br>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col align-self-center\">\r\n\t\t\t<h6 *ngIf=\"_activeBracket\"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-secondary\" (click)=\"goBack()\">Go Back</button>\r\n\t\t\t&nbsp;\r\n\t\t\t<button class=\"btn btn-success\" (click)=\"saveAndGoBack()\">Save Assignments & Go Back</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>\r\n<div *ngIf=\"_unassignedEntries && _assignedEntries\">\r\n\t<p-pickList [source] = \"_unassignedEntries\" [target] = \"_assignedEntries\" sourceHeader=\"Unassigned Entries\" \r\n\ttargetHeader=\"{{_activeBracket.name}} Bracket Entries\" [responsive]=\"true\" filterBy=\"e_name\" dragdrop=\"true\" \r\n\tsourceFilterPlaceholder=\"Search by entry name\" targetFilterPlaceholder=\"Search by entry name\" \r\n\t[sourceStyle]=\"{'height':'500px'}\" [targetStyle]=\"{'height':'500px'}\">\r\n\t\t<ng-template let-entry pTemplate=\"item\">\r\n\t\t\t<div class=\"ui-helper-clearfix\">\r\n\t\t\t\t{{ entry.e_name }}\r\n\t\t\t</div>\r\n\t\t</ng-template>\r\n\t</p-pickList>\r\n</div>\r\n<br>"
+module.exports = "<!--assign-brackets.component.html-->\r\n<br>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col align-self-center\">\r\n\t\t\t<h6 *ngIf=\"_activeBracket\"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-secondary\" (click)=\"goBack()\">Go Back</button>\r\n\t\t\t&nbsp;\r\n\t\t\t<button class=\"btn btn-success\" (click)=\"saveAndGoBack()\">Save Assignments & Go Back</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>\r\n<div *ngIf=\"_unassignedEntries && _assignedEntries && _activeBracket\">\r\n\t<p-pickList [source] = \"_unassignedEntries\" [target] = \"_assignedEntries\" sourceHeader=\"Unassigned Entries\" \r\n\ttargetHeader=\"{{_activeBracket.name}} Bracket Entries\" [responsive]=\"true\" filterBy=\"e_name\" dragdrop=\"true\" \r\n\tsourceFilterPlaceholder=\"Search by entry name\" targetFilterPlaceholder=\"Search by entry name\" \r\n\t[sourceStyle]=\"{'height':'500px'}\" [targetStyle]=\"{'height':'500px'}\">\r\n\t\t<ng-template let-entry pTemplate=\"item\">\r\n\t\t\t<div class=\"ui-helper-clearfix\">\r\n\t\t\t\t{{ entry.e_name }}\r\n\t\t\t</div>\r\n\t\t</ng-template>\r\n\t</p-pickList>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -3174,19 +3174,17 @@ var HeaderComponent = /** @class */ (function () {
         this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(function (data) {
             // Check to see if User is assigned an entry yet, if so, show the first bracket
             // console.log ("player brackets: ", data)
-            if (data.length) {
-                if (data[0].tbracket != null) {
-                    _this._bracketToShow = data[0].tbracket;
-                }
-                else {
-                    // Pull the first bracket that has been setup (there should always be at least 1 bracket setup)
-                    _this._tbracketService.getList().subscribe(function (data) {
-                        // console.log ("system brackets: ", data)
-                        if (data.length) {
-                            _this._bracketToShow = data[0].id;
-                        }
-                    });
-                }
+            if (data.length > 0 && data[0].tbracket != null) {
+                _this._bracketToShow = data[0].tbracket;
+            }
+            else {
+                // Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
+                _this._tbracketService.getList().subscribe(function (data) {
+                    // console.log ("system brackets: ", data)
+                    if (data.length > 0) {
+                        _this._bracketToShow = data[0].id;
+                    }
+                });
             }
         }); //end subscribe
     }; //end ngOnInit()
@@ -3409,7 +3407,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Paul Maurer\Google Drive\My Files\Coding\Python\spreadpool_project\spreadpool\bracket\front-end\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\src\main.ts */"./src/main.ts");
 
 
 /***/ })
