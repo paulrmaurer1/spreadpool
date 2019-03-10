@@ -40,19 +40,17 @@ export class HeaderComponent implements OnInit {
 		this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(data => {
 			// Check to see if User is assigned an entry yet, if so, show the first bracket
 			// console.log ("player brackets: ", data)
-			if (data.length) {
-				if (data[0].tbracket != null) {
-					this._bracketToShow = data[0].tbracket
-				}
-				else {
-				// Pull the first bracket that has been setup (there should always be at least 1 bracket setup)
-					this._tbracketService.getList().subscribe(data => {
-						// console.log ("system brackets: ", data)
-						if (data.length) {
-							this._bracketToShow = data[0].id;
-						}
-					})
-				}
+			if (data.length > 0 && data[0].tbracket != null) {
+				this._bracketToShow = data[0].tbracket;
+			}
+			else {
+			// Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
+				this._tbracketService.getList().subscribe(data => {
+					// console.log ("system brackets: ", data)
+					if (data.length > 0) {
+						this._bracketToShow = data[0].id;
+					}
+				})
 			}
 		}); //end subscribe
 	} //end ngOnInit()

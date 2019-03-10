@@ -13,7 +13,7 @@
 	</div>
 </div>
 <br>
-<div *ngIf="_unassignedEntries && _assignedEntries">
+<div *ngIf="_unassignedEntries && _assignedEntries && _activeBracket">
 	<p-pickList [source] = "_unassignedEntries" [target] = "_assignedEntries" sourceHeader="Unassigned Entries" 
 	targetHeader="{{_activeBracket.name}} Bracket Entries" [responsive]="true" filterBy="e_name" dragdrop="true" 
 	sourceFilterPlaceholder="Search by entry name" targetFilterPlaceholder="Search by entry name" 
