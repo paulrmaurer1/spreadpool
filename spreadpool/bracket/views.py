@@ -110,6 +110,14 @@ class SignUp(CreateView):
 		login(self.request, user)
 		return redirect('bracket:home')
 
+	def form_invalid(self, form, **kwargs):
+		context = self.get_context_data(**kwargs)
+		context['form'] = form
+		# print("form contents are", context)
+		# print("form kwargs are", kwargs)
+		# return invalid submitted data back to form so user doesn't have to re-enter
+		return self.render_to_response(context)
+
 '''
 FBV approach to above
 '''

@@ -1,5 +1,9 @@
-/* ./bracket/static/bracket/site.css*/
+ /*./bracket/static/bracket/site.css*/
 
-/*@import '../../front-end/src/styles/bootstrap-4.2.1-dist/css/bootstrap.css';*/
+@import './bootstrap-4.2.1-dist/css/bootstrap.css';
+@import './fontawesome-free-5.7.2-web/css/all.css';
 
-/*@import '../../front-end/node_modules/font-awesome/css/font-awesome.css';*/	
+/*For applying a custom width to buttons*/
+.custom {
+    width: 150px !important;
+}

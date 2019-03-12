@@ -1,13 +1,110 @@
 <!-- bracket/templates/bracket/signup.html -->
 {% extends 'base.html' %}
 
-{% block content %}
-<h2>Sign up</h2>
-<form action = "{% url 'bracket:signup' %}" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-<button type="submit">Sign up</button>
-</form>
+{% block scripts %}
+<script>
+	$(document).ready(function() {
+		// A little bit of JQuery to show/hide the mult_entry_type if # of desired entries > 1
+		$('#mult_entry_section').addClass('d-none');
+		$('#{{ form.num_entries.id_for_label }}').on('click change keypress keyup blur', function() {
+			var value = $(this).val();
+			if (value > 1) {
+				$('#mult_entry_section').removeClass('d-none');
+			}
+			else {
+				$('#mult_entry_section').addClass('d-none');
+			}
+		}); //end on('change')
+	}); //end (document).ready
+</script>
+{% endblock %}
 
-<a href = "{% url 'login' %}">Login</a>
+{% block content %}
+<br>
+<div class = "row">
+	<div class = "col"></div>
+	<div class = "col-6">
+		<h4>Register for Spreadpool</h4>
+		<br>
+
+<!-- 		<form action = "{% url 'bracket:signup' %}" method="post">
+		  {% csrf_token %}
+		  {{ form.as_p }}
+		<button type="submit">Sign up</button>
+		</form> -->
+
+		<form action = "{% url 'bracket:signup' %}" method="post">
+  			{% csrf_token %}
+  			<div class = "form-row">
+  				<div class = "form-group col">
+  					<label for="{{ form.first_name.id_for_label }}">First Name</label>
+  					<input type = "text" class="form-control" name="{{ form.first_name.html_name}}" 
+  						id = "{{ form.first_name.id_for_label }}" placeholder="Enter First Name" required
+  						value = "{{ form.first_name.value|default_if_none:'' }}">
+					<small class="form-text text-danger">{{ form.first_name.errors }}</small>
+				</div>
+				<div class = "form-group col">
+  					<label for="{{ form.last_name.id_for_label }}">Last Name</label>
+  					<input type = "text" class="form-control" name="{{ form.last_name.html_name}}" 
+  						id = "{{ form.last_name.id_for_label }}" placeholder="Enter Last Name" required
+  						value = "{{ form.last_name.value|default_if_none:'' }}">
+					<small class="form-text text-danger">{{ form.last_name.errors }}</small>
+				</div>
+			</div>
+			<div class = "form-row">
+				<div class = "form-group col">
+					<label for="{{ form.num_entries.id_for_label }}">Number of Entries</label>
+					<input type = "number" min = "1" max = "4" class="form-control" name="{{ form.num_entries.html_name}}" 
+						id = "{{ form.num_entries.id_for_label }}" placeholder="Enter # of entries" required
+						value = "{{ form.num_entries.value|default_if_none:'1' }}">
+					<small class="form-text">Max number of entries = 4</small>
+					<small class="form-text text-danger">{{ form.num_entries.errors }}</small>
+				</div>
+				<div class = "form-group col">
+					<div id="mult_entry_section">
+						<label for="{{ form.mult_entry_type.id_for_label }}">(S)ame or (D)ifferent</label>
+						<select class="form-control" name="{{ form.mult_entry_type.html_name}}"
+					    id="{{ form.mult_entry_type.id_for_label }}">
+					    	<option value="D" selected>Different Brackets</option>
+					    	<option value="S">Same Bracket</option>
+					    </select>
+					    <small class="form-text">Entries in same or different brackets?</small>
+					    <small class="form-text text-danger">{{ form.mult_entry_type.errors }}</small>
+					</div>
+				</div>
+			</div>
+			<div class = "form-group">
+				<label for="{{ form.email.id_for_label }}">Email address</label>
+				<input type = "email" class="form-control" name="{{ form.email.html_name}}" 
+				id = "{{ form.email.id_for_label }}" placeholder="Enter email" required
+				value = "{{ form.email.value|default_if_none:'' }}">
+				<small class="form-text text-danger">{{ form.email.errors }}</small>
+			</div>
+			<div class = "form-group">
+				<label for="{{ form.password1.id_for_label }}">Password</label>
+				<input type = "password" class="form-control" name="{{ form.password1.html_name}}" 
+				id = "{{ form.password1.id_for_label }}" placeholder="Enter password" required
+				value = "{{ form.password1.value|default_if_none:'' }}">
+				<small class="form-text text-danger">{{ form.password1.errors }}</small>
+			</div>
+			<div class = "form-group">
+				<label for="{{ form.password2.id_for_label }}">Password Confirmation</label>
+				<input type = "password" class="form-control" name="{{ form.password2.html_name}}" 
+				id = "{{ form.password2.id_for_label }}" placeholder="Enter password again" required
+				value = "{{ form.password2.value|default_if_none:'' }}">
+				<small class="form-text text-danger">{{ form.password2.errors }}</small>
+			</div>
+			<button class="btn btn-success btn-block" type="submit">Sign up</button>
+		</form>
+	</div>
+	<div class = "col"></div>
+</div>
+<div class = "row">
+	<div class = "col"></div>
+	<div class = "col-6">
+		<a href = "{% url 'login' %}">Login</a>
+	</div>
+	<div class = "col"></div>
+</div>
+
 {% endblock %}

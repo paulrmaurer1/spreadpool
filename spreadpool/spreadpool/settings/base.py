@@ -101,7 +101,7 @@ USE_TZ = True
 
 # STATIC_ROOT is the directory or location where your static files are deployed when you run collectstatic.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-print ("static root : ", STATIC_ROOT)
+# print ("static root : ", STATIC_ROOT)
 # STATIC_URL is the url that is prepended to your static files and is used by the static method in Django templates mostly
 STATIC_URL = '/static/'
 
@@ -158,3 +158,7 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,  # enables ability to request a refreshed token with a new expiration date
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),  # configurable life span of token (default = 5 minutes)
 }
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

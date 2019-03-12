@@ -28,8 +28,3 @@ DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=Tr
 
 # Add gunicorn to INSTALLED_APPS
 INSTALLED_APPS += ("gunicorn",)
-
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

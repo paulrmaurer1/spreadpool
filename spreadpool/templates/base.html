@@ -1,4 +1,4 @@
-<!-- templates/base.html -->
+<!-- spreadpool/templates/base.html -->
 <!doctype html>
 <html lang="en">
 
@@ -11,20 +11,35 @@
 <script src="{% static 'bracket/jquery.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'bracket/site.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'bracket/primeicons.css' %}"> -->
 
 {% block header %}
-<title>Spreadpool</title>
-<h1>Spreadpool Site</h1>
+<!-- Header for Django template pages -->
+<nav class="navbar center navbar-expand-md navbar-dark bg-primary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Spreadpool</a>
+	</div>
+</nav>
 {% endblock %}
 
 {% block scripts %}
 {% endblock %}
-
 </head>
 
 <body>
+
+<div class="container">
 {% block content %}
+{% endblock %}
+</div>
+
+{% block footer %}
+<!-- Footer for Django template pages -->
+<br>
+<nav class="navbar navbar-dark bg-primary fixed-bottom">
+  <div class="navbar-expand m-auto navbar-text">
+  	<i class = "fa fa-home"></i> Exit Zero Technologies 2018
+  </div>
+</nav>
 {% endblock %}
 
 </body>
