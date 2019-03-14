@@ -810,12 +810,15 @@ var AppComponent = /** @class */ (function () {
             this._userService.refreshToken();
             window.localStorage.clear();
         }
-        // Login via _userService to establish token with preset values *** (for testing purposes in Angular only)
+        // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
+        // Login via _userService to establish token with preset values 
         else {
             // this._userService.id = 36;
             // this._userService.login({'email': 'jgarcia@cubs.com', 'password': 'Maddon55'});
-            this._userService.id = 11;
-            this._userService.login({ 'email': 'jlester@cubs.com', 'password': 'cubbies1' });
+            this._userService.id = 22;
+            this._userService.login({ 'email': 'aalmora@cubs.com', 'password': 'cubbies1' });
+            // this._userService.id = 11;
+            // this._userService.login({'email': 'jlester@cubs.com', 'password': 'cubbies1'});
         }
     };
     AppComponent = __decorate([
@@ -868,12 +871,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bracketff_detail_bracketff_detail_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./bracketff-detail/bracketff-detail.component */ "./src/app/bracketff-detail/bracketff-detail.component.ts");
 /* harmony import */ var _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./admin/create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
 /* harmony import */ var _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./team-nextup/team-nextup.component */ "./src/app/team-nextup/team-nextup.component.ts");
+/* harmony import */ var _standings_standings_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./standings/standings.component */ "./src/app/standings/standings.component.ts");
+/* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -918,6 +925,8 @@ var AppModule = /** @class */ (function () {
                 _bracketff_detail_bracketff_detail_component__WEBPACK_IMPORTED_MODULE_21__["BracketffDetailComponent"],
                 _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_22__["DeleteModalComponent"],
                 _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_23__["TeamNextupComponent"],
+                _standings_standings_component__WEBPACK_IMPORTED_MODULE_24__["StandingsComponent"],
+                _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_25__["StandingsNavComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1437,7 +1446,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--brackets.component.html-->\r\n<br>\r\n<nav class=\"navbar\">\r\n\t<div class=\"container\">\r\n\t\t<ul class=\"nav nav-pills\" *ngFor = \"let tbracket of tbracketList\">\r\n\t\t\t<li class = \"nav-item\">\r\n\t\t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n\t\t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n\t\t\t\t>{{ tbracket.name }}</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\t</div>\r\n</nav>\r\n<br>\r\n<div>\r\n  <tabset>\r\n    <tab heading=\"South\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && southGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'South'\" [bracketGames]=\"southGames\" [bracketOwners]=\"southOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"West\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && westGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'West'\" [bracketGames]=\"westGames\" [bracketOwners]=\"westOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"East\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && eastGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'East'\" [bracketGames]=\"eastGames\" [bracketOwners]=\"eastOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Midwest\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && midwestGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'Midwest'\" [bracketGames]=\"midwestGames\" [bracketOwners]=\"midwestOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Final Four\">\r\n    \t<app-bracketff-detail *ngIf=\"activeBracket && ffourGames\" [bracket]=\"activeBracket\"\r\n    \t\t[bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracketff-detail>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n\r\n"
+module.exports = "<!--brackets.component.html-->\r\n\r\n<div class=\"container\">\r\n    <small class=\"text-muted\">(Click to see bracket)</small>\r\n    <nav class=\"navbar\">\r\n\t   <ul class=\"nav nav-pills\">\r\n\t\t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n\t\t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n\t\t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n\t\t\t\t>{{ tbracket.name }}</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\t</nav>\r\n</div>\r\n<br>\r\n<div>\r\n  <tabset>\r\n    <tab heading=\"South\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && southGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'South'\" [bracketGames]=\"southGames\" [bracketOwners]=\"southOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"West\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && westGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'West'\" [bracketGames]=\"westGames\" [bracketOwners]=\"westOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"East\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && eastGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'East'\" [bracketGames]=\"eastGames\" [bracketOwners]=\"eastOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Midwest\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && midwestGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'Midwest'\" [bracketGames]=\"midwestGames\" [bracketOwners]=\"midwestOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Final Four\">\r\n    \t<app-bracketff-detail *ngIf=\"activeBracket && ffourGames\" [bracket]=\"activeBracket\"\r\n    \t\t[bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracketff-detail>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1624,6 +1633,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var entryUrl = '/api/entries/';
 var entry_bracketsUrl = '/api/entry_brackets/';
 var entry_namesUrl = '/api/entry_names/';
+var entry_standingsURL = '/api/entry_standings/';
 var EntryService = /** @class */ (function () {
     function EntryService(http, _userService) {
         this.http = http;
@@ -1656,6 +1666,10 @@ var EntryService = /** @class */ (function () {
     //method for creating all Entry data based on User info
     EntryService.prototype.resetAllEntries = function () {
         return this.http.get(entryUrl + 'reset_all/', this.getHttpOptions());
+    };
+    //method to retrieve all entries matching ?tbracketid= value
+    EntryService.prototype.getEntryStandings = function (tbracket_id) {
+        return this.http.get(entry_standingsURL + '?tbracketid=' + tbracket_id);
     };
     // helper function to build the HTTP headers
     EntryService.prototype.getHttpOptions = function () {
@@ -2234,7 +2248,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--home.component.html-->\r\n<br>\r\n<!-- <div *ngIf=\"!_userService.loading\"> -->\r\n<app-roster [loggedInUser] = \"loggedInUser\"></app-roster>\r\n<!-- </div> -->\r\n"
+module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<app-roster [loggedInUser] = \"loggedInUser\"></app-roster>\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<!-- <app-standings-nav></app-standings-nav> -->\r\n"
 
 /***/ }),
 
@@ -2393,7 +2407,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!--profile-details.component.html-->\r\n\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Name:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Email:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Number of Entries:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">(S)ame or (D)ifferent Brackets:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.mult_entry_type }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start top10\">\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t</div>\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-primary custom\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
+module.exports = "  <!--profile-details.component.html-->\r\n\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Name:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Email:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Number of Entries:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">(S)ame or (D)ifferent Brackets:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Paid up?:</div>\r\n\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t<!-- <div class = \"col\" [class.text-danger] = \"player.paid\"> -->\r\n\t\t<!-- <div class = \"col\" class=\"text-danger\"> -->\r\n\t\t\t{{ player.paid ? 'YES - Thank you!' : 'No - Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start top10\">\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t</div>\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-primary custom\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -2685,7 +2699,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h3>Roster</h3>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>"
+module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div class = \"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t\t<small class=\"m-0\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t</div>\r\n</div>\r\n<br>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>"
 
 /***/ }),
 
@@ -2742,9 +2756,18 @@ var RosterComponent = /** @class */ (function () {
     });
     RosterComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
+        this._numBrackets = 0;
+        this._numEntries = this._loggedInUser.num_entries;
         // Retrieve roster list without logged in user
         this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (data) {
             _this.roster = data;
+            _this.roster.forEach(function (registrant) {
+                _this._numRegistrants += 1;
+                _this._numEntries += registrant.num_entries;
+            });
+            _this._numBrackets = Math.floor(_this._numEntries / 16);
+            _this._numNeededEntries = (_this._numBrackets + 1) * 16 - _this._numEntries;
             //console.log(this.roster)
         });
     };
@@ -2767,11 +2790,6 @@ var RosterComponent = /** @class */ (function () {
             _this._userService.getLoggedInUser().subscribe(function (data) {
                 _this._loggedInUser = data;
             });
-            // Tried to reload component after modal is closed here but none of the below worked...
-            // this.router.navigate(['home']);
-            // this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-            // this.router.navigate(['home']));
-            // location.reload();
         });
     };
     __decorate([
@@ -2797,6 +2815,199 @@ var RosterComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/standings-nav/standings-nav.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/standings-nav/standings-nav.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3N0YW5kaW5ncy1uYXYvc3RhbmRpbmdzLW5hdi5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/standings-nav/standings-nav.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/standings-nav/standings-nav.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h4>Standings</h4>\n\n<div class = \"container\">\n  <small class=\"text-muted\">(Click to see bracket)</small>\n  <tabset type=\"pills\">\n    <tab *ngFor = \"let tbracket of tbracketList\" heading=\"{{ tbracket.name }}\">\n    \t<app-standings [bracket]=\"tbracket.id\"></app-standings>\n    </tab>\n  </tabset>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/standings-nav/standings-nav.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/standings-nav/standings-nav.component.ts ***!
+  \**********************************************************/
+/*! exports provided: StandingsNavComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StandingsNavComponent", function() { return StandingsNavComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
+/* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var StandingsNavComponent = /** @class */ (function () {
+    function StandingsNavComponent(_tbracketService, _entryService) {
+        this._tbracketService = _tbracketService;
+        this._entryService = _entryService;
+    }
+    StandingsNavComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // Retrieve list of brackets for bracket navbar
+        this._tbracketService.getList().subscribe(function (data) {
+            _this.tbracketList = data;
+            // console.log("Bracket list of nav is: ", this.tbracketList)
+        });
+        // Attempt to default show tab that Player is assigned
+        // this.staticTabs.tabs[1].active = true;
+        // this._bracketToShow = null;
+        // Retrieve the logged in player's entries to set default bracket to show
+        // when click on Bracket navbar option
+        // this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(data => {
+        // 	// Check to see if User is assigned an entry yet, if so, show the first bracket
+        // 	// console.log ("player brackets: ", data)
+        // 	if (data.length > 0 && data[0].tbracket != null) {
+        // 		this._bracketToShow = data[0].tbracket;
+        // 	}
+        // 	else {
+        // 	// Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
+        // 		this._tbracketService.getList().subscribe(data => {
+        // 			// console.log ("system brackets: ", data)
+        // 			if (data.length > 0) {
+        // 				this._bracketToShow = data[0].id;
+        // 			}
+        // 		})
+        // 	}
+        // }); //end subscribe
+    }; //end ngOnInit
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('staticTabs'),
+        __metadata("design:type", ngx_bootstrap__WEBPACK_IMPORTED_MODULE_3__["TabsetComponent"])
+    ], StandingsNavComponent.prototype, "staticTabs", void 0);
+    StandingsNavComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-standings-nav',
+            template: __webpack_require__(/*! ./standings-nav.component.html */ "./src/app/standings-nav/standings-nav.component.html"),
+            styles: [__webpack_require__(/*! ./standings-nav.component.css */ "./src/app/standings-nav/standings-nav.component.css")]
+        }),
+        __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__["TBracketService"],
+            _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"]])
+    ], StandingsNavComponent);
+    return StandingsNavComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/standings/standings.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/standings/standings.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3N0YW5kaW5ncy9zdGFuZGluZ3MuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/standings/standings.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/standings/standings.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<!-- <th scope=\"col\">#</th> -->\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Name</th>\n\t\t\t<th scope=\"col\" style=\"width: 15%\"># Active Teams</th>\n\t\t\t<th scope=\"col\">South</th>\n\t\t\t<th scope=\"col\">West</th>\n\t\t\t<th scope=\"col\">East</th>\n\t\t\t<th scope=\"col\">Midwest</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let player of _standingsList; let i = index\">\n\t\t\t<!-- <th scope=\"row\">{{i + 1}}</th> -->\n\t\t\t<td>{{ player.player }}</td>\n\t\t\t<td class=\"text-center\">{{ player.team_count }}</td>\n\t\t\t<td>{{ player.team_a }}</td>\n\t\t\t<td>{{ player.team_b }}</td>\n\t\t\t<td>{{ player.team_c }}</td>\n\t\t\t<td>{{ player.team_d }}</td>\n\t\t\t<td></td>\n\t\t</tr>\n\t</tbody>\n</table>"
+
+/***/ }),
+
+/***/ "./src/app/standings/standings.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/standings/standings.component.ts ***!
+  \**************************************************/
+/*! exports provided: StandingsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StandingsComponent", function() { return StandingsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var StandingsComponent = /** @class */ (function () {
+    function StandingsComponent(_entryService) {
+        this._entryService = _entryService;
+    }
+    Object.defineProperty(StandingsComponent.prototype, "bracket", {
+        get: function () {
+            return this._bracketId;
+        },
+        set: function (value) {
+            if (value) {
+                this._bracketId = value;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    StandingsComponent.prototype.ngOnInit = function () {
+        // this._bracketId = 1;
+        var _this = this;
+        this._entryService.getEntryStandings(this._bracketId).subscribe(function (data) {
+            _this._standingsList = data;
+            // Sort the standings by descending team_count (they're pre-sorted by last name descending)
+            _this._standingsList.sort(function (a, b) { return (a.team_count > b.team_count) ? -1 : ((b.team_count > a.team_count) ? 1 : 0); });
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [Number])
+    ], StandingsComponent.prototype, "bracket", null);
+    StandingsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-standings',
+            template: __webpack_require__(/*! ./standings.component.html */ "./src/app/standings/standings.component.html"),
+            styles: [__webpack_require__(/*! ./standings.component.css */ "./src/app/standings/standings.component.css")]
+        }),
+        __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_1__["EntryService"]])
+    ], StandingsComponent);
+    return StandingsComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/team-details/team-details.component.css":
 /*!*********************************************************!*\
   !*** ./src/app/team-details/team-details.component.css ***!
@@ -2815,7 +3026,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div class=\"container\">\r\n\t<div class=\"row border-bottom border-top\">\r\n\t\t<div class=\"col col-sm-1\"><strong>Bracket</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Region</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Original Teams</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Active Team(s)</strong></div>\r\n\t\t<div class=\"col col-sm-4\"><strong>Next Game</strong></div>\r\n\t</div>\r\n\t<ng-container *ngIf=\"_entryList && _entryList.length\">\r\n\t\t<div class = \"row border-bottom\" *ngFor = \"let entry of _entryList\">\r\n\t\t\t<div class=\"col align-self-center col-sm-1\">\r\n\t\t\t\t<div class=\"col text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\">\r\n\t\t\t\t\t<strong>{{ entry.tbracket }}</strong>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">South</div>\r\n\t\t\t\t<div class=\"col\">West</div>\r\n\t\t\t\t<div class=\"col\">East</div>\r\n\t\t\t\t<div class=\"col\">Midwest</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_a }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_b }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_c }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_d }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.team_a || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_b || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_c || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_d || '**OUT**'}}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-4\">\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_a; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_b; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_c; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_d; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\"></app-team-nextup></div>\r\n\t\t\t\t<ng-template #not_applicable>N/A</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</ng-container>\r\n\t<ng-container *ngIf=\"!(_entryList && _entryList.length)\">\r\n\t\t<br>\r\n\t\t<p class=\"font-italic\">No Teams Assigned Yet!</p>\r\n\t</ng-container>\r\n</div>\r\n"
+module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div class=\"container\">\r\n\t<div class=\"row border-bottom border-top\">\r\n\t\t<div class=\"col col-sm-1\"><strong>Bracket</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Region</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Original Teams</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Active Team(s)</strong></div>\r\n\t\t<div class=\"col col-sm-4\"><strong>Next Game</strong></div>\r\n\t</div>\r\n\t<div *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t\t<div class = \"row border-bottom\" *ngFor = \"let entry of _entryList\">\r\n\t\t\t<div class=\"col align-self-center col-sm-1\">\r\n\t\t\t\t<div class=\"col text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\">\r\n\t\t\t\t\t<strong>{{ entry.tbracket }}</strong>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">South</div>\r\n\t\t\t\t<div class=\"col\">West</div>\r\n\t\t\t\t<div class=\"col\">East</div>\r\n\t\t\t\t<div class=\"col\">Midwest</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_a }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_b }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_c }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_d }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.team_a || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_b || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_c || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_d || '**OUT**'}}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-4\">\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_a; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_b; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_c; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_d; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\"></app-team-nextup></div>\r\n\t\t\t\t<ng-template #not_applicable>N/A</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<ng-template #assignment_announcement>\r\n\t\t<div class=\"text-center\">\r\n\t\t\t<br>\r\n\t\t\t<h4 class=\"font-italic\">** Teams will be assigned on Thursday, March 21, at midnight **</h4>\r\n\t\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t\t</div>\r\n\t</ng-template>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3053,7 +3264,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<nav class=\"navbar navbar-dark bg-primary\">\r\n  <div class=\"navbar-expand m-auto navbar-text\">\r\n  \t<!-- <i class = \"far fa-home\"></i> PRM Productions 2018 -->\r\n  \t<fa name=\"home\"></fa> PRM Productions 2018\r\n  </div>\r\n</nav>"
+module.exports = "\r\n<nav class=\"navbar navbar-dark bg-primary fixed-bottom footer\">\r\n  <div class=\"navbar-expand m-auto navbar-text footer\">\r\n  \t<i class = \"fa fa-ban\"></i> Exit Zero Technologies 2018\r\n  </div>\r\n</nav>"
 
 /***/ }),
 

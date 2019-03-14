@@ -1,12 +1,12 @@
 jfkdlajkf
-jidlajk jkdja jkdljalk jkldjalk url('fontawesome-webfont.woff2?v=4.7.0') jkdla
+jidlajk jkdja jkdljalk jkldjalk url('../static/front-end/fontawesome-webfont.woff2') jkdla
 jkdlja --  jkdla *&  jkdlajlkl 
-jkdla jkdlajl jkldjal url('fontawesome-webfont.woff?v=4.7.0') jkajfkdla
-url('primeicons.woff') jkafljdkla jkdlajkl fjdkaljkl
-jfkdal jkldaj jklfdjal jkfdlajkl jfkdla jjkfld ajkl jfkdla jklfd ajklurl('open-sans-v15-latin-regular.woff2')jkljl
+jkdla jkdlajl jkldjal url('../static/front-end/fontawesome-webfont.woff') jkajfkdla
+url('../static/front-end/primeicons.woff') jkafljdkla jkdlajkl fjdkaljkl
+jfkdal jkldaj jklfdjal jkfdlajkl jfkdla jjkfld ajkl jfkdla jklfd ajklurl('../static/front-end/open-sans-v15-latin-regular.woff2')jkljl
 jfkdla
 jfkdla jfkdla jf jdkal ureioq uiroeq
  ruieqourieoq
-urieoq uiroeq uiroe quio url('open-sans-v15-latin-regular.woff')
+urieoq uiroeq uiroe quio url('../static/front-end/open-sans-v15-latin-regular.woff')
  urieoq uioreuq
 jkfdljakl 
