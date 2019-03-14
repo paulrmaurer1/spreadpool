@@ -9,7 +9,7 @@
 		<div class="col col-sm-2"><strong>Active Team(s)</strong></div>
 		<div class="col col-sm-4"><strong>Next Game</strong></div>
 	</div>
-	<ng-container *ngIf="_entryList && _entryList.length">
+	<div *ngIf="_entryList && _entryList.length; else assignment_announcement">
 		<div class = "row border-bottom" *ngFor = "let entry of _entryList">
 			<div class="col align-self-center col-sm-1">
 				<div class="col text-primary text-pointer" (click)="sendToBracket(entry.tbracket)">
@@ -46,9 +46,12 @@
 				<ng-template #not_applicable>N/A</ng-template>
 			</div>
 		</div>
-	</ng-container>
-	<ng-container *ngIf="!(_entryList && _entryList.length)">
-		<br>
-		<p class="font-italic">No Teams Assigned Yet!</p>
-	</ng-container>
+	</div>
+	<ng-template #assignment_announcement>
+		<div class="text-center">
+			<br>
+			<h4 class="font-italic">** Teams will be assigned on Thursday, March 21, at midnight **</h4>
+			<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>
+		</div>
+	</ng-template>
 </div>

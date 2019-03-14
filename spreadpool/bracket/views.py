@@ -3,6 +3,7 @@
 #3rd party python modules
 import json
 import random
+import operator
 
 #Django modules
 from django.shortcuts import render, redirect, get_object_or_404
@@ -30,7 +31,8 @@ from .functions import find_game, reassign_bracket, reset_game, reset_bracket, g
 from rest_framework.viewsets import ModelViewSet
 from bracket.serializers import UserSerializer, GroupSerializer, EntrySerializer, \
 GameSerializer, MatchupSerializer, TbracketSerializer, GameWithOwnersSerializer, \
-EntryPlayerByBracketAndTeamSerializer, EntryBracketsByPlayerSerializer, GameWithMatchupDataSerializer
+EntryPlayerByBracketAndTeamSerializer, EntryBracketsByPlayerSerializer, GameWithMatchupDataSerializer, \
+EntryStandingsSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
@@ -330,6 +332,27 @@ class EntryBracketsByPlayerViewSet(ModelViewSet):
 		playerid = self.request.query_params.get('playerid', None)
 		if playerid is not None:
 			queryset = queryset.filter(player=playerid)
+		return queryset
+
+class EntryStandingsViewSet(ModelViewSet):
+	"""
+	API endpoint to retrieve names associated with entries
+	Optional GET parameters include: ?tbracketid= 
+	If no tbracketid, will retrive all users whose entries match either team 1 or team 2
+	"""
+	queryset = Entry.objects.all()
+	serializer_class = EntryStandingsSerializer
+
+	def get_queryset(self):
+		"""
+		Optionally filter entries by tbracketid
+		"""
+		queryset = Entry.objects.all()
+		queryset = queryset.order_by('player__first_name')
+		tbracketid = self.request.query_params.get('tbracketid', None)
+		if tbracketid is not None:
+			queryset = queryset.filter(tbracket=tbracketid)
+
 		return queryset
 
 class GameViewSet(ModelViewSet):

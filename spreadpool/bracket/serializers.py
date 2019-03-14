@@ -11,7 +11,8 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', 'last_name', 'num_entries', 'mult_entry_type', 'is_staff')
+        fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
+        	'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -57,6 +58,37 @@ class EntryBracketsByPlayerSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Entry
 		fields = ('id', 'tbracket', 'player')
+
+class EntryStandingsSerializer(serializers.ModelSerializer):
+	"""
+	Serializer to retrieve entries with key info needed for Standings
+	"""
+	tbracket = serializers.StringRelatedField()
+	player = serializers.StringRelatedField()
+	team_a = serializers.StringRelatedField()
+	team_b = serializers.StringRelatedField()
+	team_c = serializers.StringRelatedField()
+	team_d = serializers.StringRelatedField()
+	team_count = serializers.SerializerMethodField()
+
+	class Meta:
+		model = Entry
+		fields = ('id', 'tbracket', 'tbracket_id', 'player', 'team_count', \
+			'team_a', 'team_b', 'team_c', 'team_d')
+
+	def get_team_count(self, obj):
+	# Get count of non Null Active Teams
+		count = 0
+		if obj.team_a:
+			count += 1
+		if obj.team_b:
+			count += 1
+		if obj.team_c:
+			count += 1
+		if obj.team_d:
+			count += 1
+		return count
+	
 
 class GameSerializer(serializers.ModelSerializer):
 	"""

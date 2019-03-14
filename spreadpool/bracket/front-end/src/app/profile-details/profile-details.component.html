@@ -15,7 +15,14 @@
 	</div>
 	<div class = "row justify-content-start">
 		<div class = "col-sm-auto">(S)ame or (D)ifferent Brackets:</div>
-		<div class = "col" class="text-muted">{{ _player.mult_entry_type }}</div>
+		<div class = "col" class="text-muted" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>
+	</div>
+	<div class = "row justify-content-start">
+		<div class = "col-sm-auto">Paid up?:</div>
+		<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
+		<!-- <div class = "col" [class.text-danger] = "player.paid"> -->
+		<!-- <div class = "col" class="text-danger"> -->
+			{{ player.paid ? 'YES - Thank you!' : 'No - Due($' + player.num_entries*20 + '.00)'  }}</div>
 	</div>
 	<div class = "row justify-content-start top10">
 		<div class = "col-sm-auto">

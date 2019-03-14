@@ -24,6 +24,8 @@ import { BracketGameComponent } from './bracket-game/bracket-game.component';
 import { BracketffDetailComponent } from './bracketff-detail/bracketff-detail.component';
 import { DeleteModalComponent } from './admin/create-brackets/create-brackets.component';
 import { TeamNextupComponent } from './team-nextup/team-nextup.component';
+import { StandingsComponent } from './standings/standings.component';
+import { StandingsNavComponent } from './standings-nav/standings-nav.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { TeamNextupComponent } from './team-nextup/team-nextup.component';
     BracketffDetailComponent,
     DeleteModalComponent,
     TeamNextupComponent,
+    StandingsComponent,
+    StandingsNavComponent,
   ],
   imports: [
     BrowserModule,

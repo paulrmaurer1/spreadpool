@@ -1,6 +1,28 @@
 <!--roster.component.html-->
-<h3>Roster</h3>
+<h4>Registrants</h4>
+<div class = "container">
+	<div class = "row">
+		<div class = "col"></div>
+		<div class = "col-2 text-center bg-secondary text-white rounded p-2">
+			<p class="mb-0">People Registered</p>
+			<h1 class="display-3 m-0">{{_numRegistrants}}</h1>
+		</div>
+		<div class = "col"></div>
+		<div class = "col-2 text-center bg-secondary text-white rounded p-2">
+			<p class="mb-0">Number of Entries</p>
+			<h1 class="display-3 m-0">{{_numEntries}}</h1>
+		</div>
+		<div class = "col"></div>
+		<div class = "col-2 text-center bg-secondary text-white rounded p-2">
+			<p class="mb-0">Number of Brackets</p>
+			<h1 class="display-4 m-0">{{_numBrackets}}</h1>
+			<small class="m-0">({{_numNeededEntries}} more entries for another!)</small>
+		</div>
+		<div class = "col"></div>
+	</div>
+</div>
 <br>
+
 <table class="table table-sm">
 	<thead>
 		<tr>
@@ -25,8 +47,9 @@
 			<th scope="row">{{i + 2}}</th>
 			<td>{{ player.full_name }}</td>
 			<td>{{ player.num_entries }}</td>
-			<td>{{ player.mult_entry_type }}</td>
+			<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>
 			<td></td>
 		</tr>
 	</tbody>
 </table>
+<br>

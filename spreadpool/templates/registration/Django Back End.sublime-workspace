@@ -1,0 +1,871 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"orig",
+				"orig_team_a"
+			],
+			[
+				"rela",
+				"related_matchups"
+			],
+			[
+				"team1_",
+				"team1_id"
+			],
+			[
+				"team_c",
+				"team_c"
+			],
+			[
+				"child_",
+				"child_game1"
+			],
+			[
+				"team2",
+				"team2_owner"
+			],
+			[
+				"team1",
+				"team1_owner"
+			],
+			[
+				"Seri",
+				"SerializerMethodField"
+			],
+			[
+				"Entry",
+				"EntrySerializer"
+			],
+			[
+				"tbr",
+				"tbracket_table"
+			],
+			[
+				"l",
+				"l_i_u_teams"
+			],
+			[
+				"l_i",
+				"l_i_u_teamsHTML"
+			],
+			[
+				"Tbracket",
+				"TbracketSerializer"
+			],
+			[
+				"seriali",
+				"serializer_class"
+			],
+			[
+				"Game",
+				"GameSerializer"
+			],
+			[
+				"Mode",
+				"ModelSerializer"
+			],
+			[
+				"trb",
+				"tbracketid"
+			],
+			[
+				"logged_in",
+				"logged_in_user_HTML"
+			],
+			[
+				"logg",
+				"logged_in_user_HTML"
+			],
+			[
+				"De",
+				"DeleteProfileForm"
+			],
+			[
+				"url",
+				"url"
+			],
+			[
+				"M",
+				"MULTIPLE_ENTRY_CHOICES"
+			],
+			[
+				"Foreig",
+				"ForeignKey"
+			],
+			[
+				"make",
+				"make_dc_line_bet"
+			],
+			[
+				"place",
+				"place_come_bet"
+			],
+			[
+				"get",
+				"get_min_bet"
+			],
+			[
+				"Come",
+				"ComeBet"
+			],
+			[
+				"Http",
+				"HttpResponse"
+			],
+			[
+				"pot_when",
+				"pot_when_lose"
+			],
+			[
+				"TE",
+				"TESTING_INTERVAL"
+			],
+			[
+				"window",
+				"window_length"
+			],
+			[
+				"resis",
+				"resistant_local"
+			],
+			[
+				"new_list2",
+				"new_list2_children"
+			],
+			[
+				"print",
+				"print_bacteria"
+			],
+			[
+				"get_",
+				"get_birth_prob"
+			],
+			[
+				"res",
+				"resistant_pop"
+			],
+			[
+				"add",
+				"addtl_timesteps"
+			],
+			[
+				"resist",
+				"resistant_pop"
+			],
+			[
+				"avg_",
+				"avg_pop_at_t"
+			],
+			[
+				"max",
+				"max_pop"
+			],
+			[
+				"No",
+				"NoChildException"
+			],
+			[
+				"is",
+				"is_killed"
+			],
+			[
+				"death",
+				"death_prob"
+			],
+			[
+				"start",
+				"starting_pot"
+			],
+			[
+				"come",
+				"come_type"
+			],
+			[
+				"amount",
+				"amount_come_bets_left"
+			],
+			[
+				"make_",
+				"make_dc_line_bet"
+			],
+			[
+				"sta",
+				"starting_pot"
+			],
+			[
+				"main",
+				"maintain_come_bets"
+			],
+			[
+				"wal",
+				"walk_away_pot_high"
+			],
+			[
+				"walk_",
+				"walk_away_pot_high"
+			],
+			[
+				"walk",
+				"walk_away_pot_low"
+			],
+			[
+				"pot",
+				"potamountleft"
+			],
+			[
+				"min",
+				"min_bet"
+			],
+			[
+				"table",
+				"table_amount"
+			],
+			[
+				"dp_",
+				"dp_bet_behindline"
+			],
+			[
+				"num_throw",
+				"num_throws_wo_win"
+			],
+			[
+				"dp",
+				"dpPushes"
+			],
+			[
+				"egg",
+				"egg_weights"
+			],
+			[
+				"target",
+				"target_weight"
+			],
+			[
+				"br",
+				"brute_force_cow_trips"
+			],
+			[
+				"brut",
+				"brute_force_cow_transport"
+			],
+			[
+				"tot",
+				"total_score"
+			],
+			[
+				"update",
+				"update_hand"
+			],
+			[
+				"displ",
+				"display_hand"
+			],
+			[
+				"appl",
+				"apply_transpose"
+			],
+			[
+				"ge",
+				"get_message_text"
+			],
+			[
+				"VO",
+				"VOWELS_LOWER"
+			],
+			[
+				"trans",
+				"transpose_dict"
+			],
+			[
+				"vol",
+				"vowels_permutation"
+			],
+			[
+				"CON",
+				"CONSONANTS_UPPER"
+			],
+			[
+				"get_messa",
+				"get_message_text_encrypted"
+			],
+			[
+				"Cip",
+				"CiphertextMessage"
+			],
+			[
+				"get_mess",
+				"get_message_text_encrypted"
+			],
+			[
+				"en",
+				"encryption_dict"
+			],
+			[
+				"apply",
+				"apply_shift"
+			],
+			[
+				"message_tex",
+				"message_text_encrypted"
+			],
+			[
+				"load",
+				"load_words"
+			],
+			[
+				"new_",
+				"new_phrase"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Django/spreadpool_project/requirements.txt",
+			"settings":
+			{
+				"buffer_size": 325,
+				"encoding": "UTF-16 LE with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Django/spreadpool_project/spreadpool/spreadpool/settings/base.py",
+			"settings":
+			{
+				"buffer_size": 5541,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Django/spreadpool_project/spreadpool/templates/base.html",
+			"settings":
+			{
+				"buffer_size": 1089,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Django/spreadpool_project/spreadpool/bracket/templates/bracket/index.html",
+			"settings":
+			{
+				"buffer_size": 1095,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Django/spreadpool_project/spreadpool/spreadpool/settings/local.py",
+			"settings":
+			{
+				"buffer_size": 813,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Django/spreadpool_project/spreadpool/spreadpool/settings/prod.py",
+			"settings":
+			{
+				"buffer_size": 1107,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 157.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Django/spreadpool_project/spreadpool/bracket/views.py",
+		"/C/Django/spreadpool_project/spreadpool/templates/registration/login.html",
+		"/C/Django/spreadpool_project/spreadpool/bracket/templates/bracket/signup.html",
+		"/C/Django/spreadpool_project/spreadpool/bracket/templates/bracket/index.html",
+		"/C/Django/spreadpool_project/spreadpool/templates/base.html",
+		"/C/Django/spreadpool_project/spreadpool/bracket/static/front-end/styles.js",
+		"/C/Django/spreadpool_project/spreadpool/templates/registration/Django Back End.sublime-project",
+		"/C/Django/spreadpool_project/spreadpool/bracket/forms.py",
+		"/C/Django/spreadpool_project/spreadpool/spreadpool/urls.py",
+		"/C/Django/spreadpool_project/spreadpool/bracket/static/bracket/site.css",
+		"/C/Django/spreadpool_project/spreadpool/bracket/templates/bracket/tbracket_page.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project - Backup_Mar10-2019/spreadpool/bracket/templates/bracket/signup.html",
+		"/C/Django/spreadpool_project/spreadpool/bracket/models.py",
+		"/C/Django/spreadpool_project/spreadpool/spreadpool/settings/prod.py",
+		"/C/Django/spreadpool_project/spreadpool/spreadpool/settings/local.py",
+		"/C/Django/spreadpool_project/spreadpool/spreadpool/settings/base.py",
+		"/C/Django/spreadpool_project/requirements.txt",
+		"/C/Django/spreadpool_project/spreadpool/bracket/urls.py",
+		"/C/Django/spreadpool_project/Procfile",
+		"/C/Program Files/Sublime Text 3/Front End.sublime-project",
+		"/C/Program Files/Sublime Text 3/Spreadpool Django.sublime-project",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/requirements.txt",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/static/bracket/site.css",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/templates/bracket/index.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/templates/base.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/urls.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/spreadpool/urls.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/views.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/serializers.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/spreadpool/settings/base.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/spreadpool/settings/local.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/spreadpool/settings/prod.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/front-end/src/app/admin/assign-brackets/assign-brackets.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/front-end/src/app/ui/header/header.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/Procfile",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/static/front-end/index.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/templates/registration/login.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/models.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/templates/bracket/signup.html",
+		"/C/Users/Paul Maurer/.virtualenvs/spreadpool/Scripts/activate.ps1",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/runtime.txt",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/requirements.txt",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/Procfile",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/MakeFile",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/spreadpool/wsgi.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/front-end/node_modules/primeicons/primeicons.css",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/functions.py",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/templates/bracket/admin_page.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/templates/bracket/tbracket_page.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Python/spreadpool_project/spreadpool/bracket/templates/bracket/profile.html",
+		"/C/Users/Paul Maurer/AppData/Local/Temp/wz00aa/fontawesome-free-5.7.1-web/css/all.css",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/practice-code/angular-hello-world/angular.json",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/practice-code/angular-hello-world/src/proxyconfig.json",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/practice-code/angular-hello-world/package.json",
+		"/C/Users/Paul Maurer/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/user/user.model.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/thread/thread.model.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/message/message.model.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/app.reducer.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/user/users.reducer.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/user/user.actions.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/thread/threads.reducer.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-threads/chat-threads.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-thread/chat-thread.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-thread/chat-thread.component.html",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-window/chat-window.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-window/chat-window.component.html",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/thread/thread.actions.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/app.store.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/app.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-page/chat-page.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/src/app/chat-nav-bar/chat-nav-bar.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/05-minimal-store.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/lib/miniRedux.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/06-store-w-subscribe.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/07-messages-reducer.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/08-action-creators.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/09-real-redux.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/redux-counter/src/app/counter.reducer.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/redux-counter/src/app/app.store.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/redux-counter/src/app/app.module.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/redux-counter/src/app/app.component.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/redux-counter/src/app/app.component.html",
+		"/C/Angular/ng-book-code/redux/redux-chat/redux-counter/src/app/counter.actions.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/01-identity-reducer.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/04-plus-action.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/03-adjusting-reducer-switch.ts",
+		"/C/Angular/ng-book-code/redux/redux-chat/tutorial/02-adjusting-reducer.ts",
+		"/C/wamp/www/ncaahoopspool/includes/misc.inc",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/routes/music/src/app/track/track.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/routes/music/src/app/search/search.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/routes/music/src/app/search/search.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/routes/music/src/app/app.module.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/routes/music/src/app/spotify.service.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/routes/music/src/app/track/track.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/http/src/app/simple-http/simple-http.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/http/src/app/simple-http/simple-http.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/http/src/app/app.module.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/http/README.md",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/services/user.service.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/user-demo/user-demo.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/analytics-demo/analytics-demo.interface.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/services/analytics.service.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/analytics-demo/analytics-demo.module.1.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/analytics-demo/analytics-demo.module.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/dependency-injection/src/app/analytics-demo/analytics-demo.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/app.module.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/app.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/app.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/index.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/demo-form-sku/demo-form-sku.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/demo-form-sku-with-builder/demo-form-sku-with-builder.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/demo-form-sku-with-builder/demo-form-sku-with-builder.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/demo-form-sku/demo-form-sku.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/demo-form-with-validations-explicit/demo-form-with-validations-explicit.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/forms/src/app/demo-form-with-validations-explicit/demo-form-with-validations-explicit.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/how-angular-works/inventory-app/src/app/app.component.ts",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/how-angular-works/inventory-app/src/app/app.component.html",
+		"/C/Users/Paul Maurer/Google Drive/My Files/Coding/Angular/ng-book-code/how-angular-works/inventory-app/src/app/app.module.ts",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/app.component.html",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/app.component.ts",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/app.component.spec.ts",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/app-routing.module.ts",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/index.html",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/app.module.ts",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/article/article.component.html",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/article/article.component.ts",
+		"/C/Users/Paul Maurer/.virtualenvs/angulardev/Scripts/angular-hello-world/src/app/article/article.model.ts"
+	],
+	"find":
+	{
+		"height": 40.8
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"open-sans-v15-latin-regular.woff",
+			"open-sans-v15-latin-regular.woff2",
+			"fontawesome-webfont.woff2?v=4.7.0",
+			"url('fontawesome",
+			"LoginView",
+			"BASE_DIR",
+			"username",
+			"update",
+			"team_a",
+			"reset_game",
+			"instance",
+			"GameWithOwnersSerializer",
+			"region1",
+			"owner_field",
+			"game_id",
+			"CharField",
+			"t2_id",
+			"if",
+			"num_assigned",
+			"GameWithTeamOwnersSerializer",
+			"TbracketGameSerializer"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"team_d",
+			"team_c",
+			"team_b",
+			"game",
+			"region4",
+			"region3",
+			"region2",
+			"'owner_field'",
+			"'game_id'",
+			"t1_id"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Django/spreadpool_project/requirements.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 325,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Django/spreadpool_project/spreadpool/spreadpool/settings/base.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5541,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3638,
+								3653
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1665.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Django/spreadpool_project/spreadpool/templates/base.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1089,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Django/spreadpool_project/spreadpool/bracket/templates/bracket/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Django/spreadpool_project/spreadpool/spreadpool/settings/local.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 813,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Django/spreadpool_project/spreadpool/spreadpool/settings/prod.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1107,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1106,
+								1106
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Django Back End.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 294.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

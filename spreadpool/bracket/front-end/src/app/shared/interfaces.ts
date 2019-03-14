@@ -9,6 +9,7 @@ export interface IUserData {
   num_entries: number;
   mult_entry_type: string;
   is_staff: number;
+  paid: boolean;
 }
 
 export interface TBracketData {
@@ -43,6 +44,18 @@ export interface EntryNameData {
   player: string;
   e_name: string;
   tbracket: number;
+}
+
+export interface EntryStandingsData {
+  id: number;
+  tbracket: string;
+  tbracket_id: number;
+  player: string;
+  team_count: number;
+  team_a: string;
+  team_b: string;
+  team_c: string;
+  team_d: string;
 }
 
 export interface GameData {

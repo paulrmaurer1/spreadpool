@@ -1,0 +1,26 @@
+<br>
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<!-- <th scope="col">#</th> -->
+			<th scope="col" style="width: 10%">Name</th>
+			<th scope="col" style="width: 15%"># Active Teams</th>
+			<th scope="col">South</th>
+			<th scope="col">West</th>
+			<th scope="col">East</th>
+			<th scope="col">Midwest</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let player of _standingsList; let i = index">
+			<!-- <th scope="row">{{i + 1}}</th> -->
+			<td>{{ player.player }}</td>
+			<td class="text-center">{{ player.team_count }}</td>
+			<td>{{ player.team_a }}</td>
+			<td>{{ player.team_b }}</td>
+			<td>{{ player.team_c }}</td>
+			<td>{{ player.team_d }}</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>

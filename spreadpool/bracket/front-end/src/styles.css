@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /******3rd party packages******/
-/*@import './styles/bootstrap-4.2.1-dist/css/bootstrap.css';*/
-/*@import './styles/fontawesome-free-5.7.2-web/css/all.css';*/
-/*@import "~font-awesome/css/font-awesome.css";*/
+
 
 /*Separate CSS style sheet for bracket rendering*/
 @import './styles/brackets.css';
@@ -10,11 +8,17 @@
 
 /*CUSTOM STYLES BELOW TO APPLY ON TOP OF ABOVE IMPORTS*/
 
-/* Added to increase space between navbar elements*/
-.navbar-nav > li{
-  padding-left:20px;
+/*Add space between nav pills - Standings page*/
+.nav-pills > li {
+  margin-right: 40px;
 }
 
+/*.nav-item > li {
+  margin-left: 0px;
+  margin-right: 40px;
+}*/
+
+/* Added to increase space between navbar elements*/
 .navbar-text {
 	font-size: 10px;
 	padding-right: 10px;
@@ -24,6 +28,9 @@
 .navbar-nav > li {
   float: left;
   position: relative;
+  margin-left: 20px;
+  padding-left: 0px;
+  /*font-size: 20px;*/
 }
 .navbar-dark .navbar-nav .active a::after {
   border-bottom: 5px solid #ffffff;
@@ -34,20 +41,22 @@
   right: 0;
 }
 
-/*To center navbar elements !!NOT WORKING!!*/
-.navbar.center .navbar-collapse {
-    text-align: center;
-}
-
 .navbar.center .navbar-collapse .navbar-nav {
     display:inline-block;
     float: none;
 }
 
-/*To modify font size of navbar main men items*/
-/*.navbar-nav > li {
-  font-size: 20px;
-  }*/
+/*To decrease height of bottom navbar*/
+.navbar.footer {
+  min-height:12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/*And center the text height wise*/
+.navbar-text.footer {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 
 /*To modify font size of navbar drop-down menu items*/
 .dropdown-menu {
@@ -94,3 +103,4 @@
   font-size: 1rem;
   font-weight: 400;
 }
+

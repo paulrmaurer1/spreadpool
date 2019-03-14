@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EntryData, EntryBracketData, EntryNameData } from '../shared/interfaces';
+import { EntryData, EntryBracketData, EntryNameData, EntryStandingsData } from '../shared/interfaces';
 import { UserService } from './user.service';
 
 //entryUrl is base url for entries table end point
 const entryUrl = '/api/entries/';
 const entry_bracketsUrl = '/api/entry_brackets/';
 const entry_namesUrl = '/api/entry_names/';
+const entry_standingsURL = '/api/entry_standings/';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,11 @@ export class EntryService {
 	resetAllEntries() {
 	    return this.http.get<EntryData[]>(entryUrl + 'reset_all/', this.getHttpOptions())
 	}
+
+	//method to retrieve all entries matching ?tbracketid= value
+	getEntryStandings(tbracket_id) {
+		return this.http.get<EntryStandingsData[]>(entry_standingsURL + '?tbracketid=' + tbracket_id)
+		}
 
 	// helper function to build the HTTP headers
 	getHttpOptions() {

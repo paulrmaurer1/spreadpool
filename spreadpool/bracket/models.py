@@ -33,6 +33,9 @@ class User(AbstractUser):
 	is_staff = models.IntegerField(
 		default = 0
 		)  #1 = Admin; 0 = Regular
+	paid = models.BooleanField(
+		default = False
+		)
 
 	# Used by views.ProfileEdit(UpdateView) to return to standard profile view
 	def get_absolute_url(self):
