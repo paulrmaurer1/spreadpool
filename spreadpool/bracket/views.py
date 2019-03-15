@@ -467,6 +467,8 @@ class TbracketViewSet(ModelViewSet):
 		try:
 			instance = self.get_object()
 			tbracket_id = instance.id
+			assigned_entries = Entry.objects.filter(tbracket=tbracket_id)
+			assigned_entries.update(tbracket=None)
 			self.perform_destroy(instance)
 			related_matchups = Matchup.objects.filter(tbracket=tbracket_id)
 			related_matchups.delete()

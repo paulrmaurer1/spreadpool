@@ -26,3 +26,7 @@ DATABASES = {
         }
     }
 }
+
+# Email settings: emails are created as filed and put in the below directory
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

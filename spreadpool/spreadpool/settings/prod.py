@@ -28,3 +28,10 @@ DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=Tr
 
 # Add gunicorn to INSTALLED_APPS
 INSTALLED_APPS += ("gunicorn",)
+
+# To leverage Mailgun SMTP email service on Heroku
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ['MAILGUN_SMTP_SERVER']
+EMAIL_PORT = os.environ['MAILGUN_SMTP_PORT']
+EMAIL_HOST_USER = os.environ['MAILGUN_SMTP_LOGIN']
+EMAIL_HOST_PASSWORD = os.environ['MAILGUN_SMTP_PASSWORD']

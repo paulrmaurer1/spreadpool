@@ -118,9 +118,7 @@ AUTH_USER_MODEL = 'bracket.User'
 LOGIN_REDIRECT_URL = 'bracket:home'
 LOGOUT_REDIRECT_URL = 'bracket:home'
 
-# To support Django's built-in contrib.auth password reset functionality
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
