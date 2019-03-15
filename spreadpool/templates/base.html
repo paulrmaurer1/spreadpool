@@ -16,11 +16,13 @@
 <!-- Header for Django template pages -->
 <nav class="navbar center navbar-expand-md navbar-dark bg-primary">
 	<div class="container-fluid">
-		<!-- <a class="navbar-brand" href="#">Spreadpool</a> -->
-		<!-- <img src="{% static 'images/spread2_invisible_small.png' %}" alt="Spreadpool"> -->
-		<!-- <img src="{% static 'images/spread2_black_invisible.png' %}" alt="Spreadpool"> -->
-		<!-- <img src="{% static 'images/spread2_white_small.png' %}" alt="Spreadpool"> -->
-		<img src="{% static 'images/spread2_white_small2.png' %}" alt="Spreadpool">
+		<a href="{% url 'bracket:home' %}">
+			<!-- <a class="navbar-brand" href="#">Spreadpool</a> -->
+			<!-- <img src="{% static 'images/spread2_invisible_small.png' %}" alt="Spreadpool"> -->
+			<!-- <img src="{% static 'images/spread2_black_invisible.png' %}" alt="Spreadpool"> -->
+			<!-- <img src="{% static 'images/spread2_white_small.png' %}" alt="Spreadpool"> -->
+			<img src="{% static 'images/spread2_white_small2.png' %}" alt="Spreadpool">
+		</a>
 	</div>
 </nav>
 {% endblock %}
