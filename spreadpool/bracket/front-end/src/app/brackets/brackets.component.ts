@@ -35,6 +35,8 @@ export class BracketsComponent implements OnInit {
 	ngOnInit() {
      	
   		// Subscribe to activated route parameter and update activeBracket to pass to child components
+  		// Based on active bracket (in params), convert each Region's bracket owners (retrieved via Matchup table)
+  		// to indexed arrays for each Region
   		// FYI - the following line would only work the first time the page is visitied:
 		// this.id = this.route.snapshot.params['id'];
 		this.route.params.subscribe((params) => {

@@ -34,7 +34,7 @@ export class BracketDetailComponent implements OnInit {
 	set bracketOwners(value: GameWithOwnerData[]) {
 		if (value) {
 			this._bracketOwners = value;
-			// console.log ("Detail component bracketOwners: ", this._bracketOwners);
+			console.log ("Detail component bracketOwners: ", this._bracketOwners);
 		}
 	}
 

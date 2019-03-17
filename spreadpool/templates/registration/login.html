@@ -1,11 +1,23 @@
 <!-- templates/registration/login.html -->
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <br>
 <div class = "row">
-	<div class = "col-12 col-md text-center">
-		[Placeholder for Spreadpool Instructions]
+	<div class = "col-12 col-md text-center"
+	style = "background-image: url({% static 'images/spreadpool_25opacity_bk4.png' %}); 
+	background-size: 100% auto; background-repeat: no-repeat;">
+		<p>[Placeholder for Spreadpool Instructions]</p>
+		<p>jfkdljaklj  jkdlajkl jkdljal</p>
+		<p>jkdla jkdlajl jkld aj jkfdl jal</p>
+		<p>jkfdla jfkdla jkl fjdkla jkljdlka</p>
+		<p>jfkdlajkfdjal jlfd jkal</p>
+		<p>jkfdla jkfdla jkl</p>
+		<p>jfkdla jfkdlajlf </p>
+		<p>jfkdla jfkdlajlf </p>
+		<p>jfkdla jfkdlajlf </p>
+		<p>jfkdla jfkdlajlf </p>
+		<p>jfkdla jfkdlajlf </p>
 		<br>
 		<br>
 		<form action = "{% url 'bracket:signup' %}">
