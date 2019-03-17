@@ -22,11 +22,11 @@ export class TeamNextupComponent implements OnInit {
 		private _gameService: GameService) { }
 
 	ngOnInit() {
-		console.log ("team_id is ", this._team_id, " bracket_id is ", this._bracket_id)
+		// console.log ("team_id is ", this._team_id, " bracket_id is ", this._bracket_id)
 		this._nextup_game = "default";
 		this._gameService.getGameListByTeam(this._team_id).subscribe(games => {
 			this._nextGame = games[0];  // game in latest round is next game up
-			console.log ("The Next Game is: ", this._nextGame);
+			// console.log ("The Next Game is: ", this._nextGame);
 			if (this._team_id == this._nextGame.team1_id && this._nextGame.team2 != null) {
 				this._matchupService.getMatchupsDetailsByBracketAndGame(this._bracket_id, this._nextGame.id).subscribe(matchup => {
 					var _nextOpponent = matchup[0].team2_owner;

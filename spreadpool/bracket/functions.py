@@ -9,7 +9,7 @@ import random
 from django.db.models import Q
 
 def create_entries():
-	players = User.objects.exclude(id=1) # Create entries for all users except Admin (user.id = 1)
+	players = User.objects.exclude(username='admin') # Create entries for all users except Admin (user.id = 1)
 	for player in players:
 		if player.num_entries > 1:
 			for i in range (player.num_entries):

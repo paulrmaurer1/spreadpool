@@ -87,7 +87,7 @@ export class UserService {
     this.username = token_decoded.username;
     this.email = token_decoded.email;
     this.id = token_decoded.user_id;
-    console.log("This is the JWT token authenticated user:", token_decoded);
+    // console.log("This is the JWT token authenticated user:", token_decoded);
   }
 
   public getLoggedInUser() {

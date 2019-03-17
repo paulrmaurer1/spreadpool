@@ -39,13 +39,10 @@ export class AppComponent {
       // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
       // Login via _userService to establish token with preset values 
     else {
-      // this._userService.id = 36;
-      // this._userService.login({'email': 'jgarcia@cubs.com', 'password': 'Maddon55'});
-      this._userService.id = 22;
-      this._userService.login({'email': 'aalmora@cubs.com', 'password': 'cubbies1'});
-      
-      // this._userService.id = 11;
-      // this._userService.login({'email': 'jlester@cubs.com', 'password': 'cubbies1'});
+      // this._userService.id = 2;
+      // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
+      this._userService.id = 10;
+      this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
     }
   }
 }

@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.loggedInUser = this.route.snapshot.data.loggedInUser;
     this._userService.loggedInUser = this.loggedInUser;
     this.setCurrentUser(this.loggedInUser);
-    console.log("The current Redux user is", this.currentUser)
+    // console.log("The current Redux user is", this.currentUser)
   }
 
   // Redux store methods

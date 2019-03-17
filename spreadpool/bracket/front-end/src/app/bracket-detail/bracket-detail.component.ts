@@ -51,7 +51,7 @@ export class BracketDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// console.log ("Detail component bracketGames: ", this._bracketGames);
+		console.log ("Detail component bracketGames: ", this._bracketGames);
 
 	}
 

@@ -64,7 +64,11 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 	Serializer to retrieve entries with key info needed for Standings
 	"""
 	tbracket = serializers.StringRelatedField()
-	player = serializers.StringRelatedField()
+	# player = serializers.StringRelatedField()
+	player = serializers.SlugRelatedField(
+		read_only=True,
+		slug_field='full_name'
+	)
 	team_a = serializers.StringRelatedField()
 	team_b = serializers.StringRelatedField()
 	team_c = serializers.StringRelatedField()

@@ -41,6 +41,7 @@
 				<small class="form-text text-danger">{{ form.password.errors }}</small>
 			</div>
 			<button class="btn btn-success btn-block" type="submit">Login</button>
+			<small class="form-text text-danger">{{ form.non_field_errors }}</small>
 		</form>
 		<a href = "{% url 'password_reset' %}">Reset Password</a>
 	</div>

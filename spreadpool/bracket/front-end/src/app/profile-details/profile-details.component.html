@@ -22,16 +22,16 @@
 		<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
 		<!-- <div class = "col" [class.text-danger] = "player.paid"> -->
 		<!-- <div class = "col" class="text-danger"> -->
-			{{ player.paid ? 'YES - Thank you!' : 'No - Due($' + player.num_entries*20 + '.00)'  }}</div>
+			{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>
 	</div>
-	<div class = "row justify-content-start top10">
+<!-- 	<div class = "row justify-content-start top10">
 		<div class = "col-sm-auto">
 			<button class="btn btn-secondary custom" (click)="openModal(template)">Delete</button>
 		</div>
 		<div class = "col-sm-auto">
 			<button class="btn btn-primary custom" (click)="openProfileModal()">Edit</button>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <ng-template #template>
