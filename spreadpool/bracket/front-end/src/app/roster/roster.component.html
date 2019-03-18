@@ -38,7 +38,7 @@
 			<th scope="row">1</th>
 			<td><strong>{{ _loggedInUser.full_name }}*</strong></td>
 			<td><strong>{{ _loggedInUser.num_entries }}</strong></td>
-			<td><strong>{{ _loggedInUser.mult_entry_type }}</strong></td>
+			<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>
 			<td>
 				<fa name="edit" *ngIf="hoveredIndex==_loggedInUser.id" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openProfileModal()"></fa>				
 			</td>

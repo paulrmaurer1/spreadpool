@@ -24,15 +24,7 @@
 <div class = "row">
 	<div class = "col"></div>
 	<div class = "col-12 col-md-6">
-		<h4>Register for Spreadpool</h4>
-		<br>
-
-<!-- 		<form action = "{% url 'bracket:signup' %}" method="post">
-		  {% csrf_token %}
-		  {{ form.as_p }}
-		<button type="submit">Sign up</button>
-		</form> -->
-
+		<h4 class="text-center reg-headline pb-2">Register for Spreadpool</h4>
 		<form action = "{% url 'bracket:signup' %}" method="post">
   			{% csrf_token %}
   			<div class = "form-row">
@@ -53,7 +45,7 @@
 			</div>
 			<div class = "form-row">
 				<div class = "form-group col">
-					<label for="{{ form.num_entries.id_for_label }}">Number of Entries</label>
+					<label for="{{ form.num_entries.id_for_label }}">Number of Entries*</label>
 					<input type = "number" min = "1" max = "4" class="form-control" name="{{ form.num_entries.html_name}}" 
 						id = "{{ form.num_entries.id_for_label }}" placeholder="Enter # of entries" required
 						value = "{{ form.num_entries.value|default_if_none:'1' }}">
@@ -96,13 +88,14 @@
 			</div>
 			<button class="btn btn-success btn-block" type="submit">Sign up</button>
 		</form>
-	</div>
-	<div class = "col"></div>
-</div>
-<div class = "row">
-	<div class = "col"></div>
-	<div class = "col-12 col-md-6 text-center">
-		<a href = "{% url 'login' %}">Back to Login</a>
+		<div class= "text-center pt-2 pb-2">
+			<a href = "{% url 'login' %}">Back to Login</a>
+		</div>
+		<div class = "text-muted">
+			<p class="fine-print">
+				* Payment will not be expected until after your entry is assigned a bracket (after the start of the tournament). 16 entries are required per bracket and there may not be a total multiple of 16 entries registered by Thursday. For example, if 50 entries are submitted, 2 will not be assigned a bracket. You will be expected to pay for entries that get assigned a bracket. Payment methods will be communicated via email after the start of the tournament. Payment will be confirmed both through the site (on your ‘My Teams’ page) and via email.
+			</p>
+		</div>
 	</div>
 	<div class = "col"></div>
 </div>

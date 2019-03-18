@@ -23,3 +23,17 @@
 .navbar-text {
 	font-size: 10px;
 }
+
+/*login.html css*/
+.reg-block li {
+	padding-bottom: 10px;
+}
+
+.reg-headline {
+	color: rgb(255, 128, 64);
+}
+
+.fine-print {
+	line-height: 12px;
+	font-size: 10px;
+}

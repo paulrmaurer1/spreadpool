@@ -15,9 +15,9 @@
 <br>
 <div>
   <tabset>
-    <tab heading="South">
-    	<app-bracket-detail *ngIf="activeBracket && southGames" [bracket]="activeBracket" 
-    		[region]="'South'" [bracketGames]="southGames" [bracketOwners]="southOwners">
+    <tab heading="East">
+    	<app-bracket-detail *ngIf="activeBracket && eastGames" [bracket]="activeBracket" 
+    		[region]="'East'" [bracketGames]="eastGames" [bracketOwners]="eastOwners">
     	</app-bracket-detail>
     </tab>
     <tab heading="West">
@@ -25,9 +25,9 @@
     		[region]="'West'" [bracketGames]="westGames" [bracketOwners]="westOwners">
     	</app-bracket-detail>
     </tab>
-    <tab heading="East">
-    	<app-bracket-detail *ngIf="activeBracket && eastGames" [bracket]="activeBracket" 
-    		[region]="'East'" [bracketGames]="eastGames" [bracketOwners]="eastOwners">
+    <tab heading="South">
+    	<app-bracket-detail *ngIf="activeBracket && southGames" [bracket]="activeBracket" 
+    		[region]="'South'" [bracketGames]="southGames" [bracketOwners]="southOwners">
     	</app-bracket-detail>
     </tab>
     <tab heading="Midwest">

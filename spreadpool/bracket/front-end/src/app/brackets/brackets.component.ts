@@ -44,21 +44,21 @@ export class BracketsComponent implements OnInit {
 			this._tbracketService.getTbracket(this.id).subscribe(data => {
 				this.activeBracket = data;
 				this._gameService.getGameWithMatchupDataList(this.id).subscribe(data => {
-					const southOwners = Object.assign({}, ...data
-						.filter(item => item.region == 'South')
-						.map(item => ({[item['id']]: item}))
-						);
-					this.southOwners=southOwners;
-					const westOwners = Object.assign({}, ...data
-						.filter(item => item.region == 'West')
-						.map(item => ({[item['id']]: item}))
-						);
-					this.westOwners=westOwners;
 					const eastOwners = Object.assign({}, ...data
 						.filter(item => item.region == 'East')
 						.map(item => ({[item['id']]: item}))
 						);
 					this.eastOwners=eastOwners;
+					const westOwners = Object.assign({}, ...data
+						.filter(item => item.region == 'West')
+						.map(item => ({[item['id']]: item}))
+						);
+					this.westOwners=westOwners;
+					const southOwners = Object.assign({}, ...data
+						.filter(item => item.region == 'South')
+						.map(item => ({[item['id']]: item}))
+						);
+					this.southOwners=southOwners;
 					const midwestOwners = Object.assign({}, ...data
 						.filter(item => item.region == 'Midwest')
 						.map(item => ({[item['id']]: item}))
@@ -81,21 +81,21 @@ export class BracketsComponent implements OnInit {
 		// Retrieve game list & convert each Region's games into indexed arrays
 		// for passing to child components for display
 		this._gameService.getGameList().subscribe(data => {
-			const southGames = Object.assign({}, ...data
-				.filter(item => item.region == 'South')
-				.map(item => ({[item['id']]: item}))
-				);
-			this.southGames=southGames;
-			const westGames = Object.assign({}, ...data
-				.filter(item => item.region == 'West')
-				.map(item => ({[item['id']]: item}))
-				);
-			this.westGames=westGames;
 			const eastGames = Object.assign({}, ...data
 				.filter(item => item.region == 'East')
 				.map(item => ({[item['id']]: item}))
 				);
 			this.eastGames=eastGames;
+			const westGames = Object.assign({}, ...data
+				.filter(item => item.region == 'West')
+				.map(item => ({[item['id']]: item}))
+				);
+			this.westGames=westGames;
+			const southGames = Object.assign({}, ...data
+				.filter(item => item.region == 'South')
+				.map(item => ({[item['id']]: item}))
+				);
+			this.southGames=southGames;
 			const midwestGames = Object.assign({}, ...data
 				.filter(item => item.region == 'Midwest')
 				.map(item => ({[item['id']]: item}))

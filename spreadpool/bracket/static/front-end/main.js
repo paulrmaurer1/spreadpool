@@ -813,12 +813,10 @@ var AppComponent = /** @class */ (function () {
         // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
         // Login via _userService to establish token with preset values 
         else {
-            // this._userService.id = 36;
-            // this._userService.login({'email': 'jgarcia@cubs.com', 'password': 'Maddon55'});
-            this._userService.id = 22;
-            this._userService.login({ 'email': 'aalmora@cubs.com', 'password': 'cubbies1' });
-            // this._userService.id = 11;
-            // this._userService.login({'email': 'jlester@cubs.com', 'password': 'cubbies1'});
+            // this._userService.id = 2;
+            // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
+            this._userService.id = 10;
+            this._userService.login({ 'email': 'bzobrist@cubs.com', 'password': 'Maddon55' });
         }
     };
     AppComponent = __decorate([
@@ -1053,14 +1051,14 @@ var BracketDetailComponent = /** @class */ (function () {
         set: function (value) {
             if (value) {
                 this._bracketOwners = value;
-                // console.log ("Detail component bracketOwners: ", this._bracketOwners);
+                console.log("Detail component bracketOwners: ", this._bracketOwners);
             }
         },
         enumerable: true,
         configurable: true
     });
     BracketDetailComponent.prototype.ngOnInit = function () {
-        // console.log ("Detail component bracketGames: ", this._bracketGames);
+        console.log("Detail component bracketGames: ", this._bracketGames);
     };
     BracketDetailComponent.prototype.getRgRdIncr = function (x) {
         //To identify proper increment to add to South Region game id arrays
@@ -1446,7 +1444,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--brackets.component.html-->\r\n\r\n<div class=\"container\">\r\n    <small class=\"text-muted\">(Click to see bracket)</small>\r\n    <nav class=\"navbar\">\r\n\t   <ul class=\"nav nav-pills\">\r\n\t\t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n\t\t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n\t\t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n\t\t\t\t>{{ tbracket.name }}</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\t</nav>\r\n</div>\r\n<br>\r\n<div>\r\n  <tabset>\r\n    <tab heading=\"South\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && southGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'South'\" [bracketGames]=\"southGames\" [bracketOwners]=\"southOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"West\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && westGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'West'\" [bracketGames]=\"westGames\" [bracketOwners]=\"westOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"East\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && eastGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'East'\" [bracketGames]=\"eastGames\" [bracketOwners]=\"eastOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Midwest\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && midwestGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'Midwest'\" [bracketGames]=\"midwestGames\" [bracketOwners]=\"midwestOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Final Four\">\r\n    \t<app-bracketff-detail *ngIf=\"activeBracket && ffourGames\" [bracket]=\"activeBracket\"\r\n    \t\t[bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracketff-detail>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n\r\n"
+module.exports = "<!--brackets.component.html-->\r\n\r\n<div class=\"container\">\r\n    <small class=\"text-muted\">(Click to see bracket)</small>\r\n    <nav class=\"navbar\">\r\n\t   <ul class=\"nav nav-pills\">\r\n\t\t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n\t\t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n\t\t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n\t\t\t\t>{{ tbracket.name }}</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\t</nav>\r\n</div>\r\n<br>\r\n<div>\r\n  <tabset>\r\n    <tab heading=\"East\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && eastGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'East'\" [bracketGames]=\"eastGames\" [bracketOwners]=\"eastOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"West\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && westGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'West'\" [bracketGames]=\"westGames\" [bracketOwners]=\"westOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"South\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && southGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'South'\" [bracketGames]=\"southGames\" [bracketOwners]=\"southOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Midwest\">\r\n    \t<app-bracket-detail *ngIf=\"activeBracket && midwestGames\" [bracket]=\"activeBracket\" \r\n    \t\t[region]=\"'Midwest'\" [bracketGames]=\"midwestGames\" [bracketOwners]=\"midwestOwners\">\r\n    \t</app-bracket-detail>\r\n    </tab>\r\n    <tab heading=\"Final Four\">\r\n    \t<app-bracketff-detail *ngIf=\"activeBracket && ffourGames\" [bracket]=\"activeBracket\"\r\n    \t\t[bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracketff-detail>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1487,6 +1485,8 @@ var BracketsComponent = /** @class */ (function () {
     BracketsComponent.prototype.ngOnInit = function () {
         var _this = this;
         // Subscribe to activated route parameter and update activeBracket to pass to child components
+        // Based on active bracket (in params), convert each Region's bracket owners (retrieved via Matchup table)
+        // to indexed arrays for each Region
         // FYI - the following line would only work the first time the page is visitied:
         // this.id = this.route.snapshot.params['id'];
         this.route.params.subscribe(function (params) {
@@ -1494,20 +1494,6 @@ var BracketsComponent = /** @class */ (function () {
             _this._tbracketService.getTbracket(_this.id).subscribe(function (data) {
                 _this.activeBracket = data;
                 _this._gameService.getGameWithMatchupDataList(_this.id).subscribe(function (data) {
-                    var southOwners = Object.assign.apply(Object, [{}].concat(data
-                        .filter(function (item) { return item.region == 'South'; })
-                        .map(function (item) {
-                        var _a;
-                        return (_a = {}, _a[item['id']] = item, _a);
-                    })));
-                    _this.southOwners = southOwners;
-                    var westOwners = Object.assign.apply(Object, [{}].concat(data
-                        .filter(function (item) { return item.region == 'West'; })
-                        .map(function (item) {
-                        var _a;
-                        return (_a = {}, _a[item['id']] = item, _a);
-                    })));
-                    _this.westOwners = westOwners;
                     var eastOwners = Object.assign.apply(Object, [{}].concat(data
                         .filter(function (item) { return item.region == 'East'; })
                         .map(function (item) {
@@ -1515,6 +1501,20 @@ var BracketsComponent = /** @class */ (function () {
                         return (_a = {}, _a[item['id']] = item, _a);
                     })));
                     _this.eastOwners = eastOwners;
+                    var westOwners = Object.assign.apply(Object, [{}].concat(data
+                        .filter(function (item) { return item.region == 'West'; })
+                        .map(function (item) {
+                        var _a;
+                        return (_a = {}, _a[item['id']] = item, _a);
+                    })));
+                    _this.westOwners = westOwners;
+                    var southOwners = Object.assign.apply(Object, [{}].concat(data
+                        .filter(function (item) { return item.region == 'South'; })
+                        .map(function (item) {
+                        var _a;
+                        return (_a = {}, _a[item['id']] = item, _a);
+                    })));
+                    _this.southOwners = southOwners;
                     var midwestOwners = Object.assign.apply(Object, [{}].concat(data
                         .filter(function (item) { return item.region == 'Midwest'; })
                         .map(function (item) {
@@ -1539,20 +1539,6 @@ var BracketsComponent = /** @class */ (function () {
         // Retrieve game list & convert each Region's games into indexed arrays
         // for passing to child components for display
         this._gameService.getGameList().subscribe(function (data) {
-            var southGames = Object.assign.apply(Object, [{}].concat(data
-                .filter(function (item) { return item.region == 'South'; })
-                .map(function (item) {
-                var _a;
-                return (_a = {}, _a[item['id']] = item, _a);
-            })));
-            _this.southGames = southGames;
-            var westGames = Object.assign.apply(Object, [{}].concat(data
-                .filter(function (item) { return item.region == 'West'; })
-                .map(function (item) {
-                var _a;
-                return (_a = {}, _a[item['id']] = item, _a);
-            })));
-            _this.westGames = westGames;
             var eastGames = Object.assign.apply(Object, [{}].concat(data
                 .filter(function (item) { return item.region == 'East'; })
                 .map(function (item) {
@@ -1560,6 +1546,20 @@ var BracketsComponent = /** @class */ (function () {
                 return (_a = {}, _a[item['id']] = item, _a);
             })));
             _this.eastGames = eastGames;
+            var westGames = Object.assign.apply(Object, [{}].concat(data
+                .filter(function (item) { return item.region == 'West'; })
+                .map(function (item) {
+                var _a;
+                return (_a = {}, _a[item['id']] = item, _a);
+            })));
+            _this.westGames = westGames;
+            var southGames = Object.assign.apply(Object, [{}].concat(data
+                .filter(function (item) { return item.region == 'South'; })
+                .map(function (item) {
+                var _a;
+                return (_a = {}, _a[item['id']] = item, _a);
+            })));
+            _this.southGames = southGames;
             var midwestGames = Object.assign.apply(Object, [{}].concat(data
                 .filter(function (item) { return item.region == 'Midwest'; })
                 .map(function (item) {
@@ -2211,7 +2211,7 @@ var UserService = /** @class */ (function () {
         this.username = token_decoded.username;
         this.email = token_decoded.email;
         this.id = token_decoded.user_id;
-        console.log("This is the JWT token authenticated user:", token_decoded);
+        // console.log("This is the JWT token authenticated user:", token_decoded);
     };
     UserService.prototype.getLoggedInUser = function () {
         // this function returns an http obervable for user-resolver.ts
@@ -2299,7 +2299,7 @@ var HomeComponent = /** @class */ (function () {
         this.loggedInUser = this.route.snapshot.data.loggedInUser;
         this._userService.loggedInUser = this.loggedInUser;
         this.setCurrentUser(this.loggedInUser);
-        console.log("The current Redux user is", this.currentUser);
+        // console.log("The current Redux user is", this.currentUser)
     };
     // Redux store methods
     HomeComponent.prototype.readState = function () {
@@ -2407,7 +2407,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!--profile-details.component.html-->\r\n\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Name:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Email:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Number of Entries:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">(S)ame or (D)ifferent Brackets:</div>\r\n\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\">Paid up?:</div>\r\n\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t<!-- <div class = \"col\" [class.text-danger] = \"player.paid\"> -->\r\n\t\t<!-- <div class = \"col\" class=\"text-danger\"> -->\r\n\t\t\t{{ player.paid ? 'YES - Thank you!' : 'No - Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start top10\">\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t</div>\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-primary custom\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
+module.exports = "  <!--profile-details.component.html-->\r\n\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\"><strong>Name:</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\"><strong>Email:</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\"><strong>Number of Entries:</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\"><strong>(S)ame or (D)ifferent Brackets:</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-sm-auto\"><strong>Paid up?:</strong></div>\r\n\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start top10\">\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t</div>\r\n\t\t<div class = \"col-sm-auto\">\r\n\t\t\t<button class=\"btn btn-primary custom\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -2699,7 +2699,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div class = \"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t\t<small class=\"m-0\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t</div>\r\n</div>\r\n<br>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>"
+module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div class = \"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t\t<div class = \"col-2 text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t\t<small class=\"m-0\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t</div>\r\n\t\t<div class = \"col\"></div>\r\n\t</div>\r\n</div>\r\n<br>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>"
 
 /***/ }),
 
@@ -2936,7 +2936,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<!-- <th scope=\"col\">#</th> -->\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Name</th>\n\t\t\t<th scope=\"col\" style=\"width: 15%\"># Active Teams</th>\n\t\t\t<th scope=\"col\">South</th>\n\t\t\t<th scope=\"col\">West</th>\n\t\t\t<th scope=\"col\">East</th>\n\t\t\t<th scope=\"col\">Midwest</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let player of _standingsList; let i = index\">\n\t\t\t<!-- <th scope=\"row\">{{i + 1}}</th> -->\n\t\t\t<td>{{ player.player }}</td>\n\t\t\t<td class=\"text-center\">{{ player.team_count }}</td>\n\t\t\t<td>{{ player.team_a }}</td>\n\t\t\t<td>{{ player.team_b }}</td>\n\t\t\t<td>{{ player.team_c }}</td>\n\t\t\t<td>{{ player.team_d }}</td>\n\t\t\t<td></td>\n\t\t</tr>\n\t</tbody>\n</table>"
+module.exports = "<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<!-- <th scope=\"col\">#</th> -->\n\t\t\t<th scope=\"col\">Name</th>\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\n\t\t\t<th scope=\"col\">South</th>\n\t\t\t<th scope=\"col\">West</th>\n\t\t\t<th scope=\"col\">East</th>\n\t\t\t<th scope=\"col\">Midwest</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let player of _standingsList; let i = index\">\n\t\t\t<!-- <th scope=\"row\">{{i + 1}}</th> -->\n\t\t\t<td>{{ player.player }}</td>\n\t\t\t<td class=\"text-center\">{{ player.team_count }}</td>\n\t\t\t<td>{{ player.team_a }}</td>\n\t\t\t<td>{{ player.team_b }}</td>\n\t\t\t<td>{{ player.team_c }}</td>\n\t\t\t<td>{{ player.team_d }}</td>\n\t\t\t<td></td>\n\t\t</tr>\n\t</tbody>\n</table>"
 
 /***/ }),
 
@@ -3026,7 +3026,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div class=\"container\">\r\n\t<div class=\"row border-bottom border-top\">\r\n\t\t<div class=\"col col-sm-1\"><strong>Bracket</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Region</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Original Teams</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Active Team(s)</strong></div>\r\n\t\t<div class=\"col col-sm-4\"><strong>Next Game</strong></div>\r\n\t</div>\r\n\t<div *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t\t<div class = \"row border-bottom\" *ngFor = \"let entry of _entryList\">\r\n\t\t\t<div class=\"col align-self-center col-sm-1\">\r\n\t\t\t\t<div class=\"col text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\">\r\n\t\t\t\t\t<strong>{{ entry.tbracket }}</strong>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">South</div>\r\n\t\t\t\t<div class=\"col\">West</div>\r\n\t\t\t\t<div class=\"col\">East</div>\r\n\t\t\t\t<div class=\"col\">Midwest</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_a }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_b }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_c }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_d }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.team_a || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_b || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_c || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_d || '**OUT**'}}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-4\">\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_a; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_b; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_c; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_d; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\"></app-team-nextup></div>\r\n\t\t\t\t<ng-template #not_applicable>N/A</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<ng-template #assignment_announcement>\r\n\t\t<div class=\"text-center\">\r\n\t\t\t<br>\r\n\t\t\t<h4 class=\"font-italic\">** Teams will be assigned on Thursday, March 21, at midnight **</h4>\r\n\t\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t\t</div>\r\n\t</ng-template>\r\n</div>\r\n"
+module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div class=\"container\">\r\n\t<div class=\"row border-bottom border-top\">\r\n\t\t<div class=\"col col-sm-1\"><strong>Bracket</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Region</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Original Teams</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Active Team(s)</strong></div>\r\n\t\t<div class=\"col col-sm-4\"><strong>Next Game</strong></div>\r\n\t</div>\r\n\t<div *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t\t<div class = \"row border-bottom\" *ngFor = \"let entry of _entryList\">\r\n\t\t\t<div class=\"col align-self-center col-sm-1\">\r\n\t\t\t\t<div class=\"col text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\">\r\n\t\t\t\t\t<strong>{{ entry.tbracket }}</strong>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">East</div>\r\n\t\t\t\t<div class=\"col\">West</div>\r\n\t\t\t\t<div class=\"col\">South</div>\r\n\t\t\t\t<div class=\"col\">Midwest</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_a }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_b }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_c }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_d }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.team_a || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_b || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_c || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_d || '**OUT**'}}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-4\">\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_a; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_b; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_c; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_d; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\"></app-team-nextup></div>\r\n\t\t\t\t<ng-template #not_applicable>N/A</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<ng-template #assignment_announcement>\r\n\t\t<div class=\"text-center\">\r\n\t\t\t<br>\r\n\t\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t\t</div>\r\n\t</ng-template>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3194,11 +3194,11 @@ var TeamNextupComponent = /** @class */ (function () {
     }
     TeamNextupComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log("team_id is ", this._team_id, " bracket_id is ", this._bracket_id);
+        // console.log ("team_id is ", this._team_id, " bracket_id is ", this._bracket_id)
         this._nextup_game = "default";
         this._gameService.getGameListByTeam(this._team_id).subscribe(function (games) {
             _this._nextGame = games[0]; // game in latest round is next game up
-            console.log("The Next Game is: ", _this._nextGame);
+            // console.log ("The Next Game is: ", this._nextGame);
             if (_this._team_id == _this._nextGame.team1_id && _this._nextGame.team2 != null) {
                 _this._matchupService.getMatchupsDetailsByBracketAndGame(_this._bracket_id, _this._nextGame.id).subscribe(function (matchup) {
                     var _nextOpponent = matchup[0].team2_owner;
@@ -3327,7 +3327,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">Spreadpool</a>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\">Brackets</a>\r\n\t            </li>\r\n\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n<!-- \t            \t<span dropdown (onShown)=\"onShown()\" (onHidden)=\"onHidden()\" \r\n\t            \t(isOpenChange)=\"isOpenChange()\"> -->\r\n\t\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t          Admin\r\n\t\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t        <a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">{{ currentUser.email }}</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t  \t</div> <!--/.navbar-collapse -->\r\n  \t</div> <!-- /.container-fluid -->\r\n</nav>\r\n"
+module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<!-- <a class=\"navbar-brand\" [routerLink]=\"['/home']\">Spreadpool</a> -->\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\">Brackets</a>\r\n\t            </li>\r\n\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n<!-- \t            \t<span dropdown (onShown)=\"onShown()\" (onHidden)=\"onHidden()\" \r\n\t            \t(isOpenChange)=\"isOpenChange()\"> -->\r\n\t\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t          Admin\r\n\t\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t        <a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">{{ currentUser.email }}</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t  \t</div> <!--/.navbar-collapse -->\r\n  \t</div> <!-- /.container-fluid -->\r\n</nav>\r\n"
 
 /***/ }),
 
