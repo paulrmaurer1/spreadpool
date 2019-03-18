@@ -34,7 +34,7 @@ export class BracketDetailComponent implements OnInit {
 	set bracketOwners(value: GameWithOwnerData[]) {
 		if (value) {
 			this._bracketOwners = value;
-			console.log ("Detail component bracketOwners: ", this._bracketOwners);
+			// console.log ("Detail component bracketOwners: ", this._bracketOwners);
 		}
 	}
 
@@ -51,7 +51,7 @@ export class BracketDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log ("Detail component bracketGames: ", this._bracketGames);
+		// console.log ("Detail component bracketGames: ", this._bracketGames);
 
 	}
 

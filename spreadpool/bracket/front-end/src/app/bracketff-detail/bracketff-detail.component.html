@@ -2,7 +2,7 @@
 <!-- <br>
 <h6 class="text-muted text-center">Final Four Bracket</h6> -->
 
-<main id="tournament">
+<main id="tournament" *ngIf="_bracketGames  && _bracketOwners">
 	<!-- First round games -->
 	<ul class="round round-5">
 		<ng-template ngFor let-game [ngForOf]="_r5_game_numbers">
