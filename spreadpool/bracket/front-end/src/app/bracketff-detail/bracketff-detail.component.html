@@ -3,15 +3,12 @@
 <h6 class="text-muted text-center">Final Four Bracket</h6> -->
 
 <main id="tournament" *ngIf="_bracketGames  && _bracketOwners">
-	<!-- First round games -->
+	<!-- Final Four games -->
 	<ul class="round round-5">
 		<ng-template ngFor let-game [ngForOf]="_r5_game_numbers">
 			<li class="spacer">&nbsp;</li>
 			<li class="game game-top">{{ _bracketGames[game].team1 || ' '}}
-				<!-- <app-bracket-game [bracket_id]="_bracket.id" [team_id] = "_bracketGames[game].team1_id">
-				</app-bracket-game> -->
-
-				<ng-container *ngIf="_bracketOwners && _bracketOwners[game].team1_owner[0].team1_owner">
+				<ng-container *ngIf="_bracketOwners[game].team1_owner[0].team1_owner">
 					({{ _bracketOwners[game].team1_owner[0].team1_owner }})
 				</ng-container>
 
@@ -21,10 +18,7 @@
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
 			<li class="game game-bottom ">{{ _bracketGames[game].team2 || ' '}}
-				<!-- <app-bracket-game [bracket_id]="_bracket.id" [team_id] = "_bracketGames[game].team2_id">
-				</app-bracket-game> -->
-
-				<ng-container *ngIf="_bracketOwners && _bracketOwners[game].team2_owner[0].team2_owner">
+				<ng-container *ngIf="_bracketOwners[game].team2_owner[0].team2_owner">
 					({{ _bracketOwners[game].team2_owner[0].team2_owner }})
 				</ng-container>
 
@@ -33,19 +27,14 @@
 				</span>
 			</li>
 		</ng-template>
-		
-		<!-- <app-bracket-game *ngFor="let game_num of _r1_game_numbers" 
-		[game]="_bracketGames[game_num+getRgRdIncr(1)]" [bracket_id]="_bracket.id">
-		</app-bracket-game> -->
-		
 		<li class="spacer">&nbsp;</li>
 	</ul>
-	<!-- Second round games -->
+	<!-- Final game -->
 	<ul class="round round-6">
 		<ng-template ngFor let-game [ngForOf]="_r6_game_numbers">
 			<li class="spacer">&nbsp;</li>
 			<li class="game game-top">{{ _bracketGames[game].team1 || ' '}}
-				<ng-container *ngIf="_bracketOwners && _bracketOwners[game].team1_owner[0].team1_owner">
+				<ng-container *ngIf="_bracketOwners[game].team1_owner[0].team1_owner">
 					({{ _bracketOwners[game].team1_owner[0].team1_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam1Result(_bracketGames[game])">
@@ -54,7 +43,7 @@
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
 			<li class="game game-bottom ">{{ _bracketGames[game].team2 || ' '}}
-				<ng-container *ngIf="_bracketOwners && _bracketOwners[game].team2_owner[0].team2_owner">
+				<ng-container *ngIf="_bracketOwners[game].team2_owner[0].team2_owner">
 					({{ _bracketOwners[game].team2_owner[0].team2_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam2Result(_bracketGames[game])">
@@ -62,10 +51,19 @@
 				</span>
 			</li>
 		</ng-template>
-
-		<!-- <app-bracket-game *ngFor="let game_num of _r2_game_numbers" 
-		[game]="_bracketGames[game_num+getRgRdIncr(2)]" [bracket_id]="_bracket.id">
-		</app-bracket-game> -->
-
 		<li class="spacer">&nbsp;</li>
 	</ul>
+	<!-- Champion -->
+	<!-- <ul class="round round-7" *ngIf="getChampion() && _bracketOwners[63].team1_owner[0].winner && _winningTeamOwner"> -->
+	<ul class="round round-7" *ngIf="getChampion()">
+		<strong>&nbsp;&nbsp;***CHAMPION***</strong>
+		<div *ngIf="_bracketGames[63].team1_score > _bracketGames[63].team2_score">
+			<!-- <strong>Team1 is Champion</strong> -->
+			<strong>&nbsp;{{_champion}} ({{_winningTeamOwner.team1_owner}})</strong>
+		</div>
+		<div *ngIf="_bracketGames[63].team1_score < _bracketGames[63].team2_score">
+			<!-- <strong>Team2 is Champion</strong> -->
+			<strong>&nbsp;{{_champion}} ({{_winningTeamOwner.team2_owner}})</strong>
+		</div>
+	</ul>
+</main>

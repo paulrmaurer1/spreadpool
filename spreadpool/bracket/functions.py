@@ -194,7 +194,7 @@ def game_update(game):
 			winner=Team.objects.get(pk=game.team2_id)
 		
 		# If the descendant game's parent_game1 is this game, 
-		# set the team1 of descendant game = winner
+		# set the team1 of descendant game to winner
 		try:
 			child_game1 = Game.objects.get(parent_game1=game.id)
 		except Game.DoesNotExist:
@@ -239,7 +239,7 @@ def game_update(game):
 					owner1_inherits(game, child_game1, child_game2)
 				else:																		# and Team 2 lost game
 					owner1_retains(game, child_game1, child_game2)
-		else: 																		# if pick'em, i.e. spread = 0
+		elif game.spread == 0: 																		# if pick'em, i.e. spread = 0
 			if game.team1_score > game.team2_score: 							# and Team1 wins
 				owner1_retains(game, child_game1, child_game2)
 			else:  																		# and Team2 wins

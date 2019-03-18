@@ -16,6 +16,8 @@ export class BracketDetailComponent implements OnInit {
 	_r3_game_numbers: number[]; //array to capture game numbers on bracket
 	_r4_game_numbers: number[]; //array to capture game numbers on bracket
 
+	@Input('region') _region: string;
+	@Input('bracketGames') _bracketGames: GameData[]; //subset of games associated with each Region
 	
 	@Input() get bracket(): TBracketData {
 		return this._bracket;
@@ -34,12 +36,9 @@ export class BracketDetailComponent implements OnInit {
 	set bracketOwners(value: GameWithOwnerData[]) {
 		if (value) {
 			this._bracketOwners = value;
-			// console.log ("Detail component bracketOwners: ", this._bracketOwners);
+			// console.log ("Detail component bracketOwners for ", this._region, " Region", this._bracketOwners);
 		}
 	}
-
-	@Input('region') _region: string;
-	@Input('bracketGames') _bracketGames: GameData[]; //subset of games associated with each Region
 
 	constructor() {
 		//Creates East Region game id arrays for each Round
@@ -51,7 +50,7 @@ export class BracketDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// console.log ("Detail component bracketGames: ", this._bracketGames);
+		// console.log ("Detail component bracketGames for ", this._region, " Region", this._bracketGames);
 
 	}
 
@@ -115,5 +114,5 @@ export class BracketDetailComponent implements OnInit {
 		else if (game.spread < 0) {
 			return game.spread - 0.5
 		}
-	} // end getTeam1Result(game)		
+	} // end getTeam2Result(game)		
 }

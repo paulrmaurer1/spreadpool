@@ -34,7 +34,7 @@
 				<div class="col">{{ entry.team_c || '**OUT**'}}</div>
 				<div class="col">{{ entry.team_d || '**OUT**'}}</div>
 			</div>
-			<div class="col col-sm-4">
+			<div class="col">
 				<div class="col"><app-team-nextup *ngIf = "entry.team_a; else not_applicable" 
 					[bracket]="entry.tbracket_id" [team]="entry.team_a_id"></app-team-nextup></div>
 				<div class="col"><app-team-nextup *ngIf = "entry.team_b; else not_applicable" 
@@ -43,7 +43,7 @@
 					[bracket]="entry.tbracket_id" [team]="entry.team_c_id"></app-team-nextup></div>
 				<div class="col"><app-team-nextup *ngIf = "entry.team_d; else not_applicable" 
 					[bracket]="entry.tbracket_id" [team]="entry.team_d_id"></app-team-nextup></div>
-				<ng-template #not_applicable>N/A</ng-template>
+				<ng-template #not_applicable>&nbsp;</ng-template>
 			</div>
 		</div>
 	</div>

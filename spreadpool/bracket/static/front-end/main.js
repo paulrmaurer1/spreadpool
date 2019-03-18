@@ -237,7 +237,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--create-brackets.component.html-->\r\n<br>\r\n<h6><strong>Add Bracket</strong></h6>\r\n<div class=\"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<form [formGroup]=\"bracketAddForm\" (ngSubmit)=\"addBracket(bracketAddForm.value)\">\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<!-- <label for=\"bracket_name\">Bracket</label> -->\r\n\t\t\t\t\t\t    <input type=\"text\" class=\"form-control\" placeholder=\"Type bracket name..\" \r\n\t\t\t\t\t\t    id=\"bracket_name\" [formControl] = \"bracket_name\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6\">\r\n\t\t\t\t\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t\t\t\t\t[disabled]=\"!bracketAddForm.valid\">Add Bracket</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<!-- <button class=\"btn btn-dark\" >Delete/Create All Entries</button> -->\r\n\t\t\t<button class=\"btn btn-dark\" (click)=\"resetEntries()\">Delete/Create All Entries</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<br>\r\n<h6><strong>Brackets</strong></h6>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\r\n\t\t\t<th scope=\"col\">Actions</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\r\n\t\t\t<td>{{ tbracket.name }}</td>\r\n\t\t\t<td>{{ tbracket.entry_count}}</td>\r\n\t\t\t<td>{{ tbracket.id }}</td>\r\n\t\t\t<td>\r\n\t\t\t\t<button class=\"btn btn-danger custom\" (click)=\"openDeleteModal(tbracket.id, tbracket.name)\">Delete</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-warning\" (click)=\"reassignBracket(tbracket.id, tbracket.name)\">Re-assign</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-info custom\" (click)=\"resetBracket(tbracket.id, tbracket.name)\">Reset</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"navToAssign(tbracket.id)\">Assign Entries</button>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<!-- <ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Bracket</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"deleteModalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete this Bracket?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-danger custom\" \r\n\t\t\t(click)=\"deleteModalRef.hide(); deleteBracket()\">Delete</button>\r\n\t</div>\r\n</ng-template>  -->"
+module.exports = "<!--create-brackets.component.html-->\r\n<br>\r\n<h6><strong>Add Bracket</strong></h6>\r\n<div class=\"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<form [formGroup]=\"bracketAddForm\" (ngSubmit)=\"addBracket(bracketAddForm.value)\">\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<!-- <label for=\"bracket_name\">Bracket</label> -->\r\n\t\t\t\t\t\t    <input type=\"text\" class=\"form-control\" placeholder=\"Type bracket name..\" \r\n\t\t\t\t\t\t    id=\"bracket_name\" [formControl] = \"bracket_name\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6\">\r\n\t\t\t\t\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t\t\t\t\t[disabled]=\"!bracketAddForm.valid\">Add Bracket</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<!-- <button class=\"btn btn-dark\" >Delete/Create All Entries</button> -->\r\n\t\t\t<button class=\"btn btn-dark\" (click)=\"resetEntries()\">Delete/Create All Entries</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<br>\r\n<h6><strong>Brackets</strong></h6>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\r\n\t\t\t<th scope=\"col\">Actions</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\r\n\t\t\t<td>{{ tbracket.name }}</td>\r\n\t\t\t<td>{{ tbracket.entry_count}}</td>\r\n\t\t\t<td>{{ tbracket.id }}</td>\r\n\t\t\t<td>\r\n\t\t\t\t<button class=\"btn btn-danger custom\" (click)=\"openDeleteModal(tbracket.id, tbracket.name)\">Delete</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-warning\" (click)=\"reassignBracket(tbracket.id, tbracket.name)\">(Re)Assign</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-info custom\" (click)=\"resetBracket(tbracket.id, tbracket.name)\">Reset</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"navToAssign(tbracket.id)\">Assign Entries</button>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<!-- <ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Bracket</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"deleteModalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete this Bracket?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-danger custom\" \r\n\t\t\t(click)=\"deleteModalRef.hide(); deleteBracket()\">Delete</button>\r\n\t</div>\r\n</ng-template>  -->"
 
 /***/ }),
 
@@ -815,10 +815,10 @@ var AppComponent = /** @class */ (function () {
         else {
             // this._userService.id = 2;
             // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
-            // this._userService.id = 10;
-            // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
-            this._userService.id = 1;
-            this._userService.login({ 'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!' });
+            this._userService.id = 8;
+            this._userService.login({ 'email': 'bzobrist@cubs.com', 'password': 'Maddon55' });
+            // this._userService.id = 1;
+            // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
         }
     };
     AppComponent = __decorate([
@@ -1053,14 +1053,14 @@ var BracketDetailComponent = /** @class */ (function () {
         set: function (value) {
             if (value) {
                 this._bracketOwners = value;
-                // console.log ("Detail component bracketOwners: ", this._bracketOwners);
+                // console.log ("Detail component bracketOwners for ", this._region, " Region", this._bracketOwners);
             }
         },
         enumerable: true,
         configurable: true
     });
     BracketDetailComponent.prototype.ngOnInit = function () {
-        // console.log ("Detail component bracketGames: ", this._bracketGames);
+        // console.log ("Detail component bracketGames for ", this._region, " Region", this._bracketGames);
     };
     BracketDetailComponent.prototype.getRgRdIncr = function (x) {
         //To identify proper increment to add to South Region game id arrays
@@ -1165,7 +1165,15 @@ var BracketDetailComponent = /** @class */ (function () {
         else if (game.spread < 0) {
             return game.spread - 0.5;
         }
-    }; // end getTeam1Result(game)		
+    }; // end getTeam2Result(game)		
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('region'),
+        __metadata("design:type", String)
+    ], BracketDetailComponent.prototype, "_region", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('bracketGames'),
+        __metadata("design:type", Array)
+    ], BracketDetailComponent.prototype, "_bracketGames", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
@@ -1176,14 +1184,6 @@ var BracketDetailComponent = /** @class */ (function () {
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [Array])
     ], BracketDetailComponent.prototype, "bracketOwners", null);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('region'),
-        __metadata("design:type", String)
-    ], BracketDetailComponent.prototype, "_region", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('bracketGames'),
-        __metadata("design:type", Array)
-    ], BracketDetailComponent.prototype, "_bracketGames", void 0);
     BracketDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-bracket-detail',
@@ -1322,7 +1322,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--bracketff-detail.component.html-->\r\n<!-- <br>\r\n<h6 class=\"text-muted text-center\">Final Four Bracket</h6> -->\r\n\r\n<main id=\"tournament\" *ngIf=\"_bracketGames  && _bracketOwners\">\r\n\t<!-- First round games -->\r\n\t<ul class=\"round round-5\">\r\n\t\t<ng-template ngFor let-game [ngForOf]=\"_r5_game_numbers\">\r\n\t\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-top\">{{ _bracketGames[game].team1 || ' '}}\r\n\t\t\t\t<!-- <app-bracket-game [bracket_id]=\"_bracket.id\" [team_id] = \"_bracketGames[game].team1_id\">\r\n\t\t\t\t</app-bracket-game> -->\r\n\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners && _bracketOwners[game].team1_owner[0].team1_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team1_owner[0].team1_owner }})\r\n\t\t\t\t</ng-container>\r\n\r\n\t\t\t\t<span [class.filler]=\"!getTeam1Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam1Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"game game-spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-bottom \">{{ _bracketGames[game].team2 || ' '}}\r\n\t\t\t\t<!-- <app-bracket-game [bracket_id]=\"_bracket.id\" [team_id] = \"_bracketGames[game].team2_id\">\r\n\t\t\t\t</app-bracket-game> -->\r\n\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners && _bracketOwners[game].team2_owner[0].team2_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team2_owner[0].team2_owner }})\r\n\t\t\t\t</ng-container>\r\n\r\n\t\t\t\t<span [class.filler]=\"!getTeam2Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam2Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t</ng-template>\r\n\t\t\r\n\t\t<!-- <app-bracket-game *ngFor=\"let game_num of _r1_game_numbers\" \r\n\t\t[game]=\"_bracketGames[game_num+getRgRdIncr(1)]\" [bracket_id]=\"_bracket.id\">\r\n\t\t</app-bracket-game> -->\r\n\t\t\r\n\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t</ul>\r\n\t<!-- Second round games -->\r\n\t<ul class=\"round round-6\">\r\n\t\t<ng-template ngFor let-game [ngForOf]=\"_r6_game_numbers\">\r\n\t\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-top\">{{ _bracketGames[game].team1 || ' '}}\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners && _bracketOwners[game].team1_owner[0].team1_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team1_owner[0].team1_owner }})\r\n\t\t\t\t</ng-container>\r\n\t\t\t\t<span [class.filler]=\"!getTeam1Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam1Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"game game-spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-bottom \">{{ _bracketGames[game].team2 || ' '}}\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners && _bracketOwners[game].team2_owner[0].team2_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team2_owner[0].team2_owner }})\r\n\t\t\t\t</ng-container>\r\n\t\t\t\t<span [class.filler]=\"!getTeam2Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam2Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t</ng-template>\r\n\r\n\t\t<!-- <app-bracket-game *ngFor=\"let game_num of _r2_game_numbers\" \r\n\t\t[game]=\"_bracketGames[game_num+getRgRdIncr(2)]\" [bracket_id]=\"_bracket.id\">\r\n\t\t</app-bracket-game> -->\r\n\r\n\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t</ul>\r\n"
+module.exports = "<!--bracketff-detail.component.html-->\r\n<!-- <br>\r\n<h6 class=\"text-muted text-center\">Final Four Bracket</h6> -->\r\n\r\n<main id=\"tournament\" *ngIf=\"_bracketGames  && _bracketOwners\">\r\n\t<!-- Final Four games -->\r\n\t<ul class=\"round round-5\">\r\n\t\t<ng-template ngFor let-game [ngForOf]=\"_r5_game_numbers\">\r\n\t\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-top\">{{ _bracketGames[game].team1 || ' '}}\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners[game].team1_owner[0].team1_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team1_owner[0].team1_owner }})\r\n\t\t\t\t</ng-container>\r\n\r\n\t\t\t\t<span [class.filler]=\"!getTeam1Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam1Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"game game-spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-bottom \">{{ _bracketGames[game].team2 || ' '}}\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners[game].team2_owner[0].team2_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team2_owner[0].team2_owner }})\r\n\t\t\t\t</ng-container>\r\n\r\n\t\t\t\t<span [class.filler]=\"!getTeam2Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam2Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t</ng-template>\r\n\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t</ul>\r\n\t<!-- Final game -->\r\n\t<ul class=\"round round-6\">\r\n\t\t<ng-template ngFor let-game [ngForOf]=\"_r6_game_numbers\">\r\n\t\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-top\">{{ _bracketGames[game].team1 || ' '}}\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners[game].team1_owner[0].team1_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team1_owner[0].team1_owner }})\r\n\t\t\t\t</ng-container>\r\n\t\t\t\t<span [class.filler]=\"!getTeam1Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam1Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"game game-spacer\">&nbsp;</li>\r\n\t\t\t<li class=\"game game-bottom \">{{ _bracketGames[game].team2 || ' '}}\r\n\t\t\t\t<ng-container *ngIf=\"_bracketOwners[game].team2_owner[0].team2_owner\">\r\n\t\t\t\t\t({{ _bracketOwners[game].team2_owner[0].team2_owner }})\r\n\t\t\t\t</ng-container>\r\n\t\t\t\t<span [class.filler]=\"!getTeam2Result(_bracketGames[game])\">\r\n\t\t\t\t\t{{ getTeam2Result(_bracketGames[game]) }}\r\n\t\t\t\t</span>\r\n\t\t\t</li>\r\n\t\t</ng-template>\r\n\t\t<li class=\"spacer\">&nbsp;</li>\r\n\t</ul>\r\n\t<!-- Champion -->\r\n\t<!-- <ul class=\"round round-7\" *ngIf=\"getChampion() && _bracketOwners[63].team1_owner[0].winner && _winningTeamOwner\"> -->\r\n\t<ul class=\"round round-7\" *ngIf=\"getChampion()\">\r\n\t\t<strong>&nbsp;&nbsp;***CHAMPION***</strong>\r\n\t\t<div *ngIf=\"_bracketGames[63].team1_score > _bracketGames[63].team2_score\">\r\n\t\t\t<!-- <strong>Team1 is Champion</strong> -->\r\n\t\t\t<strong>&nbsp;{{_champion}} ({{_winningTeamOwner.team1_owner}})</strong>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"_bracketGames[63].team1_score < _bracketGames[63].team2_score\">\r\n\t\t\t<!-- <strong>Team2 is Champion</strong> -->\r\n\t\t\t<strong>&nbsp;{{_champion}} ({{_winningTeamOwner.team2_owner}})</strong>\r\n\t\t</div>\r\n\t</ul>\r\n</main>"
 
 /***/ }),
 
@@ -1379,26 +1379,64 @@ var BracketffDetailComponent = /** @class */ (function () {
         configurable: true
     });
     BracketffDetailComponent.prototype.ngOnInit = function () {
-        //console.log ("Detail component bracketGames: ", this._bracketGames);
+        // console.log ("Detail component bracketGames: ", this._bracketGames);
+        this._champion = '';
+        this._winningTeamOwner = {};
     };
     BracketffDetailComponent.prototype.getTeam1Result = function (game) {
         // Determine whether to show score (post-game) or spread (pre-game)
         if (game.team1_score > 0) {
-            return game.team1_score;
+            if (game.spread > 0) {
+                return game.team1_score + '(' + (-game.spread - 0.5) + ')';
+            }
+            else if (game.spread == 0) {
+                return game.team1_score + '(PK)';
+            }
+            else {
+                return game.team1_score;
+            }
         }
         else if (game.spread > 0) {
             return -game.spread - 0.5;
+        }
+        else if (game.spread == 0) {
+            return 'PK';
         }
     }; // end getTeam1Result(game)
     BracketffDetailComponent.prototype.getTeam2Result = function (game) {
         // Determine whether to show score (post-game) or spread (pre-game)
         if (game.team2_score > 0) {
-            return game.team2_score;
+            if (game.spread < 0) {
+                return game.team2_score + '(' + (game.spread - 0.5) + ')';
+            }
+            else {
+                return game.team2_score;
+            }
         }
         else if (game.spread < 0) {
             return game.spread - 0.5;
         }
-    }; // end getTeam1Result(game)		
+    }; // end getTeam2Result(game)			
+    BracketffDetailComponent.prototype.getChampion = function () {
+        var isChampion = false;
+        if (this._bracketGames[63].team1_score && this._bracketGames[63].team2_score) {
+            isChampion = true;
+            // console.log("Determining winning info...")
+            if (this._bracketGames[63].team1_score > this._bracketGames[63].team2_score) {
+                // this._champion = this._bracketGames[63].team1 + "(" + this._bracketOwners[63].team1_owner[0].team1_owner + ")"
+                this._champion = this._bracketGames[63].team1;
+                this._winningTeamOwner = this._bracketOwners[63].team1_owner[0];
+                // console.log("Champion is: ", this._champion, "Winning object is:", this._winningTeamOwner)
+            }
+            else {
+                // this._champion = this._bracketGames[63].team2 + "(" + this._bracketOwners[63].team2_owner[0].team2_owner + ")"
+                this._champion = this._bracketGames[63].team2;
+                this._winningTeamOwner = this._bracketOwners[63].team2_owner[0];
+                // console.log("Champion is: ", this._champion, "Winning object is:", this._winningTeamOwner)
+            }
+        }
+        return isChampion;
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
@@ -2409,7 +2447,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!--profile-details.component.html-->\r\n\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Name: </strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Email: </strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Number of Entries: </strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets: </strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Paid up?: </strong></div>\r\n\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t</div>\r\n\t<div class = \"row top10\">\r\n\t\t<div class = \"col-xs-auto\">\r\n\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t</div>\r\n\t\t<div class = \"col-xs-auto\">\r\n\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
+module.exports = "  <!--profile-details.component.html-->\r\n\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t</div>\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col-xs-auto\"><strong>Paid up?:&nbsp;</strong></div>\r\n\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t</div>\r\n\t<div class = \"row top10\">\r\n\t\t<div class = \"col-xs-auto\">\r\n\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t</div>\r\n\t\t<div class = \"col-xs-auto\">\r\n\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -3028,7 +3066,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div class=\"container\">\r\n\t<div class=\"row border-bottom border-top\">\r\n\t\t<div class=\"col col-sm-1\"><strong>Bracket</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Region</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Original Teams</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Active Team(s)</strong></div>\r\n\t\t<div class=\"col col-sm-4\"><strong>Next Game</strong></div>\r\n\t</div>\r\n\t<div *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t\t<div class = \"row border-bottom\" *ngFor = \"let entry of _entryList\">\r\n\t\t\t<div class=\"col align-self-center col-sm-1\">\r\n\t\t\t\t<div class=\"col text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\">\r\n\t\t\t\t\t<strong>{{ entry.tbracket }}</strong>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">East</div>\r\n\t\t\t\t<div class=\"col\">West</div>\r\n\t\t\t\t<div class=\"col\">South</div>\r\n\t\t\t\t<div class=\"col\">Midwest</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_a }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_b }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_c }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_d }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.team_a || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_b || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_c || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_d || '**OUT**'}}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-4\">\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_a; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_b; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_c; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_d; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\"></app-team-nextup></div>\r\n\t\t\t\t<ng-template #not_applicable>N/A</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<ng-template #assignment_announcement>\r\n\t\t<div class=\"text-center\">\r\n\t\t\t<br>\r\n\t\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t\t</div>\r\n\t</ng-template>\r\n</div>\r\n"
+module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div class=\"container\">\r\n\t<div class=\"row border-bottom border-top\">\r\n\t\t<div class=\"col col-sm-1\"><strong>Bracket</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Region</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Original Teams</strong></div>\r\n\t\t<div class=\"col col-sm-2\"><strong>Active Team(s)</strong></div>\r\n\t\t<div class=\"col col-sm-4\"><strong>Next Game</strong></div>\r\n\t</div>\r\n\t<div *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t\t<div class = \"row border-bottom\" *ngFor = \"let entry of _entryList\">\r\n\t\t\t<div class=\"col align-self-center col-sm-1\">\r\n\t\t\t\t<div class=\"col text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\">\r\n\t\t\t\t\t<strong>{{ entry.tbracket }}</strong>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">East</div>\r\n\t\t\t\t<div class=\"col\">West</div>\r\n\t\t\t\t<div class=\"col\">South</div>\r\n\t\t\t\t<div class=\"col\">Midwest</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_a }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_b }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_c }}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.orig_team_d }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col col-sm-2\">\r\n\t\t\t\t<div class=\"col\">{{ entry.team_a || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_b || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_c || '**OUT**'}}</div>\r\n\t\t\t\t<div class=\"col\">{{ entry.team_d || '**OUT**'}}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col\">\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_a; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_b; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_c; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\"></app-team-nextup></div>\r\n\t\t\t\t<div class=\"col\"><app-team-nextup *ngIf = \"entry.team_d; else not_applicable\" \r\n\t\t\t\t\t[bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\"></app-team-nextup></div>\r\n\t\t\t\t<ng-template #not_applicable>&nbsp;</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<ng-template #assignment_announcement>\r\n\t\t<div class=\"text-center\">\r\n\t\t\t<br>\r\n\t\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t\t</div>\r\n\t</ng-template>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3199,15 +3237,25 @@ var TeamNextupComponent = /** @class */ (function () {
         // console.log ("team_id is ", this._team_id, " bracket_id is ", this._bracket_id)
         this._nextup_game = "default";
         this._gameService.getGameListByTeam(this._team_id).subscribe(function (games) {
-            _this._nextGame = games[0]; // game in latest round is next game up
+            _this._nextGame = games[0]; // game in latest round is next game up, sorted in descending sequence
             // console.log ("The Next Game is: ", this._nextGame);
+            // If player's team is the Team 1 of next game and an opponent is scheduled then construct string
             if (_this._team_id == _this._nextGame.team1_id && _this._nextGame.team2 != null) {
                 _this._matchupService.getMatchupsDetailsByBracketAndGame(_this._bracket_id, _this._nextGame.id).subscribe(function (matchup) {
                     var _nextOpponent = matchup[0].team2_owner;
                     var _nextTeam = _this._nextGame.team2;
-                    _this._nextup_game = "Round " + _this._nextGame.t_round + " vs. " + _nextTeam + " (" + _nextOpponent + ")";
+                    _this._nextup_game = "Round " + _this._nextGame.t_round;
+                    if (_this._nextGame.spread != null)
+                        if (_this._nextGame.spread > 0)
+                            _this._nextup_game += " Favored by " + _this._nextGame.spread;
+                        else if (_this._nextGame.spread < 0)
+                            _this._nextup_game += " Underdog by " + Math.abs(_this._nextGame.spread);
+                        else if (_this._nextGame.spread == 0)
+                            _this._nextup_game += " Pick'em";
+                    _this._nextup_game += " vs. " + _nextTeam + " (" + _nextOpponent + ")";
                 });
             }
+            // If player's team is the Team 2 of next game and an opponent is scheduled then construct string
             else if (_this._team_id == _this._nextGame.team2_id && _this._nextGame.team1 != null) {
                 _this._matchupService.getMatchupsDetailsByBracketAndGame(_this._bracket_id, _this._nextGame.id).subscribe(function (matchup) {
                     // this._nextMatchup = matchup;
@@ -3215,7 +3263,16 @@ var TeamNextupComponent = /** @class */ (function () {
                     // this._nextOpponent = this._nextMatchup[0].team1_owner;
                     var _nextOpponent = matchup[0].team1_owner;
                     var _nextTeam = _this._nextGame.team1;
-                    _this._nextup_game = "Round " + _this._nextGame.t_round + " vs. " + _nextTeam + " (" + _nextOpponent + ")";
+                    _this._nextup_game = "Round " + _this._nextGame.t_round;
+                    if (_this._nextGame.spread != null)
+                        var underdog_spread = -_this._nextGame.spread;
+                    if (_this._nextGame.spread < 0)
+                        _this._nextup_game += " Favored by " + Math.abs(underdog_spread);
+                    else if (_this._nextGame.spread > 0)
+                        _this._nextup_game += " Underdog by " + underdog_spread;
+                    else if (_this._nextGame.spread == 0)
+                        _this._nextup_game += " Pick'em";
+                    _this._nextup_game += " vs. " + _nextTeam + " (" + _nextOpponent + ")";
                 });
             }
             else {
@@ -3329,7 +3386,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<!-- <a class=\"navbar-brand\" [routerLink]=\"['/home']\">Spreadpool</a> -->\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\">Brackets</a>\r\n\t            </li>\r\n\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n<!-- \t            \t<span dropdown (onShown)=\"onShown()\" (onHidden)=\"onHidden()\" \r\n\t            \t(isOpenChange)=\"isOpenChange()\"> -->\r\n\t\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t          Admin\r\n\t\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t        <a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">{{ currentUser.email }}</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t  \t</div> <!--/.navbar-collapse -->\r\n  \t</div> <!-- /.container-fluid -->\r\n</nav>\r\n"
+module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar center navbar-expand navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<!-- <a class=\"navbar-brand\" [routerLink]=\"['/home']\">Spreadpool</a> -->\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\">Brackets</a>\r\n\t            </li>\r\n\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n<!-- \t            \t<span dropdown (onShown)=\"onShown()\" (onHidden)=\"onHidden()\" \r\n\t            \t(isOpenChange)=\"isOpenChange()\"> -->\r\n\t\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t          Admin\r\n\t\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t        <a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">{{ currentUser.email }}</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t  \t</div> <!--/.navbar-collapse -->\r\n  \t</div> <!-- /.container-fluid -->\r\n</nav>\r\n"
 
 /***/ }),
 
