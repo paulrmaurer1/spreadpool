@@ -2,23 +2,23 @@
 
 <div class = "container">
 	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Name: </strong></div>
+		<div class = "col-xs-auto"><strong>Name:&nbsp;</strong></div>
 		<div class = "col" class="text-muted">{{ _player.full_name }}</div>
 	</div>
 	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Email: </strong></div>
+		<div class = "col-xs-auto"><strong>Email:&nbsp;</strong></div>
 		<div class = "col" class="text-muted">{{ _player.email }}</div>
 	</div>
 	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Number of Entries: </strong></div>
+		<div class = "col-xs-auto"><strong>Number of Entries:&nbsp;</strong></div>
 		<div class = "col" class="text-muted">{{ _player.num_entries }}</div>
 	</div>
 	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>(S)ame or (D)ifferent Brackets: </strong></div>
+		<div class = "col-xs-auto"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>
 		<div class = "col" class="text-muted" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>
 	</div>
 	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Paid up?: </strong></div>
+		<div class = "col-xs-auto"><strong>Paid up?:&nbsp;</strong></div>
 		<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
 			{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>
 	</div>
