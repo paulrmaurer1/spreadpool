@@ -42,7 +42,7 @@ export class BracketDetailComponent implements OnInit {
 	@Input('bracketGames') _bracketGames: GameData[]; //subset of games associated with each Region
 
 	constructor() {
-		//Creates South Region game id arrays for each Round
+		//Creates East Region game id arrays for each Round
 		this._r1_game_numbers = Array.from({length: 8}, (v, k) => k+1);
 		this._r2_game_numbers = Array.from({length: 4}, (v, k) => k+33);
 		this._r3_game_numbers = Array.from({length: 2}, (v, k) => k+49);
@@ -59,7 +59,7 @@ export class BracketDetailComponent implements OnInit {
 		//To identify proper increment to add to South Region game id arrays
 		//to generate other regions' game ids
 		switch(this._region) {
-			case 'South': { return 0; break; }
+			case 'East': { return 0; break; }
 			case 'West': {
 				switch(x) {
 					case 1: {return 8; break; }
@@ -67,7 +67,7 @@ export class BracketDetailComponent implements OnInit {
 					case 3: {return 2; break; }
 					case 4: {return 1; break; }
 				}}
-			case 'East': {
+			case 'South': {
 				switch(x) {
 					case 1: {return 16; break; }
 					case 2: {return 8; break; }
