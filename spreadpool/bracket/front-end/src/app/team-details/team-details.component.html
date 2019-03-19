@@ -3,32 +3,32 @@
 
 <div class="container">
 	<div class="row border-bottom border-top">
-		<div class="col col-sm-1"><strong>Bracket</strong></div>
-		<div class="col col-sm-2"><strong>Region</strong></div>
-		<div class="col col-sm-2"><strong>Original Teams</strong></div>
-		<div class="col col-sm-2"><strong>Active Team(s)</strong></div>
-		<div class="col col-sm-4"><strong>Next Game</strong></div>
+		<div class="col col-md-1"><strong>Bracket</strong></div>
+		<div class="col col-md-2"><strong>Region</strong></div>
+		<div class="col col-md-2"><strong>Original Teams</strong></div>
+		<div class="col col-md-2"><strong>Active Team(s)</strong></div>
+		<div class="col col-md-4"><strong>Next Game</strong></div>
 	</div>
 	<div *ngIf="_entryList && _entryList.length; else assignment_announcement">
 		<div class = "row border-bottom" *ngFor = "let entry of _entryList">
-			<div class="col align-self-center col-sm-1">
+			<div class="col align-self-center col-md-1">
 				<div class="col text-primary text-pointer" (click)="sendToBracket(entry.tbracket)">
 					<strong>{{ entry.tbracket }}</strong>
 				</div>
 			</div>
-			<div class="col col-sm-2">
+			<div class="col col-md-2">
 				<div class="col">East</div>
 				<div class="col">West</div>
 				<div class="col">South</div>
 				<div class="col">Midwest</div>
 			</div>
-			<div class="col col-sm-2">
+			<div class="col col-md-2">
 				<div class="col">{{ entry.orig_team_a }}</div>
 				<div class="col">{{ entry.orig_team_b }}</div>
 				<div class="col">{{ entry.orig_team_c }}</div>
 				<div class="col">{{ entry.orig_team_d }}</div>
 			</div>
-			<div class="col col-sm-2">
+			<div class="col col-md-2">
 				<div class="col">{{ entry.team_a || '**OUT**'}}</div>
 				<div class="col">{{ entry.team_b || '**OUT**'}}</div>
 				<div class="col">{{ entry.team_c || '**OUT**'}}</div>
