@@ -4,9 +4,9 @@ import { TBracketService } from '../core/tbracket.service';
 import { GameService } from '../core/game.service';
 import { UserService } from '../core/user.service';
 import { TBracketData, GameData, GameWithOwnerData, IUserData } from '../shared/interfaces';
-import { Store } from 'redux';
-import { AppStore } from '../app.store';
-import { AppState } from '../app.state';
+// import { Store } from 'redux';
+// import { AppStore } from '../app.store';
+// import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-brackets',
@@ -39,10 +39,10 @@ export class BracketsComponent implements OnInit {
 		private router: Router,
 		private _userService: UserService,
 		// Using Redux store to capture logged in user details
-		@Inject(AppStore) private store: Store<AppState>
+		// @Inject(AppStore) private store: Store<AppState>
 		)	{
-			store.subscribe(() => this.readState());
-			this.readState(); 
+			// store.subscribe(() => this.readState());
+			// this.readState(); 
 			}
 
 	ngOnInit() {
@@ -142,9 +142,9 @@ export class BracketsComponent implements OnInit {
 	}
 
 	// Redux store methods
-	readState() {
-		const state: AppState = this.store.getState() as AppState;
-		this.currentUser = state.currentUser;
-	}
+	// readState() {
+	// 	const state: AppState = this.store.getState() as AppState;
+	// 	this.currentUser = state.currentUser;
+	// }
 
 } //end class

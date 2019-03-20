@@ -1503,7 +1503,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
 /* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
 /* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
-/* harmony import */ var _app_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.store */ "./src/app/app.store.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1513,28 +1512,23 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 
 
 
 
 
-
+// import { Store } from 'redux';
+// import { AppStore } from '../app.store';
+// import { AppState } from '../app.state';
 var BracketsComponent = /** @class */ (function () {
-    function BracketsComponent(_tbracketService, _gameService, route, router, _userService, 
-    // Using Redux store to capture logged in user details
-    store) {
-        var _this = this;
+    function BracketsComponent(_tbracketService, _gameService, route, router, _userService) {
         this._tbracketService = _tbracketService;
         this._gameService = _gameService;
         this.route = route;
         this.router = router;
         this._userService = _userService;
-        this.store = store;
-        store.subscribe(function () { return _this.readState(); });
-        this.readState();
+        // store.subscribe(() => this.readState());
+        // this.readState(); 
     }
     BracketsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1643,23 +1637,17 @@ var BracketsComponent = /** @class */ (function () {
         // return true to highlight nav bar item that is = route paramter
         return navbarId == this.id;
     };
-    // Redux store methods
-    BracketsComponent.prototype.readState = function () {
-        var state = this.store.getState();
-        this.currentUser = state.currentUser;
-    };
     BracketsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-brackets',
             template: __webpack_require__(/*! ./brackets.component.html */ "./src/app/brackets/brackets.component.html"),
             styles: [__webpack_require__(/*! ./brackets.component.css */ "./src/app/brackets/brackets.component.css")]
         }),
-        __param(5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_app_store__WEBPACK_IMPORTED_MODULE_5__["AppStore"])),
         __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__["TBracketService"],
             _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], Object])
+            _core_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
     ], BracketsComponent);
     return BracketsComponent;
 }()); //end class
@@ -2920,7 +2908,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
 /* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
 /* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
-/* harmony import */ var _app_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.store */ "./src/app/app.store.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2930,24 +2917,21 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 
 
 
 
 
-
+// import { Store } from 'redux';
+// import { AppStore } from '../app.store';
+// import { AppState } from '../app.state';
 var StandingsNavComponent = /** @class */ (function () {
-    function StandingsNavComponent(_tbracketService, _entryService, _userService, store) {
-        var _this = this;
+    function StandingsNavComponent(_tbracketService, _entryService, _userService) {
         this._tbracketService = _tbracketService;
         this._entryService = _entryService;
         this._userService = _userService;
-        this.store = store;
-        store.subscribe(function () { return _this.readState(); });
-        this.readState();
+        // store.subscribe(() => this.readState());
+        // this.readState(); 
     }
     StandingsNavComponent.prototype.ngOnInit = function () {
         // Retrieve list of brackets for bracket navbar
@@ -2960,11 +2944,6 @@ var StandingsNavComponent = /** @class */ (function () {
             _this.tbracketList = data;
         });
     }; //end ngOnInit
-    // Redux store methods
-    StandingsNavComponent.prototype.readState = function () {
-        var state = this.store.getState();
-        this.currentUser = state.currentUser;
-    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('staticTabs'),
         __metadata("design:type", ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__["TabsetComponent"])
@@ -2975,10 +2954,9 @@ var StandingsNavComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./standings-nav.component.html */ "./src/app/standings-nav/standings-nav.component.html"),
             styles: [__webpack_require__(/*! ./standings-nav.component.css */ "./src/app/standings-nav/standings-nav.component.css")]
         }),
-        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_app_store__WEBPACK_IMPORTED_MODULE_5__["AppStore"])),
         __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__["TBracketService"],
             _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], Object])
+            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], StandingsNavComponent);
     return StandingsNavComponent;
 }());

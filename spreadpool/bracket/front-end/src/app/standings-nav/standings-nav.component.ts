@@ -4,9 +4,9 @@ import { EntryService } from '../core/entry.service';
 import { UserService } from '../core/user.service';
 import { TBracketData, EntryBracketData, IUserData } from '../shared/interfaces';
 import { TabsetComponent } from 'ngx-bootstrap';
-import { Store } from 'redux';
-import { AppStore } from '../app.store';
-import { AppState } from '../app.state';
+// import { Store } from 'redux';
+// import { AppStore } from '../app.store';
+// import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-standings-nav',
@@ -26,10 +26,10 @@ export class StandingsNavComponent implements OnInit {
 		private _tbracketService: TBracketService,
 		private _entryService: EntryService,
 		private _userService: UserService,
-		@Inject(AppStore) private store: Store<AppState>
+		// @Inject(AppStore) private store: Store<AppState>
 		)	{
-			store.subscribe(() => this.readState());
-			this.readState(); 
+			// store.subscribe(() => this.readState());
+			// this.readState(); 
 			}
 
 	ngOnInit() {
@@ -48,9 +48,9 @@ export class StandingsNavComponent implements OnInit {
 	} //end ngOnInit
 
 	// Redux store methods
-	readState() {
-		const state: AppState = this.store.getState() as AppState;
-		this.currentUser = state.currentUser;
-	}
+	// readState() {
+	// 	const state: AppState = this.store.getState() as AppState;
+	// 	this.currentUser = state.currentUser;
+	// }
 
 }
