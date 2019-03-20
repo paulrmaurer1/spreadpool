@@ -457,8 +457,35 @@ class TbracketViewSet(ModelViewSet):
 	Brackets can be filtered by tbracket table id, e.g. api/entries/1
 	Mandatory GET parameter: ?gameid=
 	"""
-	queryset = Tbracket.objects.all().order_by('id')
+	queryset = Tbracket.objects.all()
 	serializer_class = TbracketSerializer
+
+	def get_queryset(self):
+		"""
+		Optionally sort by playerid's entry tbrackets
+		"""
+		queryset = Tbracket.objects.all().order_by('id')
+		player_tbrackets=[]
+		sorted_queryset = queryset
+		print (queryset)
+		playerid = self.request.query_params.get('playerid', None)
+		if playerid is not None:
+			sorted_queryset = [] # empty sorted_querset for re-sort
+			# Create list of player tbracket ids
+			player_entries = Entry.objects.filter(player=playerid)
+			for player in player_entries:
+				if player.tbracket_id not in player_tbrackets:
+					player_tbrackets.append(player.tbracket_id)
+			print (player_tbrackets)
+			# Re-sort querset putting player tbracket ids first
+			for tb in queryset:
+				if tb.id in player_tbrackets:
+					sorted_queryset.insert(0, tb)
+				else:
+					sorted_queryset.append(tb)
+			print(sorted_queryset)
+		return sorted_queryset
+
 
 	def destroy(self, request, *args, **kwargs):
 		"""

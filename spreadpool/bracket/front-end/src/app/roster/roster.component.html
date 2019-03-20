@@ -16,7 +16,8 @@
 		<div class = "col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2">
 			<p class="mb-0">Number of Brackets</p>
 			<h1 class="display-4 m-0">{{_numBrackets}}</h1>
-			<small class="m-0">({{_numNeededEntries}} more entries for another!)</small>
+			<small class="m-0" *ngIf = "_numNeededEntries > 1">({{_numNeededEntries}} more entries for another!)</small>
+			<small class="m-0" *ngIf = "_numNeededEntries == 1">({{_numNeededEntries}} more entry for another!)</small>
 		</div>
 		<div class = "col-md hidden-xs"></div>
 	</div>

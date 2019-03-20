@@ -35,9 +35,9 @@ export class TeamNextupComponent implements OnInit {
 					this._nextup_game = "Round "+this._nextGame.t_round
 					if (this._nextGame.spread != null)
 						if (this._nextGame.spread > 0)
-							this._nextup_game += " Favored by "+this._nextGame.spread
+							this._nextup_game += " Favored by " + this._nextGame.spread
 						else if (this._nextGame.spread < 0)
-							this._nextup_game += " Underdog by "+Math.abs(this._nextGame.spread)
+							this._nextup_game += " Underdog by " + Math.abs(this._nextGame.spread)
 						else if (this._nextGame.spread == 0)
 							this._nextup_game += " Pick'em"
 					this._nextup_game += " vs. "+_nextTeam+" ("+_nextOpponent+")"
@@ -53,11 +53,10 @@ export class TeamNextupComponent implements OnInit {
 					var _nextTeam = this._nextGame.team1
 					this._nextup_game = "Round "+this._nextGame.t_round
 					if (this._nextGame.spread != null)
-						var underdog_spread = -this._nextGame.spread
 						if (this._nextGame.spread < 0)
-							this._nextup_game += " Favored by "+ Math.abs(underdog_spread)
+							this._nextup_game += " Favored by " + Math.abs(this._nextGame.spread)
 						else if (this._nextGame.spread > 0)
-							this._nextup_game += " Underdog by "+ underdog_spread
+							this._nextup_game += " Underdog by " + this._nextGame.spread
 						else if (this._nextGame.spread == 0)
 							this._nextup_game += " Pick'em"
 					this._nextup_game += " vs. "+_nextTeam+" ("+_nextOpponent+")"

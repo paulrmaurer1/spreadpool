@@ -1502,6 +1502,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
 /* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
+/* harmony import */ var _app_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.store */ "./src/app/app.store.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1511,16 +1513,28 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
 
 
 
 
 var BracketsComponent = /** @class */ (function () {
-    function BracketsComponent(_tbracketService, _gameService, route, router) {
+    function BracketsComponent(_tbracketService, _gameService, route, router, _userService, 
+    // Using Redux store to capture logged in user details
+    store) {
+        var _this = this;
         this._tbracketService = _tbracketService;
         this._gameService = _gameService;
         this.route = route;
         this.router = router;
+        this._userService = _userService;
+        this.store = store;
+        store.subscribe(function () { return _this.readState(); });
+        this.readState();
     }
     BracketsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1573,7 +1587,10 @@ var BracketsComponent = /** @class */ (function () {
             });
         });
         // Retrieve list of brackets for bracket navbar
-        this._tbracketService.getList().subscribe(function (data) {
+        // this._tbracketService.getList().subscribe(data => {
+        // 	this.tbracketList = data;
+        // });
+        this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
             _this.tbracketList = data;
         });
         // Retrieve game list & convert each Region's games into indexed arrays
@@ -1626,16 +1643,23 @@ var BracketsComponent = /** @class */ (function () {
         // return true to highlight nav bar item that is = route paramter
         return navbarId == this.id;
     };
+    // Redux store methods
+    BracketsComponent.prototype.readState = function () {
+        var state = this.store.getState();
+        this.currentUser = state.currentUser;
+    };
     BracketsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-brackets',
             template: __webpack_require__(/*! ./brackets.component.html */ "./src/app/brackets/brackets.component.html"),
             styles: [__webpack_require__(/*! ./brackets.component.css */ "./src/app/brackets/brackets.component.css")]
         }),
+        __param(5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_app_store__WEBPACK_IMPORTED_MODULE_5__["AppStore"])),
         __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__["TBracketService"],
             _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], Object])
     ], BracketsComponent);
     return BracketsComponent;
 }()); //end class
@@ -2038,6 +2062,10 @@ var TBracketService = /** @class */ (function () {
     //method to retrieve entire bracket list
     TBracketService.prototype.getList = function () {
         return this.http.get(tbracketUrl);
+    };
+    //method to retrieve entire bracket list with player's assigned tbrackets first
+    TBracketService.prototype.getListWithPlayer = function (playerid) {
+        return this.http.get(tbracketUrl + '?playerid=' + playerid);
     };
     //method to retrieve individual bracket
     TBracketService.prototype.getTbracket = function (id) {
@@ -2739,7 +2767,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-center\">\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t\t<div class = \"col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t\t<div class = \"col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t\t<div class = \"col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t\t<small class=\"m-0\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t</div>\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n<br>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>"
+module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-center\">\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t\t<div class = \"col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t\t<div class = \"col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t\t</div>\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t\t<div class = \"col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t\t</div>\r\n\t\t<div class = \"col-md hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n<br>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>"
 
 /***/ }),
 
@@ -2890,7 +2918,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
-/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+/* harmony import */ var _app_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.store */ "./src/app/app.store.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2900,47 +2930,44 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
 
 
 
 
 var StandingsNavComponent = /** @class */ (function () {
-    function StandingsNavComponent(_tbracketService, _entryService) {
+    function StandingsNavComponent(_tbracketService, _entryService, _userService, store) {
+        var _this = this;
         this._tbracketService = _tbracketService;
         this._entryService = _entryService;
+        this._userService = _userService;
+        this.store = store;
+        store.subscribe(function () { return _this.readState(); });
+        this.readState();
     }
     StandingsNavComponent.prototype.ngOnInit = function () {
-        var _this = this;
         // Retrieve list of brackets for bracket navbar
-        this._tbracketService.getList().subscribe(function (data) {
+        // this._tbracketService.getList().subscribe(data => {
+        // 	this.tbracketList = data;
+        // 	console.log("Bracket list of nav is: ", this.tbracketList)
+        // });
+        var _this = this;
+        this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
             _this.tbracketList = data;
-            // console.log("Bracket list of nav is: ", this.tbracketList)
         });
-        // Attempt to default show tab that Player is assigned
-        // this.staticTabs.tabs[1].active = true;
-        // this._bracketToShow = null;
-        // Retrieve the logged in player's entries to set default bracket to show
-        // when click on Bracket navbar option
-        // this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(data => {
-        // 	// Check to see if User is assigned an entry yet, if so, show the first bracket
-        // 	// console.log ("player brackets: ", data)
-        // 	if (data.length > 0 && data[0].tbracket != null) {
-        // 		this._bracketToShow = data[0].tbracket;
-        // 	}
-        // 	else {
-        // 	// Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
-        // 		this._tbracketService.getList().subscribe(data => {
-        // 			// console.log ("system brackets: ", data)
-        // 			if (data.length > 0) {
-        // 				this._bracketToShow = data[0].id;
-        // 			}
-        // 		})
-        // 	}
-        // }); //end subscribe
     }; //end ngOnInit
+    // Redux store methods
+    StandingsNavComponent.prototype.readState = function () {
+        var state = this.store.getState();
+        this.currentUser = state.currentUser;
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('staticTabs'),
-        __metadata("design:type", ngx_bootstrap__WEBPACK_IMPORTED_MODULE_3__["TabsetComponent"])
+        __metadata("design:type", ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__["TabsetComponent"])
     ], StandingsNavComponent.prototype, "staticTabs", void 0);
     StandingsNavComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2948,8 +2975,10 @@ var StandingsNavComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./standings-nav.component.html */ "./src/app/standings-nav/standings-nav.component.html"),
             styles: [__webpack_require__(/*! ./standings-nav.component.css */ "./src/app/standings-nav/standings-nav.component.css")]
         }),
+        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_app_store__WEBPACK_IMPORTED_MODULE_5__["AppStore"])),
         __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__["TBracketService"],
-            _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"]])
+            _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], Object])
     ], StandingsNavComponent);
     return StandingsNavComponent;
 }());
@@ -2976,7 +3005,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<!-- <th scope=\"col\">#</th> -->\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\r\n\t\t\t<th scope=\"col\">South</th>\r\n\t\t\t<th scope=\"col\">West</th>\r\n\t\t\t<th scope=\"col\">East</th>\r\n\t\t\t<th scope=\"col\">Midwest</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let player of _standingsList; let i = index\">\r\n\t\t\t<!-- <th scope=\"row\">{{i + 1}}</th> -->\r\n\t\t\t<td>{{ player.player }}</td>\r\n\t\t\t<td class=\"text-center\">{{ player.team_count }}</td>\r\n\t\t\t<td>{{ player.team_a }}</td>\r\n\t\t\t<td>{{ player.team_b }}</td>\r\n\t\t\t<td>{{ player.team_c }}</td>\r\n\t\t\t<td>{{ player.team_d }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>"
+module.exports = "<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<!-- <th scope=\"col\">#</th> -->\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\r\n\t\t\t<th scope=\"col\">South</th>\r\n\t\t\t<th scope=\"col\">West</th>\r\n\t\t\t<th scope=\"col\">East</th>\r\n\t\t\t<th scope=\"col\">Midwest</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let player of _standingsList; let i = index\" \r\n\t\t[class.bg-secondary]=\"player.player_id == _userService.id\" \r\n\t\t[class.text-white]=\"player.player_id == _userService.id\"\r\n\t\t>\r\n\t\t\t<!-- <th scope=\"row\">{{i + 1}}</th> -->\r\n\t\t\t<td >{{ player.player }}</td>\r\n\t\t\t<td class=\"text-center\">{{ player.team_count }}</td>\r\n\t\t\t<td>{{ player.team_a }}</td>\r\n\t\t\t<td>{{ player.team_b }}</td>\r\n\t\t\t<td>{{ player.team_c }}</td>\r\n\t\t\t<td>{{ player.team_d }}</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>"
 
 /***/ }),
 
@@ -2992,6 +3021,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StandingsComponent", function() { return StandingsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3003,9 +3033,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var StandingsComponent = /** @class */ (function () {
-    function StandingsComponent(_entryService) {
+    function StandingsComponent(_entryService, _userService) {
         this._entryService = _entryService;
+        this._userService = _userService;
     }
     Object.defineProperty(StandingsComponent.prototype, "bracket", {
         get: function () {
@@ -3039,7 +3071,8 @@ var StandingsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./standings.component.html */ "./src/app/standings/standings.component.html"),
             styles: [__webpack_require__(/*! ./standings.component.css */ "./src/app/standings/standings.component.css")]
         }),
-        __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_1__["EntryService"]])
+        __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_1__["EntryService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], StandingsComponent);
     return StandingsComponent;
 }());
@@ -3265,13 +3298,12 @@ var TeamNextupComponent = /** @class */ (function () {
                     var _nextTeam = _this._nextGame.team1;
                     _this._nextup_game = "Round " + _this._nextGame.t_round;
                     if (_this._nextGame.spread != null)
-                        var underdog_spread = -_this._nextGame.spread;
-                    if (_this._nextGame.spread < 0)
-                        _this._nextup_game += " Favored by " + Math.abs(underdog_spread);
-                    else if (_this._nextGame.spread > 0)
-                        _this._nextup_game += " Underdog by " + underdog_spread;
-                    else if (_this._nextGame.spread == 0)
-                        _this._nextup_game += " Pick'em";
+                        if (_this._nextGame.spread < 0)
+                            _this._nextup_game += " Favored by " + Math.abs(_this._nextGame.spread);
+                        else if (_this._nextGame.spread > 0)
+                            _this._nextup_game += " Underdog by " + _this._nextGame.spread;
+                        else if (_this._nextGame.spread == 0)
+                            _this._nextup_game += " Pick'em";
                     _this._nextup_game += " vs. " + _nextTeam + " (" + _nextOpponent + ")";
                 });
             }
@@ -3438,25 +3470,33 @@ var HeaderComponent = /** @class */ (function () {
     }
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // Attempted this approach to grab default bracket to show but redux currentUser doesn't render quick enough
         this._bracketToShow = null;
-        // Retrieve the logged in player's entries to set default bracket to show
-        // when click on Bracket navbar option
-        this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(function (data) {
-            // Check to see if User is assigned an entry yet, if so, show the first bracket
-            // console.log ("player brackets: ", data)
-            if (data.length > 0 && data[0].tbracket != null) {
-                _this._bracketToShow = data[0].tbracket;
+        this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
+            if (data.length > 0) {
+                _this._bracketToShow = data[0].id;
             }
-            else {
-                // Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
-                _this._tbracketService.getList().subscribe(function (data) {
-                    // console.log ("system brackets: ", data)
-                    if (data.length > 0) {
-                        _this._bracketToShow = data[0].id;
-                    }
-                });
-            }
-        }); //end subscribe
+        });
+        // *** Old Way ***
+        // this._bracketToShow = null;
+        // // Retrieve the logged in player's entries to set default bracket to show
+        // // when click on Bracket navbar option
+        // this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(data => {
+        // 	// Check to see if User is assigned an entry yet, if so, show the first bracket
+        // 	// console.log ("player brackets: ", data)
+        // 	if (data.length > 0 && data[0].tbracket != null) {
+        // 		this._bracketToShow = data[0].tbracket;
+        // 	}
+        // 	else {
+        // 	// Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
+        // 		this._tbracketService.getList().subscribe(data => {
+        // 			// console.log ("system brackets: ", data)
+        // 			if (data.length > 0) {
+        // 				this._bracketToShow = data[0].id;
+        // 			}
+        // 		})
+        // 	}
+        // }); //end subscribe
     }; //end ngOnInit()
     // This function is used to keep Brackets nav bar option 'active' regardless of parameter
     HeaderComponent.prototype.isActive = function (instruction) {

@@ -18,6 +18,11 @@ export class TBracketService {
 		return this.http.get<TBracketData[]>(tbracketUrl)
 	}
 
+	//method to retrieve entire bracket list with player's assigned tbrackets first
+	getListWithPlayer(playerid) {
+		return this.http.get<TBracketData[]>(tbracketUrl + '?playerid=' + playerid)
+	}
+
 	//method to retrieve individual bracket
   	getTbracket(id) {
     	return this.http.get<TBracketData>(tbracketUrl + id + '/')

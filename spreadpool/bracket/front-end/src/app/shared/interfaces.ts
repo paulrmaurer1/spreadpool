@@ -51,6 +51,7 @@ export interface EntryStandingsData {
   tbracket: string;
   tbracket_id: number;
   player: string;
+  player_id: number;
   team_count: number;
   team_a: string;
   team_b: string;

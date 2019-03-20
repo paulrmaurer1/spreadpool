@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TBracketService } from '../core/tbracket.service';
 import { GameService } from '../core/game.service';
-import { TBracketData, GameData, GameWithOwnerData } from '../shared/interfaces';
+import { UserService } from '../core/user.service';
+import { TBracketData, GameData, GameWithOwnerData, IUserData } from '../shared/interfaces';
+import { Store } from 'redux';
+import { AppStore } from '../app.store';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-brackets',
@@ -25,12 +29,21 @@ export class BracketsComponent implements OnInit {
 	eastOwners: object;
 	midwestOwners: object;
 	ffourOwners: object;
+
+	private currentUser : IUserData;
 	
 	
 	constructor(private _tbracketService: TBracketService,
 		private _gameService: GameService,
 		private route: ActivatedRoute,
-		private router: Router) { }
+		private router: Router,
+		private _userService: UserService,
+		// Using Redux store to capture logged in user details
+		@Inject(AppStore) private store: Store<AppState>
+		)	{
+			store.subscribe(() => this.readState());
+			this.readState(); 
+			}
 
 	ngOnInit() {
      	
@@ -74,9 +87,15 @@ export class BracketsComponent implements OnInit {
 		})
 		
 		// Retrieve list of brackets for bracket navbar
-		this._tbracketService.getList().subscribe(data => {
+		
+		// this._tbracketService.getList().subscribe(data => {
+		// 	this.tbracketList = data;
+		// });
+		
+		this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
 			this.tbracketList = data;
 		});
+
 
 		// Retrieve game list & convert each Region's games into indexed arrays
 		// for passing to child components for display
@@ -120,6 +139,12 @@ export class BracketsComponent implements OnInit {
 	isActive(navbarId: number): boolean {
 		// return true to highlight nav bar item that is = route paramter
 		return navbarId == this.id;
+	}
+
+	// Redux store methods
+	readState() {
+		const state: AppState = this.store.getState() as AppState;
+		this.currentUser = state.currentUser;
 	}
 
 } //end class

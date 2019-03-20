@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EntryStandingsData } from '../shared/interfaces';
 import { EntryService } from '../core/entry.service';
+import { UserService } from '../core/user.service';
+
 
 @Component({
   selector: 'app-standings',
@@ -22,7 +24,10 @@ export class StandingsComponent implements OnInit {
 		}
 	}
 
-  constructor(private _entryService: EntryService) { }
+  constructor(
+  	private _entryService: EntryService,
+  	private _userService: UserService 
+  	) { }
 
   ngOnInit() {
   	// this._bracketId = 1;

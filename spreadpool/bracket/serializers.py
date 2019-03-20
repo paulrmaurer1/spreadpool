@@ -77,7 +77,7 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Entry
-		fields = ('id', 'tbracket', 'tbracket_id', 'player', 'team_count', \
+		fields = ('id', 'tbracket', 'tbracket_id', 'player', 'player_id', 'team_count', \
 			'team_a', 'team_b', 'team_c', 'team_d')
 
 	def get_team_count(self, obj):
