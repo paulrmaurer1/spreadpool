@@ -246,4 +246,4 @@ class MatchupSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Matchup
-		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner')
+		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner', 'team1_owner_id', 'team2_owner_id')

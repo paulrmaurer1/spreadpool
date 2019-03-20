@@ -90,4 +90,6 @@ export interface MatchupData {
   winner: number;
   team1_owner: string;
   team2_owner: string;
+  team1_owner_id: number;
+  team2_owner_id: number;
 }
