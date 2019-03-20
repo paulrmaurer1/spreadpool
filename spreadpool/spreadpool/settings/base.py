@@ -119,7 +119,6 @@ LOGIN_REDIRECT_URL = 'bracket:home'
 LOGOUT_REDIRECT_URL = 'bracket:home'
 
 
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
