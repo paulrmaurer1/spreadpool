@@ -1,34 +1,49 @@
   <!--profile-details.component.html-->
 
 <div class = "container">
-	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Name:&nbsp;</strong></div>
-		<div class = "col" class="text-muted">{{ _player.full_name }}</div>
-	</div>
-	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Email:&nbsp;</strong></div>
-		<div class = "col" class="text-muted">{{ _player.email }}</div>
-	</div>
-	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Number of Entries:&nbsp;</strong></div>
-		<div class = "col" class="text-muted">{{ _player.num_entries }}</div>
-	</div>
-	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>
-		<div class = "col" class="text-muted" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>
-	</div>
-	<div class = "row justify-content-start">
-		<div class = "col-xs-auto"><strong>Paid up?:</strong></div>
-		<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
-			{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>
-	</div>
-	<div class = "row top10">
-		<div class = "col-xs-auto">
-			<button class="btn btn-secondary custom m-2" (click)="openModal(template)">Delete</button>
+	<div class = "row">
+		<div class = "col-3">
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Name:&nbsp;</strong></div>
+				<div class = "col" class="text-muted">{{ _player.full_name }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Email:&nbsp;</strong></div>
+				<div class = "col" class="text-muted">{{ _player.email }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Number of Entries:&nbsp;</strong></div>
+				<div class = "col" class="text-muted">{{ _player.num_entries }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>
+				<div class = "col" class="text-muted" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Paid up?:</strong></div>
+				<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
+					{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>
+			</div>
+<!-- 			<div class = "row top10">
+				<div class = "col-xs-auto">
+					<button class="btn btn-secondary custom m-2" (click)="openModal(template)">Delete</button>
+				</div>
+				<div class = "col-xs-auto">
+					<button class="btn btn-primary custom m-2" (click)="openProfileModal()">Edit</button>
+				</div>
+			</div> -->
 		</div>
-		<div class = "col-xs-auto">
-			<button class="btn btn-primary custom m-2" (click)="openProfileModal()">Edit</button>
+		<!-- UNCOMMENT BELOW TO SEE PAYMENT DETAILS -->
+		<div *ngIf = "!player.paid" 
+		class = "col-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1">
+				<p class="mb-2"><strong>Payment Options:</strong></p>
+				<p class="mb-2">1) <i class="fa fa-paypal"></i> via PayPal : <a target="_blank" rel="noopener noreferrer"
+					href="https://www.paypal.me/PaulMaurer1">www.paypal.me/PaulMaurer1</a>
+				<p class="mb-2">2) <i class="fa fa-vimeo-square"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>
+				<p class="mb-2">3) Send <i class="fa fa-usd"></i> to:
+				Paul Maurer, 3260 N. Clark St., APT 506, Chicago, IL 60657</p>
 		</div>
+		<div class = "col"></div>
 	</div>
 </div>
 
