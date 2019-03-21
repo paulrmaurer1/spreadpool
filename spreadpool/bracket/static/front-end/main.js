@@ -3258,9 +3258,9 @@ var TeamNextupComponent = /** @class */ (function () {
                     _this._nextup_game = "Round " + _this._nextGame.t_round;
                     if (_this._nextGame.spread != null)
                         if (_this._nextGame.spread > 0)
-                            _this._nextup_game += " Favored by " + _this._nextGame.spread;
+                            _this._nextup_game += " Favored by " + _this._nextGame.spread + " 1/2";
                         else if (_this._nextGame.spread < 0)
-                            _this._nextup_game += " Underdog by " + Math.abs(_this._nextGame.spread);
+                            _this._nextup_game += " Underdog by " + Math.abs(_this._nextGame.spread) + " 1/2";
                         else if (_this._nextGame.spread == 0)
                             _this._nextup_game += " Pick'em";
                     _this._nextup_game += " vs. " + _nextTeam + " (" + _nextOpponent + ")";
@@ -3277,9 +3277,9 @@ var TeamNextupComponent = /** @class */ (function () {
                     _this._nextup_game = "Round " + _this._nextGame.t_round;
                     if (_this._nextGame.spread != null)
                         if (_this._nextGame.spread < 0)
-                            _this._nextup_game += " Favored by " + Math.abs(_this._nextGame.spread);
+                            _this._nextup_game += " Favored by " + Math.abs(_this._nextGame.spread) + " 1/2";
                         else if (_this._nextGame.spread > 0)
-                            _this._nextup_game += " Underdog by " + _this._nextGame.spread;
+                            _this._nextup_game += " Underdog by " + _this._nextGame.spread + " 1/2";
                         else if (_this._nextGame.spread == 0)
                             _this._nextup_game += " Pick'em";
                     _this._nextup_game += " vs. " + _nextTeam + " (" + _nextOpponent + ")";
