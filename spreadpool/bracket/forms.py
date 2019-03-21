@@ -50,7 +50,7 @@ class TbracketUpdateForm(ModelForm):
 			'name': forms.TextInput(attrs={
 				'id': 'tbracket-name', 
 				'required': True,
-			}),
+			})
 		}
 
 class TbracketNewForm(ModelForm):
@@ -62,5 +62,5 @@ class TbracketNewForm(ModelForm):
 			'name': forms.TextInput(attrs={
 				'id': 'tbracket-new-name', 
 				'required': True,
-			}),
+			})
 		}
