@@ -1,17 +1,17 @@
 <!--brackets.component.html-->
 
-<div class="container">
-    <small class="text-muted">(Click to see bracket)</small>
-    <nav class="navbar">
-	   <ul class="nav nav-pills">
-			<li class = "nav-item" *ngFor = "let tbracket of tbracketList">
-				<a class = "nav-link" [routerLink]="['/brackets', tbracket.id]"
-				[class.active]="isActive(tbracket.id)"
-				>{{ tbracket.name }}</a>
-			</li>
-		</ul>
-	</nav>
-</div>
+<!-- <div class="container"> -->
+<small class="text-muted">(Click to see bracket)</small>
+<nav class="navbar">
+    <ul class="nav nav-pills">
+		<li class = "nav-item" *ngFor = "let tbracket of tbracketList">
+			<a class = "nav-link" [routerLink]="['/brackets', tbracket.id]"
+			[class.active]="isActive(tbracket.id)"
+			>{{ tbracket.name }}</a>
+		</li>
+	</ul>
+</nav>
+<!-- </div> -->
 <br>
 <div>
   <tabset>
