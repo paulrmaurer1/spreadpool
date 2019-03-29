@@ -8,8 +8,8 @@
 		<ng-template ngFor let-game [ngForOf]="_r5_game_numbers">
 			<li class="spacer">&nbsp;</li>
 			<li class="game game-top">{{ _bracketGames[game].team1 || ' '}}
-				<ng-container *ngIf="_bracketOwners[game].team1_owner[0].team1_owner">
-					({{ _bracketOwners[game].team1_owner[0].team1_owner }})
+				<ng-container *ngIf="_bracketOwners[game].team1_owner">
+					({{ _bracketOwners[game].team1_owner }})
 				</ng-container>
 
 				<span [class.filler]="!getTeam1Result(_bracketGames[game])">
@@ -18,8 +18,8 @@
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
 			<li class="game game-bottom ">{{ _bracketGames[game].team2 || ' '}}
-				<ng-container *ngIf="_bracketOwners[game].team2_owner[0].team2_owner">
-					({{ _bracketOwners[game].team2_owner[0].team2_owner }})
+				<ng-container *ngIf="_bracketOwners[game].team2_owner">
+					({{ _bracketOwners[game].team2_owner }})
 				</ng-container>
 
 				<span [class.filler]="!getTeam2Result(_bracketGames[game])">
@@ -34,8 +34,8 @@
 		<ng-template ngFor let-game [ngForOf]="_r6_game_numbers">
 			<li class="spacer">&nbsp;</li>
 			<li class="game game-top">{{ _bracketGames[game].team1 || ' '}}
-				<ng-container *ngIf="_bracketOwners[game].team1_owner[0].team1_owner">
-					({{ _bracketOwners[game].team1_owner[0].team1_owner }})
+				<ng-container *ngIf="_bracketOwners[game].team1_owner">
+					({{ _bracketOwners[game].team1_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam1Result(_bracketGames[game])">
 					{{ getTeam1Result(_bracketGames[game]) }}
@@ -43,8 +43,8 @@
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
 			<li class="game game-bottom ">{{ _bracketGames[game].team2 || ' '}}
-				<ng-container *ngIf="_bracketOwners[game].team2_owner[0].team2_owner">
-					({{ _bracketOwners[game].team2_owner[0].team2_owner }})
+				<ng-container *ngIf="_bracketOwners[game].team2_owner">
+					({{ _bracketOwners[game].team2_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam2Result(_bracketGames[game])">
 					{{ getTeam2Result(_bracketGames[game]) }}

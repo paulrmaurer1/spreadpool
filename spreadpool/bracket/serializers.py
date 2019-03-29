@@ -191,6 +191,90 @@ class GameWithMatchupDataSerializer(serializers.ModelSerializer):
 			team2_owner = team2_owner.filter(tbracket=_tbracket_id)
 		return MatchupSerializer(team2_owner, many=True).data
 
+class NewGameWithMatchupDataSerializer(serializers.ModelSerializer):
+	"""
+	Allows direct calls on Game model via games API
+	"""
+	# team1_owner = serializers.SerializerMethodField()
+	# team2_owner = serializers.SerializerMethodField()
+	# team1_owner_id = serializers.SerializerMethodField()
+	# team2_owner_id = serializers.SerializerMethodField()
+	team1 = serializers.StringRelatedField()
+	team2 = serializers.StringRelatedField()
+	region = serializers.StringRelatedField()
+		
+	class Meta:
+		model = Game
+		fields = ('id', 'region', 'team1', 'team2', 'team1_id', 'team2_id')
+
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
+		data['team1_owner'] = None
+		data['team1_owner_id'] = None
+		data['team2_owner'] = None
+		data['team2_owner_id'] = None
+		# Grab owner related data for Game(s) from Matchup -> User
+		related_matchups = Matchup.objects.filter(game=obj.id)
+		_tbracket_id = self.context['request'].GET.get('tbracketid')
+		try:
+			Tbracket.objects.get(id=_tbracket_id)
+			specific_matchup = related_matchups.get(tbracket=_tbracket_id)
+		except:
+			return data
+		
+		if specific_matchup.team1_owner:
+			data['team1_owner'] = specific_matchup.team1_owner.short_name
+			data['team1_owner_id'] = specific_matchup.team1_owner.id
+		if specific_matchup.team2_owner:
+			data['team2_owner'] = specific_matchup.team2_owner.short_name
+			data['team2_owner_id'] = specific_matchup.team2_owner.id
+		return data
+
+	# *****THE ABOVE CODE REPLACES ALL OF THE BELOW...DRY!!!******
+	# def get_team1_owner(self, obj):
+	# 	# Get team1_owner from related Matchup
+	# 	related_matchups = Matchup.objects.filter(game=obj.id)
+	# 	_tbracket_id = self.context['request'].GET.get('tbracketid')
+	# 	try:
+	# 		Tbracket.objects.get(id=_tbracket_id)
+	# 		specific_matchup = related_matchups.get(tbracket=_tbracket_id)
+	# 		return specific_matchup.team1_owner.short_name
+	# 	except:
+	# 		return None
+
+	# def get_team2_owner(self, obj):
+	# 	# Get team2_owner from related Matchup
+	# 	related_matchups = Matchup.objects.filter(game=obj.id)
+	# 	_tbracket_id = self.context['request'].GET.get('tbracketid')
+	# 	try:
+	# 		Tbracket.objects.get(id=_tbracket_id)
+	# 		specific_matchup = related_matchups.get(tbracket=_tbracket_id)
+	# 		return specific_matchup.team2_owner.short_name
+	# 	except:
+	# 		return None
+
+	# def get_team1_owner_id(self, obj):
+	# 	# Get team1_owner from related Matchup
+	# 	related_matchups = Matchup.objects.filter(game=obj.id)
+	# 	_tbracket_id = self.context['request'].GET.get('tbracketid')
+	# 	try:
+	# 		Tbracket.objects.get(id=_tbracket_id)
+	# 		specific_matchup = related_matchups.get(tbracket=_tbracket_id)
+	# 		return specific_matchup.team1_owner.id
+	# 	except:
+	# 		return None
+
+	# def get_team2_owner_id(self, obj):
+	# 	# Get team2_owner from related Matchup
+	# 	related_matchups = Matchup.objects.filter(game=obj.id)
+	# 	_tbracket_id = self.context['request'].GET.get('tbracketid')
+	# 	try:
+	# 		Tbracket.objects.get(id=_tbracket_id)
+	# 		specific_matchup = related_matchups.get(tbracket=_tbracket_id)
+	# 		return specific_matchup.team2_owner.id
+	# 	except:
+	# 		return None
+
 
 class FilteredGameSerializer(serializers.ListSerializer):
 	"""
@@ -246,4 +330,4 @@ class MatchupSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Matchup
-		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner')
+		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner', 'team1_owner_id', 'team2_owner_id')

@@ -7,19 +7,23 @@
 	<ul class="round round-1">
 		<ng-template ngFor let-game [ngForOf]="_r1_game_numbers">
 			<li class="spacer">&nbsp;</li>
-			<li class="game game-top">{{ _bracketGames[game+getRgRdIncr(1)].team1}}
+			<li class="game game-top"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(1)].team1_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(1)].team1}}
 
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(1)].team1_owner[0].team1_owner">
-					({{ _bracketOwners[game+getRgRdIncr(1)].team1_owner[0].team1_owner }})
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(1)].team1_owner">
+					({{ _bracketOwners[game+getRgRdIncr(1)].team1_owner }})
 				</ng-container>
 				
 				<span>{{ getTeam1Result(_bracketGames[game+getRgRdIncr(1)]) }}</span>
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
-			<li class="game game-bottom ">{{ _bracketGames[game+getRgRdIncr(1)].team2}}
+			<li class="game game-bottom"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(1)].team2_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(1)].team2}}
 				
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(1)].team2_owner[0].team2_owner">
-					({{ _bracketOwners[game+getRgRdIncr(1)].team2_owner[0].team2_owner }})
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(1)].team2_owner">
+					({{ _bracketOwners[game+getRgRdIncr(1)].team2_owner }})
 				</ng-container>
 
 				<span>{{ getTeam2Result(_bracketGames[game+getRgRdIncr(1)]) }}</span>
@@ -31,18 +35,22 @@
 	<ul class="round round-2">
 		<ng-template ngFor let-game [ngForOf]="_r2_game_numbers">
 			<li class="spacer">&nbsp;</li>
-			<li class="game game-top">{{ _bracketGames[game+getRgRdIncr(2)].team1}}
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(2)].team1_owner[0].team1_owner">
-					({{ _bracketOwners[game+getRgRdIncr(2)].team1_owner[0].team1_owner }})
+			<li class="game game-top"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(2)].team1_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(2)].team1}}
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(2)].team1_owner">
+					({{ _bracketOwners[game+getRgRdIncr(2)].team1_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam1Result(_bracketGames[game+getRgRdIncr(2)])">
 					{{ getTeam1Result(_bracketGames[game+getRgRdIncr(2)])}}
 				</span>
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
-			<li class="game game-bottom ">{{ _bracketGames[game+getRgRdIncr(2)].team2}}
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(2)].team2_owner[0].team2_owner">
-					({{ _bracketOwners[game+getRgRdIncr(2)].team2_owner[0].team2_owner }})
+			<li class="game game-bottom"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(2)].team2_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(2)].team2}}
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(2)].team2_owner">
+					({{ _bracketOwners[game+getRgRdIncr(2)].team2_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam2Result(_bracketGames[game+getRgRdIncr(2)])">
 					{{ getTeam2Result(_bracketGames[game+getRgRdIncr(2)])}}
@@ -55,18 +63,22 @@
 	<ul class="round round-3">
 		<ng-template ngFor let-game [ngForOf]="_r3_game_numbers">
 			<li class="spacer">&nbsp;</li>
-			<li class="game game-top">{{ _bracketGames[game+getRgRdIncr(3)].team1}}
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(3)].team1_owner[0].team1_owner">
-					({{ _bracketOwners[game+getRgRdIncr(3)].team1_owner[0].team1_owner }})
+			<li class="game game-top"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(3)].team1_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(3)].team1}}
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(3)].team1_owner">
+					({{ _bracketOwners[game+getRgRdIncr(3)].team1_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam1Result(_bracketGames[game+getRgRdIncr(3)])">
 					{{ getTeam1Result(_bracketGames[game+getRgRdIncr(3)])}}
 				</span>
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
-			<li class="game game-bottom ">{{ _bracketGames[game+getRgRdIncr(3)].team2}}
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(3)].team2_owner[0].team2_owner">
-					({{ _bracketOwners[game+getRgRdIncr(3)].team2_owner[0].team2_owner }})
+			<li class="game game-bottom"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(3)].team2_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(3)].team2}}
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(3)].team2_owner">
+					({{ _bracketOwners[game+getRgRdIncr(3)].team2_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam2Result(_bracketGames[game+getRgRdIncr(3)])">
 					{{ getTeam2Result(_bracketGames[game+getRgRdIncr(3)])}}
@@ -79,18 +91,22 @@
 	<ul class="round round-4">
 		<ng-template ngFor let-game [ngForOf]="_r4_game_numbers">
 			<li class="spacer">&nbsp;</li>
-			<li class="game game-top">{{ _bracketGames[game+getRgRdIncr(4)].team1}}
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(4)].team1_owner[0].team1_owner">
-					({{ _bracketOwners[game+getRgRdIncr(4)].team1_owner[0].team1_owner }})
+			<li class="game game-top"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(4)].team1_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(4)].team1}}
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(4)].team1_owner">
+					({{ _bracketOwners[game+getRgRdIncr(4)].team1_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam1Result(_bracketGames[game+getRgRdIncr(4)])">
 					{{ getTeam1Result(_bracketGames[game+getRgRdIncr(4)])}}
 				</span>
 			</li>
 			<li class="game game-spacer">&nbsp;</li>
-			<li class="game game-bottom ">{{ _bracketGames[game+getRgRdIncr(4)].team2}}
-				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(4)].team2_owner[0].team2_owner">
-					({{ _bracketOwners[game+getRgRdIncr(4)].team2_owner[0].team2_owner }})
+			<li class="game game-bottom"
+			[ngClass]="{'text-light bg-secondary':_userService.id == _bracketOwners[game+getRgRdIncr(4)].team2_owner_id}">
+				{{ _bracketGames[game+getRgRdIncr(4)].team2}}
+				<ng-container *ngIf="_bracketOwners[game+getRgRdIncr(4)].team2_owner">
+					({{ _bracketOwners[game+getRgRdIncr(4)].team2_owner }})
 				</ng-container>
 				<span [class.filler]="!getTeam2Result(_bracketGames[game+getRgRdIncr(4)])">
 					{{ getTeam2Result(_bracketGames[game+getRgRdIncr(4)])}}

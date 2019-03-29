@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TBracketData, GameData, GameWithOwnerData } from '../shared/interfaces';
+import { TBracketData, GameData, GameWithOwnerData, IUserData } from '../shared/interfaces';
+import { UserService } from '../core/user.service';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class BracketDetailComponent implements OnInit {
 		}
 	}
 
-	constructor() {
+	constructor(private _userService: UserService) {
 		//Creates East Region game id arrays for each Round
 		this._r1_game_numbers = Array.from({length: 8}, (v, k) => k+1);
 		this._r2_game_numbers = Array.from({length: 4}, (v, k) => k+33);
