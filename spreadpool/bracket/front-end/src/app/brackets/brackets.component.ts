@@ -56,7 +56,7 @@ export class BracketsComponent implements OnInit {
 			this.id = params['id'];
 			this._tbracketService.getTbracket(this.id).subscribe(data => {
 				this.activeBracket = data;
-				this._gameService.getGameWithMatchupDataList(this.id).subscribe(data => {
+				this._gameService.getNewGameWithMatchupDataList(this.id).subscribe(data => {
 					const eastOwners = Object.assign({}, ...data
 						.filter(item => item.region == 'East')
 						.map(item => ({[item['id']]: item}))

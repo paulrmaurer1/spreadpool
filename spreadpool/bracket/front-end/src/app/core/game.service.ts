@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GameData, GameWithOwnerData } from '../shared/interfaces';
+import { GameData, GameWithOwnerData, NewGameWithOwnerData } from '../shared/interfaces';
 import { UserService } from './user.service';
 
 //gameUrl is base url for users table end point
 const gameUrl = '/api/games/';
 const game_ownerURL = '/api/games_owners/'
-const game_matchupURL = 'api/games_matchups/'
+const game_matchupURL = '/api/games_matchups/'
+const new_game_matchupURL = '/api/games_new_matchups/'
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class GameService {
 
 	getGameWithMatchupDataList(tbracket_id) {
 		return this.http.get<GameWithOwnerData[]>(game_matchupURL + '?tbracketid=' + tbracket_id)
+	}
+
+	getNewGameWithMatchupDataList(tbracket_id) {
+		return this.http.get<GameWithOwnerData[]>(new_game_matchupURL + '?tbracketid=' + tbracket_id)
 	}
 
 	updateGame(game) {

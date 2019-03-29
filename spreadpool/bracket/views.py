@@ -32,7 +32,7 @@ from rest_framework.viewsets import ModelViewSet
 from bracket.serializers import UserSerializer, GroupSerializer, EntrySerializer, \
 GameSerializer, MatchupSerializer, TbracketSerializer, GameWithOwnersSerializer, \
 EntryPlayerByBracketAndTeamSerializer, EntryBracketsByPlayerSerializer, GameWithMatchupDataSerializer, \
-EntryStandingsSerializer
+EntryStandingsSerializer, NewGameWithMatchupDataSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
@@ -429,6 +429,15 @@ class GameWithMatchupDataViewSet(ModelViewSet):
 	"""
 	queryset = Game.objects.all()
 	serializer_class = GameWithMatchupDataSerializer
+
+class NewGameWithMatchupDataViewSet(ModelViewSet):
+	"""
+	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
+	Games can be filtered by game table id, e.g. api/games/18
+	Optional GET parameters include: ?tbracketid=
+	"""
+	queryset = Game.objects.all()
+	serializer_class = NewGameWithMatchupDataSerializer
 
 class MatchupViewSet(ModelViewSet):
 	"""
