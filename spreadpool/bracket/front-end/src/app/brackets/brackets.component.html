@@ -35,7 +35,7 @@
     		[region]="'Midwest'" [bracketGames]="midwestGames" [bracketOwners]="midwestOwners">
     	</app-bracket-detail>
     </tab>
-    <tab heading="Final Four">
+    <tab heading="Final Four" active="True">
     	<app-bracketff-detail *ngIf="activeBracket && ffourGames" [bracket]="activeBracket"
     		[bracketGames]="ffourGames" [bracketOwners]="ffourOwners">
     	</app-bracketff-detail>
