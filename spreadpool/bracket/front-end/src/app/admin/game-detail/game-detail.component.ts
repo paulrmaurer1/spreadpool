@@ -61,7 +61,6 @@ export class GameDetailComponent implements OnInit {
 		this._gameService.updateGame(this._game).subscribe((data) => {
 			console.log("Game updated with:", this._game);
 		});
-		// console.log("Game Update method called...updated this object", this._game);
 	} //end updateGame()
 
 	resetGame() {

@@ -23,16 +23,15 @@ need to update User with following line
 User = get_user_model()
 
 #Internal modules
-from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
-from .models import Entry, Game, Matchup, Tbracket
+from bracket import forms
+# from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
+from .models import Entry, Game, Matchup, Tbracket, Region
 from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries
+from bracket import serializers
+
 
 #REST framework modules
 from rest_framework.viewsets import ModelViewSet
-from bracket.serializers import UserSerializer, GroupSerializer, EntrySerializer, \
-GameSerializer, MatchupSerializer, TbracketSerializer, GameWithOwnersSerializer, \
-EntryPlayerByBracketAndTeamSerializer, EntryBracketsByPlayerSerializer, GameWithMatchupDataSerializer, \
-EntryStandingsSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
@@ -65,7 +64,9 @@ class IndexView(LoginRequiredMixin, ListView):
 		context['id'] = self.request.user.id
 		return context
 
-
+'''
+FBV approach to above
+'''
 # @login_required
 # def index(request, path = ''):
 # 	"""
@@ -96,7 +97,7 @@ class IndexView(LoginRequiredMixin, ListView):
 		
 class SignUp(CreateView):
 	# Sign up page for people to enter pool
-	form_class = SignupForm
+	form_class = forms.SignupForm
 	# success_url = reverse_lazy('bracket:home')
 	template_name = 'bracket/signup.html'
 
@@ -125,7 +126,7 @@ FBV approach to above
 '''
 # def signup(request):
 # 	if request.method == "POST":  #after Sign-up form is submitted
-# 		form = SignupForm(request.POST)
+# 		form = forms.SignupForm(request.POST)
 # 		if form.is_valid():
 # 			new_user = form.save(commit=False)
 # 			# create a default username from first & last name since required by User model
@@ -137,7 +138,7 @@ FBV approach to above
 # 			login(request, user)
 # 			return redirect('bracket:home')
 # 	else:
-# 		form = SignupForm()
+# 		form = forms.SignupForm()
 # 	return render(request, 'bracket/signup.html', {'form': form})
 
 class LoggedInUserMixin(object):
@@ -161,7 +162,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 class ProfileEdit(LoggedInUserMixin, LoginRequiredMixin, UpdateView):
 	# Edit user Profile
 	login_url = '/login/'
-	form_class = ProfileForm
+	form_class = forms.ProfileForm
 	template_name = 'bracket/profile_edit.html'
 	
 class ProfileDelete(LoggedInUserMixin, LoginRequiredMixin, DeleteView):
@@ -170,36 +171,44 @@ class ProfileDelete(LoggedInUserMixin, LoginRequiredMixin, DeleteView):
 	success_url = reverse_lazy('login')
 	template_name = 'bracket/user_confirm_delete.html'
 
-class AdminView(LoginRequiredMixin, ListView):
-	# View various Admin tasks
-	login_url = '/login/'
-	model = Entry
-	template_name = 'bracket/admin_page.html'
+'''
+Unnecessary CBV views replaced by Angular pages
+'''
+# class AdminView(LoginRequiredMixin, ListView):
+# 	# View various Admin tasks
+# 	login_url = '/login/'
+# 	model = Entry
+# 	template_name = 'bracket/admin_page.html'
 
 # class TbracketView(ListView):
 # 	login_url = '/login/'
-# 	form_class = TbracketForm
+# 	form_class = forms.TbracketForm
 # 	model = Tbracket
 # 	template_name = 'bracket/tbracket_page.html'
 
-@login_required
-def tbracket_page(request):
-# To support bracket admin page
 
-	# Create bracket table with key attributes to pass to template
-	tbracket_table = []
-	for tbracket in Tbracket.objects.all().order_by('id'):
-		tbracket_table.append({'id':tbracket.pk,'name':tbracket.name,'num_assigned': Entry.objects.filter(tbracket=tbracket.id).count()})
 
-	tmpl_vars = {
-		'form' : TbracketUpdateForm,
-		'new_form' : TbracketNewForm,
-		'tbracket_list' : tbracket_table,
-		# 'tbracket_list' : Tbracket.objects.all().order_by('id'),
-		# 'entry_list' : Entry.objects.all()
-	}
+'''
+FBV approach to Edit Brackets page
+'''
+# @login_required
+# def tbracket_page(request):
+# # To support bracket admin page
 
-	return render(request, 'bracket/tbracket_page.html', tmpl_vars)
+# 	# Create bracket table with key attributes to pass to template
+# 	tbracket_table = []
+# 	for tbracket in Tbracket.objects.all().order_by('id'):
+# 		tbracket_table.append({'id':tbracket.pk,'name':tbracket.name,'num_assigned': Entry.objects.filter(tbracket=tbracket.id).count()})
+
+# 	tmpl_vars = {
+# 		'form' : TbracketUpdateForm,
+# 		'new_form' : TbracketNewForm,
+# 		'tbracket_list' : tbracket_table,
+# 		# 'tbracket_list' : Tbracket.objects.all().order_by('id'),
+# 		# 'entry_list' : Entry.objects.all()
+# 	}
+
+# 	return render(request, 'bracket/tbracket_page.html', tmpl_vars)
 
 '''
 FBV approach to above
@@ -208,24 +217,24 @@ FBV approach to above
 # def profile_edit(request, pk):
 # 	user_to_edit = get_object_or_404(User, pk=pk)
 # 	if request.method == "POST":
-# 		form = ProfileForm(request.POST, instance=user_to_edit)
+# 		form = forms.ProfileForm(request.POST, instance=user_to_edit)
 # 		if form.is_valid():
 # 			form.save()
 # 			return redirect('bracket:profile', pk=user_to_edit.pk)
 # 	else:
-# 		form = ProfileForm(instance=user_to_edit)
+# 		form = forms.ProfileForm(instance=user_to_edit)
 # 	return render(request, 'bracket/profile_edit.html', {'form': form})
 #
 # @login_required
 # def profile_delete(request, pk):
 # 	user_to_delete = get_object_or_404(User, pk=pk)
 # 	if request.method == "POST":
-# 		form = DeleteProfileForm(request.POST, instance = user_to_delete)
+# 		form = forms.DeleteProfileForm(request.POST, instance = user_to_delete)
 # 		if form.is_valid():
 # 			user_to_delete.delete()
 # 			return redirect('logout')
 # 	else:
-# 		form = DeleteProfileForm(instance=user_to_delete)
+# 		form = forms.DeleteProfileForm(instance=user_to_delete)
 # 	return render(request, 'bracket/profile_delete.html', {'form': form})
 
 	
@@ -240,14 +249,14 @@ class UserViewSet(ModelViewSet):
 	custom_user_list = custom_user_list.order_by('-date_joined')
 	queryset = custom_user_list
 	# queryset = User.objects.all().order_by('-date_joined')
-	serializer_class = UserSerializer
+	serializer_class = serializers.UserSerializer
 
 class GroupViewSet(ModelViewSet):
 	"""
 	API endpoint that allows groups to be viewed or edited.
 	"""
 	queryset = Group.objects.all()
-	serializer_class = GroupSerializer
+	serializer_class = serializers.GroupSerializer
 
 class EntryViewSet(ModelViewSet):
 	"""
@@ -256,7 +265,7 @@ class EntryViewSet(ModelViewSet):
 	?teamid= any of the 4 active teams for a Player (team_a, team_b, team_c or team_d)
 	"""
 	queryset = Entry.objects.all()
-	serializer_class = EntrySerializer
+	serializer_class = serializers.EntrySerializer
 
 	def get_queryset(self):
 		"""
@@ -296,7 +305,7 @@ class EntryPlayerByBracketAndTeamViewSet(ModelViewSet):
 	If no tbracketid, will retrive all users whose entries match either team 1 or team 2
 	"""
 	queryset = Entry.objects.all()
-	serializer_class = EntryPlayerByBracketAndTeamSerializer
+	serializer_class = serializers.EntryPlayerByBracketAndTeamSerializer
 
 	def get_queryset(self):
 		"""
@@ -322,7 +331,7 @@ class EntryBracketsByPlayerViewSet(ModelViewSet):
 	Optional GET parameters include: ?playerid=  e.g. entry_brackets?playerid=11
 	"""
 	queryset = Entry.objects.all()
-	serializer_class = EntryBracketsByPlayerSerializer
+	serializer_class = serializers.EntryBracketsByPlayerSerializer
 
 	def get_queryset(self):
 		"""
@@ -341,7 +350,7 @@ class EntryStandingsViewSet(ModelViewSet):
 	If no tbracketid, will retrive all users whose entries match either team 1 or team 2
 	"""
 	queryset = Entry.objects.all()
-	serializer_class = EntryStandingsSerializer
+	serializer_class = serializers.EntryStandingsSerializer
 
 	def get_queryset(self):
 		"""
@@ -362,7 +371,7 @@ class GameViewSet(ModelViewSet):
 	Optional GET parameters include: ?regionid= (1=South, 2=West, 3=East, 4=Midwest, 5=FinalFour)
 	"""
 	queryset = Game.objects.all()
-	serializer_class = GameSerializer
+	serializer_class = serializers.GameSerializer
 
 	def get_queryset(self):
 		"""
@@ -419,7 +428,7 @@ class GameWithTeamOwnersViewSet(ModelViewSet):
 	Optional GET parameters include: ?tbracketid=
 	"""
 	queryset = Game.objects.all()
-	serializer_class = GameWithOwnersSerializer
+	serializer_class = serializers.GameWithOwnersSerializer
 
 class GameWithMatchupDataViewSet(ModelViewSet):
 	"""
@@ -428,7 +437,41 @@ class GameWithMatchupDataViewSet(ModelViewSet):
 	Optional GET parameters include: ?tbracketid=
 	"""
 	queryset = Game.objects.all()
-	serializer_class = GameWithMatchupDataSerializer
+	serializer_class = serializers.GameWithMatchupDataSerializer
+
+class NewGameWithMatchupDataViewSet(ModelViewSet):
+	"""
+	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
+	Games can be filtered by game table id, e.g. api/games/18
+	Optional GET parameters include: ?tbracketid=, ?regionid, ?ownerid, or &teamid
+	"""
+	queryset = Game.objects.all()
+	serializer_class = serializers.NewGameWithMatchupDataSerializer
+
+	def get_queryset(self):
+		"""
+		Optionally filter games by regionid, owernid teamid
+		"""
+		queryset = Game.objects.all()
+		tbracketid = self.request.query_params.get('tbracketid', None)
+		regionid = self.request.query_params.get('regionid', None)
+		if regionid is not None:
+			queryset = queryset.filter(Q(region=regionid) | Q(region=5)).order_by('id') # region=5: also search for Final Four games
+		ownerid = self.request.query_params.get('ownerid', None)
+		if ownerid is not None:
+			if tbracketid is not None:
+				# only get games where matchups in the specified bracket have 1 or the other ownerid
+				queryset = queryset.filter((Q(matchup__team1_owner_id=ownerid) | Q(matchup__team2_owner_id=ownerid)) & Q(matchup__tbracket_id=tbracketid))
+			else:
+				queryset = queryset.filter(Q(matchup__team1_owner_id=ownerid) | Q(matchup__team2_owner_id=ownerid))
+			# if only have ownerid, then exclude Semifinal & Final ***BUG*** will only include games up to Round 4
+			# cases not covered is owners who lose in Semi-final or Finals won't get accurate Next Game, i.e. "Lost to:..."
+			queryset = queryset.exclude(region=5)
+		teamid = self.request.query_params.get('teamid', None)
+		if teamid is not None:
+			queryset = queryset.filter(Q(team1_id=teamid) | Q(team2_id=teamid))
+		return queryset
+		
 
 class MatchupViewSet(ModelViewSet):
 	"""
@@ -436,7 +479,7 @@ class MatchupViewSet(ModelViewSet):
 	Optional GET parameters include: ?tbracketid=, ?gameid=
 	"""
 	queryset = Matchup.objects.all()
-	serializer_class = MatchupSerializer
+	serializer_class = serializers.MatchupSerializer
 
 	def get_queryset(self):
 		"""
@@ -458,7 +501,7 @@ class TbracketViewSet(ModelViewSet):
 	Mandatory GET parameter: ?gameid=
 	"""
 	queryset = Tbracket.objects.all()
-	serializer_class = TbracketSerializer
+	serializer_class = serializers.TbracketSerializer
 
 	def get_queryset(self):
 		"""
@@ -526,6 +569,14 @@ class TbracketViewSet(ModelViewSet):
 		tbracketid = tbracket.id
 		reset_bracket(tbracketid)
 		return Response(status=status.HTTP_204_NO_CONTENT)
+
+class RegionViewSet(ModelViewSet):
+	"""
+	API endpoint that allows Matchups to be viewed or edited.
+	Optional GET parameters include: ?tbracketid=, ?gameid=
+	"""
+	queryset = Region.objects.all().order_by('id')
+	serializer_class = serializers.RegionSerializer
 
 
 #Functional views for (old) Django pages

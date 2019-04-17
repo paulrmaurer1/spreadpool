@@ -62,6 +62,7 @@ export interface EntryStandingsData {
 export interface GameData {
   id: number;
   region: string;
+  region_id: number;
   t_round: number;
   team1: string;
   team2: string;
@@ -83,6 +84,23 @@ export interface GameWithOwnerData {
   team2_owner: object[];
 }
 
+export interface NewGameWithOwnerData {
+  id: number;
+  region: string;
+  region_id: number;
+  team1: string;
+  team2: string;
+  team1_id: number;
+  team2_id: number;
+  team1_owner: string;
+  team2_owner: string;
+  team1_owner_id: number;
+  team2_owner_id: number;
+  t_round: number;
+  spread: number;
+  tbracket_id: number;
+}
+
 export interface MatchupData {
   id: number;
   tbracket: number;
@@ -90,4 +108,11 @@ export interface MatchupData {
   winner: number;
   team1_owner: string;
   team2_owner: string;
+  team1_owner_id: number;
+  team2_owner_id: number;
+}
+
+export interface RegionData {
+  id: number;
+  name: string;
 }

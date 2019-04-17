@@ -1,28 +1,31 @@
 <br>
-<table class="table table-sm">
+<div [class.loader] = "loading">
+<table class="table table-sm" *ngIf="_regionList">
 	<thead>
 		<tr>
-			<!-- <th scope="col">#</th> -->
 			<th scope="col">Name</th>
 			<th scope="col" class="text-center" style="width: 15%"># Active Teams</th>
-			<th scope="col">East</th>
-			<th scope="col">West</th>
-			<th scope="col">South</th>
-			<th scope="col">Midwest</th>
+			<th scope="col">{{ _regionList[0].name }}</th>
+			<th scope="col">{{ _regionList[1].name }}</th>
+			<th scope="col">{{ _regionList[2].name }}</th>
+			<th scope="col">{{ _regionList[3].name }}</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor = "let player of _standingsList; let i = index" 
-		[class.bg-secondary]="player.player_id == _userService.id" 
-		[class.text-white]="player.player_id == _userService.id"
-		>
-			<!-- <th scope="row">{{i + 1}}</th> -->
-			<td >{{ player.player }}</td>
-			<td class="text-center">{{ player.team_count }}</td>
-			<td>{{ player.team_a }}</td>
-			<td>{{ player.team_b }}</td>
-			<td>{{ player.team_c }}</td>
-			<td>{{ player.team_d }}</td>
+		<tr *ngFor = "let entry of _standingsList; let i = index" 
+		[class.bg-success]="entry.player_id == _userService.id" 
+		[class.text-white]="entry.player_id == _userService.id">
+			<td >{{ entry.player }}</td>
+			<td class="text-center">{{ entry.team_count }}</td>
+			<td>{{ entry.team_a }} <ng-container *ngIf="entry.team_a">
+				<small>{{ entry.team_a_status }}</small></ng-container></td>
+			<td>{{ entry.team_b }} <ng-container *ngIf="entry.team_b">
+				<small>{{ entry.team_b_status }}</small></ng-container></td>
+			<td>{{ entry.team_c }} <ng-container *ngIf="entry.team_c">
+				<small>{{ entry.team_c_status }}</small></ng-container></td>
+			<td>{{ entry.team_d }} <ng-container *ngIf="entry.team_d">
+				<small>{{ entry.team_d_status }}</small></ng-container></td>
 		</tr>
 	</tbody>
 </table>
+</div>

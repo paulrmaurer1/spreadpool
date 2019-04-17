@@ -19,6 +19,7 @@ export class RosterComponent implements OnInit {
 	_numBrackets: number; //tally estimated # of brackets
 	_numEntries: number; //tally up # of entries num bracket calculation
 	_numNeededEntries: number; //# entries needed to complete another bracket
+	loading: boolean;
 	
 	// Retrieve loggedInUser from parent component
 	@Input() get loggedInUser(): IUserData {
@@ -40,6 +41,7 @@ export class RosterComponent implements OnInit {
  		private router: Router) { }
 
 	ngOnInit() {
+		this.loading = true;
 		this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
 		this._numBrackets = 0;
 		this._numEntries = this._loggedInUser.num_entries;
@@ -52,6 +54,7 @@ export class RosterComponent implements OnInit {
 			})
 			this._numBrackets = Math.floor(this._numEntries/16);
 			this._numNeededEntries = (this._numBrackets+1)*16 - this._numEntries
+			this.loading=false;
 			//console.log(this.roster)
 		})
 	}

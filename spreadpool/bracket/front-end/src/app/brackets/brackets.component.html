@@ -1,45 +1,46 @@
 <!--brackets.component.html-->
 
-<!-- <div class="container"> -->
 <small class="text-muted">(Click to see bracket)</small>
-<nav class="navbar">
-    <ul class="nav nav-pills">
-		<li class = "nav-item" *ngFor = "let tbracket of tbracketList">
-			<a class = "nav-link" [routerLink]="['/brackets', tbracket.id]"
-			[class.active]="isActive(tbracket.id)"
-			>{{ tbracket.name }}</a>
-		</li>
-	</ul>
-</nav>
-<!-- </div> -->
+<div class="brackets-nav">
+    <nav class="navbar">
+        <ul class="nav nav-pills">
+    		<li class = "nav-item" *ngFor = "let tbracket of tbracketList">
+    			<a class = "nav-link" [routerLink]="['/brackets', tbracket.id]"
+    			[class.active]="isActive(tbracket.id)"
+    			>{{ tbracket.name }}</a>
+    		</li>
+    	</ul>
+    </nav>
+</div>
 <br>
 <div>
-  <tabset>
-    <tab heading="East">
-    	<app-bracket-detail *ngIf="activeBracket && eastGames" [bracket]="activeBracket" 
-    		[region]="'East'" [bracketGames]="eastGames" [bracketOwners]="eastOwners">
-    	</app-bracket-detail>
+  <tabset #staticTabs>
+    <tab heading={{regionList[0].name}} *ngIf="regionList">
+        <div [class.loader] = "loading">
+    	<app-bracket-tab *ngIf="region1Games && region1Owners" 
+            [region]="regionList[0].id" [bracketGames]="region1Games" [bracketOwners]="region1Owners">
+    	</app-bracket-tab>
+        </div>
     </tab>
-    <tab heading="West">
-    	<app-bracket-detail *ngIf="activeBracket && westGames" [bracket]="activeBracket" 
-    		[region]="'West'" [bracketGames]="westGames" [bracketOwners]="westOwners">
-    	</app-bracket-detail>
+    <tab heading={{regionList[1].name}} *ngIf="regionList">
+    	<app-bracket-tab *ngIf="region2Games && region2Owners"  
+    		[region]="regionList[1].id" [bracketGames]="region2Games" [bracketOwners]="region2Owners">
+    	</app-bracket-tab>
     </tab>
-    <tab heading="South">
-    	<app-bracket-detail *ngIf="activeBracket && southGames" [bracket]="activeBracket" 
-    		[region]="'South'" [bracketGames]="southGames" [bracketOwners]="southOwners">
-    	</app-bracket-detail>
+    <tab heading={{regionList[2].name}} *ngIf="regionList">
+    	<app-bracket-tab *ngIf="region3Games && region3Owners"  
+    		[region]="regionList[2].id" [bracketGames]="region3Games" [bracketOwners]="region3Owners">
+    	</app-bracket-tab>
     </tab>
-    <tab heading="Midwest">
-    	<app-bracket-detail *ngIf="activeBracket && midwestGames" [bracket]="activeBracket" 
-    		[region]="'Midwest'" [bracketGames]="midwestGames" [bracketOwners]="midwestOwners">
-    	</app-bracket-detail>
+    <tab heading={{regionList[3].name}} *ngIf="regionList">
+    	<app-bracket-tab *ngIf="region4Games && region4Owners"  
+    		[region]="regionList[3].id" [bracketGames]="region4Games" [bracketOwners]="region4Owners">
+    	</app-bracket-tab>
     </tab>
-    <tab heading="Final Four" active="True">
-    	<app-bracketff-detail *ngIf="activeBracket && ffourGames" [bracket]="activeBracket"
-    		[bracketGames]="ffourGames" [bracketOwners]="ffourOwners">
-    	</app-bracketff-detail>
+    <tab heading={{regionList[4].name}} *ngIf="regionList">
+    	<app-bracket-tab *ngIf="ffourOwners && ffourGames"
+    		[region]="regionList[4].id" [bracketGames]="ffourGames" [bracketOwners]="ffourOwners">
+    	</app-bracket-tab>
     </tab>
   </tabset>
 </div>
-

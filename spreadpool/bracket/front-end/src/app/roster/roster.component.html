@@ -1,26 +1,25 @@
 <!--roster.component.html-->
 <h4>Registrants</h4>
-<div class = "container">
-	<div class = "row justify-content-center">
-		<div class = "col-md hidden-xs"></div>
-		<div class = "col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2">
-			<p class="mb-0">People Registered</p>
-			<h1 class="display-3 m-0">{{_numRegistrants}}</h1>
-		</div>
-		<div class = "col-md hidden-xs"></div>
-		<div class = "col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2">
-			<p class="mb-0">Number of Entries</p>
-			<h1 class="display-3 m-0">{{_numEntries}}</h1>
-		</div>
-		<div class = "col-md hidden-xs"></div>
-		<div class = "col-xs-12 col-2-md text-center bg-secondary text-white rounded p-2">
-			<p class="mb-0">Number of Brackets</p>
-			<h1 class="display-4 m-0">{{_numBrackets}}</h1>
-			<small class="m-0" *ngIf = "_numNeededEntries > 1">({{_numNeededEntries}} more entries for another!)</small>
-			<small class="m-0" *ngIf = "_numNeededEntries == 1">({{_numNeededEntries}} more entry for another!)</small>
-		</div>
-		<div class = "col-md hidden-xs"></div>
+<div [class.loader] = "loading">
+<div class = "d-flex flex-row">
+	<div class = "col d-none d-md-block"></div>
+	<div class = "col-3 col-2-md text-center bg-secondary text-white rounded p-2">
+		<p class="mb-0">People Registered</p>
+		<h1 class="display-3 m-0">{{_numRegistrants}}</h1>
 	</div>
+	<div class = "col"></div>
+	<div class = "col-3 col-2-md text-center bg-secondary text-white rounded p-2">
+		<p class="mb-0">Number of Entries</p>
+		<h1 class="display-3 m-0">{{_numEntries}}</h1>
+	</div>
+	<div class = "col"></div>
+	<div class = "col-3 col-2-md text-center bg-secondary text-white rounded p-2">
+		<p class="mb-0">Number of Brackets</p>
+		<h1 class="display-4 m-0">{{_numBrackets}}</h1>
+		<small class="m-0" *ngIf = "_numNeededEntries > 1">({{_numNeededEntries}} more entries for another!)</small>
+		<small class="m-0" *ngIf = "_numNeededEntries == 1">({{_numNeededEntries}} more entry for another!)</small>
+	</div>
+	<div class = "col d-none d-md-block"></div>
 </div>
 <br>
 
@@ -54,3 +53,4 @@
 	</tbody>
 </table>
 <br>
+</div>

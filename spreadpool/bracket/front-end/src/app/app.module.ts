@@ -18,14 +18,12 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { LogoutComponent } from './logout/logout.component';
 import { BracketsComponent } from './brackets/brackets.component';
 import { ProfileFormModalComponent } from './profile-form-modal/profile-form-modal.component';
-import { BracketDetailComponent } from './bracket-detail/bracket-detail.component';
 import { TeamDetailsComponent } from './team-details/team-details.component';
-import { BracketGameComponent } from './bracket-game/bracket-game.component';
-import { BracketffDetailComponent } from './bracketff-detail/bracketff-detail.component';
 import { DeleteModalComponent } from './admin/create-brackets/create-brackets.component';
 import { TeamNextupComponent } from './team-nextup/team-nextup.component';
 import { StandingsComponent } from './standings/standings.component';
 import { StandingsNavComponent } from './standings-nav/standings-nav.component';
+import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
 
 
 @NgModule({
@@ -38,14 +36,12 @@ import { StandingsNavComponent } from './standings-nav/standings-nav.component';
     LogoutComponent,
     BracketsComponent,
     ProfileFormModalComponent,
-    BracketDetailComponent,
     TeamDetailsComponent,
-    BracketGameComponent,
-    BracketffDetailComponent,
     DeleteModalComponent,
     TeamNextupComponent,
     StandingsComponent,
     StandingsNavComponent,
+    BracketTabComponent,
   ],
   imports: [
     BrowserModule,

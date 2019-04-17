@@ -59,6 +59,11 @@ class User(AbstractUser):
 		return self.first_name + ' ' + self.last_name
 	#for full name, can also use standard User method: get_full_name()
 
+	@property
+	def short_name(self):
+		return self.first_name + ' ' + self.last_name[0] + '.'
+	
+
 class Region(models.Model):
 	#Track information about each Region
 	class Meta:

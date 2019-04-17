@@ -8,17 +8,47 @@
 
 /*CUSTOM STYLES BELOW TO APPLY ON TOP OF ABOVE IMPORTS*/
 
-/*Add space between nav pills - Standings page*/
-.nav-pills > li {
-  margin-right: 40px;
+/*Styling changes for mobile vs. laptop screens*/
+
+@media all and (max-width: 991px) {
+    .container {
+      /* Occupy full width of screen */
+       max-width: 100%; 
+    }
+    body {
+      /*Make font size smaller for mobile*/
+      font-size:x-small;
+
+    }
+    /*Adjust bracket cell height on mobile*/
+    li.game-top {
+      height: 12px;
+    }
+    li.game-bottom {
+      height: 12px;
+    }
 }
 
-/*.nav-item > li {
-  margin-left: 0px;
-  margin-right: 40px;
-}*/
+@media all and (min-width: 992px) {
+    body {
+      font-size:small;
+    }
+    li.game-top {
+      height: 20px;
+    }
+    li.game-bottom {
+      height: 20px;
+    }
+}
 
-/* Added to increase space between navbar elements*/
+
+
+/*General body style*/
+body{
+  font-family:sans-serif;
+}
+
+/*Styling of text in navbar, e.g. Hi, Paul!*/
 .navbar-text {
 	font-size: 10px;
 	padding-right: 10px;
@@ -63,6 +93,10 @@
     font-size: 10px;
   }
 
+/*Add space between nav pills - Standings page*/
+.nav-pills > li {
+  margin-right: 40px;
+}
 
 /*To turn cursor into a pointer, so user sees an element can be clicked*/
 /*e.g. for pendil edit icon on Roster page*/
@@ -102,4 +136,31 @@
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
+}
+
+/*On Brackets page, remove padding around navbar class to be consisistent*/
+/*with nav-pills spacing on Standings Page*/
+.brackets-nav .navbar{
+  padding: 0;
+}
+
+.loader {
+  height:100%;
+  width:100%;
+  /*background:url('../static/front-end/assets/bball_loading.gif') no-repeat center center;*/
+  background:url('./assets/bball_loading.gif') no-repeat top left;
+  position:absolute;
+  z-index:10;
+  opacity: 0.75;
+}
+
+/*Styles for Profile - My Teams table*/
+#my-teams th {
+  border-top:1px solid black;
+  border-bottom:1px solid black;
+}
+
+#my-teams tr td {
+  padding-top:1px;
+  padding-bottom:1px;
 }

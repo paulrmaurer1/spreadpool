@@ -6,12 +6,18 @@
 		<a class="navbar-brand" [routerLink]="['/home']">
 			<img src="../static/front-end/assets/spreadpool_white_no_background_48x114.png" alt="Spreadpool">
 		</a>
+		<div class="d-flex flex-row order-2 order-lg-3 align-middle">
+			<a *ngIf="currentUser" class="navbar-text" [routerLink]="['/profile']">Hi, {{ currentUser.first_name }}!</a>
+	        <form class="form-inline">
+		    	<button type="button" class="btn btn-outline-light" (click)="logout()">Log Out</button>
+		  	</form>
 			<button type="button" class="navbar-toggler" data-toggle="collapse"
-			data-target="#navbar" aria-controls="navbar" aria-expanded="false"
-			aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
-			<span class="navbar-toggler-icon"></span>
+				data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+				aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+				<span class="navbar-toggler-icon"></span>
 			</button>
-		<div class="collapse navbar-collapse" id="navbar" [collapse]="isCollapsed">
+		</div>
+		<div class="collapse navbar-collapse order-3 order-lg-2" id="navbar" [collapse]="isCollapsed">
 	        <ul class="navbar-nav mr-auto">
 	        	<li class="nav-item" [routerLinkActive]="['active']">
 	            	<a class="nav-link" [routerLink]="['/home']">Home</a>
@@ -35,10 +41,6 @@
 			        </div>
 				</li>
 	        </ul>
-	        <a *ngIf="currentUser" class="navbar-text" [routerLink]="['/profile']">{{ currentUser.email }}</a>
-	        <form class="form-inline">
-		    	<button type="button" class="btn btn-outline-light" (click)="logout()">Log Out</button>
-		  	</form>
 	  	</div> <!--end navbar-collapse -->
   	</div> <!--end container-fluid -->
 </nav>

@@ -27,6 +27,9 @@ router.register(r'matchups', views.MatchupViewSet)
 router.register(r'tbrackets', views.TbracketViewSet)
 router.register(r'games_owners', views.GameWithTeamOwnersViewSet)
 router.register(r'games_matchups', views.GameWithMatchupDataViewSet)
+router.register(r'games_new_matchups', views.NewGameWithMatchupDataViewSet)
+router.register(r'regions', views.RegionViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
