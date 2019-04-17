@@ -1,23 +1,10 @@
 <!-- dtandings-nav.component.html -->
 
-<!-- Show in container if larger (>=768px) screen -->
-<div class = "d-none d-md-block container">
-	<h4>Standings</h4>
-	<small class="text-muted">(Click to see bracket)</small>
-	<tabset type="pills">
-		<tab *ngFor = "let tbracket of tbracketList" heading="{{ tbracket.name }}">
-			<app-standings [bracket]="tbracket.id"></app-standings>
-		</tab>
-	</tabset>
-</div>
-
-<!-- Do not show in container if smaller (<768px) screen -->
-<div class = "d-block d-md-none">
-	<h4>Standings</h4>
-	<small class="text-muted">(Click to see bracket)</small>
-	<tabset type="pills">
-		<tab *ngFor = "let tbracket of tbracketList" heading="{{ tbracket.name }}">
-			<app-standings [bracket]="tbracket.id"></app-standings>
-		</tab>
-	</tabset>
-</div>
+<h4>Standings</h4>
+<small class="text-muted">(Click to see bracket)</small>
+<tabset type="pills">
+	<tab *ngFor = "let tbracket of _tbracketList" heading="{{ tbracket.name }}">
+		<app-standings [bracket]="tbracket.id"></app-standings>
+	</tab>
+</tabset>
+<br>

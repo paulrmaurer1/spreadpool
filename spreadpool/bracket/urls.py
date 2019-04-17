@@ -11,9 +11,11 @@ urlpatterns = [
 	path('profile/<int:pk>/', views.ProfileView.as_view(), name='profile'),
 	path('profile/<int:pk>/edit/', views.ProfileEdit.as_view(), name='profile_edit'),
 	path('profile/<int:pk>/delete/', views.ProfileDelete.as_view(), name='profile_delete'),
-	path('admin_page/', views.AdminView.as_view(), name='admin_page'),
-	path('tbracket_page/', views.tbracket_page, name='tbracket_page'),
-	path('tbracket_reassign/', views.tbracket_reassign_teams, name='tbracket_reassign'),
+
+	# Unecessary CBV urlpatterns - replaced with Angular
+	# path('admin_page/', views.AdminView.as_view(), name='admin_page'),
+	# path('tbracket_page/', views.tbracket_page, name='tbracket_page'),
+	# path('tbracket_reassign/', views.tbracket_reassign_teams, name='tbracket_reassign'),
 	
 
 	# Old FBV urlpatterns for above

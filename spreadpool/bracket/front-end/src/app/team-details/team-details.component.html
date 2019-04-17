@@ -1,52 +1,50 @@
 <!--roster.component.html-->
 <h4>My Teams</h4>
-
-
-<div class="row border-bottom border-top">
-	<div class="col-auto col-md-1"><strong>Bracket</strong></div>
-	<div class="col col-md-2 d-none d-md-block"><strong>Region</strong></div>
-	<div class="col col-md-2 d-none d-md-block"><strong>Original Teams</strong></div>
-	<div class="col-auto col-md-2"><strong>Active Team(s)</strong></div>
-	<div class="col-auto col-md-4"><strong>Next Game</strong></div>
-</div>
-<div *ngIf="_entryList && _entryList.length; else assignment_announcement">
-	<div class = "row border-bottom" *ngFor = "let entry of _entryList">
-		<div class="col-auto col-md-1 align-self-center">
-			<div class="col text-primary text-pointer" (click)="sendToBracket(entry.tbracket)">
-				<strong>{{ entry.tbracket }}</strong>
-			</div>
-		</div>
-		<div class="col col-md-2 d-none d-md-block">
-			<div class="col">East</div>
-			<div class="col">West</div>
-			<div class="col">South</div>
-			<div class="col">Midwest</div>
-		</div>
-		<div class="col col-md-2 d-none d-md-block">
-			<div class="col">{{ entry.orig_team_a }}</div>
-			<div class="col">{{ entry.orig_team_b }}</div>
-			<div class="col">{{ entry.orig_team_c }}</div>
-			<div class="col">{{ entry.orig_team_d }}</div>
-		</div>
-		<div class="col-auto col-md-2">
-			<div class="col">{{ entry.team_a || '**OUT**'}}</div>
-			<div class="col">{{ entry.team_b || '**OUT**'}}</div>
-			<div class="col">{{ entry.team_c || '**OUT**'}}</div>
-			<div class="col">{{ entry.team_d || '**OUT**'}}</div>
-		</div>
-		<div class="col-auto col-md-4">
-			<div class="col"><app-team-nextup *ngIf = "entry.team_a; else not_applicable" 
-				[bracket]="entry.tbracket_id" [team]="entry.team_a_id"></app-team-nextup></div>
-			<div class="col"><app-team-nextup *ngIf = "entry.team_b; else not_applicable" 
-				[bracket]="entry.tbracket_id" [team]="entry.team_b_id"></app-team-nextup></div>
-			<div class="col"><app-team-nextup *ngIf = "entry.team_c; else not_applicable" 
-				[bracket]="entry.tbracket_id" [team]="entry.team_c_id"></app-team-nextup></div>
-			<div class="col"><app-team-nextup *ngIf = "entry.team_d; else not_applicable" 
-				[bracket]="entry.tbracket_id" [team]="entry.team_d_id"></app-team-nextup></div>
-			<ng-template #not_applicable>&nbsp;</ng-template>
-		</div>
+<br>
+<div class="table-responsive" *ngIf="_entryList && _entryList.length; else assignment_announcement">
+	<div class = "table table-borderless table-sm" *ngFor = "let entry of _entryList" id="my-teams">
+		<thead>
+			<tr class="table-active">
+				<th scope="col">Bracket</th>
+				<th scope="col">Region</th>
+				<th scope="col">Original Teams</th>
+				<th scope="col">Active Team(s)</th>
+				<th scope="col">Next Game</th>
+			</tr>
+		</thead>
+		<tbody *ngIf="_regionList">
+			<tr>
+				<td class="text-primary text-pointer" (click)="sendToBracket(entry.tbracket)"><strong>{{ entry.tbracket }}</strong></td>
+				<td>{{ _regionList[0].name }}</td>
+				<td>{{ entry.orig_team_a }}</td>
+				<td>{{ entry.team_a || '**OUT**'}}</td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_a_id" [region]="_regionList[0].id"></app-team-nextup></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{ _regionList[1].name }}</td>
+				<td>{{ entry.orig_team_b }}</td>
+				<td>{{ entry.team_b || '**OUT**'}}</td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_b_id" [region]="_regionList[1].id"></app-team-nextup></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{ _regionList[2].name }}</td>
+				<td>{{ entry.orig_team_c }}</td>
+				<td>{{ entry.team_c || '**OUT**'}}</td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_c_id" [region]="_regionList[2].id"></app-team-nextup></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{ _regionList[3].name }}</td>
+				<td>{{ entry.orig_team_d }}</td>
+				<td>{{ entry.team_d || '**OUT**'}}</td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_d_id" [region]="_regionList[3].id"></app-team-nextup></td>
+			</tr>
+		</tbody>
 	</div>
 </div>
+
 <br>
 <ng-template #assignment_announcement>
 	<div class="text-center">
@@ -55,4 +53,3 @@
 		<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>
 	</div>
 </ng-template>
-<!-- </div> -->

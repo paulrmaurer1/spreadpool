@@ -19,7 +19,8 @@ badLinks = (
 	"url('primeicons.ttf')",
 	"url('primeicons.woff')",
 	"url('open-sans-v15-latin-regular.woff2')",
-	"url('open-sans-v15-latin-regular.woff')"
+	"url('open-sans-v15-latin-regular.woff')",
+	"url('bball_loading.gif')"
 	)
 goodLinks = (
 	"url('../static/front-end/fontawesome-webfont.woff2')",
@@ -28,7 +29,8 @@ goodLinks = (
 	"url('../static/front-end/primeicons.ttf')",
 	"url('../static/front-end/primeicons.woff')",
 	"url('../static/front-end/open-sans-v15-latin-regular.woff2')",
-	"url('../static/front-end/open-sans-v15-latin-regular.woff')"
+	"url('../static/front-end/open-sans-v15-latin-regular.woff')",
+	"url('../static/front-end/assets/bball_loading.gif')"
 	)
 
 line_num=0

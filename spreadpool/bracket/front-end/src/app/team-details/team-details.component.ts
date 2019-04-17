@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUserData, EntryData, TBracketData, MatchupData, GameData } from '../shared/interfaces';
+import { IUserData, EntryData, TBracketData, MatchupData, GameData, RegionData } from '../shared/interfaces';
 import { EntryService } from '../core/entry.service';
 import { TBracketService } from '../core/tbracket.service';
 import { MatchupService } from '../core/matchup.service';
 import { GameService } from '../core/game.service';
+import { RegionService } from '../core/region.service';
 
 @Component({
   selector: 'app-team-details',
@@ -15,7 +16,7 @@ export class TeamDetailsComponent implements OnInit {
 
 	_player: IUserData;
 	_entryList: EntryData[];
-	// private _bracketTeams: {[bracket: string] : EntryData}[];
+	_regionList: RegionData[];
 	_nextGame: GameData;
 	_nextMatchup: MatchupData;
 	_nextOpponent: string;
@@ -35,7 +36,8 @@ export class TeamDetailsComponent implements OnInit {
 		private _tbracketService: TBracketService,
 		private router: Router,
 		private _matchupService: MatchupService,
-		private _gameService: GameService) { }
+		private _gameService: GameService,
+		private _regionService: RegionService) { }
 
 	ngOnInit() {
 
@@ -45,23 +47,14 @@ export class TeamDetailsComponent implements OnInit {
 			//console.log ("entryList is: ", this._entryList);
 		});
 
-		// Attempt to combine multiple entries from same bracket into a data structure
-		// that'd be easy to show in tables
-		// this._bracketTeams = [];
-		// retrieve bracket names and build array to capture bracket name + entry array
-		// this._tbracketService.getList().subscribe(data => {
-		// 	data.forEach((bracket) => {
-		// 		this._entryList.forEach((entry) => {
-		// 			if (entry.tbracket == bracket.id) {
-		// 				this._bracketTeams.push({[bracket.name] : entry})
-		// 			}
-		// 		})
-		// 	});
-		// 	console.log("List of Brackets: ", this._bracketTeams);
-		// });
+		// Retrive list of regions to display in tabs
+		this._regionService.getRegionList().subscribe(data => {
+			this._regionList = data;
+	})
 
 	}
 
+	// Function to create url that to which user is sent when click on Bracket name
 	sendToBracket(bracket) {
 		this._tbracketService.getList().subscribe(data => {
 			data.forEach((tbracket) => {

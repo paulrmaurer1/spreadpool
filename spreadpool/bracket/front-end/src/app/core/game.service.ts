@@ -31,6 +31,11 @@ export class GameService {
 		return this.http.get<GameData[]>(gameUrl + '?teamid=' + team_id)
 	}
 
+	//method to retrieve all games from a particular region
+	getGameListByRegion(region_id) {
+		return this.http.get<GameData[]>(gameUrl + '?regionid=' + region_id)
+	}
+
 	getGameWithOwnerList(tbracket_id) {
 		return this.http.get<GameWithOwnerData[]>(game_ownerURL + '?tbracketid=' + tbracket_id)
 	}
@@ -39,8 +44,19 @@ export class GameService {
 		return this.http.get<GameWithOwnerData[]>(game_matchupURL + '?tbracketid=' + tbracket_id)
 	}
 
+	//method to return all games with owner info for a particular bracket
 	getNewGameWithMatchupDataList(tbracket_id) {
-		return this.http.get<GameWithOwnerData[]>(new_game_matchupURL + '?tbracketid=' + tbracket_id)
+		return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL + '?tbracketid=' + tbracket_id)
+	}
+
+	//method to return all games that an owner or their Active Team has participated, for purposes of the team-nextup component
+	getNewGameWithMatchupDataListByRegion(tbracket_id, region_id, owner_id, team_id) {
+		if (team_id == null) {
+			return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL+'?tbracketid='+tbracket_id+'&regionid='+region_id+'&ownerid='+owner_id)
+		}
+		else {
+			return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL+'?tbracketid='+tbracket_id+'&regionid='+region_id+'&teamid='+team_id)
+		}
 	}
 
 	updateGame(game) {

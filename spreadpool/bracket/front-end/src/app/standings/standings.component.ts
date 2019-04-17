@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EntryStandingsData } from '../shared/interfaces';
+import { EntryStandingsData, RegionData, GameData } from '../shared/interfaces';
 import { EntryService } from '../core/entry.service';
 import { UserService } from '../core/user.service';
+import { RegionService } from '../core/region.service';
+import { GameService } from '../core/game.service';
 
 
 @Component({
@@ -12,7 +14,10 @@ import { UserService } from '../core/user.service';
 export class StandingsComponent implements OnInit {
 
 	_standingsList: EntryStandingsData[];
+	_regionList: RegionData[];
 	_bracketId: number;
+	_nextGame: GameData;
+	loading: boolean;
 
 	@Input() get bracket(): number {
 		return this._bracketId;
@@ -26,18 +31,28 @@ export class StandingsComponent implements OnInit {
 
   constructor(
   	private _entryService: EntryService,
-  	private _userService: UserService 
+  	private _userService: UserService,
+  	private _regionService: RegionService,
+  	private _gameService: GameService
   	) { }
 
-  ngOnInit() {
-  	// this._bracketId = 1;
-
-  	this._entryService.getEntryStandings(this._bracketId).subscribe(data => {
+	ngOnInit() {
+		this.loading = true;
+		// Retrieve entries for players within bracket
+		this._entryService.getEntryStandings(this._bracketId).subscribe(data => {
 			this._standingsList = data;
 			// Sort the standings by descending team_count (they're pre-sorted by last name descending)
 			this._standingsList.sort((a,b) => (a.team_count > b.team_count) ? -1 : ((b.team_count > a.team_count) ? 1 : 0));
+			this.loading = false;
 		});
 
-  }
+		// Retrieve list of regions to display in column titles
+		this._regionService.getRegionList().subscribe(data => {
+			this._regionList = data;
+		})
+
+
+	}// end ngOnInit
+
 
 }

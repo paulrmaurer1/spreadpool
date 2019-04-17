@@ -42,26 +42,6 @@ export class HeaderComponent implements OnInit {
 			}
 		});
 
-		// *** Old Way ***
-		// this._bracketToShow = null;
-		// // Retrieve the logged in player's entries to set default bracket to show
-		// // when click on Bracket navbar option
-		// this._entryService.getEntryBracketListByPlayer(this._userService.id).subscribe(data => {
-		// 	// Check to see if User is assigned an entry yet, if so, show the first bracket
-		// 	// console.log ("player brackets: ", data)
-		// 	if (data.length > 0 && data[0].tbracket != null) {
-		// 		this._bracketToShow = data[0].tbracket;
-		// 	}
-		// 	else {
-		// 	// Otherwise, pull the first bracket that has been setup (there should always be at least 1 bracket setup)
-		// 		this._tbracketService.getList().subscribe(data => {
-		// 			// console.log ("system brackets: ", data)
-		// 			if (data.length > 0) {
-		// 				this._bracketToShow = data[0].id;
-		// 			}
-		// 		})
-		// 	}
-		// }); //end subscribe
 	} //end ngOnInit()
 
   	// This function is used to keep Brackets nav bar option 'active' regardless of parameter

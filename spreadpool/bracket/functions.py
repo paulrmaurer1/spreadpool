@@ -8,6 +8,26 @@ import random
 #import django functions
 from django.db.models import Q
 
+def determineStatus(team_id, tbracket_id, player_id):
+	# determine status, i.e. furthest/current round that team is in or whether semi-finalist or champion 
+	# for EntryStandingsSerializer and subsequently display within Standings page
+	status = None
+	if team_id:
+		latest_game = Game.objects.filter(Q(team1_id=team_id) | Q(team2_id=team_id)).order_by('-id')[0]
+		if latest_game.t_round <= 4:
+			status = "(Round " + str(latest_game.t_round) + ")"
+		elif latest_game.t_round == 5:
+			status = "(Final Four)"
+		else:
+			# determine champion to assign status of either Champion or Semifinalist
+			related_matchup = Matchup.objects.get(tbracket_id=tbracket_id, game_id=latest_game.id)
+			if related_matchup.winner_id == player_id:
+				status = "(Champion)"
+			else:
+				status = "(Semi-finalist)"
+	return status
+
+
 def create_entries():
 	players = User.objects.exclude(username='admin') # Create entries for all users except Admin (user.id = 1)
 	for player in players:
