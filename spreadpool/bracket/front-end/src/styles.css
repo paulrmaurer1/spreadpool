@@ -22,10 +22,10 @@
     }
     /*Adjust bracket cell height on mobile*/
     li.game-top {
-      height: 12px;
+      height: 14px;
     }
     li.game-bottom {
-      height: 12px;
+      height: 14px;
     }
 }
 
@@ -95,7 +95,7 @@ body{
 
 /*Add space between nav pills - Standings page*/
 .nav-pills > li {
-  margin-right: 40px;
+/*  margin-right: 40px;*/
 }
 
 /*To turn cursor into a pointer, so user sees an element can be clicked*/
