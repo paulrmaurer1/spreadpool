@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatchupData, GameData, IUserData, NewGameWithOwnerData } from '../shared/interfaces';
+import { MatchupData, GameData, IUserData, NewGameWithOwnerData, MatchupLastGameData } from '../shared/interfaces';
 import { MatchupService } from '../core/matchup.service';
 import { GameService } from '../core/game.service';
 import { UserService } from '../core/user.service';
@@ -11,13 +11,14 @@ import { UserService } from '../core/user.service';
   styleUrls: ['./team-nextup.component.css']
 })
 export class TeamNextupComponent implements OnInit {
-
+	@Input('orig_team') _orig_team_id: number;
 	@Input('bracket') _bracket_id: number;
 	@Input('team') _team_id: number;
 	@Input('region') _region_id: number;
+	
 	_nextup_game: string;
 	_nextGame: GameData;
-	_lastGame: NewGameWithOwnerData;
+	_lastGame: MatchupLastGameData;
 
 	constructor(
 	  	private router: Router,
@@ -27,9 +28,9 @@ export class TeamNextupComponent implements OnInit {
 
 	ngOnInit() {
 		// Get last matching game which will either be last game played or next game up
-		this._gameService.getNewGameWithMatchupDataListByRegion(this._bracket_id,this._region_id,this._userService.id,this._team_id).subscribe(games => {
-			this._lastGame = games[games.length-1];  
-
+		this._matchupService.getMatchupLastGame(this._bracket_id, this._orig_team_id).subscribe(matchups => {
+			this._lastGame = matchups[0];  
+			
 			//if owner's team is out
 			if (this._team_id == null) { 
 

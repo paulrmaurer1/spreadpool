@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUserData, EntryData, TBracketData, MatchupData, GameData, RegionData } from '../shared/interfaces';
+import { IUserData, EntryData, GameData, RegionData } from '../shared/interfaces';
 import { EntryService } from '../core/entry.service';
-import { TBracketService } from '../core/tbracket.service';
-import { MatchupService } from '../core/matchup.service';
 import { GameService } from '../core/game.service';
 import { RegionService } from '../core/region.service';
 
@@ -17,15 +15,11 @@ export class TeamDetailsComponent implements OnInit {
 	_player: IUserData;
 	_entryList: EntryData[];
 	_regionList: RegionData[];
-	_nextGame: GameData;
-	_nextMatchup: MatchupData;
-	_nextOpponent: string;
-	_nextTeam: string;
+	loading: boolean;
 
 	@Input() get player(): IUserData {
 		return this._player;
 	}
-
 	set player(value: IUserData) {
 		if (value) {
 			this._player = value;
@@ -33,36 +27,27 @@ export class TeamDetailsComponent implements OnInit {
 	}
 
 	constructor(private _entryService: EntryService,
-		private _tbracketService: TBracketService,
 		private router: Router,
-		private _matchupService: MatchupService,
 		private _gameService: GameService,
 		private _regionService: RegionService) { }
 
 	ngOnInit() {
-
+		this.loading=true;
 		//retrieve entries for user
 		this._entryService.getEntryDetailsListByPlayer(this._player.id).subscribe(data => {
 			this._entryList = data;
-			//console.log ("entryList is: ", this._entryList);
+
+			// Retrieve list of regions to display in tabs
+			this._regionService.getRegionList().subscribe(data => {
+				this._regionList = data;
+				this.loading=false;
+			});
 		});
-
-		// Retrive list of regions to display in tabs
-		this._regionService.getRegionList().subscribe(data => {
-			this._regionList = data;
-	})
-
 	}
 
 	// Function to create url that to which user is sent when click on Bracket name
 	sendToBracket(bracket) {
-		this._tbracketService.getList().subscribe(data => {
-			data.forEach((tbracket) => {
-				if (bracket == tbracket.name) {
-					this.router.navigate(['/brackets', tbracket.id])
-				}
-			})
-		});
+		this.router.navigate(['/brackets', bracket])
 	} // end sendToBracket()
 
 }

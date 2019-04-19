@@ -814,10 +814,12 @@ var AppComponent = /** @class */ (function () {
         else {
             // this._userService.id = 2;
             // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
-            this._userService.id = 8;
-            this._userService.login({ 'email': 'bzobrist@cubs.com', 'password': 'Maddon55' });
+            // this._userService.id = 8;
+            // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
             // this._userService.id = 1;
             // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
+            this._userService.id = 29;
+            this._userService.login({ 'email': 'bzobrist@cubs.com', 'password': 'Maddon55' });
         }
     };
     AppComponent = __decorate([
@@ -1229,7 +1231,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--brackets.component.html-->\r\n\r\n<small class=\"text-muted\">(Click to see bracket)</small>\r\n<div class=\"brackets-nav\">\r\n    <nav class=\"navbar\">\r\n        <ul class=\"nav nav-pills\">\r\n    \t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n    \t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n    \t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n    \t\t\t>{{ tbracket.name }}</a>\r\n    \t\t</li>\r\n    \t</ul>\r\n    </nav>\r\n</div>\r\n<br>\r\n<div>\r\n  <tabset #staticTabs>\r\n    <tab heading={{regionList[0].name}} *ngIf=\"regionList\">\r\n        <div [class.loader] = \"loading\">\r\n    \t<app-bracket-tab *ngIf=\"region1Games && region1Owners\" \r\n            [region]=\"regionList[0].id\" [bracketGames]=\"region1Games\" [bracketOwners]=\"region1Owners\">\r\n    \t</app-bracket-tab>\r\n        </div>\r\n    </tab>\r\n    <tab heading={{regionList[1].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"region2Games && region2Owners\"  \r\n    \t\t[region]=\"regionList[1].id\" [bracketGames]=\"region2Games\" [bracketOwners]=\"region2Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[2].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"region3Games && region3Owners\"  \r\n    \t\t[region]=\"regionList[2].id\" [bracketGames]=\"region3Games\" [bracketOwners]=\"region3Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[3].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"region4Games && region4Owners\"  \r\n    \t\t[region]=\"regionList[3].id\" [bracketGames]=\"region4Games\" [bracketOwners]=\"region4Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[4].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"ffourOwners && ffourGames\"\r\n    \t\t[region]=\"regionList[4].id\" [bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n"
+module.exports = "<!--brackets.component.html-->\r\n\r\n<small class=\"text-muted\">(Click to see bracket)</small>\r\n<div class=\"brackets-nav\">\r\n    <nav class=\"navbar\">\r\n        <ul class=\"nav nav-pills\">\r\n    \t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n    \t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n    \t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n    \t\t\t>{{ tbracket.name }}</a>\r\n    \t\t</li>\r\n    \t</ul>\r\n    </nav>\r\n</div>\r\n<br>\r\n<div [class.loader] = \"loading\">\r\n  <tabset #staticTabs *ngIf=\"regionList\">\r\n    <tab heading={{regionList[0].name}}>\r\n        <app-bracket-tab *ngIf=\"region1Games && region1Owners\" \r\n            [region]=\"regionList[0].id\" [bracketGames]=\"region1Games\" [bracketOwners]=\"region1Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[1].name}}>\r\n    \t<app-bracket-tab *ngIf=\"region2Games && region2Owners\"  \r\n    \t\t[region]=\"regionList[1].id\" [bracketGames]=\"region2Games\" [bracketOwners]=\"region2Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[2].name}}>\r\n    \t<app-bracket-tab *ngIf=\"region3Games && region3Owners\"  \r\n    \t\t[region]=\"regionList[2].id\" [bracketGames]=\"region3Games\" [bracketOwners]=\"region3Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[3].name}}>\r\n    \t<app-bracket-tab *ngIf=\"region4Games && region4Owners\"  \r\n    \t\t[region]=\"regionList[3].id\" [bracketGames]=\"region4Games\" [bracketOwners]=\"region4Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <!-- <tab heading={{regionList[4].name}} [active]=\"true\"> -->\r\n    <tab heading={{regionList[4].name}}>\r\n    \t<app-bracket-tab *ngIf=\"ffourOwners && ffourGames\"\r\n    \t\t[region]=\"regionList[4].id\" [bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1329,7 +1331,11 @@ var BracketsComponent = /** @class */ (function () {
                         _this.staticTabs.tabs[id].active = true;
                     }
                 });
-                _this.loading = false;
+                // Retrieve list of regions to display in tabs
+                _this._regionService.getRegionList().subscribe(function (data) {
+                    _this.regionList = data;
+                    _this.loading = false;
+                });
             });
         });
         // Retrieve game list & convert each Region's games into indexed arrays
@@ -1376,10 +1382,6 @@ var BracketsComponent = /** @class */ (function () {
         // belongs to sorted first
         this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
             _this.tbracketList = data;
-        });
-        // Retrieve list of regions to display in tabs
-        this._regionService.getRegionList().subscribe(function (data) {
-            _this.regionList = data;
         });
     }; //end ngOnInit
     // Function to determine which bracket navbar to make 'active' in template based on route param
@@ -1561,15 +1563,6 @@ var GameService = /** @class */ (function () {
     GameService.prototype.getNewGameWithMatchupDataList = function (tbracket_id) {
         return this.http.get(new_game_matchupURL + '?tbracketid=' + tbracket_id);
     };
-    //method to return all games that an owner or their Active Team has participated, for purposes of the team-nextup component
-    GameService.prototype.getNewGameWithMatchupDataListByRegion = function (tbracket_id, region_id, owner_id, team_id) {
-        if (team_id == null) {
-            return this.http.get(new_game_matchupURL + '?tbracketid=' + tbracket_id + '&regionid=' + region_id + '&ownerid=' + owner_id);
-        }
-        else {
-            return this.http.get(new_game_matchupURL + '?tbracketid=' + tbracket_id + '&regionid=' + region_id + '&teamid=' + team_id);
-        }
-    };
     GameService.prototype.updateGame = function (game) {
         return this.http.patch(gameUrl + game.id + '/', JSON.stringify(game), this.getHttpOptions());
     };
@@ -1689,6 +1682,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 //entryUrl is base url for matchups table end point
 var matchupUrl = '/api/matchups/';
+var matchupLastGameUrl = '/api/matchups_last_game/';
 var MatchupService = /** @class */ (function () {
     function MatchupService(http) {
         this.http = http;
@@ -1699,6 +1693,9 @@ var MatchupService = /** @class */ (function () {
     };
     MatchupService.prototype.getMatchupsDetailsByBracketAndGame = function (b_id, g_id) {
         return this.http.get(matchupUrl + '?tbracketid=' + b_id + '&gameid=' + g_id);
+    };
+    MatchupService.prototype.getMatchupLastGame = function (b_id, og_id) {
+        return this.http.get(matchupLastGameUrl + '?tbracketid=' + b_id + '&orig_teamid=' + og_id);
     };
     MatchupService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2541,7 +2538,6 @@ var ProfileComponent = /** @class */ (function () {
         this.route = route;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        // this.user = this._userService.loggedInUser;
         this.user = this.route.snapshot.data.loggedInUser;
     };
     ProfileComponent = __decorate([
@@ -2806,7 +2802,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
 /* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
 /* harmony import */ var _core_region_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/region.service */ "./src/app/core/region.service.ts");
-/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2820,13 +2815,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var StandingsComponent = /** @class */ (function () {
-    function StandingsComponent(_entryService, _userService, _regionService, _gameService) {
+    function StandingsComponent(_entryService, _userService, _regionService) {
         this._entryService = _entryService;
         this._userService = _userService;
         this._regionService = _regionService;
-        this._gameService = _gameService;
     }
     Object.defineProperty(StandingsComponent.prototype, "bracket", {
         get: function () {
@@ -2868,8 +2861,7 @@ var StandingsComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_1__["EntryService"],
             _core_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"],
-            _core_region_service__WEBPACK_IMPORTED_MODULE_3__["RegionService"],
-            _core_game_service__WEBPACK_IMPORTED_MODULE_4__["GameService"]])
+            _core_region_service__WEBPACK_IMPORTED_MODULE_3__["RegionService"]])
     ], StandingsComponent);
     return StandingsComponent;
 }());
@@ -2896,7 +2888,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n<br>\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\" [region]=\"_regionList[0].id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\" [region]=\"_regionList[1].id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\" [region]=\"_regionList[2].id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\" [region]=\"_regionList[3].id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n\r\n<br>\r\n<ng-template #assignment_announcement>\r\n\t<div class=\"text-center\">\r\n\t\t<br>\r\n\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t</div>\r\n</ng-template>"
+module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length; else assignment_announcement\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\" [region]=\"_regionList[0].id\" \r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_a_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\" [region]=\"_regionList[1].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_b_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\" [region]=\"_regionList[2].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_c_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\" [region]=\"_regionList[3].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_d_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div>\r\n\r\n<br>\r\n<ng-template #assignment_announcement>\r\n\t<div class=\"text-center\">\r\n\t\t<br>\r\n\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -2913,10 +2905,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
-/* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
-/* harmony import */ var _core_matchup_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/matchup.service */ "./src/app/core/matchup.service.ts");
-/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
-/* harmony import */ var _core_region_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/region.service */ "./src/app/core/region.service.ts");
+/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
+/* harmony import */ var _core_region_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/region.service */ "./src/app/core/region.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2931,14 +2921,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
 var TeamDetailsComponent = /** @class */ (function () {
-    function TeamDetailsComponent(_entryService, _tbracketService, router, _matchupService, _gameService, _regionService) {
+    function TeamDetailsComponent(_entryService, router, _gameService, _regionService) {
         this._entryService = _entryService;
-        this._tbracketService = _tbracketService;
         this.router = router;
-        this._matchupService = _matchupService;
         this._gameService = _gameService;
         this._regionService = _regionService;
     }
@@ -2956,26 +2942,20 @@ var TeamDetailsComponent = /** @class */ (function () {
     });
     TeamDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.loading = true;
         //retrieve entries for user
         this._entryService.getEntryDetailsListByPlayer(this._player.id).subscribe(function (data) {
             _this._entryList = data;
-            //console.log ("entryList is: ", this._entryList);
-        });
-        // Retrive list of regions to display in tabs
-        this._regionService.getRegionList().subscribe(function (data) {
-            _this._regionList = data;
+            // Retrieve list of regions to display in tabs
+            _this._regionService.getRegionList().subscribe(function (data) {
+                _this._regionList = data;
+                _this.loading = false;
+            });
         });
     };
     // Function to create url that to which user is sent when click on Bracket name
     TeamDetailsComponent.prototype.sendToBracket = function (bracket) {
-        var _this = this;
-        this._tbracketService.getList().subscribe(function (data) {
-            data.forEach(function (tbracket) {
-                if (bracket == tbracket.name) {
-                    _this.router.navigate(['/brackets', tbracket.id]);
-                }
-            });
-        });
+        this.router.navigate(['/brackets', bracket]);
     }; // end sendToBracket()
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -2989,11 +2969,9 @@ var TeamDetailsComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./team-details.component.css */ "./src/app/team-details/team-details.component.css")]
         }),
         __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
-            _core_tbracket_service__WEBPACK_IMPORTED_MODULE_3__["TBracketService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _core_matchup_service__WEBPACK_IMPORTED_MODULE_4__["MatchupService"],
-            _core_game_service__WEBPACK_IMPORTED_MODULE_5__["GameService"],
-            _core_region_service__WEBPACK_IMPORTED_MODULE_6__["RegionService"]])
+            _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
+            _core_region_service__WEBPACK_IMPORTED_MODULE_4__["RegionService"]])
     ], TeamDetailsComponent);
     return TeamDetailsComponent;
 }());
@@ -3063,8 +3041,8 @@ var TeamNextupComponent = /** @class */ (function () {
     TeamNextupComponent.prototype.ngOnInit = function () {
         var _this = this;
         // Get last matching game which will either be last game played or next game up
-        this._gameService.getNewGameWithMatchupDataListByRegion(this._bracket_id, this._region_id, this._userService.id, this._team_id).subscribe(function (games) {
-            _this._lastGame = games[games.length - 1];
+        this._matchupService.getMatchupLastGame(this._bracket_id, this._orig_team_id).subscribe(function (matchups) {
+            _this._lastGame = matchups[0];
             //if owner's team is out
             if (_this._team_id == null) {
                 // determine which team the user owns and select the other team as having lost
@@ -3129,6 +3107,10 @@ var TeamNextupComponent = /** @class */ (function () {
             } //end else
         }); // end this._gameService subscribe
     }; //end ngOnInit
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('orig_team'),
+        __metadata("design:type", Number)
+    ], TeamNextupComponent.prototype, "_orig_team_id", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('bracket'),
         __metadata("design:type", Number)

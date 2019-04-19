@@ -85,7 +85,12 @@ export class BracketsComponent implements OnInit {
 						this.staticTabs.tabs[id].active = true;
 					}
 				});
-				this.loading = false;
+
+				// Retrieve list of regions to display in tabs
+				this._regionService.getRegionList().subscribe(data => {
+					this.regionList = data;
+					this.loading = false;
+				});
 			})
 		})
 		
@@ -124,11 +129,6 @@ export class BracketsComponent implements OnInit {
 		// belongs to sorted first
 		this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
 			this.tbracketList = data;
-		});
-
-		// Retrieve list of regions to display in tabs
-		this._regionService.getRegionList().subscribe(data => {
-			this.regionList = data;
 		});
 	
 	} //end ngOnInit

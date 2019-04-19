@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit {
 	constructor(private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		// this.user = this._userService.loggedInUser;
 		this.user = this.route.snapshot.data.loggedInUser;
 	}
 

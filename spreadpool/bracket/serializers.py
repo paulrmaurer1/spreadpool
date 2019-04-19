@@ -35,7 +35,8 @@ class EntrySerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = Entry
-		fields = ('orig_team_a', 'orig_team_b', 'orig_team_c', 'orig_team_d', \
+		fields = ('orig_team_a', 'orig_team_a_id', 'orig_team_b', 'orig_team_b_id', \
+		 'orig_team_c', 'orig_team_c_id', 'orig_team_d', 'orig_team_d_id', \
 		 'team_a', 'team_a_id', 'team_b', 'team_b_id', 'team_c', 'team_c_id', 'team_d', 'team_d_id', \
 		 'player', 'tbracket', 'tbracket_id')
 
@@ -340,6 +341,29 @@ class MatchupSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Matchup
 		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner', 'team1_owner_id', 'team2_owner_id')
+
+
+class MatchupLastGameSerializer(serializers.ModelSerializer):
+
+	team1_owner = serializers.StringRelatedField()
+	team2_owner = serializers.StringRelatedField()
+
+	class Meta:
+		model = Matchup
+		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner', 'team1_owner_id', 'team2_owner_id')
+
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
+		related_game = obj.game
+		data['spread'] = related_game.spread
+		data['region_id'] = related_game.region_id
+		data['t_round'] = related_game.t_round
+		data['team1'] = related_game.team1.bracket_name
+		data['team1_id'] = related_game.team1_id
+		data['team2'] = related_game.team2.bracket_name
+		data['team2_id'] = related_game.team2_id
+		return data
+
 
 class RegionSerializer(serializers.ModelSerializer):
 	

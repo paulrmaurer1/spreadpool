@@ -21,13 +21,21 @@ export interface TBracketData {
 export interface EntryData {
   id: number;
   orig_team_a: string;
+  orig_team_a_id: number;
   orig_team_b: string;
+  orig_team_b_id: number;
   orig_team_c: string;
+  orig_team_c_id: number;
   orig_team_d: string;
+  orig_team_d_id: number;
   team_a: string;
+  team_a_id: number;
   team_b: string;
+  team_b_id: number;
   team_c: string;
+  team_c_id: number;
   team_d: string;
+  team_d_id: number;
   player: string;
   tbracket: number;
   tbracket_id: number;
@@ -110,6 +118,24 @@ export interface MatchupData {
   team2_owner: string;
   team1_owner_id: number;
   team2_owner_id: number;
+}
+
+export interface MatchupLastGameData {
+  id: number;
+  tbracket: number;
+  game: number;
+  winner: number;
+  team1_owner: string;
+  team2_owner: string;
+  team1_owner_id: number;
+  team2_owner_id: number;
+  spread: number;
+  region_id: number;
+  t_round: number;
+  team1: string;
+  team1_id: number;
+  team2: string;
+  team2_id: number;
 }
 
 export interface RegionData {

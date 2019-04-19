@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EntryStandingsData, RegionData, GameData } from '../shared/interfaces';
+import { EntryStandingsData, RegionData } from '../shared/interfaces';
 import { EntryService } from '../core/entry.service';
 import { UserService } from '../core/user.service';
 import { RegionService } from '../core/region.service';
-import { GameService } from '../core/game.service';
 
 
 @Component({
@@ -16,13 +15,11 @@ export class StandingsComponent implements OnInit {
 	_standingsList: EntryStandingsData[];
 	_regionList: RegionData[];
 	_bracketId: number;
-	_nextGame: GameData;
 	loading: boolean;
 
 	@Input() get bracket(): number {
 		return this._bracketId;
 	}
-
 	set bracket(value: number) {
 		if (value) {
 			this._bracketId = value;
@@ -33,7 +30,6 @@ export class StandingsComponent implements OnInit {
   	private _entryService: EntryService,
   	private _userService: UserService,
   	private _regionService: RegionService,
-  	private _gameService: GameService
   	) { }
 
 	ngOnInit() {
@@ -50,9 +46,5 @@ export class StandingsComponent implements OnInit {
 		this._regionService.getRegionList().subscribe(data => {
 			this._regionList = data;
 		})
-
-
 	}// end ngOnInit
-
-
 }

@@ -49,16 +49,6 @@ export class GameService {
 		return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL + '?tbracketid=' + tbracket_id)
 	}
 
-	//method to return all games that an owner or their Active Team has participated, for purposes of the team-nextup component
-	getNewGameWithMatchupDataListByRegion(tbracket_id, region_id, owner_id, team_id) {
-		if (team_id == null) {
-			return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL+'?tbracketid='+tbracket_id+'&regionid='+region_id+'&ownerid='+owner_id)
-		}
-		else {
-			return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL+'?tbracketid='+tbracket_id+'&regionid='+region_id+'&teamid='+team_id)
-		}
-	}
-
 	updateGame(game) {
 		return this.http.patch<GameData>(gameUrl + game.id + '/', JSON.stringify(game), this.getHttpOptions())
 	}

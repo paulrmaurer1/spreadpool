@@ -8,6 +8,32 @@ import random
 #import django functions
 from django.db.models import Q
 
+def getLastGame(tbracket_id, orig_teamid):
+	# determine last game that an original team played in a particular bracket
+
+	#get first game that team played in
+	last_game = Game.objects.get((Q(team1_id=orig_teamid) | Q(team2_id=orig_teamid)) & Q(id__lte=32))
+	if last_game.team1.id == int(orig_teamid):
+		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team1_owner_id
+	else:
+		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team2_owner_id
+
+	#run while loop to keep finding child games where owner_id is either team1 or team2 owner of related matchup
+	alive=True
+	while alive:
+		try:
+			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
+			if owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team1_owner_id or \
+			owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team2_owner_id:
+				last_game = next_game
+			else:
+				alive = False
+		except Game.DoesNotExist:
+			alive = False
+
+	return last_game
+
+
 def determineStatus(team_id, tbracket_id, player_id):
 	# determine status, i.e. furthest/current round that team is in or whether semi-finalist or champion 
 	# for EntryStandingsSerializer and subsequently display within Standings page
@@ -21,6 +47,7 @@ def determineStatus(team_id, tbracket_id, player_id):
 		else:
 			# determine champion to assign status of either Champion or Semifinalist
 			related_matchup = Matchup.objects.get(tbracket_id=tbracket_id, game_id=latest_game.id)
+			print ("Championship matchup is:", related_matchup, related_matchup.winner_id, player_id)
 			if related_matchup.winner_id == player_id:
 				status = "(Champion)"
 			else:
@@ -308,6 +335,9 @@ def owner1_retains(game, c_game1, c_game2):
 		if game.region_id == 4:
 			entry_team1.team_d=game.team1
 			entry_team2.team_d=None
+		# if game.region_id == 5, don't do anything...owners keep teams
+
+
 		entry_team1.save()
 		entry_team2.save()
 		# Update approprate child game with retaining owner
@@ -357,6 +387,8 @@ def owner2_retains(game, c_game1, c_game2):
 		if game.region_id == 4:
 			entry_team1.team_d=None
 			entry_team2.team_d=game.team2
+		# if game.region_id == 5, don't do anything...owners keep teams
+
 		entry_team1.save()
 		entry_team2.save()
 		# Update approprate child game with retaining owner
@@ -406,6 +438,26 @@ def owner1_inherits(game, c_game1, c_game2):
 		if game.region_id == 4:
 			entry_team1.team_d=game.team2
 			entry_team2.team_d=None
+		if game.region_id == 5:
+		# If Final Four team, swap teams so that both owners retain a team for Standings purposes
+			if entry_team1.team_a_id == game.team1_id:
+				entry_team1.team_a=game.team2
+			elif entry_team1.team_b_id == game.team1_id:
+				entry_team1.team_b=game.team2
+			elif entry_team1.team_c_id == game.team1_id:
+				entry_team1.team_c=game.team2
+			elif entry_team1.team_d_id == game.team1_id:
+				entry_team1.team_d=game.team2
+
+			if entry_team2.team_a_id == game.team2_id:
+				entry_team2.team_a=game.team1
+			elif entry_team2.team_b_id == game.team2_id:
+				entry_team2.team_b=game.team1
+			elif entry_team2.team_c_id == game.team2_id:
+				entry_team2.team_c=game.team1
+			elif entry_team2.team_d_id == game.team2_id:
+				entry_team2.team_d=game.team1
+		
 		entry_team1.save()
 		entry_team2.save()
 		# Update approprate child game with retaining owner
@@ -455,6 +507,26 @@ def owner2_inherits(game, c_game1, c_game2):
 		if game.region_id == 4:
 			entry_team1.team_d=None
 			entry_team2.team_d=game.team1
+		if game.region_id == 5:
+		# If Final Four team, swap teams so that both owners retain a team for Standings purposes
+			if entry_team1.team_a_id == game.team1_id:
+				entry_team1.team_a=game.team2
+			elif entry_team1.team_b_id == game.team1_id:
+				entry_team1.team_b=game.team2
+			elif entry_team1.team_c_id == game.team1_id:
+				entry_team1.team_c=game.team2
+			elif entry_team1.team_d_id == game.team1_id:
+				entry_team1.team_d=game.team2
+
+			if entry_team2.team_a_id == game.team2_id:
+				entry_team2.team_a=game.team1
+			elif entry_team2.team_b_id == game.team2_id:
+				entry_team2.team_b=game.team1
+			elif entry_team2.team_c_id == game.team2_id:
+				entry_team2.team_c=game.team1
+			elif entry_team2.team_d_id == game.team2_id:
+				entry_team2.team_d=game.team1
+		
 		entry_team1.save()
 		entry_team2.save()
 		# Update approprate child game with retaining owner

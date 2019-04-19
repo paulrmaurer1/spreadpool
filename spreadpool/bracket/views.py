@@ -26,7 +26,7 @@ User = get_user_model()
 from bracket import forms
 # from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket, Region
-from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries
+from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame
 from bracket import serializers
 
 
@@ -443,33 +443,19 @@ class NewGameWithMatchupDataViewSet(ModelViewSet):
 	"""
 	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
 	Games can be filtered by game table id, e.g. api/games/18
-	Optional GET parameters include: ?tbracketid=, ?regionid, ?ownerid, or &teamid
+	Required GET parameter (to get owners) is: ?tbracketid=. Optional parameter is ?regionid to further filter
 	"""
 	queryset = Game.objects.all()
 	serializer_class = serializers.NewGameWithMatchupDataSerializer
 
 	def get_queryset(self):
 		"""
-		Optionally filter games by regionid, owernid teamid
+		Optionally filter games by regionid
 		"""
-		queryset = Game.objects.all()
-		tbracketid = self.request.query_params.get('tbracketid', None)
+		queryset = Game.objects.all().order_by('id')
 		regionid = self.request.query_params.get('regionid', None)
 		if regionid is not None:
-			queryset = queryset.filter(Q(region=regionid) | Q(region=5)).order_by('id') # region=5: also search for Final Four games
-		ownerid = self.request.query_params.get('ownerid', None)
-		if ownerid is not None:
-			if tbracketid is not None:
-				# only get games where matchups in the specified bracket have 1 or the other ownerid
-				queryset = queryset.filter((Q(matchup__team1_owner_id=ownerid) | Q(matchup__team2_owner_id=ownerid)) & Q(matchup__tbracket_id=tbracketid))
-			else:
-				queryset = queryset.filter(Q(matchup__team1_owner_id=ownerid) | Q(matchup__team2_owner_id=ownerid))
-			# if only have ownerid, then exclude Semifinal & Final ***BUG*** will only include games up to Round 4
-			# cases not covered is owners who lose in Semi-final or Finals won't get accurate Next Game, i.e. "Lost to:..."
-			queryset = queryset.exclude(region=5)
-		teamid = self.request.query_params.get('teamid', None)
-		if teamid is not None:
-			queryset = queryset.filter(Q(team1_id=teamid) | Q(team2_id=teamid))
+			queryset = queryset.filter(region=regionid)
 		return queryset
 		
 
@@ -493,6 +479,29 @@ class MatchupViewSet(ModelViewSet):
 		if gameid is not None:
 			queryset = queryset.filter(game=gameid)
 		return queryset
+
+class MatchupLastGameViewSet(ModelViewSet):
+	"""
+	API endpoint that retrieve the last game/matchup that an owner has 
+	in a specific bracket, region, and original team
+	Required GET parameters include: ?tbracketid=, ?orig_teamid= 
+	"""
+	queryset = Matchup.objects.all()
+	serializer_class = serializers.MatchupLastGameSerializer
+
+	def get_queryset(self):
+		"""
+		Use parameters to find last matchup/game
+		"""
+		queryset = Matchup.objects.all()
+		tbracketid = self.request.query_params.get('tbracketid', None)
+		orig_teamid = self.request.query_params.get('orig_teamid', None)
+		if tbracketid is not None and orig_teamid is not None:
+			# if parameters are passed call function
+			last_game = getLastGame(tbracketid, orig_teamid)
+			queryset = queryset.filter(game=last_game.id, tbracket=tbracketid)
+		return queryset
+
 
 class TbracketViewSet(ModelViewSet):
 	"""

@@ -95,6 +95,10 @@ class Team(models.Model):
 	def __str__(self):
 		return '%d-%s' % (self.seed, self.short_name)
 
+	@property
+	def bracket_name(self):
+		return '%d-%s' % (self.seed, self.short_name)
+
 class Game(models.Model):
 	# Table which contains information about each of the 63 games in each tourney bracket
 	# auto id will be populated via a fixture by the integer 1-63 to represent each game in tourney

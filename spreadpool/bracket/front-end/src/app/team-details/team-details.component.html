@@ -1,6 +1,6 @@
 <!--roster.component.html-->
 <h4>My Teams</h4>
-<br>
+<div [class.loader] = "loading">
 <div class="table-responsive" *ngIf="_entryList && _entryList.length; else assignment_announcement">
 	<div class = "table table-borderless table-sm" *ngFor = "let entry of _entryList" id="my-teams">
 		<thead>
@@ -14,35 +14,40 @@
 		</thead>
 		<tbody *ngIf="_regionList">
 			<tr>
-				<td class="text-primary text-pointer" (click)="sendToBracket(entry.tbracket)"><strong>{{ entry.tbracket }}</strong></td>
+				<td class="text-primary text-pointer" (click)="sendToBracket(entry.tbracket_id)"><strong>{{ entry.tbracket }}</strong></td>
 				<td>{{ _regionList[0].name }}</td>
 				<td>{{ entry.orig_team_a }}</td>
 				<td>{{ entry.team_a || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_a_id" [region]="_regionList[0].id"></app-team-nextup></td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_a_id" [region]="_regionList[0].id" 
+					[orig_team]="entry.orig_team_a_id"></app-team-nextup></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[1].name }}</td>
 				<td>{{ entry.orig_team_b }}</td>
 				<td>{{ entry.team_b || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_b_id" [region]="_regionList[1].id"></app-team-nextup></td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_b_id" [region]="_regionList[1].id"
+					[orig_team]="entry.orig_team_b_id"></app-team-nextup></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[2].name }}</td>
 				<td>{{ entry.orig_team_c }}</td>
 				<td>{{ entry.team_c || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_c_id" [region]="_regionList[2].id"></app-team-nextup></td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_c_id" [region]="_regionList[2].id"
+					[orig_team]="entry.orig_team_c_id"></app-team-nextup></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[3].name }}</td>
 				<td>{{ entry.orig_team_d }}</td>
 				<td>{{ entry.team_d || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_d_id" [region]="_regionList[3].id"></app-team-nextup></td>
+				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_d_id" [region]="_regionList[3].id"
+					[orig_team]="entry.orig_team_d_id"></app-team-nextup></td>
 			</tr>
 		</tbody>
 	</div>
+</div>
 </div>
 
 <br>
