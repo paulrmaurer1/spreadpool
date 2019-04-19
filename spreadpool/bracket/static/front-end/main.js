@@ -816,10 +816,10 @@ var AppComponent = /** @class */ (function () {
             // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
             // this._userService.id = 8;
             // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
-            // this._userService.id = 1;
-            // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
-            this._userService.id = 29;
-            this._userService.login({ 'email': 'bzobrist@cubs.com', 'password': 'Maddon55' });
+            this._userService.id = 1;
+            this._userService.login({ 'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!' });
+            // this._userService.id = 29;
+            // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
         }
     };
     AppComponent = __decorate([
@@ -1231,7 +1231,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--brackets.component.html-->\r\n\r\n<small class=\"text-muted\">(Click to see bracket)</small>\r\n<div class=\"brackets-nav\">\r\n    <nav class=\"navbar\">\r\n        <ul class=\"nav nav-pills\">\r\n    \t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n    \t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n    \t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n    \t\t\t>{{ tbracket.name }}</a>\r\n    \t\t</li>\r\n    \t</ul>\r\n    </nav>\r\n</div>\r\n<br>\r\n<div [class.loader] = \"loading\">\r\n  <tabset #staticTabs *ngIf=\"regionList\">\r\n    <tab heading={{regionList[0].name}}>\r\n        <app-bracket-tab *ngIf=\"region1Games && region1Owners\" \r\n            [region]=\"regionList[0].id\" [bracketGames]=\"region1Games\" [bracketOwners]=\"region1Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[1].name}}>\r\n    \t<app-bracket-tab *ngIf=\"region2Games && region2Owners\"  \r\n    \t\t[region]=\"regionList[1].id\" [bracketGames]=\"region2Games\" [bracketOwners]=\"region2Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[2].name}}>\r\n    \t<app-bracket-tab *ngIf=\"region3Games && region3Owners\"  \r\n    \t\t[region]=\"regionList[2].id\" [bracketGames]=\"region3Games\" [bracketOwners]=\"region3Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[3].name}}>\r\n    \t<app-bracket-tab *ngIf=\"region4Games && region4Owners\"  \r\n    \t\t[region]=\"regionList[3].id\" [bracketGames]=\"region4Games\" [bracketOwners]=\"region4Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <!-- <tab heading={{regionList[4].name}} [active]=\"true\"> -->\r\n    <tab heading={{regionList[4].name}}>\r\n    \t<app-bracket-tab *ngIf=\"ffourOwners && ffourGames\"\r\n    \t\t[region]=\"regionList[4].id\" [bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n"
+module.exports = "<!--brackets.component.html-->\r\n\r\n<small class=\"text-muted\">(Click to see bracket)</small>\r\n<div class=\"brackets-nav\">\r\n    <nav class=\"navbar\">\r\n        <ul class=\"nav nav-pills\">\r\n    \t\t<li class = \"nav-item\" *ngFor = \"let tbracket of tbracketList\">\r\n    \t\t\t<a class = \"nav-link\" [routerLink]=\"['/brackets', tbracket.id]\"\r\n    \t\t\t[class.active]=\"isActive(tbracket.id)\"\r\n    \t\t\t>{{ tbracket.name }}</a>\r\n    \t\t</li>\r\n    \t</ul>\r\n    </nav>\r\n</div>\r\n<br>\r\n<div [class.loader] = \"loading\">\r\n  <tabset #staticTabs>\r\n    <tab heading={{regionList[0].name}} *ngIf=\"regionList\">\r\n        <app-bracket-tab *ngIf=\"region1Games && region1Owners\" \r\n            [region]=\"regionList[0].id\" [bracketGames]=\"region1Games\" [bracketOwners]=\"region1Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[1].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"region2Games && region2Owners\"  \r\n    \t\t[region]=\"regionList[1].id\" [bracketGames]=\"region2Games\" [bracketOwners]=\"region2Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[2].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"region3Games && region3Owners\"  \r\n    \t\t[region]=\"regionList[2].id\" [bracketGames]=\"region3Games\" [bracketOwners]=\"region3Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[3].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"region4Games && region4Owners\"  \r\n    \t\t[region]=\"regionList[3].id\" [bracketGames]=\"region4Games\" [bracketOwners]=\"region4Owners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n    <tab heading={{regionList[4].name}} *ngIf=\"regionList\">\r\n    \t<app-bracket-tab *ngIf=\"ffourOwners && ffourGames\"\r\n    \t\t[region]=\"regionList[4].id\" [bracketGames]=\"ffourGames\" [bracketOwners]=\"ffourOwners\">\r\n    \t</app-bracket-tab>\r\n    </tab>\r\n  </tabset>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1323,6 +1323,7 @@ var BracketsComponent = /** @class */ (function () {
                     return (_a = {}, _a[item['id']] = item, _a);
                 })));
                 _this.ffourOwners = ffourOwners;
+                _this.loading = false;
                 // Set active tab based on fragment contained in url, if it exists
                 _this.route.fragment.subscribe(function (fragment) {
                     if (fragment) {
@@ -1330,11 +1331,6 @@ var BracketsComponent = /** @class */ (function () {
                         // console.log("Tab Id to navigate to is: ", this.tabId);
                         _this.staticTabs.tabs[id].active = true;
                     }
-                });
-                // Retrieve list of regions to display in tabs
-                _this._regionService.getRegionList().subscribe(function (data) {
-                    _this.regionList = data;
-                    _this.loading = false;
                 });
             });
         });
@@ -1382,6 +1378,10 @@ var BracketsComponent = /** @class */ (function () {
         // belongs to sorted first
         this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
             _this.tbracketList = data;
+        });
+        // Retrieve list of regions to display in tabs
+        this._regionService.getRegionList().subscribe(function (data) {
+            _this.regionList = data;
         });
     }; //end ngOnInit
     // Function to determine which bracket navbar to make 'active' in template based on route param

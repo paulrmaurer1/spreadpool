@@ -77,6 +77,8 @@ export class BracketsComponent implements OnInit {
 					);
 				this.ffourOwners=ffourOwners;
 				
+				this.loading = false;
+
 				// Set active tab based on fragment contained in url, if it exists
 				this.route.fragment.subscribe(fragment => { 
 					if (fragment) {
@@ -84,12 +86,6 @@ export class BracketsComponent implements OnInit {
 						// console.log("Tab Id to navigate to is: ", this.tabId);
 						this.staticTabs.tabs[id].active = true;
 					}
-				});
-
-				// Retrieve list of regions to display in tabs
-				this._regionService.getRegionList().subscribe(data => {
-					this.regionList = data;
-					this.loading = false;
 				});
 			})
 		})
@@ -129,6 +125,11 @@ export class BracketsComponent implements OnInit {
 		// belongs to sorted first
 		this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
 			this.tbracketList = data;
+		});
+
+		// Retrieve list of regions to display in tabs
+		this._regionService.getRegionList().subscribe(data => {
+			this.regionList = data;
 		});
 	
 	} //end ngOnInit

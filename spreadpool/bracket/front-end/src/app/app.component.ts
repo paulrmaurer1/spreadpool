@@ -43,10 +43,10 @@ export class AppComponent {
       // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
       // this._userService.id = 8;
       // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
-      // this._userService.id = 1;
-      // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
-      this._userService.id = 29;
-      this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
+      this._userService.id = 1;
+      this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
+      // this._userService.id = 29;
+      // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
     }
   }
 }

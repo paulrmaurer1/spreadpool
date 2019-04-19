@@ -355,13 +355,22 @@ class MatchupLastGameSerializer(serializers.ModelSerializer):
 	def to_representation(self, obj):
 		data = super().to_representation(obj)
 		related_game = obj.game
+		# set default values
+		data['team1'] = None
+		data['team1_id'] = None
+		data['team2'] = None
+		data['team2_id'] = None
 		data['spread'] = related_game.spread
 		data['region_id'] = related_game.region_id
 		data['t_round'] = related_game.t_round
-		data['team1'] = related_game.team1.bracket_name
-		data['team1_id'] = related_game.team1_id
-		data['team2'] = related_game.team2.bracket_name
-		data['team2_id'] = related_game.team2_id
+
+		if related_game.team1:
+			data['team1'] = related_game.team1.bracket_name
+			data['team1_id'] = related_game.team1_id
+		if related_game.team2:
+			data['team2'] = related_game.team2.bracket_name
+			data['team2_id'] = related_game.team2_id
+		
 		return data
 
 
