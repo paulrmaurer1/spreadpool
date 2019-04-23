@@ -105,9 +105,10 @@ class SignUp(CreateView):
 	def form_valid(self, form):
 		model = form.save(commit=False)
 		model.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower().replace(" ", "")
+		model.email = form.cleaned_data.get('email').lower()
 		model.save()
 		# Log in user that just signed up and direct to Home page
-		email = form.cleaned_data.get('email')
+		email = model.email
 		raw_password = form.cleaned_data.get('password1')
 		user = authenticate(email=email, password=raw_password)
 		login(self.request, user)

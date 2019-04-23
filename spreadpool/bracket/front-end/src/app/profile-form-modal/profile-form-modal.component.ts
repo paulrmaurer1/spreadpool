@@ -38,12 +38,13 @@ export class ProfileFormModalComponent implements OnInit {
 			'num_entries' : ['', Validators.compose([Validators.required, Validators.maxLength(4), Validators.minLength(1)])],
 			'mult_entry_type' : ['', Validators.required],
 		});
-	this.first_name = this.profileForm.controls['first_name']; // allows for other properties, e.g. error values
-	this.last_name  = this.profileForm.controls['last_name'];
-	this.email      = this.profileForm.controls['email'];
-	this.num_entries = this.profileForm.controls['num_entries'];
-	this.mult_entry_type = this.profileForm.controls['mult_entry_type'];
-  }
+    
+  	this.first_name = this.profileForm.controls['first_name']; // allows for other properties, e.g. error values
+  	this.last_name  = this.profileForm.controls['last_name'];
+  	this.email      = this.profileForm.controls['email'];
+  	this.num_entries = this.profileForm.controls['num_entries'];
+  	this.mult_entry_type = this.profileForm.controls['mult_entry_type'];
+    }
 
   ngOnInit() {
   	this.profileForm.patchValue(this.profile_user);
@@ -52,7 +53,7 @@ export class ProfileFormModalComponent implements OnInit {
   submitForm(value: string) {
   	this.profile_user.first_name = this.first_name.value;
   	this.profile_user.last_name = this.last_name.value;
-  	this.profile_user.email = this.email.value;
+  	this.profile_user.email = this.email.value.toLowerCase();
   	this.profile_user.num_entries = this.num_entries.value;
   	this.profile_user.mult_entry_type = this.mult_entry_type.value;
 

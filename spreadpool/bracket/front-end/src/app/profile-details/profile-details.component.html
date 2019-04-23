@@ -24,14 +24,14 @@
 					{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>
 			</div>
 			<!-- UNCOMMENT BELOW DURING REGISTRATION SO USERS CAN DELETE/EDIT THEIR PROFILE INFO -->
-	<!-- 			<div class = "row top10">
+				<div class = "row top10">
 				<div class = "col-xs-auto">
 					<button class="btn btn-secondary custom m-2" (click)="openModal(template)">Delete</button>
 				</div>
 				<div class = "col-xs-auto">
 					<button class="btn btn-primary custom m-2" (click)="openProfileModal()">Edit</button>
 				</div>
-			</div> -->
+			</div>
 		</div>
 		<div *ngIf = "!player.paid" 
 		class = "col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2">

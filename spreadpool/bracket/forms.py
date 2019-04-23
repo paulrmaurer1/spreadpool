@@ -3,7 +3,7 @@
 #Django modules
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.forms import ModelForm
 User = get_user_model()
@@ -21,6 +21,14 @@ class CheckNumEntriesMixin(object):
 		if _num_entries > 4 or _num_entries < 0:
 			raise forms.ValidationError("Number of entries must be between 1-4")
 		return _num_entries
+
+class MyAuthenticationForm(AuthenticationForm):
+	"""
+	Override base django Authentication Form to convert email(username) to lowercase before login
+	"""
+	def clean_username(self):
+		data = self.cleaned_data['username']
+		return data.lower()
 
 class SignupForm(CheckNumEntriesMixin, UserCreationForm):
 

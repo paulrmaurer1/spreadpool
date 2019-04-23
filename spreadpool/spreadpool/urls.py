@@ -13,6 +13,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 #App: bracket views
 from bracket import views
+from bracket import forms
 
 #Create a router and register our viewsets with it. This takes care of needing to explicitly create a set of views from ViewSets
 router = DefaultRouter()
@@ -34,7 +35,7 @@ router.register(r'regions', views.RegionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),  #Django admin site, default
-    re_path(r'^login/$', auth_views.LoginView.as_view(), name='login'),  #Direct login to default Django Login form
+    re_path(r'^login/$', auth_views.LoginView.as_view(authentication_form=forms.MyAuthenticationForm), name='login'),  #Direct login to default Django Login form
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'), #Direct logout to LOGOUT_REDIRECT_URL setting
     re_path(r'^', include('django.contrib.auth.urls')), #default url patterns for password reset views/templates
     re_path(r'^', include('bracket.urls')),  #point home URL to urls in bracket app
