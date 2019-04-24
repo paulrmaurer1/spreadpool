@@ -1,7 +1,7 @@
 <!--roster.component.html-->
 <h4>My Teams</h4>
 <div [class.loader] = "loading">
-<div class="table-responsive" *ngIf="_entryList && _entryList.length; else assignment_announcement">
+<div class="table-responsive" *ngIf="_entryList && _entryList.length">
 	<div class = "table table-borderless table-sm" *ngFor = "let entry of _entryList" id="my-teams">
 		<thead>
 			<tr class="table-active">
@@ -49,12 +49,11 @@
 	</div>
 </div>
 </div>
-
 <br>
-<ng-template #assignment_announcement>
-	<div class="text-center">
-		<br>
-		<h5 class="font-italic text-muted">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>
-		<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>
-	</div>
-</ng-template>
+
+<!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->
+<!-- <div class="text-center">
+	<br>
+	<h5 class="font-italic text-muted">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>
+	<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>
+</div> -->
