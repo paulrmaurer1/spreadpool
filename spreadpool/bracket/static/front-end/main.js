@@ -872,12 +872,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _standings_standings_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./standings/standings.component */ "./src/app/standings/standings.component.ts");
 /* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
 /* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
+/* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -922,6 +924,7 @@ var AppModule = /** @class */ (function () {
                 _standings_standings_component__WEBPACK_IMPORTED_MODULE_21__["StandingsComponent"],
                 _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__["StandingsNavComponent"],
                 _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__["BracketTabComponent"],
+                _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__["RosterTextboxComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -2123,7 +2126,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<!-- <app-roster [loggedInUser] = \"loggedInUser\"></app-roster> -->\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<app-standings-nav></app-standings-nav>\r\n"
+module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<app-roster [loggedInUser] = \"loggedInUser\"></app-roster>\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<!-- <app-standings-nav></app-standings-nav> -->\r\n"
 
 /***/ }),
 
@@ -2282,7 +2285,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!--profile-details.component.html-->\r\n<div class=\"container-fluid\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col-xs col-md-3\">\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Paid up?:</strong></div>\r\n\t\t\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t\t\t</div>\r\n\t\t\t<!-- UNCOMMENT BELOW DURING REGISTRATION SO USERS CAN DELETE/EDIT THEIR PROFILE INFO -->\r\n<!-- \t\t\t<div class = \"row top10\">\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div> -->\r\n\t\t</div>\r\n\t\t<div *ngIf = \"!player.paid\" \r\n\t\tclass = \"col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2\">\r\n\t\t\t\t<p class=\"mb-2\"><strong>Payment Options:</strong></p>\r\n\t\t\t\t<p class=\"mb-2\">1) <i class=\"fa fa-paypal\"></i> via PayPal : <a target=\"_blank\" rel=\"noopener noreferrer\"\r\n\t\t\t\t\thref=\"https://www.paypal.me/PaulMaurer1\">www.paypal.me/PaulMaurer1</a></p>\r\n\t\t\t\t<p class=\"mb-2\">2) <i class=\"fa fa-vimeo-square\"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>\r\n\t\t\t\t<p class=\"mb-2\">3) Send <i class=\"fa fa-usd\"></i> to:\r\n\t\t\t\tPaul Maurer, 3260 N. Clark St., APT 506, Chicago, IL 60657</p>\r\n\t\t</div>\r\n\t\t<div class = \"col hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
+module.exports = "  <!--profile-details.component.html-->\r\n<div class=\"container-fluid\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col-xs col-md-3\">\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Paid up?:</strong></div>\r\n\t\t\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t\t\t</div>\r\n\t\t\t<!-- UNCOMMENT BELOW DURING REGISTRATION SO USERS CAN DELETE/EDIT THEIR PROFILE INFO -->\r\n\t\t\t<div class = \"row top10\">\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div *ngIf = \"!player.paid\" \r\n\t\tclass = \"col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2\">\r\n\t\t\t\t<p class=\"mb-2\"><strong>Payment Options:</strong></p>\r\n\t\t\t\t<p class=\"mb-2\">1) <i class=\"fa fa-paypal\"></i> via PayPal : <a target=\"_blank\" rel=\"noopener noreferrer\"\r\n\t\t\t\t\thref=\"https://www.paypal.me/PaulMaurer1\">www.paypal.me/PaulMaurer1</a></p>\r\n\t\t\t\t<p class=\"mb-2\">2) <i class=\"fa fa-vimeo-square\"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>\r\n\t\t\t\t<p class=\"mb-2\">3) Send <i class=\"fa fa-usd\"></i> to:\r\n\t\t\t\tPaul Maurer, 3260 N. Clark St., APT 506, Chicago, IL 60657</p>\r\n\t\t</div>\r\n\t\t<div class = \"col hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -2555,6 +2558,80 @@ var ProfileComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/roster-textbox/roster-textbox.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/roster-textbox/roster-textbox.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Jvc3Rlci10ZXh0Ym94L3Jvc3Rlci10ZXh0Ym94LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/roster-textbox/roster-textbox.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/roster-textbox/roster-textbox.component.ts ***!
+  \************************************************************/
+/*! exports provided: RosterTextboxComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RosterTextboxComponent", function() { return RosterTextboxComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var RosterTextboxComponent = /** @class */ (function () {
+    function RosterTextboxComponent() {
+        this.changed = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    Object.defineProperty(RosterTextboxComponent.prototype, "filter", {
+        get: function () {
+            return this._filter;
+        },
+        set: function (val) {
+            this._filter = val;
+            this.changed.emit(this.filter); //Raise changed event
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RosterTextboxComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [String])
+    ], RosterTextboxComponent.prototype, "filter", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], RosterTextboxComponent.prototype, "changed", void 0);
+    RosterTextboxComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-roster-textbox',
+            // templateUrl: './roster-textbox.component.html',
+            template: "\n        Search by Name: <input type=\"text\" [(ngModel)]=\"filter\" />\n    ",
+            styles: [__webpack_require__(/*! ./roster-textbox.component.css */ "./src/app/roster-textbox/roster-textbox.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], RosterTextboxComponent);
+    return RosterTextboxComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/roster/roster.component.css":
 /*!*********************************************!*\
   !*** ./src/app/roster/roster.component.css ***!
@@ -2573,7 +2650,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class = \"d-flex flex-row\">\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n</div>\r\n<br>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>\r\n</div>"
+module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class = \"d-flex flex-row\">\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n</div>\r\n<br>\r\n<app-roster-textbox (changed)=\"filter($event)\"></app-roster-textbox>\r\n<br>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>\r\n</div>"
 
 /***/ }),
 
@@ -2633,7 +2710,7 @@ var RosterComponent = /** @class */ (function () {
         this.loading = true;
         this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
         this._numBrackets = 0;
-        this._numEntries = this._loggedInUser.num_entries;
+        this._numEntries = this._loggedInUser.num_entries; // start numEtnries counter at # that loggedInUser has
         // Retrieve roster list without logged in user
         this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (data) {
             _this.roster = data;
@@ -2644,7 +2721,7 @@ var RosterComponent = /** @class */ (function () {
             _this._numBrackets = Math.floor(_this._numEntries / 16);
             _this._numNeededEntries = (_this._numBrackets + 1) * 16 - _this._numEntries;
             _this.loading = false;
-            //console.log(this.roster)
+            // console.log(this.roster)
         });
     };
     RosterComponent.prototype.openProfileModal = function () {
@@ -2667,6 +2744,22 @@ var RosterComponent = /** @class */ (function () {
                 _this._loggedInUser = data;
             });
         });
+    };
+    RosterComponent.prototype.filter = function (data) {
+        var _this = this;
+        // Function that filters the Roster list based on what a user types in the roster-textbox component
+        if (data) {
+            // console.log ("Data typed is", data);
+            this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (roster_list) {
+                _this.roster = roster_list.filter(function (item) { return item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1; });
+                // console.log ("Roster = ", this.roster);
+            });
+        }
+        else {
+            this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (roster_list) {
+                _this.roster = roster_list;
+            });
+        }
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -2888,7 +2981,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\" [region]=\"_regionList[0].id\" \r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_a_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\" [region]=\"_regionList[1].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_b_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\" [region]=\"_regionList[2].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_c_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\" [region]=\"_regionList[3].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_d_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div>\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->\r\n<!-- <div class=\"text-center\">\r\n\t<br>\r\n\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n</div> -->"
+module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\" [region]=\"_regionList[0].id\" \r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_a_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\" [region]=\"_regionList[1].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_b_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\" [region]=\"_regionList[2].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_c_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\" [region]=\"_regionList[3].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_d_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div>\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->\r\n<div class=\"text-center\">\r\n\t<br>\r\n\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 21, at 10am CST **</h5>\r\n\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n</div>"
 
 /***/ }),
 

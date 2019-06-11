@@ -44,7 +44,7 @@ export class RosterComponent implements OnInit {
 		this.loading = true;
 		this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
 		this._numBrackets = 0;
-		this._numEntries = this._loggedInUser.num_entries;
+		this._numEntries = this._loggedInUser.num_entries; // start numEtnries counter at # that loggedInUser has
 		// Retrieve roster list without logged in user
 		this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(data => {
 			this.roster = data;
@@ -55,7 +55,7 @@ export class RosterComponent implements OnInit {
 			this._numBrackets = Math.floor(this._numEntries/16);
 			this._numNeededEntries = (this._numBrackets+1)*16 - this._numEntries
 			this.loading=false;
-			//console.log(this.roster)
+			// console.log(this.roster)
 		})
 	}
 
@@ -80,4 +80,19 @@ export class RosterComponent implements OnInit {
 	        })
 	    })
 	}
+
+	filter(data: string) {
+		// Function that filters the Roster list based on what a user types in the roster-textbox component
+        if (data) {
+        	// console.log ("Data typed is", data);
+        	this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(roster_list => {
+        		this.roster = roster_list.filter(item => item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1);
+        		// console.log ("Roster = ", this.roster);
+        	});
+        } else {
+        	this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(roster_list => {
+				this.roster = roster_list;
+			});
+        }
+    }
 }

@@ -24,6 +24,7 @@ import { TeamNextupComponent } from './team-nextup/team-nextup.component';
 import { StandingsComponent } from './standings/standings.component';
 import { StandingsNavComponent } from './standings-nav/standings-nav.component';
 import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
+import { RosterTextboxComponent } from './roster-textbox/roster-textbox.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
     StandingsComponent,
     StandingsNavComponent,
     BracketTabComponent,
+    RosterTextboxComponent,
   ],
   imports: [
     BrowserModule,
