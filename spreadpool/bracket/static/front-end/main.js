@@ -1837,6 +1837,85 @@ var RegionService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/sorter.service.ts":
+/*!****************************************!*\
+  !*** ./src/app/core/sorter.service.ts ***!
+  \****************************************/
+/*! exports provided: SorterService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SorterService", function() { return SorterService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SorterService = /** @class */ (function () {
+    function SorterService() {
+        this.property = null;
+        this.direction = 1;
+    }
+    SorterService.prototype.sort = function (collection, prop) {
+        var _this = this;
+        this.property = prop;
+        this.direction = (this.property === prop) ? this.direction * -1 : 1;
+        collection.sort(function (a, b) {
+            var aVal;
+            var bVal;
+            //Handle resolving complex properties such as 'state.name' for prop value
+            if (prop && prop.indexOf('.') > -1) {
+                aVal = _this.resolveProperty(prop, a);
+                bVal = _this.resolveProperty(prop, b);
+            }
+            else {
+                aVal = a[prop];
+                bVal = b[prop];
+            }
+            //Fix issues that spaces before/after string value can cause such as ' San Francisco'
+            if (_this.isString(aVal))
+                aVal = aVal.trim().toUpperCase();
+            if (_this.isString(bVal))
+                bVal = bVal.trim().toUpperCase();
+            if (aVal === bVal) {
+                return 0;
+            }
+            else if (aVal > bVal) {
+                return _this.direction * -1;
+            }
+            else {
+                return _this.direction * 1;
+            }
+        });
+    };
+    SorterService.prototype.isString = function (val) {
+        return (val && (typeof val === 'string' || val instanceof String));
+    };
+    SorterService.prototype.resolveProperty = function (path, obj) {
+        return path.split('.').reduce(function (prev, curr) {
+            return (prev ? prev[curr] : undefined);
+        }, obj || self);
+    };
+    SorterService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], SorterService);
+    return SorterService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/tbracket.service.ts":
 /*!******************************************!*\
   !*** ./src/app/core/tbracket.service.ts ***!
@@ -2126,7 +2205,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<app-roster [loggedInUser] = \"loggedInUser\"></app-roster>\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<!-- <app-standings-nav></app-standings-nav> -->\r\n"
+module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<app-roster *ngIf=\"roster\" [loggedInUser] = \"loggedInUser\" [roster] = \"roster\"></app-roster>\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<!-- <app-standings-nav></app-standings-nav> -->\r\n"
 
 /***/ }),
 
@@ -2142,9 +2221,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app.store */ "./src/app/app.store.ts");
-/* harmony import */ var _core_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/user.actions */ "./src/app/core/user.actions.ts");
+/* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/player.service */ "./src/app/core/player.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.store */ "./src/app/app.store.ts");
+/* harmony import */ var _core_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/user.actions */ "./src/app/core/user.actions.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2162,22 +2242,29 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(_userService, route, 
+    function HomeComponent(_userService, _playerService, route, 
     // Using Redux store to capture logged in user details
     store) {
         var _this = this;
         this._userService = _userService;
+        this._playerService = _playerService;
         this.route = route;
         this.store = store;
         store.subscribe(function () { return _this.readState(); });
         this.readState();
     }
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.loggedInUser = this.route.snapshot.data.loggedInUser;
         this._userService.loggedInUser = this.loggedInUser;
         this.setCurrentUser(this.loggedInUser);
         // console.log("The current Redux user is", this.currentUser)
+        // Retrieve roster for passing to child roster.component
+        this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(function (data) {
+            _this.roster = data;
+        });
     };
     // Redux store methods
     HomeComponent.prototype.readState = function () {
@@ -2185,7 +2272,7 @@ var HomeComponent = /** @class */ (function () {
         this.currentUser = state.currentUser;
     };
     HomeComponent.prototype.setCurrentUser = function (user) {
-        this.store.dispatch(_core_user_actions__WEBPACK_IMPORTED_MODULE_4__["setCurrentUser"](user));
+        this.store.dispatch(_core_user_actions__WEBPACK_IMPORTED_MODULE_5__["setCurrentUser"](user));
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2193,9 +2280,10 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_app_store__WEBPACK_IMPORTED_MODULE_3__["AppStore"])),
+        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_app_store__WEBPACK_IMPORTED_MODULE_4__["AppStore"])),
         __metadata("design:paramtypes", [_core_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], Object])
+            _core_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], Object])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -2650,7 +2738,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class = \"d-flex flex-row\">\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n</div>\r\n<br>\r\n<app-roster-textbox (changed)=\"filter($event)\"></app-roster-textbox>\r\n<br>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Num Entries</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of roster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>\r\n</div>"
+module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class = \"d-flex flex-row\">\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t</div>\r\n\t<div class = \"col\"></div>\r\n\t<div class = \"col-3 col-2-md text-center bg-secondary text-white rounded p-2\">\r\n\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n</div>\r\n<br>\r\n<app-roster-textbox (changed)=\"filter($event)\"></app-roster-textbox>\r\n<br>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\" (click)=\"sort('last_name')\" class=\"cursor-pointer\">Name\r\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==1\" name=\"caret-down\"></fa>\r\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==-1\" name=\"caret-up\"></fa>\r\n\t\t\t</th>\r\n\t\t\t<th scope=\"col\" (click)=\"sort('num_entries')\" class=\"cursor-pointer\">Num Entries\r\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==1\" name=\"caret-down\"></fa>\r\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==-1\" name=\"caret-up\"></fa>\r\n\t\t\t</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of _filteredRoster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>\r\n</div>"
 
 /***/ }),
 
@@ -2668,8 +2756,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/player.service */ "./src/app/core/player.service.ts");
 /* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
-/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
-/* harmony import */ var _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile-form-modal/profile-form-modal.component */ "./src/app/profile-form-modal/profile-form-modal.component.ts");
+/* harmony import */ var _core_sorter_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/sorter.service */ "./src/app/core/sorter.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile-form-modal/profile-form-modal.component */ "./src/app/profile-form-modal/profile-form-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2685,12 +2774,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var RosterComponent = /** @class */ (function () {
-    function RosterComponent(_playerService, _userService, _modalService, router) {
+    function RosterComponent(_playerService, _userService, _modalService, router, sorterService) {
         this._playerService = _playerService;
         this._userService = _userService;
         this._modalService = _modalService;
         this.router = router;
+        this.sorterService = sorterService;
+        this._direction = 1;
     }
     Object.defineProperty(RosterComponent.prototype, "loggedInUser", {
         // Retrieve loggedInUser from parent component
@@ -2705,24 +2797,35 @@ var RosterComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RosterComponent.prototype, "roster", {
+        // Retrieve roster from parent component
+        get: function () {
+            return this._roster;
+        },
+        set: function (value) {
+            if (value) {
+                this._filteredRoster = this._roster = value;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     RosterComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.loading = true;
+        console.log();
+        // this.loading = true;
         this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
         this._numBrackets = 0;
         this._numEntries = this._loggedInUser.num_entries; // start numEtnries counter at # that loggedInUser has
-        // Retrieve roster list without logged in user
-        this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (data) {
-            _this.roster = data;
-            _this.roster.forEach(function (registrant) {
-                _this._numRegistrants += 1;
-                _this._numEntries += registrant.num_entries;
-            });
-            _this._numBrackets = Math.floor(_this._numEntries / 16);
-            _this._numNeededEntries = (_this._numBrackets + 1) * 16 - _this._numEntries;
-            _this.loading = false;
-            // console.log(this.roster)
+        // Calculate registration stats needed at top of page
+        this._roster.forEach(function (registrant) {
+            _this._numRegistrants += 1;
+            _this._numEntries += registrant.num_entries;
         });
+        this._numBrackets = Math.floor(this._numEntries / 16);
+        this._numNeededEntries = (this._numBrackets + 1) * 16 - this._numEntries;
+        // this.loading=false;
+        // console.log ("property = ", this._property, " & direction = ", this._direction);
     };
     RosterComponent.prototype.openProfileModal = function () {
         var _this = this;
@@ -2734,7 +2837,7 @@ var RosterComponent = /** @class */ (function () {
         // console.log("Modal is opened for: ", this.roster.map(users => users.find(user => user.id == this.hoveredIndex)));
         // console.log("Modal is opened for: ", this.roster, this.roster.find(user => user.id == this.hoveredIndex));
         // console.log("Modal is opened for: ", this.roster.forEach(user => {if(user.id == this.hoveredIndex) return user}));
-        this.bsModalRef = this._modalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__["ProfileFormModalComponent"], { initialState: initialState });
+        this.bsModalRef = this._modalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_6__["ProfileFormModalComponent"], { initialState: initialState });
         this._modalService.onHidden.subscribe(function (reason) {
             // Upon modal being closed run these actions
             //const _reason = reason ? `, dismissed by ${reason}` : '';
@@ -2746,26 +2849,30 @@ var RosterComponent = /** @class */ (function () {
         });
     };
     RosterComponent.prototype.filter = function (data) {
-        var _this = this;
         // Function that filters the Roster list based on what a user types in the roster-textbox component
         if (data) {
-            // console.log ("Data typed is", data);
-            this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (roster_list) {
-                _this.roster = roster_list.filter(function (item) { return item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1; });
-                // console.log ("Roster = ", this.roster);
-            });
+            this._filteredRoster = this._roster.filter(function (item) { return item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1; });
         }
         else {
-            this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(function (roster_list) {
-                _this.roster = roster_list;
-            });
+            this._filteredRoster = this._roster;
         }
+    };
+    RosterComponent.prototype.sort = function (prop) {
+        this.sorterService.sort(this._filteredRoster, prop);
+        this._property = prop;
+        this._direction = (this._property === prop) ? this._direction * -1 : 1;
+        // console.log ("property = ", this._property, " & direction = ", this._direction);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], RosterComponent.prototype, "loggedInUser", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [Array])
+    ], RosterComponent.prototype, "roster", null);
     RosterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-roster',
@@ -2774,8 +2881,9 @@ var RosterComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_core_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"],
             _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
-            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__["BsModalService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__["BsModalService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _core_sorter_service__WEBPACK_IMPORTED_MODULE_4__["SorterService"]])
     ], RosterComponent);
     return RosterComponent;
 }());
