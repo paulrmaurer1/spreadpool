@@ -25,11 +25,11 @@
 	            <li class="nav-item" [routerLinkActive]="['active']">
 	            	<a class="nav-link" [routerLink]="['/profile']">My Teams</a>
 	            </li>
-				<!-- ****OLD CODE THAT SHOWED BRACKETS MENU ITEM WITHOUT SUBMENU****
+
 				<li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
 	            	<a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]">Brackets</a>
-	            </li> 
-	        	-->
+	            </li>
+				<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***
 	            <li class="nav-item dropdown">
 	            	<a *ngIf="_bracketToShow" class="nav-link dropdown-toggle" [routerLink]="['/brackets', _bracketToShow]" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brackets</a>
 	            	<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -39,7 +39,7 @@
 	            		</li>
 	            	</ul>
 	            </li>
-
+				 -->
 	            <li class="nav-item dropdown" dropdown *ngIf="isUserAdmin()">
 			        <a class="nav-link dropdown-toggle" dropdownToggle (click)="false" 
 			        href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

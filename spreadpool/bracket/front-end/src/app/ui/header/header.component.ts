@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 	_bracketToShow: number;
 	currentUser : IUserData;
 	tbracketList: TBracketData[];
+	_mobile: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -43,7 +44,6 @@ export class HeaderComponent implements OnInit {
 				this.tbracketList = data;
 			}
 		});
-
 	} //end ngOnInit()
 
   	// This function is used to keep Brackets nav bar option 'active' regardless of parameter
