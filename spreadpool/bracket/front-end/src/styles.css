@@ -99,7 +99,7 @@ body{
 }
 
 /*To turn cursor into a pointer, so user sees an element can be clicked*/
-/*e.g. for pendil edit icon on Roster page*/
+/*e.g. for pendil edit icon on Roster page & Roster Page table title headings (for sort)*/
 .cursor-pointer{
   cursor: pointer;
 }

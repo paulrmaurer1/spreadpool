@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from '../core/player.service';
 import { UserService } from '../core/user.service';
+import { SorterService } from '../core/sorter.service';
 import { IUserData } from '../shared/interfaces';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-modal.component';
@@ -12,7 +13,8 @@ import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-mo
   styleUrls: ['./roster.component.css']
 })
 export class RosterComponent implements OnInit {
-	roster: IUserData[];
+	_roster: IUserData[];
+	_filteredRoster: IUserData[];
 	_loggedInUser: IUserData; // to capture loggedInUser object from parent component
 	hoveredIndex: number; // to user which row a user hovers on
 	_numRegistrants: number; // tally up # of registrations for display at top
@@ -20,6 +22,8 @@ export class RosterComponent implements OnInit {
 	_numEntries: number; //tally up # of entries num bracket calculation
 	_numNeededEntries: number; //# entries needed to complete another bracket
 	loading: boolean;
+	_property: string;
+	_direction: number=1;
 	
 	// Retrieve loggedInUser from parent component
 	@Input() get loggedInUser(): IUserData {
@@ -32,31 +36,42 @@ export class RosterComponent implements OnInit {
 		}
 	}
 
+	// Retrieve roster from parent component
+	@Input() get roster(): IUserData[] {
+		return this._roster;
+	}
+
+	set roster(value: IUserData[]) {
+		if (value) {
+			this._filteredRoster = this._roster = value;
+		}
+	}
+
 	// Modal object to capture content
 	bsModalRef: BsModalRef;
 	
  	constructor(private _playerService: PlayerService,
  		private _userService: UserService, 
  		private _modalService: BsModalService,
- 		private router: Router) { }
+ 		private router: Router,
+ 		private sorterService: SorterService) { }
 
 	ngOnInit() {
-		this.loading = true;
+		console.log ()
+		// this.loading = true;
 		this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
 		this._numBrackets = 0;
 		this._numEntries = this._loggedInUser.num_entries; // start numEtnries counter at # that loggedInUser has
-		// Retrieve roster list without logged in user
-		this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(data => {
-			this.roster = data;
-			this.roster.forEach(registrant => {
-				this._numRegistrants += 1;
-				this._numEntries += registrant.num_entries;
-			})
-			this._numBrackets = Math.floor(this._numEntries/16);
-			this._numNeededEntries = (this._numBrackets+1)*16 - this._numEntries
-			this.loading=false;
-			// console.log(this.roster)
+
+		// Calculate registration stats needed at top of page
+		this._roster.forEach(registrant => {
+			this._numRegistrants += 1;
+			this._numEntries += registrant.num_entries;
 		})
+		this._numBrackets = Math.floor(this._numEntries/16);
+		this._numNeededEntries = (this._numBrackets+1)*16 - this._numEntries
+		// this.loading=false;
+		// console.log ("property = ", this._property, " & direction = ", this._direction);
 	}
 
 	openProfileModal() {
@@ -84,15 +99,16 @@ export class RosterComponent implements OnInit {
 	filter(data: string) {
 		// Function that filters the Roster list based on what a user types in the roster-textbox component
         if (data) {
-        	// console.log ("Data typed is", data);
-        	this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(roster_list => {
-        		this.roster = roster_list.filter(item => item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1);
-        		// console.log ("Roster = ", this.roster);
-        	});
+        	this._filteredRoster = this._roster.filter(item => item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1);
         } else {
-        	this._playerService.getListOtherThan(this._loggedInUser.id).subscribe(roster_list => {
-				this.roster = roster_list;
-			});
+			this._filteredRoster = this._roster;
         }
+    }
+
+    sort(prop: string) {
+    	this.sorterService.sort(this._filteredRoster, prop);
+    	this._property = prop;
+    	this._direction = (this._property === prop) ? this._direction * -1 : 1;
+    	// console.log ("property = ", this._property, " & direction = ", this._direction);
     }
 }

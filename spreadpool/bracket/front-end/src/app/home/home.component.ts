@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../core/user.service';
+import { PlayerService } from '../core/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { IUserData } from '../shared/interfaces';
 
@@ -16,9 +17,11 @@ import * as UserActions from '../core/user.actions';
 export class HomeComponent implements OnInit {
   loggedInUser : IUserData;
   private currentUser : IUserData;
+  roster: IUserData[];
 
   constructor(
     private _userService: UserService,
+    private _playerService: PlayerService,
     private route: ActivatedRoute,
     // Using Redux store to capture logged in user details
     @Inject(AppStore) private store: Store<AppState>
@@ -32,6 +35,11 @@ export class HomeComponent implements OnInit {
     this._userService.loggedInUser = this.loggedInUser;
     this.setCurrentUser(this.loggedInUser);
     // console.log("The current Redux user is", this.currentUser)
+
+    // Retrieve roster for passing to child roster.component
+    this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(data => {
+      this.roster = data;
+    });
   }
 
   // Redux store methods
