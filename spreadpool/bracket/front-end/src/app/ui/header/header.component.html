@@ -25,8 +25,19 @@
 	            <li class="nav-item" [routerLinkActive]="['active']">
 	            	<a class="nav-link" [routerLink]="['/profile']">My Teams</a>
 	            </li>
-	            <li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
+				<!-- ****OLD CODE THAT SHOWED BRACKETS MENU ITEM WITHOUT SUBMENU****
+				<li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
 	            	<a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]">Brackets</a>
+	            </li> 
+	        	-->
+	            <li class="nav-item dropdown">
+	            	<a *ngIf="_bracketToShow" class="nav-link dropdown-toggle" [routerLink]="['/brackets', _bracketToShow]" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brackets</a>
+	            	<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	            		<li *ngFor = "let tbracket of tbracketList">
+	            			<a class="dropdown-item" [routerLink]="['/brackets', tbracket.id]">
+	            			{{ tbracket.name }}</a>
+	            		</li>
+	            	</ul>
 	            </li>
 
 	            <li class="nav-item dropdown" dropdown *ngIf="isUserAdmin()">

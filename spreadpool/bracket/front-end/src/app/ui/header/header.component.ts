@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
 	isCollapsed = true;
 	_bracketToShow: number;
 	currentUser : IUserData;
+	tbracketList: TBracketData[];
 
 	constructor(
 		private router: Router,
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit {
 		this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
 			if (data.length > 0) {
 				this._bracketToShow = data[0].id;
+				this.tbracketList = data;
 			}
 		});
 
