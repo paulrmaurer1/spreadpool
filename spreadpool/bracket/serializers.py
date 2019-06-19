@@ -176,8 +176,6 @@ class GameWithMatchupDataSerializer(serializers.ModelSerializer):
 	team1 = serializers.StringRelatedField()
 	team2 = serializers.StringRelatedField()
 	region = serializers.StringRelatedField()
-	team1_owner = serializers.SerializerMethodField()
-	team2_owner = serializers.SerializerMethodField()
 		
 	class Meta:
 		model = Game
