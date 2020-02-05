@@ -762,12 +762,12 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\src\styles\bootstrap-4.2.1-dist\css\bootstrap.css */"./src/styles/bootstrap-4.2.1-dist/css/bootstrap.css");
-__webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\node_modules\font-awesome\css\font-awesome.css */"./node_modules/font-awesome/css/font-awesome.css");
-__webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\node_modules\primeicons\primeicons.css */"./node_modules/primeicons/primeicons.css");
-__webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\node_modules\primeng\resources\themes\nova-light\theme.css */"./node_modules/primeng/resources/themes/nova-light/theme.css");
-__webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\node_modules\primeng\resources\primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
-module.exports = __webpack_require__(/*! C:\Django\spreadpool_project\spreadpool\bracket\front-end\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! C:\DjangoProjects\spreadpool_project\spreadpool\bracket\front-end\src\styles\bootstrap-4.2.1-dist\css\bootstrap.css */"./src/styles/bootstrap-4.2.1-dist/css/bootstrap.css");
+__webpack_require__(/*! C:\DjangoProjects\spreadpool_project\spreadpool\bracket\front-end\node_modules\font-awesome\css\font-awesome.css */"./node_modules/font-awesome/css/font-awesome.css");
+__webpack_require__(/*! C:\DjangoProjects\spreadpool_project\spreadpool\bracket\front-end\node_modules\primeicons\primeicons.css */"./node_modules/primeicons/primeicons.css");
+__webpack_require__(/*! C:\DjangoProjects\spreadpool_project\spreadpool\bracket\front-end\node_modules\primeng\resources\themes\nova-light\theme.css */"./node_modules/primeng/resources/themes/nova-light/theme.css");
+__webpack_require__(/*! C:\DjangoProjects\spreadpool_project\spreadpool\bracket\front-end\node_modules\primeng\resources\primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
+module.exports = __webpack_require__(/*! C:\DjangoProjects\spreadpool_project\spreadpool\bracket\front-end\src\styles.css */"./src/styles.css");
 
 
 /***/ })
