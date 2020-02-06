@@ -10,7 +10,7 @@
 	background-size: 100% auto; background-repeat: no-repeat;">
 		<h4 class="reg-headline">Register for the Spreadpool today!</h4>
 		<br>
-		<div class = "row">
+		<div class = "row mb-1">
 			<div class = "col"></div>
 			<div class = "col-12 col-md-10">
 				<h6><small class="text-muted">Play a unique bracket pool that will appeal to your inner Vegas sports gambler without the hassle of picking 63 games</small></h6>
@@ -27,16 +27,74 @@
 
 				<!-- UNCOMMENT THIS AFTER REGISTRATION PERIOD -->
 <!-- 				<h5 class="pt-2"><small class="text-muted">**** Registration is now closed ****</small></h5>
-				<h6><em><small class="text-muted">Check back in here throughout the 2019 NCAA Tournament.</small></em></h6>
+				<h6><em><small class="text-muted">Check back in here throughout the 2020 NCAA Tournament.</small></em></h6>
 				<br> -->
+
+				<!-- UNCOMMENT THIS DURING REGISTRATION PERIOD -->
+				<form action = "{% url 'bracket:signup' %}">
+					<button class="btn btn-primary custom" type="submit">Register</button>
+				</form>
+				<h6 class="mt-2 mb-1"><small class="text-muted">Countdown to Selection Sunday (March 15, 2020, 5pm CST)</small></h6>
+				
+				<!-- Display the countdown timer in an element -->
+				<p id="timer" class="m-0 text-primary h2"></p>
+				<div class = "d-flex flex-row">
+					<div class = "col col-2-md text-center border border-primary text-primary rounded p-0 m-1">
+						<p class="mb-0">Days</p>
+						<h1 class="display-4 m-0" id="timer-days"></h1>
+					</div>
+					<div class = "col col-2-md text-center border border-primary text-primary rounded p-0 m-1">
+						<p class="mb-0">Hours</p>
+						<h1 class="display-4 m-0" id="timer-hours"></h1>
+					</div>
+					<div class = "col col-2-md text-center border border-primary text-primary rounded p-0 m-1">
+						<p class="mb-0">Mins</p>
+						<h1 class="display-4 m-0" id="timer-mins"></h1>
+					</div>
+					<div class = "col col-2-md text-center border border-primary text-primary rounded p-0 m-1">
+						<p class="mb-0">Secs</p>
+						<h1 class="display-4 m-0" id="timer-secs"></h1>
+					</div>
+				</div>
+				<script>
+					// Set the date we're counting down to
+					var countDownDate = new Date("Mar 15, 2020 18:00:00").getTime();
+
+					// Update the count down every 1 second
+					var x = setInterval(function() {
+
+					  // Get today's date and time
+					  var now = new Date().getTime();
+
+					  // Find the distance between now and the count down date
+					  var distance = countDownDate - now;
+
+					  // Time calculations for days, hours, minutes and seconds
+					  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+					  // Display the result in the element with id="timer"
+					  // document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+					  // + minutes + "m " + seconds + "s ";
+
+					  // Display each time component in its own element
+					  document.getElementById("timer-days").innerHTML = days;
+					  document.getElementById("timer-hours").innerHTML = hours;
+					  document.getElementById("timer-mins").innerHTML = minutes;
+					  document.getElementById("timer-secs").innerHTML = seconds;
+
+					  // If the count down is finished, write some text
+					  if (distance < 0) {
+					    clearInterval(x);
+					    document.getElementById("timer").innerHTML = "SPREADPOOL TIME!";
+					  }
+					}, 1000);
+				</script>
 			</div>
 			<div class = "col"></div>
 		</div>
-		<!-- UNCOMMENT THIS DURING REGISTRATION PERIOD -->
-		<form action = "{% url 'bracket:signup' %}">
-			<button class="btn btn-primary custom" type="submit">Register</button>
-		</form>
-		<br>
 	</div>
 	<div class = "col-12 col-md-4">
 		<h4>Login here!</h4>
