@@ -10,6 +10,7 @@ export interface IUserData {
   mult_entry_type: string;
   is_staff: number;
   paid: boolean;
+  gm_updates: boolean;
 }
 
 export interface TBracketData {

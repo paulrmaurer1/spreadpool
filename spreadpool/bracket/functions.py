@@ -1,6 +1,7 @@
 # functions.py
 #import internal entitities
 from .models import Entry, Game, Matchup, Tbracket, Team, Region, User
+from .email_functions import email_team_owners
 
 #3rd party python modules
 import random
@@ -270,9 +271,10 @@ def game_update(game):
 		"""
 
 		if game.spread > 0: 													# if Team 1 is favored
-			if (game.team1_score - (game.spread + 0.5)) > game.team2_score: # and Team1 beats spread
+			if (game.team1_score - (game.spread + 0.5)) > game.team2_score:	# and Team1 beats spread
+				email_team_owners(game, 1) 
 				owner1_retains(game, child_game1, child_game2)
-			else:																		# and Team1 doesn't beat spread
+			else:																# and Team1 doesn't beat spread
 				if game.team1_score > game.team2_score:  							# yet Team1 won game
 					owner2_inherits(game, child_game1, child_game2)
 				else:																		# and Team 1 lost game

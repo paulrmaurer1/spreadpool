@@ -63,7 +63,15 @@
 				    </select>
 				</div>
 			</div>
-
+			<div class="form-group">
+				<div class = "custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input"
+				    id="gm_updates" [formControl] = "gm_updates">
+				    <label class="custom-control-label" for="gm_updates">
+					    Receive email for game updates?
+					</label>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<button type="submit" id="submit" class="btn btn-success" 

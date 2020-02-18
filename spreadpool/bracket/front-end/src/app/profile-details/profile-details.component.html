@@ -19,6 +19,10 @@
 				<div class = "col" class="text-muted" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>
 			</div>
 			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Receive Game Result email updates?&nbsp;</strong></div>
+				<div class = "col" class="text-muted" >{{ player.gm_updates ? 'Yes' : 'No' }}</div>
+			</div>
+			<div class = "row justify-content-start">
 				<div class = "col-xs-auto"><strong>Paid up?:</strong></div>
 				<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
 					{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>

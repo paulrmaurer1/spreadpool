@@ -21,6 +21,7 @@ export class ProfileFormModalComponent implements OnInit {
 	email : AbstractControl;
 	num_entries : AbstractControl;
 	mult_entry_type : AbstractControl;
+  gm_updates : AbstractControl;
 
   constructor(
   	public bsModalRef: BsModalRef,
@@ -29,7 +30,7 @@ export class ProfileFormModalComponent implements OnInit {
   	) {
   	
   	this.title = "Update profile for "
-  	this.closeBtnName = "Submit";
+  	this.closeBtnName = "Update";
 
   	this.profileForm = fb.group({
 			'first_name' : ['', Validators.required],
@@ -37,6 +38,7 @@ export class ProfileFormModalComponent implements OnInit {
 			'email' : ['', Validators.compose([Validators.required, Validators.email])],
 			'num_entries' : ['', Validators.compose([Validators.required, Validators.maxLength(4), Validators.minLength(1)])],
 			'mult_entry_type' : ['', Validators.required],
+      'gm_updates' : [],
 		});
     
   	this.first_name = this.profileForm.controls['first_name']; // allows for other properties, e.g. error values
@@ -44,6 +46,7 @@ export class ProfileFormModalComponent implements OnInit {
   	this.email      = this.profileForm.controls['email'];
   	this.num_entries = this.profileForm.controls['num_entries'];
   	this.mult_entry_type = this.profileForm.controls['mult_entry_type'];
+    this.gm_updates = this.profileForm.controls['gm_updates'];
     }
 
   ngOnInit() {
@@ -56,6 +59,8 @@ export class ProfileFormModalComponent implements OnInit {
   	this.profile_user.email = this.email.value.toLowerCase();
   	this.profile_user.num_entries = this.num_entries.value;
   	this.profile_user.mult_entry_type = this.mult_entry_type.value;
+    this.profile_user.gm_updates = this.gm_updates.value;
+    console.log("gm_updates = ", this.profile_user.gm_updates);
 
   	this._playerService.updatePlayer(this.profile_user).subscribe((data) => {
 		// console.log("Player updated:", this.profile_user);

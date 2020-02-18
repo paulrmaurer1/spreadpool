@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
-        	'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid')
+        	'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -120,7 +120,6 @@ class GameSerializer(serializers.ModelSerializer):
 		instance.team2_score = validated_data.get('team2_score', instance.team2_score)
 		instance.save()
 		game_update(instance)
-		# print ('Game id is: ' + str(instance.id))
 		return instance
 
 

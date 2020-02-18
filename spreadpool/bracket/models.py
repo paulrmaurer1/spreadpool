@@ -36,6 +36,9 @@ class User(AbstractUser):
 	paid = models.BooleanField(
 		default = False
 		)
+	gm_updates = models.BooleanField(
+		default = False
+		)  #1 = receive an email when a game result is entered
 
 	# Used by views.ProfileEdit(UpdateView) to return to standard profile view
 	def get_absolute_url(self):
