@@ -1,1 +1,7 @@
-<html>Hey {{first_name}}, your team {{team_w}} won!</html>
+{% extends 'base_email.html' %}
+
+{% block content %}
+
+<p>Hey {{first_name}}, your team {{team_w}} won!</p>
+
+{% endblock %}
