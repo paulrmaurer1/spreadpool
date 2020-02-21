@@ -14,11 +14,11 @@
 {% endblock %}
 </head>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<body style="margin: 0; padding: 0;">
 
-<table width="600" cellpadding="0" cellspacing="0" align="center" style="border: 2px solid #0275d8;">
+<table width="600" cellpadding="0" cellspacing="0" align="center" style="border: 2px solid #0275d8; border-collapse: collapse;">
 	<tr>
-		<td align="center" bgcolor="#0275d8" style="padding: 20px 0 12px 0;">
+		<td align="center" bgcolor="#0275d8" style="padding: 20px 0 15px 0;">
 			<a href="https://www.ncaaspreadpool.com">
 			<img src="https://www.ncaaspreadpool.com{% static 'images/spreadpool_white_no_background_60x143.png' %}" alt="Spreadpool" style="display: block;">
 			<!-- <img src="{{ request.site.name }}{% static 'images/spreadpool_white_no_background_60x143.png' %}" alt="Spreadpool"> -->
@@ -32,9 +32,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td align="center" bgcolor="#0275d8" style = "color: #ffffff; font-family: Arial, sans-serif; font-size: 12px; line-height: 14px; padding: 10px 0 10px 0;">
-			Exit Zero Technologies 2018-2020<br>
+		<td align="center" bgcolor="#0275d8" style = "color: #ffffff; font-family: Arial, sans-serif; font-size: 10px; line-height: 12px; padding: 10px 0 10px 0;">
+			This email was sent to {{player_email}}<br>
 			To unsubscribe, click <a href="https://www.ncaaspreadpool.com" style="color: #ffffff;"><font color="#ffffff">here</font></a>, login and navigate to "My Teams"<br>
+			&copy; Exit Zero Technologies 2018-2020
 		</td>
 	</tr>
 </table>
