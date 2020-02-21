@@ -56,24 +56,28 @@ def email_team_owners(game, outcome):
 			Team 2 (of game) loses, doesn't beat spread, doesn't advance
 			"""
 			# Construct parts of target 1 email
-			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
-			c1 = {
-				'first_name':target_user1.short_name,
-				'player_email':target_user1.email,
+			# common context elements to both emails
+			t = {
 				'team_w':game.team1,
 				'team_l':game.team2
 			}
+
+			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
+			c1 = {
+				'first_name':target_user1.first_name,
+				'player_email':target_user1.email,
+			}
+			c1.update(t) # include dict t in c1
 			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
 			msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
 			
 			# Construct parts of target 2 email
 			subject2 = 'Your team, ' + str(game.team2) + ', didn\'t beat the spread :('
 			c2 = {
-				'first_name':target_user2.short_name,
+				'first_name':target_user2.first_name,
 				'player_email':target_user2.email,
-				'team_w':game.team1,
-				'team_l':game.team2
 			}
+			c2.update(t)
 			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
 			msg2_html = render_to_string(email_dir + 'game_result_f.html', c2)
 
