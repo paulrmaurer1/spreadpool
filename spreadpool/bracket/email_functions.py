@@ -160,6 +160,44 @@ def email_team_owners(game, outcome):
 			subject2 = 'Unbelievable. Your team, ' + str(game.team2) + ', won despite being an underdog!'
 			msg2_plain = render_to_string(email_dir + 'game_result_c.txt', c2)
 			msg2_html = render_to_string(email_dir + 'game_result_c.html', c2)
+
+		if outcome == 4:
+			"""
+			When Team 2 (of game) is favored, wins, and covers spread
+			Team 1 (of game) loses, doesn't beat spread, doesn't advance
+			"""
+			# common context elements to both emails
+			c = {
+				'team_w':game.team2,
+				'team_l':game.team1,
+				'team_w_score':game.team2_score,
+				'team_l_score':game.team1_score,
+				'bracket_id':match.tbracket_id,
+				'spread':-game.spread,
+				'win_first_name':target_user2.first_name,
+				'win_short_name':target_user2.short_name,
+				'lose_first_name':target_user1.first_name,
+				'lose_short_name':target_user1.short_name,
+			}
+
+			# Construct parts of target 1 email
+			c1 = {
+				'target_email':to_target1,
+			}
+			c1.update(c)  # merge context elements specific to target1 email
+			subject2 = 'Your team, ' + str(game.team1) + ', didn\'t beat the spread :('
+			msg1_plain = render_to_string(email_dir + 'game_result_f.txt', c1)
+			msg1_html = render_to_string(email_dir + 'game_result_f.html', c1)
+			
+			# Construct parts of target 2 email
+			c2 = {
+				'target_email':to_target2,
+			}
+			c2.update(c)  # merge context elements specific to target2 email
+			subject1 = 'Congrats! Your team, ' + str(game.team2) + ', advances to the next round!'
+			msg2_plain = render_to_string(email_dir + 'game_result_a.txt', c2)
+			msg2_html = render_to_string(email_dir + 'game_result_a.html', c2)
+
 		
 		# Send email to each target of matchup if gm_updates = True
 		if target_user1.gm_updates:
