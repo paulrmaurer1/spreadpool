@@ -8,7 +8,6 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.template import Context
-from django.contrib.sites.models import Site
 
 """
 The below functions execute lookups to populate email messages with to, from, subject, message
@@ -25,7 +24,6 @@ def email_team_owners(game, outcome):
 	matchset = Matchup.objects.filter(game=game.id)
 
 	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
-	site_url = Site.objects.get_current().domain
 	
 	# For each match that's related to game
 	for match in matchset:
@@ -69,7 +67,6 @@ def email_team_owners(game, outcome):
 				'win_short_name':target_user1.short_name,
 				'lose_first_name':target_user2.first_name,
 				'lose_short_name':target_user2.short_name,
-				'site_url':site_url,
 			}
 
 			# Construct parts of target 1 email
