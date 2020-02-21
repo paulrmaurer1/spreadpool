@@ -276,22 +276,29 @@ def game_update(game):
 				owner1_retains(game, child_game1, child_game2)
 			else:																# and Team1 doesn't beat spread
 				if game.team1_score > game.team2_score:  							# yet Team1 won game
+					email_team_owners(game, 2)
 					owner2_inherits(game, child_game1, child_game2)
 				else:																		# and Team 1 lost game
+					email_team_owners(game, 3)
 					owner2_retains(game, child_game1, child_game2)
 		
 		elif game.spread < 0: 													# if Team 2 is favored
 			if (game.team2_score - (-game.spread + 0.5)) > game.team1_score:# and Team2 beats spread
+				email_team_owners(game, 4)
 				owner2_retains(game, child_game1, child_game2)
 			else:																		# and Team2 doesn't beat spread
 				if game.team2_score > game.team1_score:								# yet Team2 won game
+					email_team_owners(game, 5)
 					owner1_inherits(game, child_game1, child_game2)
 				else:																		# and Team 2 lost game
+					email_team_owners(game, 6)
 					owner1_retains(game, child_game1, child_game2)
 		elif game.spread == 0: 																		# if pick'em, i.e. spread = 0
 			if game.team1_score > game.team2_score: 							# and Team1 wins
+				email_team_owners(game, 7)
 				owner1_retains(game, child_game1, child_game2)
 			else:  																		# and Team2 wins
+				email_team_owners(game, 8)
 				owner2_retains(game, child_game1, child_game2)
 
 	return

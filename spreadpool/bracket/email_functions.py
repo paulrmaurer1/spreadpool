@@ -18,7 +18,7 @@ Templates used are located in the bracket templates directory in the folder "ema
 def email_team_owners(game, outcome):
 	"""
 	This function prepares & sends emails to each team owner of the passed 'game'
-	outcome = scenario that occurs in a game, values = 1-8 (see descriptions below near if/elif statements)
+	'outcome' = scenario that occurs in a game, values = 1-8 (see descriptions below near if/elif statements)
 	"""
 	# Find Matchups for game and use team_owner_id's to update respective Players' Active Team
 	matchset = Matchup.objects.filter(game=game.id)
@@ -55,9 +55,8 @@ def email_team_owners(game, outcome):
 			When Team 1 (of game) is favored, wins, and covers spread
 			Team 2 (of game) loses, doesn't beat spread, doesn't advance
 			"""
-			# Construct parts of target 1 email
 			# common context elements to both emails
-			t = {
+			c = {
 				'team_w':game.team1,
 				'team_l':game.team2,
 				'team_w_score':game.team1_score,
@@ -70,22 +69,15 @@ def email_team_owners(game, outcome):
 				'lose_short_name':target_user2.short_name,
 			}
 
+			# Construct parts of target 1 email
 			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
-			c1 = {
-				# put any unique context elements to the target1 email here
-			}
-			c1.update(t) # merge dict t with c1
-			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
+			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c)
+			msg1_html = render_to_string(email_dir + 'game_result_a.html', c)
 			
 			# Construct parts of target 2 email
 			subject2 = 'Your team, ' + str(game.team2) + ', didn\'t beat the spread :('
-			c2 = {
-				# put any unique context elements to the target2 email here
-			}
-			c2.update(t) # merge dict t with c2
-			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_f.html', c2)
+			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c)
+			msg2_html = render_to_string(email_dir + 'game_result_f.html', c)
 
 		
 		# Send email to each target of matchup if gm_updates = True

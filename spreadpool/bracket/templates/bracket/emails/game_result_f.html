@@ -1,7 +1,9 @@
-{% extends 'base_email.html' %}
+{{% extends 'base_email.html' %}
 
 {% block content %}
-
-<p>Hey {{first_name}}, your team {{team_l}} lost.</p>
-
+Hey {{lose_first_name}},<br>
+Unfortunately, your team <b>{{team_l}}</b> lost. Their opponent, <b>{{team_w}}</b>, was<br>
+favored by {{spread}} and won by the score of {{team_w_score}} - {{team_l_score}}.<br>
+Incidentally, {{team_w}} is owned by {{win_short_name}}. Now would be a great time<br>
+for that prank you've been meaning to pull on someone. :)<br>
 {% endblock %}
