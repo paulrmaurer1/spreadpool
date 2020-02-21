@@ -1,0 +1,1 @@
+Hey {{win_first_name}},the good news is that your team {{team_w}} won against {{team_l}}. The bad news is that they didn't cover the spread ({{spread}}) while winning {{team_w_score}} - {{team_l_score}}.  {{lose_short_name}} will inherit your team for the next round.Now that {{lose_first_name}} owns {{team_w}}, don't you think a "thank-you" is deserved? :)

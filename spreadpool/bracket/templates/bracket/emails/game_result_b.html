@@ -1,0 +1,8 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+Hey {{lose_first_name}},<br>
+Woohoo! Your team <b>{{team_l}}</b> were {{spread}} underdogs vs. <b>{{team_w}}</b> and only lost {{team_w_score}} - {{team_l_score}}. That means you inherit <b>{{team_w}}</b> for the next round!<br>
+<br>
+Incidentally, {{team_w}} was owned by {{win_short_name}}. Perhaps a well thought out thank-you will help them overcome the sting. :)<br>
+{% endblock %}
