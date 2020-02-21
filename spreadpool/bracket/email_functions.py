@@ -67,7 +67,7 @@ def email_team_owners(game, outcome):
 				'first_name':target_user1.first_name,
 				'player_email':target_user1.email,
 			}
-			c1.update(t) # include dict t in c1
+			c1.update(t) # merge dict t with c1
 			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
 			msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
 			
@@ -77,7 +77,7 @@ def email_team_owners(game, outcome):
 				'first_name':target_user2.first_name,
 				'player_email':target_user2.email,
 			}
-			c2.update(t)
+			c2.update(t) # merge dict t with c2
 			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
 			msg2_html = render_to_string(email_dir + 'game_result_f.html', c2)
 
