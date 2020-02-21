@@ -63,12 +63,16 @@ def email_team_owners(game, outcome):
 				'team_w_score':game.team1_score,
 				'team_l_score':game.team2_score,
 				'bracket_id':match.tbracket_id,
+				'spread':match.spread,
+				'win_first_name':target_user1.first_name,
+				'win_short_name':target_user1.short_name,
+				'lose_first_name':target_user2.first_name,
+				'lose_short_name':target_user2.short_name,
 			}
 
 			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
 			c1 = {
-				'win_first_name':target_user1.first_name,
-				'win_short_name':target_user1.short_name,
+				# put any unique context elements to the target1 email here
 			}
 			c1.update(t) # merge dict t with c1
 			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
@@ -77,8 +81,7 @@ def email_team_owners(game, outcome):
 			# Construct parts of target 2 email
 			subject2 = 'Your team, ' + str(game.team2) + ', didn\'t beat the spread :('
 			c2 = {
-				'lose_first_name':target_user2.first_name,
-				'lose_short_name':target_user2.short_name,
+				# put any unique context elements to the target2 email here
 			}
 			c2.update(t) # merge dict t with c2
 			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
