@@ -62,7 +62,7 @@ def email_team_owners(game, outcome):
 				'team_w_score':game.team1_score,
 				'team_l_score':game.team2_score,
 				'bracket_id':match.tbracket_id,
-				'spread':match.spread,
+				'spread':game.spread,
 				'win_first_name':target_user1.first_name,
 				'win_short_name':target_user1.short_name,
 				'lose_first_name':target_user2.first_name,
