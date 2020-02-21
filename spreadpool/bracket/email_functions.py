@@ -70,11 +70,19 @@ def email_team_owners(game, outcome):
 			}
 
 			# Construct parts of target 1 email
+			c1 = {
+				'target_email':to_target1,
+			}
+			c.update(c1)  # merge context elements specific to target1 email
 			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
 			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c)
 			msg1_html = render_to_string(email_dir + 'game_result_a.html', c)
 			
 			# Construct parts of target 2 email
+			c2 = {
+				'target_email':to_target2,
+			}
+			c.update(c2)  # merge context elements specific to target2 email
 			subject2 = 'Your team, ' + str(game.team2) + ', didn\'t beat the spread :('
 			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c)
 			msg2_html = render_to_string(email_dir + 'game_result_f.html', c)
