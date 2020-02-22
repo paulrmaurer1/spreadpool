@@ -247,7 +247,7 @@ def email_team_owners(game, outcome):
 				'team_w_score':game.team1_score,
 				'team_l_score':game.team2_score,
 				'bracket_id':match.tbracket_id,
-				'spread':game.spread,
+				'spread':-game.spread,
 				'win_first_name':target_user1.first_name,
 				'win_short_name':target_user1.short_name,
 				'lose_first_name':target_user2.first_name,
@@ -272,6 +272,79 @@ def email_team_owners(game, outcome):
 			msg2_plain = render_to_string(email_dir + 'game_result_g.txt', c2)
 			msg2_html = render_to_string(email_dir + 'game_result_g.html', c2)
 
+		elif outcome == 7:
+			"""
+			When Team 1 (of game) & Team 2 are pick'ems
+			and Team 1 wins
+			"""
+			# common context elements to both emails
+			c = {
+				'team_w':game.team1,
+				'team_l':game.team2,
+				'team_w_score':game.team1_score,
+				'team_l_score':game.team2_score,
+				'bracket_id':match.tbracket_id,
+				'spread':game.spread,
+				'win_first_name':target_user1.first_name,
+				'win_short_name':target_user1.short_name,
+				'lose_first_name':target_user2.first_name,
+				'lose_short_name':target_user2.short_name,
+			}
+
+			# Construct parts of target 1 email
+			c1 = {
+				'target_email':to_target1,
+			}
+			c1.update(c)  # merge context elements specific to target1 email
+			subject1 = 'Woohoo! Your team, ' + str(game.team1) + ', won a pick\'em game!'
+			msg1_plain = render_to_string(email_dir + 'game_result_d.txt', c1)
+			msg1_html = render_to_string(email_dir + 'game_result_d.html', c1)
+			
+			# Construct parts of target 2 email
+			c2 = {
+				'target_email':to_target2,
+			}
+			c2.update(c)  # merge context elements specific to target2 email
+			subject2 = 'Your team, ' + str(game.team2) + ', will not advance to the next round :('
+			msg2_plain = render_to_string(email_dir + 'game_result_h.txt', c2)
+			msg2_html = render_to_string(email_dir + 'game_result_h.html', c2)
+
+		elif outcome == 8:
+			"""
+			When Team 1 (of game) & Team 2 are pick'ems
+			and Team 2 wins
+			"""
+			# common context elements to both emails
+			c = {
+				'team_w':game.team2,
+				'team_l':game.team1,
+				'team_w_score':game.team2_score,
+				'team_l_score':game.team1_score,
+				'bracket_id':match.tbracket_id,
+				'spread':game.spread,
+				'win_first_name':target_user2.first_name,
+				'win_short_name':target_user2.short_name,
+				'lose_first_name':target_user1.first_name,
+				'lose_short_name':target_user1.short_name,
+			}
+
+			# Construct parts of target 1 email
+			c1 = {
+				'target_email':to_target1,
+			}
+			c1.update(c)  # merge context elements specific to target1 email
+			subject1 = 'Your team, ' + str(game.team2) + ', will not advance to the next round :('
+			msg1_plain = render_to_string(email_dir + 'game_result_h.txt', c1)
+			msg1_html = render_to_string(email_dir + 'game_result_h.html', c1)
+			
+			# Construct parts of target 2 email
+			c2 = {
+				'target_email':to_target2,
+			}
+			c2.update(c)  # merge context elements specific to target2 email
+			subject2 = 'Woohoo! Your team, ' + str(game.team1) + ', won a pick\'em game!'
+			msg2_plain = render_to_string(email_dir + 'game_result_d.txt', c2)
+			msg2_html = render_to_string(email_dir + 'game_result_d.html', c2)
 
 		# Send email to each target of matchup if gm_updates = True
 		if target_user1.gm_updates:
