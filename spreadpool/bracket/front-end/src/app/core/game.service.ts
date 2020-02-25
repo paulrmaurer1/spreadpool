@@ -65,6 +65,10 @@ export class GameService {
 		return this.http.get<GameData[]>(gameUrl + 'replay_all/', this.getHttpOptions())
 	}
 
+	isFinalFour() {
+		return this.http.get<GameData[]>(gameUrl + 'final_four/')
+	}
+
 	// helper function to build the HTTP headers
 	getHttpOptions() {
 	return {

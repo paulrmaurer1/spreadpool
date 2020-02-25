@@ -420,6 +420,17 @@ class GameViewSet(ModelViewSet):
 			game_update(game)
 		return Response(status=status.HTTP_204_NO_CONTENT)
 
+	@action(detail=False)
+	def final_four(self, request):
+		"""
+		Check to see if it's the Final Four yet, i.e. game #s in rounds 1-4 all have team1_score and team2_score posted
+		"""
+		happening = True;
+		games = Game.objects.filter(t_round__lte=4).order_by('id')
+		for game in games:
+			if not(game.team1_score > 0 and game.team2_score > 0):
+				happening = False;
+		return Response({'happening': happening})
 	
 
 class GameWithTeamOwnersViewSet(ModelViewSet):

@@ -27,7 +27,7 @@
 	            </li>
 
 				<li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
-	            	<a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]">Brackets</a>
+	            	<a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]" [fragment]="_region_id">Brackets</a>
 	            </li>
 				<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***
 	            <li class="nav-item dropdown">
