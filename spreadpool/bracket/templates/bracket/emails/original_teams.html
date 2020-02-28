@@ -6,20 +6,37 @@ Thanks for entering this year's Spreadpool! You'll get a separate email for each
 <br>
 This entry will be in the bracket called, <strong>{{bracket_name}}</strong>. Your teams are as follows:<br>
 <br>
-<table>
-	<tr>
+<table cellpadding="4" style = "font-size: 12px !important;">
+	<col width = "15%">
+	<tr style = "color: #0275d8; text-align: left;">
 		<th>Region</th>
 		<th>Seeding</th>
 		<th>Team</th>
 		<th>School</th>
 	</tr>
 	<tr>
-		<td>orig_team_a_region</td>
-		<td>orig_team_a</td>
-		<td>orig_team_a_long_name</td>
-		<td>orig_team_a_univ</td>
+		<td><b>{{ orig_team_a_region }}</b></td>
+		<td>{{ orig_team_a }}</td>
+		<td>{{ orig_team_a_long_name }}</td>
+		<td>{{ orig_team_a_univ }}</td>
 	</tr>
-	
+	<tr>
+		<td><b>{{ orig_team_b_region }}</b></td>
+		<td>{{ orig_team_b }}</td>
+		<td>{{ orig_team_b_long_name }}</td>
+		<td>{{ orig_team_b_univ }}</td>
+	</tr>
+	<tr>
+		<td><b>{{ orig_team_c_region }}</b></td>
+		<td>{{ orig_team_c }}</td>
+		<td>{{ orig_team_c_long_name }}</td>
+		<td>{{ orig_team_c_univ }}</td>
+	</tr>
+	<tr>
+		<td><b>{{ orig_team_d_region }}</b></td>
+		<td>{{ orig_team_d }}</td>
+		<td>{{ orig_team_d_long_name }}</td>
+		<td>{{ orig_team_d_univ }}</td>
+	</tr>
 </table>
-<br>
 {% endblock %}

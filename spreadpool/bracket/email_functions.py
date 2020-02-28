@@ -38,24 +38,33 @@ def email_original_teams(tbracket_id):
 		c = {
 				'first_name': target.first_name,
 				'email': to_target,
+				'bracket_name' : bracket.name,
+				'bracket_id': bracket.id,
 				'orig_team_a': orig_team_a.bracket_name,
 				'orig_team_a_region': Region.objects.get(id=orig_team_a.region_id).name,
 				'orig_team_a_univ': orig_team_a.school,
 				'orig_team_a_long_name': orig_team_a.long_name,
 				'orig_team_b': orig_team_b.bracket_name,
+				'orig_team_b_region': Region.objects.get(id=orig_team_b.region_id).name,
+				'orig_team_b_univ': orig_team_b.school,
+				'orig_team_b_long_name': orig_team_b.long_name,
 				'orig_team_c': orig_team_c.bracket_name,
+				'orig_team_c_region': Region.objects.get(id=orig_team_c.region_id).name,
+				'orig_team_c_univ': orig_team_c.school,
+				'orig_team_c_long_name': orig_team_c.long_name,
 				'orig_team_d': orig_team_d.bracket_name,
-				'bracket_name' : bracket.name,
-				
+				'orig_team_d_region': Region.objects.get(id=orig_team_d.region_id).name,
+				'orig_team_d_univ': orig_team_d.school,
+				'orig_team_d_long_name': orig_team_d.long_name,
 			}
 
-		# subject = 'Here are your 4 teams for the 2020 Spreadpool in bracket <' + bracket_name + '>. Good luck!'
-		# msg_plain = render_to_string(email_dir + 'xxxxx.txt', c)
-		# msg_html = render_to_string(email_dir + 'xxxxx.html', c)
+		subject = 'Here are your 4 teams for the 2020 Spreadpool in bracket <' + str(bracket.name) + '>. Good luck!'
+		msg_plain = render_to_string(email_dir + 'original_teams.txt', c)
+		msg_html = render_to_string(email_dir + 'original_teams.html', c)
 
 		if target.gm_updates:
-			print (c)
-			# send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
+			# print (c)
+			send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
 
 
 def email_team_owners(game, outcome):

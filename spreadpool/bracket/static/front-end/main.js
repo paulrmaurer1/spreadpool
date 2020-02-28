@@ -44,6 +44,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
 /* harmony import */ var _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./update-games/update-games.component */ "./src/app/admin/update-games/update-games.component.ts");
 /* harmony import */ var _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./game-detail/game-detail.component */ "./src/app/admin/game-detail/game-detail.component.ts");
+/* harmony import */ var _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,11 +60,13 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: '', redirectTo: 'c-brackets', pathMatch: 'full' },
     { path: 'c-brackets', component: _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__["CreateBracketsComponent"] },
     { path: 'a-brackets/:id', component: _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__["AssignBracketsComponent"] },
     { path: 'u-games', component: _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"] },
+    { path: 's-emails', component: _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__["SendEmailsComponent"] },
 ];
 var AdminModule = /** @class */ (function () {
     function AdminModule() {
@@ -74,12 +77,14 @@ var AdminModule = /** @class */ (function () {
                 _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__["AssignBracketsComponent"],
                 _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__["CreateBracketsComponent"],
                 _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"],
-                _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_8__["GameDetailComponent"]
+                _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_8__["GameDetailComponent"],
+                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__["SendEmailsComponent"]
             ],
             exports: [
                 _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__["AssignBracketsComponent"],
                 _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__["CreateBracketsComponent"],
-                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"]
+                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"],
+                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__["SendEmailsComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -515,6 +520,140 @@ var GameDetailComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/admin/send-emails/send-emails.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-emails.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL3NlbmQtZW1haWxzL3NlbmQtZW1haWxzLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/admin/send-emails/send-emails.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-emails.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--send-emails.component.html-->\n\n<br>\n<h6><strong>Email Actions</strong></h6>\n<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<th scope=\"col\">#</th>\n\t\t\t<th scope=\"col\">Name</th>\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\n\t\t\t<th scope=\"col\">Email Actions</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\n\t\t\t<td>{{ tbracket.name }}</td>\n\t\t\t<td>{{ tbracket.entry_count}}</td>\n\t\t\t<td>{{ tbracket.id }}</td>\n\t\t\t<td>\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"openSendOrigModal(tbracket.id, tbracket.name)\">Send Orig Teams</button>\n\t\t\t\t&nbsp;\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n"
+
+/***/ }),
+
+/***/ "./src/app/admin/send-emails/send-emails.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-emails.component.ts ***!
+  \************************************************************/
+/*! exports provided: SendEmailsComponent, SendOrigModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendEmailsComponent", function() { return SendEmailsComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendOrigModalComponent", function() { return SendOrigModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
+/* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/entry.service */ "./src/app/core/entry.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SendEmailsComponent = /** @class */ (function () {
+    function SendEmailsComponent(_tbracketService, _entryService, modalService) {
+        this._tbracketService = _tbracketService;
+        this._entryService = _entryService;
+        this.modalService = modalService;
+    }
+    SendEmailsComponent.prototype.ngOnInit = function () {
+        this.resetList();
+    };
+    SendEmailsComponent.prototype.resetList = function () {
+        var _this = this;
+        //refresh Tbracket list
+        this._tbracketService.getList().subscribe(function (data) {
+            _this._tbracketList = data;
+        });
+        // console.log("Tbracket List has been reset")
+    }; // end resetList()
+    SendEmailsComponent.prototype.openSendOrigModal = function (bracket_id, bracket_name) {
+        var _this = this;
+        this._entryService.getEntryListByBracket(bracket_id).subscribe(function (data) {
+            var emailTargetList = data.map(function (target) {
+                return target.player;
+            });
+            // Create a unique list of targets users, eliminating duplicates of owner(s) having 2+ entries
+            _this.emailTargetList = emailTargetList.filter(function (item, pos) {
+                return emailTargetList.indexOf(item) == pos;
+            });
+            // console.log("List of players = ", this.emailTargetList);
+            var initialState = {
+                tbracket_id: bracket_id,
+                tbracket_name: bracket_name,
+                emailTargetList: _this.emailTargetList,
+                num_targets: _this.emailTargetList.length
+            };
+            _this.sendOrigModalRef = _this.modalService.show(SendOrigModalComponent, { initialState: initialState });
+        });
+        this.modalService.onHidden.subscribe(function (reason) {
+            // Upon modal being closed run these actions
+            _this.resetList();
+        });
+        // console.log("Tbracket ", bracket_name, " with id: ", bracket_id, "will invoke send_emails API");
+    };
+    SendEmailsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-send-emails',
+            template: __webpack_require__(/*! ./send-emails.component.html */ "./src/app/admin/send-emails/send-emails.component.html"),
+            styles: [__webpack_require__(/*! ./send-emails.component.css */ "./src/app/admin/send-emails/send-emails.component.css")]
+        }),
+        __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__["TBracketService"],
+            _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["BsModalService"]])
+    ], SendEmailsComponent);
+    return SendEmailsComponent;
+}());
+
+/* Below are components referenced by the above function */
+var SendOrigModalComponent = /** @class */ (function () {
+    function SendOrigModalComponent(sendOrigModalRef, _entryService) {
+        this.sendOrigModalRef = sendOrigModalRef;
+        this._entryService = _entryService;
+    }
+    SendOrigModalComponent.prototype.ngOnInit = function () {
+    };
+    SendOrigModalComponent.prototype.sendOriginalTeamsEmail = function (bracket_id) {
+        // console.log("Tbracket with id: ", bracket_id, "will invoke send_emails API");
+        this._entryService.emailOrigTeamsToOwners(bracket_id).subscribe(function (data) {
+            console.log("Tbracket with id: ", data['tbracketid'], " have had emails sent!");
+        });
+    };
+    SendOrigModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'modal-content',
+            template: "\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title pull-left\">Confirm Send Original Teams Email</h4>\n      <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"sendOrigModalRef.hide()\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n    <div class=\"modal-body\">\n      <h6>Are you sure you want to send emails to these {{num_targets}} players of <strong>{{ tbracket_name }}</strong> bracket?</h6>\n      <ol>\n\t      <li *ngFor = \"let target of emailTargetList; let i = index\">{{ target }}</li>\n      </ol>\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-success\" (click)=\"sendOrigModalRef.hide(); \n      sendOriginalTeamsEmail(tbracket_id)\">Send emails</button>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["BsModalRef"],
+            _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"]])
+    ], SendOrigModalComponent);
+    return SendOrigModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/admin/update-games/update-games.component.css":
 /*!***************************************************************!*\
   !*** ./src/app/admin/update-games/update-games.component.css ***!
@@ -873,12 +1012,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
 /* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
 /* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
+/* harmony import */ var _admin_send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./admin/send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -925,6 +1066,7 @@ var AppModule = /** @class */ (function () {
                 _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__["StandingsNavComponent"],
                 _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__["BracketTabComponent"],
                 _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__["RosterTextboxComponent"],
+                _admin_send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -939,7 +1081,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [_app_store__WEBPACK_IMPORTED_MODULE_4__["appStoreProviders"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]],
-            entryComponents: [_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"], _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"]]
+            entryComponents: [_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"], _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"], _admin_send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1482,6 +1624,10 @@ var EntryService = /** @class */ (function () {
     //method to retrieve all entries matching ?tbracketid= value
     EntryService.prototype.getEntryStandings = function (tbracket_id) {
         return this.http.get(entry_standingsURL + '?tbracketid=' + tbracket_id);
+    };
+    //method to generate emails to all Owners of entries within a particular bracket
+    EntryService.prototype.emailOrigTeamsToOwners = function (tbracket_id) {
+        return this.http.get(entryUrl + 'email_orig_teams_to_owners/' + '?tbracketid=' + tbracket_id);
     };
     // helper function to build the HTTP headers
     EntryService.prototype.getHttpOptions = function () {
@@ -3430,7 +3576,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t<div class=\"d-flex flex-row order-2 order-lg-3 align-middle\">\r\n\t\t\t<a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">Hi, {{ currentUser.first_name }}!</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t</div>\r\n\t\t<div class=\"collapse navbar-collapse order-3 order-lg-2\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\r\n\t\t\t\t<li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\" [fragment]=\"_region_id\">Brackets</a>\r\n\t            </li>\r\n\t\t\t\t<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***\r\n\t            <li class=\"nav-item dropdown\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link dropdown-toggle\" [routerLink]=\"['/brackets', _bracketToShow]\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Brackets</a>\r\n\t            \t<ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n\t            \t\t<li *ngFor = \"let tbracket of tbracketList\">\r\n\t            \t\t\t<a class=\"dropdown-item\" [routerLink]=\"['/brackets', tbracket.id]\">\r\n\t            \t\t\t{{ tbracket.name }}</a>\r\n\t            \t\t</li>\r\n\t            \t</ul>\r\n\t            </li>\r\n\t\t\t\t -->\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t          Admin\r\n\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t  \t</div> <!--end navbar-collapse -->\r\n  \t</div> <!--end container-fluid -->\r\n</nav>"
+module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t<div class=\"d-flex flex-row order-2 order-lg-3 align-middle\">\r\n\t\t\t<a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">Hi, {{ currentUser.first_name }}!</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t</div>\r\n\t\t<div class=\"collapse navbar-collapse order-3 order-lg-2\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\r\n\t\t\t\t<li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\" [fragment]=\"_region_id\">Brackets</a>\r\n\t            </li>\r\n\t\t\t\t<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***\r\n\t            <li class=\"nav-item dropdown\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link dropdown-toggle\" [routerLink]=\"['/brackets', _bracketToShow]\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Brackets</a>\r\n\t            \t<ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n\t            \t\t<li *ngFor = \"let tbracket of tbracketList\">\r\n\t            \t\t\t<a class=\"dropdown-item\" [routerLink]=\"['/brackets', tbracket.id]\">\r\n\t            \t\t\t{{ tbracket.name }}</a>\r\n\t            \t\t</li>\r\n\t            \t</ul>\r\n\t            </li>\r\n\t\t\t\t -->\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t          Admin\r\n\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/s-emails']\">Send Emails</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t  \t</div> <!--end navbar-collapse -->\r\n  \t</div> <!--end container-fluid -->\r\n</nav>"
 
 /***/ }),
 
