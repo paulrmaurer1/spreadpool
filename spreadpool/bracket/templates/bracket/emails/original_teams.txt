@@ -1,1 +1,8 @@
-Hey {{win_first_name}}, Woohoo! Your team {{team_w}} won! They were favored by {{spread}} and beat {{team_l}} by the score of {{team_w_score}} - {{team_l_score}}. Incidentally, {{team_l}} was owned by {{lose_short_name}} in case you had any side wagers that now need collecting. :)
+Hi {{first_name}},
+Thanks for entering this year's Spreadpool! You'll get a separate email for each entry you registered. This entry will be in the bracket called, {{bracket_name}}. Your teams are as follows:
+
+Region, Seeding, Team, School
+{{ orig_team_a_region }}, {{ orig_team_a }}, {{ orig_team_a_long_name }}, {{ orig_team_a_univ }}
+{{ orig_team_b_region }}, {{ orig_team_b }}, {{ orig_team_b_long_name }}, {{ orig_team_b_univ }}
+{{ orig_team_c_region }}, {{ orig_team_c }}, {{ orig_team_c_long_name }}, {{ orig_team_c_univ }}
+{{ orig_team_d_region }}, {{ orig_team_d }}, {{ orig_team_d_long_name }}, {{ orig_team_d_univ }}
