@@ -1,0 +1,25 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+Hi {{first_name}},<br>
+Thanks for entering this year's Spreadpool! You'll get a separate email for each entry you registered.<br>
+<br>
+This entry will be in the bracket called, <strong>{{bracket_name}}</strong>. Your teams are as follows:<br>
+<br>
+<table>
+	<tr>
+		<th>Region</th>
+		<th>Seeding</th>
+		<th>Team</th>
+		<th>School</th>
+	</tr>
+	<tr>
+		<td>orig_team_a_region</td>
+		<td>orig_team_a</td>
+		<td>orig_team_a_long_name</td>
+		<td>orig_team_a_univ</td>
+	</tr>
+	
+</table>
+<br>
+{% endblock %}

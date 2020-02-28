@@ -1,0 +1,28 @@
+<!--send-emails.component.html-->
+
+<br>
+<h6><strong>Email Actions</strong></h6>
+<br>
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col" style="width: 10%">Num Entries</th>
+			<th scope="col" style="width: 10%">Id</th>
+			<th scope="col">Email Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let tbracket of _tbracketList; let i = index">
+			<th scope="row">{{i + 1}}</th>
+			<td>{{ tbracket.name }}</td>
+			<td>{{ tbracket.entry_count}}</td>
+			<td>{{ tbracket.id }}</td>
+			<td>
+				<button class="btn btn-success" (click)="openSendOrigModal(tbracket.id, tbracket.name)">Send Orig Teams</button>
+				&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>

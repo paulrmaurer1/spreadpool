@@ -15,6 +15,7 @@ import { AssignBracketsComponent } from './assign-brackets/assign-brackets.compo
 import { CreateBracketsComponent } from './create-brackets/create-brackets.component';
 import { UpdateGamesComponent } from './update-games/update-games.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { SendEmailsComponent } from './send-emails/send-emails.component';
 
 
 export const routes: Routes = [
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'c-brackets', component: CreateBracketsComponent },
   { path: 'a-brackets/:id', component: AssignBracketsComponent },
   { path: 'u-games', component: UpdateGamesComponent },
+  { path: 's-emails', component: SendEmailsComponent },
 ];
 
 @NgModule({
@@ -29,12 +31,14 @@ export const routes: Routes = [
   	AssignBracketsComponent,
   	CreateBracketsComponent,
   	UpdateGamesComponent,
-  	GameDetailComponent
+  	GameDetailComponent,
+  	SendEmailsComponent
   ],
   exports: [
   	AssignBracketsComponent,
   	CreateBracketsComponent,
-  	UpdateGamesComponent
+  	UpdateGamesComponent,
+    SendEmailsComponent
   ],
   imports: [
     CommonModule,

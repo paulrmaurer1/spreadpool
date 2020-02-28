@@ -27,6 +27,7 @@ from bracket import forms
 # from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket, Region
 from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame
+from .email_functions import email_original_teams
 from bracket import serializers
 
 
@@ -298,6 +299,21 @@ class EntryViewSet(ModelViewSet):
 		create_entries()
 		return Response(status=status.HTTP_204_NO_CONTENT)
 
+	@action(detail=False)
+	def email_orig_teams_to_owners(self, request):
+		"""
+		Send email to each entry owner with their original teams. Normally called at the beginning
+		of the tournament. If tbracketid is included in parameters, only email entries belonging
+		to that bracket.  
+		"""
+		tbracketid = self.request.query_params.get('tbracketid', None)
+		if tbracketid is None:
+			tbracketid = "0" # if no tbracketid parameter is sent, set to 0 & generate emails for every entry
+		email_original_teams(tbracketid)
+		
+		return Response({'tbracketid': tbracketid})
+
+
 
 class EntryPlayerByBracketAndTeamViewSet(ModelViewSet):
 	"""
@@ -424,6 +440,7 @@ class GameViewSet(ModelViewSet):
 	def final_four(self, request):
 		"""
 		Check to see if it's the Final Four yet, i.e. game #s in rounds 1-4 all have team1_score and team2_score posted
+		Return boolean, 'happening', =True if games 1-60 are done, =False if not
 		"""
 		happening = True;
 		games = Game.objects.filter(t_round__lte=4).order_by('id')

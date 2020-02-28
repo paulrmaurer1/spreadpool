@@ -13,6 +13,49 @@ from django.template import Context
 The below functions execute lookups to populate email messages with to, from, subject, message
 Templates used are located in the bracket templates directory in the folder "emails"
 """
+def email_original_teams(tbracket_id):
+	"""
+	This function prepares & sends emails to each team owner of entries within the passed 'tbracket_id'
+	If tbracket_id = 0, send emails to every bracket's entries.
+	If the same user owns multiple teams within a single bracket, combine that information into a single email
+	"""
+	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+
+	if tbracket_id == "0":
+		entries = Entry.objects.all()
+	else:
+		entries = Entry.objects.filter(tbracket=tbracket_id)
+
+	for entry in entries:
+		target = User.objects.get(id = entry.player_id)
+		to_target = target.email
+		bracket = Tbracket.objects.get(id=entry.tbracket_id)
+		orig_team_a = Team.objects.get(id=entry.orig_team_a_id)
+		orig_team_b = Team.objects.get(id=entry.orig_team_b_id)
+		orig_team_c = Team.objects.get(id=entry.orig_team_c_id)
+		orig_team_d = Team.objects.get(id=entry.orig_team_d_id)
+		
+		c = {
+				'first_name': target.first_name,
+				'email': to_target,
+				'orig_team_a': orig_team_a.bracket_name,
+				'orig_team_a_region': Region.objects.get(id=orig_team_a.region_id).name,
+				'orig_team_a_univ': orig_team_a.school,
+				'orig_team_a_long_name': orig_team_a.long_name,
+				'orig_team_b': orig_team_b.bracket_name,
+				'orig_team_c': orig_team_c.bracket_name,
+				'orig_team_d': orig_team_d.bracket_name,
+				'bracket_name' : bracket.name,
+				
+			}
+
+		# subject = 'Here are your 4 teams for the 2020 Spreadpool in bracket <' + bracket_name + '>. Good luck!'
+		# msg_plain = render_to_string(email_dir + 'xxxxx.txt', c)
+		# msg_html = render_to_string(email_dir + 'xxxxx.html', c)
+
+		if target.gm_updates:
+			print (c)
+			# send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
 
 
 def email_team_owners(game, outcome):

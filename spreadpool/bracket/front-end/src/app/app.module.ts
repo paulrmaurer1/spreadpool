@@ -25,6 +25,7 @@ import { StandingsComponent } from './standings/standings.component';
 import { StandingsNavComponent } from './standings-nav/standings-nav.component';
 import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
 import { RosterTextboxComponent } from './roster-textbox/roster-textbox.component';
+import { SendOrigModalComponent } from './admin/send-emails/send-emails.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { RosterTextboxComponent } from './roster-textbox/roster-textbox.componen
     StandingsNavComponent,
     BracketTabComponent,
     RosterTextboxComponent,
+    SendOrigModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,6 @@ import { RosterTextboxComponent } from './roster-textbox/roster-textbox.componen
   ],
   providers: [ appStoreProviders ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ ProfileFormModalComponent, DeleteModalComponent ]
+  entryComponents: [ ProfileFormModalComponent, DeleteModalComponent, SendOrigModalComponent ]
 })
 export class AppModule { }

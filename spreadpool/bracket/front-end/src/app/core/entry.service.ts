@@ -56,6 +56,11 @@ export class EntryService {
 		return this.http.get<EntryStandingsData[]>(entry_standingsURL + '?tbracketid=' + tbracket_id)
 		}
 
+	//method to generate emails to all Owners of entries within a particular bracket
+	emailOrigTeamsToOwners(tbracket_id) {
+	    return this.http.get<EntryData[]>(entryUrl + 'email_orig_teams_to_owners/' + '?tbracketid=' + tbracket_id)
+	}
+
 	// helper function to build the HTTP headers
 	getHttpOptions() {
 		return {
