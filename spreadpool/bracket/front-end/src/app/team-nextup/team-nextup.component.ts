@@ -17,13 +17,11 @@ export class TeamNextupComponent implements OnInit {
 	@Input('region') _region_id: number;
 	
 	_nextup_game: string;
-	_nextGame: GameData;
 	_lastGame: MatchupLastGameData;
 
 	constructor(
 	  	private router: Router,
 		private _matchupService: MatchupService,
-		private _gameService: GameService,
 		private _userService: UserService) { }
 
 	ngOnInit() {
@@ -96,6 +94,6 @@ export class TeamNextupComponent implements OnInit {
 				this._region_id = this._lastGame.region_id; 
 
 			} //end else
-		}) // end this._gameService subscribe
+		}) // end this._matchupService.getMatchupLastGame subscribe
 	} //end ngOnInit
 } //end export class
