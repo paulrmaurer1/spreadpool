@@ -2354,7 +2354,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<app-roster *ngIf=\"roster\" [loggedInUser] = \"loggedInUser\" [roster] = \"roster\"></app-roster>\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<!-- <app-standings-nav></app-standings-nav> -->\r\n"
+module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<!-- <app-roster *ngIf=\"roster\" [loggedInUser] = \"loggedInUser\" [roster] = \"roster\"></app-roster> -->\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<app-standings-nav></app-standings-nav>\r\n"
 
 /***/ }),
 
