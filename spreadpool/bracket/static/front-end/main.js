@@ -3242,7 +3242,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n<!-- \r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\" [region]=\"_regionList[0].id\" \r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_a_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\" [region]=\"_regionList[1].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_b_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\" [region]=\"_regionList[2].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_c_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\" [region]=\"_regionList[3].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_d_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div> \r\n-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->\r\n<div class=\"text-center\">\r\n\t<br>\r\n\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 19, 2020, at 10am CST **</h5>\r\n\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n</div>"
+module.exports = "<!--roster.component.html-->\r\n<h4>My Teams</h4>\r\n \r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_a_id\" [region]=\"_regionList[0].id\" \r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_a_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_b_id\" [region]=\"_regionList[1].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_b_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_c_id\" [region]=\"_regionList[2].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_c_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><app-team-nextup [bracket]=\"entry.tbracket_id\" [team]=\"entry.team_d_id\" [region]=\"_regionList[3].id\"\r\n\t\t\t\t\t[orig_team]=\"entry.orig_team_d_id\"></app-team-nextup></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div> \r\n\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->\r\n<!-- <div class=\"text-center\">\r\n\t<br>\r\n\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 19, 2020, at 10am CST **</h5>\r\n\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n</div> -->"
 
 /***/ }),
 
@@ -3369,8 +3369,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_matchup_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/matchup.service */ "./src/app/core/matchup.service.ts");
-/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
-/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3384,12 +3383,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var TeamNextupComponent = /** @class */ (function () {
-    function TeamNextupComponent(router, _matchupService, _gameService, _userService) {
+    function TeamNextupComponent(router, _matchupService, _userService) {
         this.router = router;
         this._matchupService = _matchupService;
-        this._gameService = _gameService;
         this._userService = _userService;
     }
     TeamNextupComponent.prototype.ngOnInit = function () {
@@ -3459,7 +3456,7 @@ var TeamNextupComponent = /** @class */ (function () {
                 //if last game played is in Final Four round, update _region_id for proper route navigation purposes
                 _this._region_id = _this._lastGame.region_id;
             } //end else
-        }); // end this._gameService subscribe
+        }); // end this._matchupService.getMatchupLastGame subscribe
     }; //end ngOnInit
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('orig_team'),
@@ -3485,8 +3482,7 @@ var TeamNextupComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _core_matchup_service__WEBPACK_IMPORTED_MODULE_2__["MatchupService"],
-            _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
+            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], TeamNextupComponent);
     return TeamNextupComponent;
 }()); //end export class
