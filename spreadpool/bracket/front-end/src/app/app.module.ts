@@ -25,7 +25,7 @@ import { StandingsComponent } from './standings/standings.component';
 import { StandingsNavComponent } from './standings-nav/standings-nav.component';
 import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
 import { RosterTextboxComponent } from './roster-textbox/roster-textbox.component';
-import { SendOrigModalComponent } from './admin/send-emails/send-emails.component';
+import { SendOrigModalComponent } from './admin/send-emails/send-orig-modal.component';
 
 
 @NgModule({

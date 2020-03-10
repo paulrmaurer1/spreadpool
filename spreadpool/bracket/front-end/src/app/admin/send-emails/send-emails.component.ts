@@ -5,6 +5,8 @@ import { EntryService } from '../../core/entry.service';
 import { TBracketData, EntryData } from '../../shared/interfaces';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
+import { SendOrigModalComponent } from './send-orig-modal.component';
+
 
 @Component({
   selector: 'app-send-emails',
@@ -38,6 +40,7 @@ export class SendEmailsComponent implements OnInit {
 	openSendOrigModal(bracket_id: number, bracket_name: string) {
 		this._entryService.getEntryListByBracket(bracket_id).subscribe(data => {
 			const emailTargetList = data.map(target => {
+				// Create an array of player names to display in modal
 				return target.player;
 			});
 			// Create a unique list of targets users, eliminating duplicates of owner(s) having 2+ entries
@@ -62,53 +65,4 @@ export class SendEmailsComponent implements OnInit {
 		// console.log("Tbracket ", bracket_name, " with id: ", bracket_id, "will invoke send_emails API");
 	}
 
-}
-
-
-
-/* Below are components referenced by the above function */
-
-@Component({
-  selector: 'modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Confirm Send Original Teams Email</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="sendOrigModalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <h6>Are you sure you want to send emails to these {{num_targets}} players of <strong>{{ tbracket_name }}</strong> bracket?</h6>
-      <ol>
-	      <li *ngFor = "let target of emailTargetList; let i = index">{{ target }}</li>
-      </ol>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="sendOrigModalRef.hide(); 
-      sendOriginalTeamsEmail(tbracket_id)">Send emails</button>
-    </div>
-  `
-})
- 
-export class SendOrigModalComponent implements OnInit {
-  tbracket_id: number;
-  tbracket_name: string;
-  emailTargetList: string[];
-  num_targets: number;
- 
-  constructor(
-	public sendOrigModalRef: BsModalRef,
-	private _entryService: EntryService,
-	) {}
- 
-	ngOnInit() {
-	}
-
-	sendOriginalTeamsEmail(bracket_id: number) {
-		// console.log("Tbracket with id: ", bracket_id, "will invoke send_emails API");
-		
-		this._entryService.emailOrigTeamsToOwners(bracket_id).subscribe((data) => {
-			console.log("Tbracket with id: ", data['tbracketid'] ," have had emails sent!");
-		});
-	}
 }

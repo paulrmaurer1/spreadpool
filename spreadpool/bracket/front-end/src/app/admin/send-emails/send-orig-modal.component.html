@@ -1,0 +1,18 @@
+<!--send-orig-modal.component.html-->
+
+<div class="modal-header">
+	<h4 class="modal-title pull-left">Confirm Send Original Teams Email</h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="sendOrigModalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<h6>Are you sure you want to send emails to these {{num_targets}} players of <strong>{{ tbracket_name }}</strong> bracket?</h6>
+	<ol>
+		<li *ngFor = "let target of emailTargetList; let i = index">{{ target }}</li>
+	</ol>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-success" (click)="sendOrigModalRef.hide(); 
+	sendOriginalTeamsEmail(tbracket_id)">Send emails</button>
+</div>

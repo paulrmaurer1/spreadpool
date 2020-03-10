@@ -1,0 +1,9 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+Hey {{first_name}},<br>
+Here are your Round {{t_round}} matchups for today.  Good luck!<br>
+<ul>
+{% autoescape off %}{{ game_bullet_list }}{% endautoescape %}
+</ul>
+{% endblock %}

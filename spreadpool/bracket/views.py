@@ -27,7 +27,7 @@ from bracket import forms
 # from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket, Region
 from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame
-from .email_functions import email_original_teams
+from .email_functions import email_original_teams, email_spreads
 from bracket import serializers
 
 
@@ -308,7 +308,7 @@ class EntryViewSet(ModelViewSet):
 		"""
 		tbracketid = self.request.query_params.get('tbracketid', None)
 		if tbracketid is None:
-			tbracketid = "0" # if no tbracketid parameter is sent, set to 0 & generate emails for every entry
+			tbracketid = "9999" # if no tbracketid parameter is sent, set to 9999 & generate emails for every entry
 		email_original_teams(tbracketid)
 		
 		return Response({'tbracketid': tbracketid})
@@ -383,26 +383,37 @@ class EntryStandingsViewSet(ModelViewSet):
 
 class GameViewSet(ModelViewSet):
 	"""
-	API endpoint that allows entries to be viewed or edited.
+	API endpoint that allows games to be viewed or edited.
 	Games can be filtered by game table id, e.g. api/games/18
 	Optional GET parameters include: ?regionid= (1=South, 2=West, 3=East, 4=Midwest, 5=FinalFour)
+	?teamid= (primary key of team), or ?tround= (1-6)
 	"""
 	queryset = Game.objects.all()
 	serializer_class = serializers.GameSerializer
 
 	def get_queryset(self):
 		"""
-		Optionally filter games by regionid or teamid
+		Optionally filter games by regionid, teamid, t_round or null spread
 		"""
 		queryset = Game.objects.all()
+		
 		regionid = self.request.query_params.get('regionid', None)
 		if regionid is not None:
 			queryset = queryset.filter(region=regionid)
+		
 		teamid = self.request.query_params.get('teamid', None)
 		if teamid is not None:
 			queryset = queryset.filter(Q(team1=teamid) | Q(team2=teamid))
 			queryset = queryset.order_by('-t_round')
-		return queryset
+		
+		tround = self.request.query_params.get('tround', None)
+		if tround is not None:
+			queryset = queryset.filter(t_round=tround)
+		
+		if 'spread_set_no_score' in self.request.query_params:
+			queryset = queryset.filter(spread__isnull=False).filter(team1_score=0).filter(team2_score=0)
+		
+		return queryset.order_by('id')
 
 	@action(detail=True)
 	def reset(self, request, pk=None):
@@ -448,6 +459,20 @@ class GameViewSet(ModelViewSet):
 			if not(game.team1_score > 0 and game.team2_score > 0):
 				happening = False;
 		return Response({'happening': happening})
+
+	@action(detail=False)
+	def email_spreads_to_owners(self, request):
+		"""
+		Send email to each entry owner who has a game/matchup matching the tbracketid and tround where
+		the spread has been set (i.e. is not null) and the scores = 0
+		"""
+		tbracketid = self.request.query_params.get('tbracketid', None)
+		if tbracketid is None:
+			tbracketid = "9999" # if no tbracketid parameter is sent, set to 9999 & generate emails for every bracket
+		tround = self.request.query_params.get('tround', None)
+		email_spreads(tbracketid, tround)
+		
+		return Response({'tbracketid': tbracketid})
 	
 
 class GameWithTeamOwnersViewSet(ModelViewSet):

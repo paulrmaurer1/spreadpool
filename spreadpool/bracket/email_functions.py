@@ -13,6 +13,86 @@ from django.template import Context
 The below functions execute lookups to populate email messages with to, from, subject, message
 Templates used are located in the bracket templates directory in the folder "emails"
 """
+def email_spreads(tbracket_id, tround):
+	"""
+	This function prepares & sends emails to each team owner for games in which their team is playing. This function
+	is called by the @action:email_spreads_to_owners within the GameViewSet. Only owners in the specified tbracket_id
+	and games within the specified tround who have games where the spread is set (i.e. no Null) and team scores=0
+	"""
+	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+
+	print ("tbracket_id =", tbracket_id, " & tround =", tround)
+
+	# only include games that have had a spread posted but game is not complete (scores = 0)
+	games = Game.objects.filter(t_round=tround).filter(spread__isnull=False).filter(team1_score=0).filter(team2_score=0)
+	
+	# build a dict of user_id : [match_ids] for matches in which an owner is involved in games
+	user_matches = {}
+
+	for game in games:
+		matches = Matchup.objects.filter(game_id=game.id)
+		if tbracket_id != "9999":
+			matches = matches.filter(tbracket_id=tbracket_id)
+	
+		for match in matches:
+			u1 = match.team1_owner_id
+			u2 = match.team2_owner_id
+			if u1 in user_matches:
+				user_matches[u1].append(match.id)
+			else:
+				user_matches[u1] = [match.id]
+			if u2 in user_matches:
+				user_matches[u2].append(match.id)
+			else:
+				user_matches[u2] = [match.id]
+
+	print ("The user_matches dict is: ", user_matches)
+
+	# prepare email content for each target
+	for key, value in user_matches.items():
+		target = User.objects.get(id = key)
+		
+		# email address of target user
+		to_target = target.email
+		to_target_first_name = target.first_name
+		
+		# iterate through games (max 4) and prepare email body
+		game_bullet_list = ''
+		for match_id in value:
+			match = Matchup.objects.get(id=match_id)
+			game = Game.objects.get(id=match.game_id)
+			u1 = User.objects.get(id=match.team1_owner_id)
+			u2 = User.objects.get(id=match.team2_owner_id)
+			if game.spread > 0:
+				game_bullet_list += '<li/>'+str(game.team1)+' ('+str(u1)+') ['+str(-game.spread)+'.5] vs. '+str(game.team2)+' ('+str(u2)+')</li>'
+			elif game.spread == 0:
+				game_bullet_list += '<li/>'+str(game.team1)+' ('+str(u1)+') [PICK EM] vs. '+str(game.team2)+' ('+str(u2)+')</li>'
+			else:
+				game_bullet_list += '<li/>'+str(game.team1)+' ('+str(u1)+') vs. '+str(game.team2)+' ('+str(u2)+') ['+str(game.spread)+'.5]</li>'
+
+		print ("Games for :", to_target_first_name)
+		print (game_bullet_list)
+
+		# context elements for email
+		c = {
+			'first_name': to_target_first_name,
+			'target_email': to_target,
+			'bracket_id': tbracket_id,
+			't_round' : tround,
+			'game_bullet_list' : game_bullet_list,
+		}
+
+		subject = 'Here are your Round ' + str(tround) + ' matchups for today. Good luck!'
+		msg_plain = render_to_string(email_dir + 'today_matches.txt', c)
+		msg_html = render_to_string(email_dir + 'today_matches.html', c)
+
+		if target.gm_updates:
+			# print (c)
+			send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
+
+	return
+
+
 def email_original_teams(tbracket_id):
 	"""
 	This function prepares & sends emails to each team owner of entries within the passed 'tbracket_id'
@@ -21,7 +101,7 @@ def email_original_teams(tbracket_id):
 	"""
 	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
 
-	if tbracket_id == "0":
+	if tbracket_id == "9999":
 		entries = Entry.objects.all()
 	else:
 		entries = Entry.objects.filter(tbracket=tbracket_id)
@@ -37,7 +117,7 @@ def email_original_teams(tbracket_id):
 		
 		c = {
 				'first_name': target.first_name,
-				'email': to_target,
+				'target_email': to_target,
 				'bracket_name' : bracket.name,
 				'bracket_id': bracket.id,
 				'orig_team_a': orig_team_a.bracket_name,
@@ -65,6 +145,8 @@ def email_original_teams(tbracket_id):
 		if target.gm_updates:
 			# print (c)
 			send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
+
+	return
 
 
 def email_team_owners(game, outcome):

@@ -1,0 +1,3 @@
+Hey {{first_name}},
+Here are your Round {{t_round}} matchups for today.  Good luck!
+{% autoescape off %}{{game_bullet_list}}{% endautoescape %}
