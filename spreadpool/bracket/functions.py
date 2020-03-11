@@ -10,7 +10,7 @@ import random
 from django.db.models import Q
 
 def getLastGame(tbracket_id, orig_teamid):
-	# determine last game that an original team played in a particular bracket
+	# determine last game that an original team's owner played in a particular bracket
 
 	#get first game that team played in
 	last_game = Game.objects.get((Q(team1_id=orig_teamid) | Q(team2_id=orig_teamid)) & Q(id__lte=32))
