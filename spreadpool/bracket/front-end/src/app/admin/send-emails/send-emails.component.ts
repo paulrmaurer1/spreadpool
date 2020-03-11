@@ -1,11 +1,13 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { TBracketService } from '../../core/tbracket.service';
 import { EntryService } from '../../core/entry.service';
+import { GameService } from '../../core/game.service';
 
 import { TBracketData, EntryData } from '../../shared/interfaces';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { SendOrigModalComponent } from './send-orig-modal.component';
+import { SendGamesModalComponent } from './send-games-modal.component';
 
 
 @Component({
@@ -17,11 +19,13 @@ export class SendEmailsComponent implements OnInit {
 
 	_tbracketList: TBracketData[];
 	sendOrigModalRef: BsModalRef;
+	sendGamesModalRef: BsModalRef;
 	emailTargetList: string[];
 
 	constructor(
 		private _tbracketService: TBracketService,
 		private _entryService: EntryService,
+		private _gameService: GameService,
 		private modalService: BsModalService,
 	) { }
 
@@ -61,8 +65,23 @@ export class SendEmailsComponent implements OnInit {
 	    	// Upon modal being closed run these actions
 	        this.resetList();
 	    })
-
 		// console.log("Tbracket ", bracket_name, " with id: ", bracket_id, "will invoke send_emails API");
 	}
+
+	openSendGamesModal(bracket_id: number, bracket_name: string){
+			const initialState = {
+				tbracket_id: bracket_id,
+				tbracket_name: bracket_name,
+			};
+			this.sendGamesModalRef = this.modalService.show(SendGamesModalComponent, {initialState});
+		// })
+
+		this.modalService.onHidden.subscribe((reason: string) => {
+	    	// Upon modal being closed run these actions
+	        this.resetList();
+	    })
+
+	}
+
 
 }

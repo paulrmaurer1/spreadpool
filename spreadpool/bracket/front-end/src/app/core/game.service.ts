@@ -69,6 +69,14 @@ export class GameService {
 		return this.http.get<GameData[]>(gameUrl + 'final_four/')
 	}
 
+	getGamesSpreadNoScore(tround_id) {
+		return this.http.get<GameData[]>(gameUrl + '?tround=' + tround_id + '&spread_set_no_score')
+	}
+
+	emailGamesToOwners(tbracket_id, tround_id) {
+		return this.http.get<GameData[]>(gameUrl + 'email_spreads_to_owners/?tround=' + tround_id + '&tbracketid=' + tbracket_id)
+	}
+
 	// helper function to build the HTTP headers
 	getHttpOptions() {
 	return {

@@ -538,7 +538,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--send-emails.component.html-->\n\n<br>\n<h6><strong>Email Actions</strong></h6>\n<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<th scope=\"col\">#</th>\n\t\t\t<th scope=\"col\">Name</th>\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\n\t\t\t<th scope=\"col\">Email Actions</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\n\t\t\t<td>{{ tbracket.name }}</td>\n\t\t\t<td>{{ tbracket.entry_count}}</td>\n\t\t\t<td>{{ tbracket.id }}</td>\n\t\t\t<td>\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"openSendOrigModal(tbracket.id, tbracket.name)\">Send Orig Teams</button>\n\t\t\t\t&nbsp;\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n"
+module.exports = "<!--send-emails.component.html-->\n\n<br>\n<h6><strong>Email Actions</strong></h6>\n<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<th scope=\"col\">#</th>\n\t\t\t<th scope=\"col\">Name</th>\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\n\t\t\t<th scope=\"col\">Email Actions</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\n\t\t\t<td>{{ tbracket.name }}</td>\n\t\t\t<td>{{ tbracket.entry_count}}</td>\n\t\t\t<td>{{ tbracket.id }}</td>\n\t\t\t<td>\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"openSendOrigModal(tbracket.id, tbracket.name)\">Send Orig Teams</button>\n\t\t\t\t&nbsp;\n\t\t\t\t<button class=\"btn btn-outline-success\" (click)=\"openSendGamesModal(tbracket.id, tbracket.name)\">Send Games</button>\n\t\t\t\t&nbsp;\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n"
 
 /***/ }),
 
@@ -546,17 +546,19 @@ module.exports = "<!--send-emails.component.html-->\n\n<br>\n<h6><strong>Email A
 /*!************************************************************!*\
   !*** ./src/app/admin/send-emails/send-emails.component.ts ***!
   \************************************************************/
-/*! exports provided: SendEmailsComponent, SendOrigModalComponent */
+/*! exports provided: SendEmailsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendEmailsComponent", function() { return SendEmailsComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendOrigModalComponent", function() { return SendOrigModalComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/entry.service */ "./src/app/core/entry.service.ts");
-/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/game.service */ "./src/app/core/game.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _send_orig_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
+/* harmony import */ var _send_games_modal_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -570,10 +572,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var SendEmailsComponent = /** @class */ (function () {
-    function SendEmailsComponent(_tbracketService, _entryService, modalService) {
+    function SendEmailsComponent(_tbracketService, _entryService, _gameService, modalService) {
         this._tbracketService = _tbracketService;
         this._entryService = _entryService;
+        this._gameService = _gameService;
         this.modalService = modalService;
     }
     SendEmailsComponent.prototype.ngOnInit = function () {
@@ -591,6 +597,7 @@ var SendEmailsComponent = /** @class */ (function () {
         var _this = this;
         this._entryService.getEntryListByBracket(bracket_id).subscribe(function (data) {
             var emailTargetList = data.map(function (target) {
+                // Create an array of player names to display in modal
                 return target.player;
             });
             // Create a unique list of targets users, eliminating duplicates of owner(s) having 2+ entries
@@ -604,13 +611,26 @@ var SendEmailsComponent = /** @class */ (function () {
                 emailTargetList: _this.emailTargetList,
                 num_targets: _this.emailTargetList.length
             };
-            _this.sendOrigModalRef = _this.modalService.show(SendOrigModalComponent, { initialState: initialState });
+            _this.sendOrigModalRef = _this.modalService.show(_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_5__["SendOrigModalComponent"], { initialState: initialState });
         });
         this.modalService.onHidden.subscribe(function (reason) {
             // Upon modal being closed run these actions
             _this.resetList();
         });
         // console.log("Tbracket ", bracket_name, " with id: ", bracket_id, "will invoke send_emails API");
+    };
+    SendEmailsComponent.prototype.openSendGamesModal = function (bracket_id, bracket_name) {
+        var _this = this;
+        var initialState = {
+            tbracket_id: bracket_id,
+            tbracket_name: bracket_name,
+        };
+        this.sendGamesModalRef = this.modalService.show(_send_games_modal_component__WEBPACK_IMPORTED_MODULE_6__["SendGamesModalComponent"], { initialState: initialState });
+        // })
+        this.modalService.onHidden.subscribe(function (reason) {
+            // Upon modal being closed run these actions
+            _this.resetList();
+        });
     };
     SendEmailsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -620,12 +640,139 @@ var SendEmailsComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__["TBracketService"],
             _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
-            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["BsModalService"]])
+            _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__["BsModalService"]])
     ], SendEmailsComponent);
     return SendEmailsComponent;
 }());
 
-/* Below are components referenced by the above function */
+
+
+/***/ }),
+
+/***/ "./src/app/admin/send-emails/send-games-modal.component.html":
+/*!*******************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-games-modal.component.html ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--send-games-modal.component.html-->\r\n\r\n<div *ngIf = \"gamesList\">\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Confirm Send Games Emails</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"sendGamesModalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\t<h6>Are you sure you want to send emails to players of <strong>{{ tbracket_name }}</strong></h6>\r\n\t\t<h6>bracket involved with games in Round #:\t\r\n\t\t<select class = \"select-option\" #troundSelect (change)=\"onOptionsSelected(troundSelect.value)\">\r\n\t\t\t<option class = \"option\" *ngFor = \"let value of tround_values\" [value]=\"value\">{{value}}</option>\r\n\t\t</select></h6>\r\n\t\t<br>\r\n\t\t<ol>\r\n\t\t\t<li *ngFor = \"let game of gamesList; let i = index\">{{ game }}</li>\r\n\t\t</ol>\r\n\t\t<p *ngIf = \"gamesList.length==0\" class=\"text-danger\">There aren't any new games with spreads posted that Round!</p>\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t<button type=\"button\" class=\"btn btn-outline-success\" (click)=\"sendGamesModalRef.hide(); \r\n\t\tsendGamesEmail(tbracket_id, troundSelect.value)\">Send emails</button>\r\n\t</div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin/send-emails/send-games-modal.component.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-games-modal.component.ts ***!
+  \*****************************************************************/
+/*! exports provided: SendGamesModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendGamesModalComponent", function() { return SendGamesModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/game.service */ "./src/app/core/game.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SendGamesModalComponent = /** @class */ (function () {
+    function SendGamesModalComponent(sendGamesModalRef, _gameService) {
+        this.sendGamesModalRef = sendGamesModalRef;
+        this._gameService = _gameService;
+    }
+    SendGamesModalComponent.prototype.ngOnInit = function () {
+        this.tround_values = [1, 2, 3, 4, 5, 6]; // Tournament rounds possible from which to select games
+        this.refreshGameListing(this.tround_values[0]); // Generate games listing based on Round 1 as default
+    };
+    SendGamesModalComponent.prototype.sendGamesEmail = function (bracket_id, round_id) {
+        // console.log("Tbracket with id: ", bracket_id, "for tround", round_id, "will invoke emailGamesToOwners API");
+        this._gameService.emailGamesToOwners(bracket_id, round_id).subscribe(function (data) {
+            console.log("Tbracket with id: ", data['tbracketid'], " for Round", round_id, "owners have had today's games sent!");
+        });
+    };
+    SendGamesModalComponent.prototype.onOptionsSelected = function (value) {
+        // console.log("the selected value is " + value);
+        this.refreshGameListing(value);
+    };
+    SendGamesModalComponent.prototype.refreshGameListing = function (value) {
+        var _this = this;
+        this._gameService.getGamesSpreadNoScore(value).subscribe(function (data) {
+            _this.gamesList = data.map(function (target) {
+                // Build an array of games to display in modal
+                if (target.spread > 0) {
+                    return ' ' + target.team1 + ' [-' + target.spread + '.5] vs. ' + target.team2;
+                }
+                else if (target.spread == 0) {
+                    return ' ' + target.team1 + ' [PICK EM] vs. ' + target.team2;
+                }
+                else {
+                    return ' ' + target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
+                }
+            });
+        });
+    };
+    SendGamesModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'modal-content',
+            template: __webpack_require__(/*! ./send-games-modal.component.html */ "./src/app/admin/send-emails/send-games-modal.component.html")
+        }),
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalRef"],
+            _core_game_service__WEBPACK_IMPORTED_MODULE_1__["GameService"]])
+    ], SendGamesModalComponent);
+    return SendGamesModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/send-emails/send-orig-modal.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-orig-modal.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--send-orig-modal.component.html-->\r\n\r\n<div class=\"modal-header\">\r\n\t<h4 class=\"modal-title pull-left\">Confirm Send Original Teams Email</h4>\r\n\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"sendOrigModalRef.hide()\">\r\n\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t</button>\r\n</div>\r\n<div class=\"modal-body\">\r\n\t<h6>Are you sure you want to send emails to these {{num_targets}} players of <strong>{{ tbracket_name }}</strong> bracket?</h6>\r\n\t<ol>\r\n\t\t<li *ngFor = \"let target of emailTargetList; let i = index\">{{ target }}</li>\r\n\t</ol>\r\n</div>\r\n<div class=\"modal-footer\">\r\n\t<button type=\"button\" class=\"btn btn-success\" (click)=\"sendOrigModalRef.hide(); \r\n\tsendOriginalTeamsEmail(tbracket_id)\">Send emails</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin/send-emails/send-orig-modal.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/admin/send-emails/send-orig-modal.component.ts ***!
+  \****************************************************************/
+/*! exports provided: SendOrigModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SendOrigModalComponent", function() { return SendOrigModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/entry.service */ "./src/app/core/entry.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 var SendOrigModalComponent = /** @class */ (function () {
     function SendOrigModalComponent(sendOrigModalRef, _entryService) {
         this.sendOrigModalRef = sendOrigModalRef;
@@ -642,10 +789,10 @@ var SendOrigModalComponent = /** @class */ (function () {
     SendOrigModalComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'modal-content',
-            template: "\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title pull-left\">Confirm Send Original Teams Email</h4>\n      <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"sendOrigModalRef.hide()\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n    <div class=\"modal-body\">\n      <h6>Are you sure you want to send emails to these {{num_targets}} players of <strong>{{ tbracket_name }}</strong> bracket?</h6>\n      <ol>\n\t      <li *ngFor = \"let target of emailTargetList; let i = index\">{{ target }}</li>\n      </ol>\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-success\" (click)=\"sendOrigModalRef.hide(); \n      sendOriginalTeamsEmail(tbracket_id)\">Send emails</button>\n    </div>\n  "
+            template: __webpack_require__(/*! ./send-orig-modal.component.html */ "./src/app/admin/send-emails/send-orig-modal.component.html")
         }),
-        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["BsModalRef"],
-            _core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"]])
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalRef"],
+            _core_entry_service__WEBPACK_IMPORTED_MODULE_1__["EntryService"]])
     ], SendOrigModalComponent);
     return SendOrigModalComponent;
 }());
@@ -1012,13 +1159,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
 /* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
 /* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
-/* harmony import */ var _admin_send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./admin/send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
+/* harmony import */ var _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./admin/send-emails/send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
+/* harmony import */ var _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./admin/send-emails/send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1066,7 +1215,8 @@ var AppModule = /** @class */ (function () {
                 _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__["StandingsNavComponent"],
                 _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__["BracketTabComponent"],
                 _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__["RosterTextboxComponent"],
-                _admin_send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"],
+                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"],
+                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_26__["SendGamesModalComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1081,7 +1231,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [_app_store__WEBPACK_IMPORTED_MODULE_4__["appStoreProviders"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]],
-            entryComponents: [_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"], _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"], _admin_send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"]]
+            entryComponents: [_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"], _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"], _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"], _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_26__["SendGamesModalComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1726,6 +1876,12 @@ var GameService = /** @class */ (function () {
     };
     GameService.prototype.isFinalFour = function () {
         return this.http.get(gameUrl + 'final_four/');
+    };
+    GameService.prototype.getGamesSpreadNoScore = function (tround_id) {
+        return this.http.get(gameUrl + '?tround=' + tround_id + '&spread_set_no_score');
+    };
+    GameService.prototype.emailGamesToOwners = function (tbracket_id, tround_id) {
+        return this.http.get(gameUrl + 'email_spreads_to_owners/?tround=' + tround_id + '&tbracketid=' + tbracket_id);
     };
     // helper function to build the HTTP headers
     GameService.prototype.getHttpOptions = function () {

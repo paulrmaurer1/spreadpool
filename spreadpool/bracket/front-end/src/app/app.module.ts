@@ -26,6 +26,7 @@ import { StandingsNavComponent } from './standings-nav/standings-nav.component';
 import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
 import { RosterTextboxComponent } from './roster-textbox/roster-textbox.component';
 import { SendOrigModalComponent } from './admin/send-emails/send-orig-modal.component';
+import { SendGamesModalComponent } from './admin/send-emails/send-games-modal.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { SendOrigModalComponent } from './admin/send-emails/send-orig-modal.comp
     BracketTabComponent,
     RosterTextboxComponent,
     SendOrigModalComponent,
+    SendGamesModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,6 @@ import { SendOrigModalComponent } from './admin/send-emails/send-orig-modal.comp
   ],
   providers: [ appStoreProviders ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ ProfileFormModalComponent, DeleteModalComponent, SendOrigModalComponent ]
+  entryComponents: [ ProfileFormModalComponent, DeleteModalComponent, SendOrigModalComponent, SendGamesModalComponent ]
 })
 export class AppModule { }

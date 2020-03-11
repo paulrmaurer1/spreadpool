@@ -1,0 +1,26 @@
+<!--send-games-modal.component.html-->
+
+<div *ngIf = "gamesList">
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">Confirm Send Games Emails</h4>
+		<button type="button" class="close pull-right" aria-label="Close" (click)="sendGamesModalRef.hide()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<h6>Are you sure you want to send emails to players of <strong>{{ tbracket_name }}</strong></h6>
+		<h6>bracket involved with games in Round #:	
+		<select class = "select-option" #troundSelect (change)="onOptionsSelected(troundSelect.value)">
+			<option class = "option" *ngFor = "let value of tround_values" [value]="value">{{value}}</option>
+		</select></h6>
+		<br>
+		<ol>
+			<li *ngFor = "let game of gamesList; let i = index">{{ game }}</li>
+		</ol>
+		<p *ngIf = "gamesList.length==0" class="text-danger">There aren't any new games with spreads posted that Round!</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-success" (click)="sendGamesModalRef.hide(); 
+		sendGamesEmail(tbracket_id, troundSelect.value)">Send emails</button>
+	</div>
+</div>

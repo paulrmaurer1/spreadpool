@@ -1,8 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { TBracketService } from '../../core/tbracket.service';
 import { EntryService } from '../../core/entry.service';
 
-import { TBracketData, EntryData } from '../../shared/interfaces';
+import { EntryData } from '../../shared/interfaces';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
