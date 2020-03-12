@@ -171,3 +171,8 @@ body{
   padding-top:1px;
   padding-bottom:1px;
 }
+
+.standings-out {
+  color:red;
+  text-decoration:line-through;
+}

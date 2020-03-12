@@ -9,6 +9,40 @@ import random
 #import django functions
 from django.db.models import Q
 
+def getLastTeam(tbracket_id, orig_teamid):
+	# determine the last team that a player who owned orig_teamid had within a particular bracket
+	# print (tbracket_id, orig_teamid)
+
+	#get first game that team played in
+	last_game = Game.objects.get((Q(team1_id=orig_teamid) | Q(team2_id=orig_teamid)) & Q(id__lte=32))
+	if last_game.team1.id == int(orig_teamid):
+		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team1_owner_id
+		last_team = last_game.team1_id
+	else:
+		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team2_owner_id
+		last_team = last_game.team2_id
+
+	#run while loop to keep finding child games where owner_id is either team1 or team2 owner of related matchup
+	alive=True
+	while alive:
+		try:
+			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
+			if owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team1_owner_id:
+				last_team = next_game.team1_id
+				last_game = next_game
+			elif owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team2_owner_id:
+				last_team = next_game.team2_id
+				last_game = next_game
+			else:
+				alive = False
+		except Game.DoesNotExist:
+			alive = False
+
+	last_team_obj = Team.objects.get(id=last_team)
+
+	return last_team_obj.bracket_name
+
+
 def getLastGame(tbracket_id, orig_teamid):
 	# determine last game that an original team's owner played in a particular bracket
 

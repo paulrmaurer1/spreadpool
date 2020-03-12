@@ -17,14 +17,18 @@
 		[class.text-white]="entry.player_id == _userService.id">
 			<td >{{ entry.player }}</td>
 			<td class="text-center">{{ entry.team_count }}</td>
-			<td>{{ entry.team_a }} <ng-container *ngIf="entry.team_a">
-				<small>{{ entry.team_a_status }}</small></ng-container></td>
-			<td>{{ entry.team_b }} <ng-container *ngIf="entry.team_b">
-				<small>{{ entry.team_b_status }}</small></ng-container></td>
-			<td>{{ entry.team_c }} <ng-container *ngIf="entry.team_c">
-				<small>{{ entry.team_c_status }}</small></ng-container></td>
-			<td>{{ entry.team_d }} <ng-container *ngIf="entry.team_d">
-				<small>{{ entry.team_d_status }}</small></ng-container></td>
+			<td><span [class.standings-out]="entry.team_a_status == '(OUT)'">{{ entry.team_a }}</span>
+				<small> {{ entry.team_a_status }}</small>
+			</td>
+			<td><span [class.standings-out]="entry.team_b_status == '(OUT)'">{{ entry.team_b }}</span>
+				<small> {{ entry.team_b_status }}</small>
+			</td>
+			<td><span [class.standings-out]="entry.team_c_status == '(OUT)'">{{ entry.team_c }}</span>
+				<small> {{ entry.team_c_status }}</small>
+			</td>
+			<td><span [class.standings-out]="entry.team_d_status == '(OUT)'">{{ entry.team_d }}</span>
+				<small> {{ entry.team_d_status }}</small>
+			</td>
 		</tr>
 	</tbody>
 </table>

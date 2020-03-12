@@ -4,7 +4,7 @@ from rest_framework import serializers
 from django.db.models import Q
 
 from .models import Entry, Game, Matchup, Tbracket, Region
-from .functions import game_update, determineStatus
+from .functions import game_update, determineStatus, getLastTeam
 
 User = get_user_model()
 
@@ -78,7 +78,7 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Entry
 		fields = ('id', 'tbracket', 'tbracket_id', 'player', 'player_id', 'team_count', \
-			'team_a', 'team_b', 'team_c', 'team_d')
+			'team_a', 'team_b', 'team_c', 'team_d', 'orig_team_a_id', 'orig_team_b_id', 'orig_team_c_id', 'orig_team_d_id')
 
 	def get_team_count(self, obj):
 	# Get count of non Null Active Teams
@@ -95,10 +95,30 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 
 	def to_representation(self, obj):
 		data = super().to_representation(obj)
-		data['team_a_status'] = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
-		data['team_b_status'] = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
-		data['team_c_status'] = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
-		data['team_d_status'] = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
+		if data['team_a'] is None:
+			data['team_a_status'] = '(OUT)'
+			data['team_a'] = getLastTeam(data['tbracket_id'], data['orig_team_a_id'])
+		else:
+			data['team_a_status'] = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
+		
+		if data['team_b'] is None:
+			data['team_b_status'] = '(OUT)'
+			data['team_a'] = getLastTeam(data['tbracket_id'], data['orig_team_b_id'])
+		else:
+			data['team_b_status'] = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
+		
+		if data['team_c'] is None:
+			data['team_c_status'] = '(OUT)'
+			data['team_c'] = getLastTeam(data['tbracket_id'], data['orig_team_c_id'])
+		else:
+			data['team_c_status'] = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
+		
+		if data['team_d'] is None:
+			data['team_d_status'] = '(OUT)'
+			data['team_d'] = getLastTeam(data['tbracket_id'], data['orig_team_a_id'])
+		else:
+			data['team_d_status'] = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
+		
 		return data
 	
 
