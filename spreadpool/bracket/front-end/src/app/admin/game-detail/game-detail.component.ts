@@ -17,6 +17,8 @@ export class GameDetailComponent implements OnInit {
 	team1_score : AbstractControl;
 	team2_score : AbstractControl;
 	_game: GameData;
+	showMsg: boolean;
+	msg: string = '';
 	
 	@Input() get game(): GameData {
 		return this._game;
@@ -51,6 +53,7 @@ export class GameDetailComponent implements OnInit {
 	ngOnChanges() {
 		// console.log("game-detail component received _game update..", this._game);
 		this.gameUpdateForm.patchValue(this._game);
+		this.showMsg = false;
 	}
 
 	updateGame() {
@@ -59,20 +62,29 @@ export class GameDetailComponent implements OnInit {
 		this._game.team2_score = this.team2_score.value;
 		
 		this._gameService.updateGame(this._game).subscribe((data) => {
-			console.log("Game updated with:", this._game);
+			// console.log("Game updated with:", this._game);
+			this.msg = "Game #: " + this._game.id + " has been updated!";
+			this.showMsg = true;
 		});
 	} //end updateGame()
 
 	resetGame() {
 		// console.log("Game id for reset is", this._game.id);
 		this._gameService.resetGame(this._game.id).subscribe((data) => {
-			console.log("Game #", this._game.id, "has been reset!");
-			// navigate back to Retrieve Game page
+			// console.log("Game #", this._game.id, "has been reset!");
+
+			// navigate back to Retrieve Game page *** not working ***
 			// this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
 			// 	this.router.navigate(['/admin/u-games']));
-			// **not working** attempt to reset form with new _game data
-			// this.gameUpdateForm.reset();
-			// this.gameUpdateForm.patchValue(this._game);
+
+			// retrieve newly updated game and update form
+			this._gameService.getGameDetails(this._game.id).subscribe((data) => {
+				this._game = data;
+				this.gameUpdateForm.reset();
+				this.gameUpdateForm.patchValue(this._game);
+				this.msg = "Game #: " + this._game.id + " has been reset!"
+				this.showMsg = true
+			})
 		});
 	} //end resetGame()
 

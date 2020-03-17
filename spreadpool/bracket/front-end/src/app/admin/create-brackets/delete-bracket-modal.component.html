@@ -1,0 +1,13 @@
+
+<div class="modal-header">
+      <h4 class="modal-title pull-left">Confirm Bracket Deletion</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body">
+  <h6>Are you sure you want to delete the <strong>{{ tbracket_name }}</strong> bracket?</h6>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="deleteModalRef.hide(); deleteBracket(tbracket_id)">Delete</button>
+</div>

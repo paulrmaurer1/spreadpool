@@ -21,16 +21,23 @@
 			</form>
 		</div>
 		<div class = "col">
-			<!-- <button class="btn btn-dark" >Delete/Create All Entries</button> -->
-			<button class="btn btn-dark" (click)="resetEntries()">Delete/Create All Entries</button>
+			<span *ngIf="showEntriesMsg" class="text-success">{{ entriesMsg }}</span>
+			<button class="btn btn-dark" (click)="openEntriesModal(entries_template)">Delete/Create All Entries</button>
 			&nbsp;
 		</div>
 	</div>
 </div>
 
 <br>
-<h6><strong>Brackets</strong></h6>
-<br>
+<div class = "d-flex flex-row">
+	<div class = "p-2">
+		<h6><strong>Brackets</strong></h6>
+	</div>
+	<div class = "p-2">
+		<a [routerLink]="" (click)="resetList()">refresh</a>
+	</div>
+</div>
+
 <table class="table table-sm">
 	<thead>
 		<tr>
@@ -43,16 +50,16 @@
 	</thead>
 	<tbody>
 		<tr *ngFor = "let tbracket of _tbracketList; let i = index">
-			<th scope="row">{{i + 1}}</th>
-			<td>{{ tbracket.name }}</td>
-			<td>{{ tbracket.entry_count}}</td>
-			<td>{{ tbracket.id }}</td>
+			<th scope="row" class="align-middle">{{i + 1}}</th>
+			<td class="align-middle">{{ tbracket.name }}</td>
+			<td class="align-middle">{{ tbracket.entry_count}}</td>
+			<td class="align-middle">{{ tbracket.id }}</td>
 			<td>
 				<button class="btn btn-danger custom" (click)="openDeleteModal(tbracket.id, tbracket.name)">Delete</button>
 				&nbsp;
-				<button class="btn btn-warning" (click)="reassignBracket(tbracket.id, tbracket.name)">(Re)Assign</button>
+				<button class="btn btn-warning" (click)="openReassignModal(tbracket.id, tbracket.name)">(Re)Assign</button>
 				&nbsp;
-				<button class="btn btn-info custom" (click)="resetBracket(tbracket.id, tbracket.name)">Reset</button>
+				<button class="btn btn-info custom" (click)="openResetModal(tbracket.id, tbracket.name)">Reset</button>
 				&nbsp;
 				<button class="btn btn-success" (click)="navToAssign(tbracket.id)">Assign Entries</button>
 			</td>
@@ -60,18 +67,11 @@
 	</tbody>
 </table>
 
-<!-- <ng-template #template>
-	<div class="modal-header">
-		<h4 class="modal-title pull-left">Delete Bracket</h4>
-		<button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalRef.hide()">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		Are you sure you want to delete this Bracket?
-	</div>
-	<div class="modal-footer">
-			<button class="btn btn-danger custom" 
-			(click)="deleteModalRef.hide(); deleteBracket()">Delete</button>
-	</div>
-</ng-template>  -->
+<!-- Template modal that gets displayed when user clicks on Delete/Create All Entries -->
+<ng-template #entries_template>
+  <div class="modal-body text-center">
+    <h6><small>You are about to delete all existing Bracket Entry assignments and create new Entries based on currently registered Users. This will unassign all Entries from Brackets. Would you like to proceed?</small></h6>
+    <button type="button" class="btn btn-light" (click)="confirmDeleteEntries()" >Yes, Proceed</button>
+    <button type="button" class="btn btn-primary" (click)="declineDeleteEntries()" >No, Go Back</button>
+  </div>
+</ng-template>

@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
 		this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
 			if (data.length > 0) {
 				this._bracketToShow = data[0].id;
+				// console.log("The bracketToShow is ", this._bracketToShow)
 				this.tbracketList = data;
 			}
 		});

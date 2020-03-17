@@ -19,7 +19,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { BracketsComponent } from './brackets/brackets.component';
 import { ProfileFormModalComponent } from './profile-form-modal/profile-form-modal.component';
 import { TeamDetailsComponent } from './team-details/team-details.component';
-import { DeleteModalComponent } from './admin/create-brackets/create-brackets.component';
+import { DeleteModalComponent } from './admin/create-brackets/delete-bracket-modal.component';
+import { ReassignModalComponent } from './admin/create-brackets/reassign-bracket-modal.component';
+import { ResetModalComponent } from './admin/create-brackets/reset-bracket-modal.component';
 import { TeamNextupComponent } from './team-nextup/team-nextup.component';
 import { StandingsComponent } from './standings/standings.component';
 import { StandingsNavComponent } from './standings-nav/standings-nav.component';
@@ -41,6 +43,8 @@ import { SendGamesModalComponent } from './admin/send-emails/send-games-modal.co
     ProfileFormModalComponent,
     TeamDetailsComponent,
     DeleteModalComponent,
+    ReassignModalComponent,
+    ResetModalComponent,
     TeamNextupComponent,
     StandingsComponent,
     StandingsNavComponent,
@@ -62,6 +66,13 @@ import { SendGamesModalComponent } from './admin/send-emails/send-games-modal.co
   ],
   providers: [ appStoreProviders ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ ProfileFormModalComponent, DeleteModalComponent, SendOrigModalComponent, SendGamesModalComponent ]
+  entryComponents: [ 
+    ProfileFormModalComponent, 
+    DeleteModalComponent, 
+    ReassignModalComponent,
+    ResetModalComponent,
+    SendOrigModalComponent, 
+    SendGamesModalComponent,
+  ]
 })
 export class AppModule { }

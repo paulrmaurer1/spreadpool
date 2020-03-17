@@ -15,6 +15,8 @@ export class AssignBracketsComponent implements OnInit {
 	_assignedEntries: EntryNameData[];
 	_activeBracket: TBracketData;
 	private id: number; //capture tbracket id url parameter
+	_assignEntries_len: number;
+	_unassignedEntries_len: number;
 
 	constructor(
 		private _entryService: EntryService, 
@@ -34,22 +36,17 @@ export class AssignBracketsComponent implements OnInit {
 
 			this._entryService.getEntryListByBracket(this.id).subscribe((data) => {
 				this._assignedEntries = data;
+				this._assignEntries_len = this._assignedEntries.length;
 				// console.log("Entries that have bracket = ", this._activeBracket.name, " assigned: ", this._assignedEntries);
 				
 			});
 		});
 
-		// this._thisBracket = 1;
-
 		// source array = all entries without a tbracket assigned (_unassignedEntries)
 		this._entryService.getEntryListbyNullBracket().subscribe((data) => {
 			this._unassignedEntries = data;
 			// console.log("Entries that don't have a bracket assigned: ", this._unassignedEntries);
-			
 		});
-
-		
-
 	}
 
 	saveAndGoBack() {
@@ -59,7 +56,7 @@ export class AssignBracketsComponent implements OnInit {
 				entry.tbracket = this._activeBracket.id;
 				// console.log ("Updated entry is: ", entry);
 				this._entryService.updateEntry(entry).subscribe((data) => {
-					// console.log ("Entry updated for...", entry, data);
+				// console.log ("Entry updated for...", entry, data);
 				})
 			}
 		});
@@ -70,7 +67,7 @@ export class AssignBracketsComponent implements OnInit {
 				entry.tbracket = null;
 				// console.log ("Updated entry is: ", entry);
 				this._entryService.updateEntry(entry).subscribe((data) => {
-					// console.log ("Entry updated for...", entry, data);
+				// console.log ("Entry updated for...", entry, data);
 				})
 			}
 		});
@@ -83,5 +80,11 @@ export class AssignBracketsComponent implements OnInit {
 		//Just go back to Admin->Create Brackets page without making changes
 		this.router.navigate(['/admin/c-brackets']);	
 	} //end goBack()
+
+	// method to run each time an entry gets moved between lists, for updating title of each picklist
+	recalculate() {
+		this._assignEntries_len = this._assignedEntries.length;
+		this._unassignedEntries_len = this._unassignedEntries.length;
+	}
 
 }

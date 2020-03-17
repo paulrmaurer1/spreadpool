@@ -1,6 +1,7 @@
 <!--game-detail.component.html-->
 <form [formGroup]="gameUpdateForm" (ngSubmit)="updateGame()">
 	<div class="container">
+		<span *ngIf = "showMsg" class="text-success">{{msg}}</span>
 		<div class="form-row">
 			<div class="col non-form-element"><strong>Game id: </strong>{{ _game.id }}</div>
 			<div class="col non-form-element"><strong>Region: </strong>{{ _game.region }}</div>

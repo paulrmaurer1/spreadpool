@@ -1,0 +1,14 @@
+
+<div class="modal-header">
+      <h4 class="modal-title pull-left">Confirm Bracket Reassignment</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="confirmReassignModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body">
+  <h6>Are you sure you want to (Re)Assign the <strong>{{ tbracket_name }}</strong> bracket? This will randomly assign
+  new original & active teams to every entry, reset Round 1 matchups and clear out Round 2-6 matchups.</h6>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-warning" (click)="confirmReassignModalRef.hide(); reassignBracket(tbracket_id)">(Re)Assign</button>
+</div>

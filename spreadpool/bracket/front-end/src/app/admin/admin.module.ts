@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  RouterModule,
-  ActivatedRoute,
-  Router,
-  Routes
-} from '@angular/router';
+
+import { RouterModule, ActivatedRoute, Router, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
@@ -38,14 +34,16 @@ export const routes: Routes = [
   	AssignBracketsComponent,
   	CreateBracketsComponent,
   	UpdateGamesComponent,
-    SendEmailsComponent
+    SendEmailsComponent,
+    RouterModule
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     PickListModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    RouterModule
   ]
 
 })
