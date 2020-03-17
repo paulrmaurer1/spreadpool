@@ -36,21 +36,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminModule", function() { return AdminModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var angular_font_awesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular-font-awesome */ "./node_modules/angular-font-awesome/dist/angular-font-awesome.es5.js");
-/* harmony import */ var primeng_picklist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primeng/picklist */ "./node_modules/primeng/picklist.js");
-/* harmony import */ var primeng_picklist__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(primeng_picklist__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assign-brackets/assign-brackets.component */ "./src/app/admin/assign-brackets/assign-brackets.component.ts");
-/* harmony import */ var _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
-/* harmony import */ var _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./update-games/update-games.component */ "./src/app/admin/update-games/update-games.component.ts");
-/* harmony import */ var _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./game-detail/game-detail.component */ "./src/app/admin/game-detail/game-detail.component.ts");
-/* harmony import */ var _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var angular_font_awesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angular-font-awesome */ "./node_modules/angular-font-awesome/dist/angular-font-awesome.es5.js");
+/* harmony import */ var primeng_picklist__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primeng/picklist */ "./node_modules/primeng/picklist.js");
+/* harmony import */ var primeng_picklist__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(primeng_picklist__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assign-brackets/assign-brackets.component */ "./src/app/admin/assign-brackets/assign-brackets.component.ts");
+/* harmony import */ var _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
+/* harmony import */ var _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./update-games/update-games.component */ "./src/app/admin/update-games/update-games.component.ts");
+/* harmony import */ var _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./game-detail/game-detail.component */ "./src/app/admin/game-detail/game-detail.component.ts");
+/* harmony import */ var _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -63,10 +65,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var routes = [
     { path: '', redirectTo: 'c-brackets', pathMatch: 'full' },
-    { path: 'c-brackets', component: _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__["CreateBracketsComponent"] },
-    { path: 'a-brackets/:id', component: _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__["AssignBracketsComponent"] },
-    { path: 'u-games', component: _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"] },
-    { path: 's-emails', component: _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__["SendEmailsComponent"] },
+    { path: 'c-brackets', component: _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__["CreateBracketsComponent"] },
+    { path: 'a-brackets/:id', component: _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__["AssignBracketsComponent"] },
+    { path: 'u-games', component: _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__["UpdateGamesComponent"] },
+    { path: 's-emails', component: _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__["SendEmailsComponent"] },
 ];
 var AdminModule = /** @class */ (function () {
     function AdminModule() {
@@ -74,24 +76,26 @@ var AdminModule = /** @class */ (function () {
     AdminModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
-                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__["AssignBracketsComponent"],
-                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__["CreateBracketsComponent"],
-                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"],
-                _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_8__["GameDetailComponent"],
-                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__["SendEmailsComponent"]
+                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__["AssignBracketsComponent"],
+                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__["CreateBracketsComponent"],
+                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__["UpdateGamesComponent"],
+                _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_9__["GameDetailComponent"],
+                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__["SendEmailsComponent"]
             ],
             exports: [
-                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_5__["AssignBracketsComponent"],
-                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_6__["CreateBracketsComponent"],
-                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_7__["UpdateGamesComponent"],
-                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_9__["SendEmailsComponent"]
+                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__["AssignBracketsComponent"],
+                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__["CreateBracketsComponent"],
+                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__["UpdateGamesComponent"],
+                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__["SendEmailsComponent"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
-                primeng_picklist__WEBPACK_IMPORTED_MODULE_4__["PickListModule"],
-                angular_font_awesome__WEBPACK_IMPORTED_MODULE_3__["AngularFontAwesomeModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+                primeng_picklist__WEBPACK_IMPORTED_MODULE_5__["PickListModule"],
+                angular_font_awesome__WEBPACK_IMPORTED_MODULE_4__["AngularFontAwesomeModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]
             ]
         })
     ], AdminModule);
@@ -120,7 +124,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--assign-brackets.component.html-->\r\n<br>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col align-self-center\">\r\n\t\t\t<h6 *ngIf=\"_activeBracket\"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-secondary\" (click)=\"goBack()\">Go Back</button>\r\n\t\t\t&nbsp;\r\n\t\t\t<button class=\"btn btn-success\" (click)=\"saveAndGoBack()\">Save Assignments & Go Back</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>\r\n<div *ngIf=\"_unassignedEntries && _assignedEntries && _activeBracket\">\r\n\t<p-pickList [source] = \"_unassignedEntries\" [target] = \"_assignedEntries\" sourceHeader=\"Unassigned Entries\" \r\n\ttargetHeader=\"{{_activeBracket.name}} Bracket Entries\" [responsive]=\"true\" filterBy=\"e_name\" dragdrop=\"true\" \r\n\tsourceFilterPlaceholder=\"Search by entry name\" targetFilterPlaceholder=\"Search by entry name\" \r\n\t[sourceStyle]=\"{'height':'500px'}\" [targetStyle]=\"{'height':'500px'}\">\r\n\t\t<ng-template let-entry pTemplate=\"item\">\r\n\t\t\t<div class=\"ui-helper-clearfix\">\r\n\t\t\t\t{{ entry.e_name }}\r\n\t\t\t</div>\r\n\t\t</ng-template>\r\n\t</p-pickList>\r\n</div>\r\n<br>"
+module.exports = "<!--assign-brackets.component.html-->\r\n<br>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col align-self-center\">\r\n\t\t\t<h6 *ngIf=\"_activeBracket\"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-secondary\" (click)=\"goBack()\">Go Back</button>\r\n\t\t\t&nbsp;\r\n\t\t\t<button class=\"btn btn-success\" (click)=\"saveAndGoBack()\">Save Assignments & Go Back</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>\r\n<div *ngIf=\"_unassignedEntries && _assignedEntries && _activeBracket\">\r\n\t<p-pickList [source] = \"_unassignedEntries\" [target] = \"_assignedEntries\" \r\n\t(onMoveToTarget)=\"recalculate()\" (onMoveToSource)=\"recalculate()\"\r\n\tsourceHeader=\"Unassigned Entries ({{ _unassignedEntries_len ? _unassignedEntries_len : '0' }})\" \r\n\ttargetHeader=\"{{_activeBracket.name}} Bracket Entries ({{ _assignEntries_len ? _assignEntries_len : '0'}})\" \r\n\t[responsive]=\"true\" filterBy=\"e_name\" dragdrop=\"true\" \r\n\tsourceFilterPlaceholder=\"Search by entry name\" targetFilterPlaceholder=\"Search by entry name\" \r\n\t[sourceStyle]=\"{'height':'500px'}\" [targetStyle]=\"{'height':'500px'}\">\r\n\t\t<ng-template let-entry pTemplate=\"item\">\r\n\t\t\t<div class=\"ui-helper-clearfix\">\r\n\t\t\t\t{{ entry.e_name }}\r\n\t\t\t</div>\r\n\t\t</ng-template>\r\n\t</p-pickList>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -168,10 +172,10 @@ var AssignBracketsComponent = /** @class */ (function () {
             });
             _this._entryService.getEntryListByBracket(_this.id).subscribe(function (data) {
                 _this._assignedEntries = data;
+                _this._assignEntries_len = _this._assignedEntries.length;
                 // console.log("Entries that have bracket = ", this._activeBracket.name, " assigned: ", this._assignedEntries);
             });
         });
-        // this._thisBracket = 1;
         // source array = all entries without a tbracket assigned (_unassignedEntries)
         this._entryService.getEntryListbyNullBracket().subscribe(function (data) {
             _this._unassignedEntries = data;
@@ -206,6 +210,11 @@ var AssignBracketsComponent = /** @class */ (function () {
         //Just go back to Admin->Create Brackets page without making changes
         this.router.navigate(['/admin/c-brackets']);
     }; //end goBack()
+    // method to run each time an entry gets moved between lists, for updating title of each picklist
+    AssignBracketsComponent.prototype.recalculate = function () {
+        this._assignEntries_len = this._assignedEntries.length;
+        this._unassignedEntries_len = this._unassignedEntries.length;
+    };
     AssignBracketsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-assign-brackets',
@@ -242,7 +251,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--create-brackets.component.html-->\r\n<br>\r\n<h6><strong>Add Bracket</strong></h6>\r\n<div class=\"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<form [formGroup]=\"bracketAddForm\" (ngSubmit)=\"addBracket(bracketAddForm.value)\">\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<!-- <label for=\"bracket_name\">Bracket</label> -->\r\n\t\t\t\t\t\t    <input type=\"text\" class=\"form-control\" placeholder=\"Type bracket name..\" \r\n\t\t\t\t\t\t    id=\"bracket_name\" [formControl] = \"bracket_name\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6\">\r\n\t\t\t\t\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t\t\t\t\t[disabled]=\"!bracketAddForm.valid\">Add Bracket</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<!-- <button class=\"btn btn-dark\" >Delete/Create All Entries</button> -->\r\n\t\t\t<button class=\"btn btn-dark\" (click)=\"resetEntries()\">Delete/Create All Entries</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<br>\r\n<h6><strong>Brackets</strong></h6>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\r\n\t\t\t<th scope=\"col\">Actions</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\r\n\t\t\t<td>{{ tbracket.name }}</td>\r\n\t\t\t<td>{{ tbracket.entry_count}}</td>\r\n\t\t\t<td>{{ tbracket.id }}</td>\r\n\t\t\t<td>\r\n\t\t\t\t<button class=\"btn btn-danger custom\" (click)=\"openDeleteModal(tbracket.id, tbracket.name)\">Delete</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-warning\" (click)=\"reassignBracket(tbracket.id, tbracket.name)\">(Re)Assign</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-info custom\" (click)=\"resetBracket(tbracket.id, tbracket.name)\">Reset</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"navToAssign(tbracket.id)\">Assign Entries</button>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<!-- <ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Bracket</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"deleteModalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete this Bracket?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-danger custom\" \r\n\t\t\t(click)=\"deleteModalRef.hide(); deleteBracket()\">Delete</button>\r\n\t</div>\r\n</ng-template>  -->"
+module.exports = "<!--create-brackets.component.html-->\r\n<br>\r\n<h6><strong>Add Bracket</strong></h6>\r\n<div class=\"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<form [formGroup]=\"bracketAddForm\" (ngSubmit)=\"addBracket(bracketAddForm.value)\">\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<!-- <label for=\"bracket_name\">Bracket</label> -->\r\n\t\t\t\t\t\t    <input type=\"text\" class=\"form-control\" placeholder=\"Type bracket name..\" \r\n\t\t\t\t\t\t    id=\"bracket_name\" [formControl] = \"bracket_name\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6\">\r\n\t\t\t\t\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t\t\t\t\t[disabled]=\"!bracketAddForm.valid\">Add Bracket</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<span *ngIf=\"showEntriesMsg\" class=\"text-success\">{{ entriesMsg }}</span>\r\n\t\t\t<button class=\"btn btn-dark\" (click)=\"openEntriesModal(entries_template)\">Delete/Create All Entries</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<br>\r\n<div class = \"d-flex flex-row\">\r\n\t<div class = \"p-2\">\r\n\t\t<h6><strong>Brackets</strong></h6>\r\n\t</div>\r\n\t<div class = \"p-2\">\r\n\t\t<a [routerLink]=\"\" (click)=\"resetList()\">refresh</a>\r\n\t</div>\r\n</div>\r\n\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Num Entries</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 10%\">Id</th>\r\n\t\t\t<th scope=\"col\">Actions</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let tbracket of _tbracketList; let i = index\">\r\n\t\t\t<th scope=\"row\" class=\"align-middle\">{{i + 1}}</th>\r\n\t\t\t<td class=\"align-middle\">{{ tbracket.name }}</td>\r\n\t\t\t<td class=\"align-middle\">{{ tbracket.entry_count}}</td>\r\n\t\t\t<td class=\"align-middle\">{{ tbracket.id }}</td>\r\n\t\t\t<td>\r\n\t\t\t\t<button class=\"btn btn-danger custom\" (click)=\"openDeleteModal(tbracket.id, tbracket.name)\">Delete</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-warning\" (click)=\"openReassignModal(tbracket.id, tbracket.name)\">(Re)Assign</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-info custom\" (click)=\"openResetModal(tbracket.id, tbracket.name)\">Reset</button>\r\n\t\t\t\t&nbsp;\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"navToAssign(tbracket.id)\">Assign Entries</button>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<!-- Template modal that gets displayed when user clicks on Delete/Create All Entries -->\r\n<ng-template #entries_template>\r\n  <div class=\"modal-body text-center\">\r\n    <h6><small>You are about to delete all existing Bracket Entry assignments and create new Entries based on currently registered Users. This will unassign all Entries from Brackets. Would you like to proceed?</small></h6>\r\n    <button type=\"button\" class=\"btn btn-light\" (click)=\"confirmDeleteEntries()\" >Yes, Proceed</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"declineDeleteEntries()\" >No, Go Back</button>\r\n  </div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -250,13 +259,12 @@ module.exports = "<!--create-brackets.component.html-->\r\n<br>\r\n<h6><strong>A
 /*!********************************************************************!*\
   !*** ./src/app/admin/create-brackets/create-brackets.component.ts ***!
   \********************************************************************/
-/*! exports provided: CreateBracketsComponent, DeleteModalComponent */
+/*! exports provided: CreateBracketsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateBracketsComponent", function() { return CreateBracketsComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteModalComponent", function() { return DeleteModalComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
 /* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/user.service */ "./src/app/core/user.service.ts");
@@ -264,6 +272,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./delete-bracket-modal.component */ "./src/app/admin/create-brackets/delete-bracket-modal.component.ts");
+/* harmony import */ var _reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./reassign-bracket-modal.component */ "./src/app/admin/create-brackets/reassign-bracket-modal.component.ts");
+/* harmony import */ var _reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./reset-bracket-modal.component */ "./src/app/admin/create-brackets/reset-bracket-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -280,6 +291,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var CreateBracketsComponent = /** @class */ (function () {
     function CreateBracketsComponent(_tbracketService, _userService, fb, modalService, _entryService, router) {
         this._tbracketService = _tbracketService;
@@ -288,6 +302,7 @@ var CreateBracketsComponent = /** @class */ (function () {
         this.modalService = modalService;
         this._entryService = _entryService;
         this.router = router;
+        this.entriesMsg = '';
         this.bracketAddForm = fb.group({
             'bracket_name': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
         });
@@ -296,6 +311,10 @@ var CreateBracketsComponent = /** @class */ (function () {
     CreateBracketsComponent.prototype.ngOnInit = function () {
         this.new_bracket = { 'id': null, 'name': '', 'entry_count': null }; //initialize new_bracket
         this.resetList();
+    };
+    CreateBracketsComponent.prototype.ngOnChanges = function () {
+        this.resetList();
+        this.showEntriesMsg = false;
     };
     CreateBracketsComponent.prototype.addBracket = function (value) {
         var _this = this;
@@ -307,17 +326,6 @@ var CreateBracketsComponent = /** @class */ (function () {
             _this.resetList();
         });
     }; //end addBracket()
-    CreateBracketsComponent.prototype.reassignBracket = function (bracket_id, bracket_name) {
-        // console.log("Tbracket id for re-assignment is", bracket_name);
-        this._tbracketService.reassignTbracket(bracket_id, this._userService.token).subscribe(function (data) {
-            console.log(bracket_name, " Tbracket entries re-assigned!");
-        });
-    };
-    CreateBracketsComponent.prototype.resetBracket = function (bracket_id, bracket_name) {
-        this._tbracketService.resetTbracket(bracket_id).subscribe(function (data) {
-            console.log(bracket_name, " Tbracket has been reset!");
-        });
-    };
     CreateBracketsComponent.prototype.resetList = function () {
         var _this = this;
         //refresh Tbracket list
@@ -326,27 +334,66 @@ var CreateBracketsComponent = /** @class */ (function () {
         });
         // console.log("Tbracket List has been reset")
     }; // end resetList()
+    // function to invoke when click on 'Assign Entries' so navigates properly
+    CreateBracketsComponent.prototype.navToAssign = function (tbracket_id) {
+        this.router.navigate(['/admin/a-brackets', tbracket_id]);
+    }; //end navToAssign
+    // function to open confirmEntries template modal followed by button functions
+    CreateBracketsComponent.prototype.openEntriesModal = function (template) {
+        this.confirmEntriesModalRef = this.modalService.show(template, { class: 'modal-lg' });
+    };
+    CreateBracketsComponent.prototype.confirmDeleteEntries = function () {
+        var _this = this;
+        this._entryService.resetAllEntries().subscribe(function (data) {
+            console.log("All Entries have been deleted, then re-created based on User data!");
+            _this.confirmEntriesModalRef.hide();
+            _this.entriesMsg = "All Entries have been deleted & re-created!";
+            _this.showEntriesMsg = true;
+            _this.resetList();
+        });
+    };
+    CreateBracketsComponent.prototype.declineDeleteEntries = function () {
+        this.confirmEntriesModalRef.hide();
+    };
+    // function to open delete-bracket-modal.component.ts component modal
     CreateBracketsComponent.prototype.openDeleteModal = function (bracket_id, bracket_name) {
         var _this = this;
         var initialState = {
             tbracket_id: bracket_id,
             tbracket_name: bracket_name
         };
-        this.deleteModalRef = this.modalService.show(DeleteModalComponent, { initialState: initialState });
+        this.deleteModalRef = this.modalService.show(_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_7__["DeleteModalComponent"], { initialState: initialState });
         this.modalService.onHidden.subscribe(function (reason) {
             // Upon modal being closed run these actions
             _this.resetList();
         });
     }; // end openDeleteModeal()
-    CreateBracketsComponent.prototype.resetEntries = function () {
-        // Delete all entries, then create all new Entries based on User registration data
-        this._entryService.resetAllEntries().subscribe(function (data) {
-            console.log("All Entries have been deleted, then re-created based on User data!");
+    // code for Bracket -> Reassign confirmation popup component modal
+    CreateBracketsComponent.prototype.openReassignModal = function (bracket_id, bracket_name) {
+        var _this = this;
+        var initialState = {
+            tbracket_id: bracket_id,
+            tbracket_name: bracket_name
+        };
+        this.confirmReassignModalRef = this.modalService.show(_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_8__["ReassignModalComponent"], { initialState: initialState });
+        this.modalService.onHidden.subscribe(function (reason) {
+            // Upon modal being closed run these actions
+            _this.resetList();
         });
-    }; //end resetEntries()
-    CreateBracketsComponent.prototype.navToAssign = function (tbracket_id) {
-        this.router.navigate(['/admin/a-brackets', tbracket_id]);
-    }; //end navToAssign
+    }; // end openReassignModal()
+    // code for Bracket -> Reset confirmation popup component modal
+    CreateBracketsComponent.prototype.openResetModal = function (bracket_id, bracket_name) {
+        var _this = this;
+        var initialState = {
+            tbracket_id: bracket_id,
+            tbracket_name: bracket_name
+        };
+        this.confirmResetModalRef = this.modalService.show(_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_9__["ResetModalComponent"], { initialState: initialState });
+        this.modalService.onHidden.subscribe(function (reason) {
+            // Upon modal being closed run these actions
+            _this.resetList();
+        });
+    }; // end openReassignModal()
     CreateBracketsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-create-brackets',
@@ -361,9 +408,50 @@ var CreateBracketsComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
     ], CreateBracketsComponent);
     return CreateBracketsComponent;
-}());
+}()); // export class CreateBracketsComponent
 
-/* This is the component which we pass in openDeleteModal */
+
+
+/***/ }),
+
+/***/ "./src/app/admin/create-brackets/delete-bracket-modal.component.html":
+/*!***************************************************************************!*\
+  !*** ./src/app/admin/create-brackets/delete-bracket-modal.component.html ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<div class=\"modal-header\">\r\n      <h4 class=\"modal-title pull-left\">Confirm Bracket Deletion</h4>\r\n      <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"deleteModalRef.hide()\">\r\n        <span aria-hidden=\"true\">&times;</span>\r\n      </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <h6>Are you sure you want to delete the <strong>{{ tbracket_name }}</strong> bracket?</h6>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-danger\" (click)=\"deleteModalRef.hide(); deleteBracket(tbracket_id)\">Delete</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin/create-brackets/delete-bracket-modal.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/admin/create-brackets/delete-bracket-modal.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: DeleteModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteModalComponent", function() { return DeleteModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/user.service */ "./src/app/core/user.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
 var DeleteModalComponent = /** @class */ (function () {
     function DeleteModalComponent(deleteModalRef, _tbracketService, _userService) {
         this.deleteModalRef = deleteModalRef;
@@ -381,13 +469,144 @@ var DeleteModalComponent = /** @class */ (function () {
     DeleteModalComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'modal-content',
-            template: "\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title pull-left\">Confirm Bracket Deletion</h4>\n      <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"deleteModalRef.hide()\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n    <div class=\"modal-body\">\n      <h6>Are you sure you want to delete the <strong>{{ tbracket_name }}</strong> bracket?</h6>\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-danger\" (click)=\"deleteModalRef.hide(); deleteBracket(tbracket_id)\">Delete</button>\n    </div>\n  "
+            template: __webpack_require__(/*! ./delete-bracket-modal.component.html */ "./src/app/admin/create-brackets/delete-bracket-modal.component.html")
         }),
-        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__["BsModalRef"],
-            _core_tbracket_service__WEBPACK_IMPORTED_MODULE_1__["TBracketService"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__["BsModalRef"],
+            _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__["TBracketService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], DeleteModalComponent);
     return DeleteModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/create-brackets/reassign-bracket-modal.component.html":
+/*!*****************************************************************************!*\
+  !*** ./src/app/admin/create-brackets/reassign-bracket-modal.component.html ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<div class=\"modal-header\">\r\n      <h4 class=\"modal-title pull-left\">Confirm Bracket Reassignment</h4>\r\n      <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"confirmReassignModalRef.hide()\">\r\n        <span aria-hidden=\"true\">&times;</span>\r\n      </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <h6>Are you sure you want to (Re)Assign the <strong>{{ tbracket_name }}</strong> bracket? This will randomly assign\r\n  new original & active teams to every entry, reset Round 1 matchups and clear out Round 2-6 matchups.</h6>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-warning\" (click)=\"confirmReassignModalRef.hide(); reassignBracket(tbracket_id)\">(Re)Assign</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin/create-brackets/reassign-bracket-modal.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/admin/create-brackets/reassign-bracket-modal.component.ts ***!
+  \***************************************************************************/
+/*! exports provided: ReassignModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReassignModalComponent", function() { return ReassignModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/user.service */ "./src/app/core/user.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ReassignModalComponent = /** @class */ (function () {
+    function ReassignModalComponent(confirmReassignModalRef, _tbracketService, _userService) {
+        this.confirmReassignModalRef = confirmReassignModalRef;
+        this._tbracketService = _tbracketService;
+        this._userService = _userService;
+    }
+    ReassignModalComponent.prototype.ngOnInit = function () {
+    };
+    ReassignModalComponent.prototype.reassignBracket = function (bracket_id) {
+        // console.log("Tbracket id for re-assignment is", bracket_name);
+        this._tbracketService.reassignTbracket(bracket_id, this._userService.token).subscribe(function (data) {
+            console.log("Tbracket id:", bracket_id, " entries re-assigned!");
+        });
+    };
+    ReassignModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'modal-content',
+            template: __webpack_require__(/*! ./reassign-bracket-modal.component.html */ "./src/app/admin/create-brackets/reassign-bracket-modal.component.html")
+        }),
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__["BsModalRef"],
+            _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__["TBracketService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+    ], ReassignModalComponent);
+    return ReassignModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/create-brackets/reset-bracket-modal.component.html":
+/*!**************************************************************************!*\
+  !*** ./src/app/admin/create-brackets/reset-bracket-modal.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<div class=\"modal-header\">\r\n      <h4 class=\"modal-title pull-left\">Confirm Bracket Reset</h4>\r\n      <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"confirmResetModalRef.hide()\">\r\n        <span aria-hidden=\"true\">&times;</span>\r\n      </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <h6>Are you sure you want to Reset the <strong>{{ tbracket_name }}</strong> bracket? This will set all active teams = original teams, reset all Round 1 matchups, and clear out Round 2-6 matchups for this bracket.</h6>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-info\" (click)=\"confirmResetModalRef.hide(); resetBracket(tbracket_id, tbracket_name)\">Reset</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin/create-brackets/reset-bracket-modal.component.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/admin/create-brackets/reset-bracket-modal.component.ts ***!
+  \************************************************************************/
+/*! exports provided: ResetModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetModalComponent", function() { return ResetModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/tbracket.service */ "./src/app/core/tbracket.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ResetModalComponent = /** @class */ (function () {
+    function ResetModalComponent(confirmResetModalRef, _tbracketService) {
+        this.confirmResetModalRef = confirmResetModalRef;
+        this._tbracketService = _tbracketService;
+    }
+    ResetModalComponent.prototype.ngOnInit = function () {
+    };
+    ResetModalComponent.prototype.resetBracket = function (bracket_id, bracket_name) {
+        this._tbracketService.resetTbracket(bracket_id).subscribe(function (data) {
+            console.log(bracket_name, " Tbracket has been reset!");
+        });
+    };
+    ResetModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'modal-content',
+            template: __webpack_require__(/*! ./reset-bracket-modal.component.html */ "./src/app/admin/create-brackets/reset-bracket-modal.component.html")
+        }),
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__["BsModalRef"],
+            _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__["TBracketService"]])
+    ], ResetModalComponent);
+    return ResetModalComponent;
 }());
 
 
@@ -412,7 +631,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
+module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -448,6 +667,7 @@ var GameDetailComponent = /** @class */ (function () {
         this._gameService = _gameService;
         this.fb = fb;
         this.router = router;
+        this.msg = '';
         // Update Game form setup
         this.gameUpdateForm = fb.group({
             'spread': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -475,6 +695,7 @@ var GameDetailComponent = /** @class */ (function () {
     GameDetailComponent.prototype.ngOnChanges = function () {
         // console.log("game-detail component received _game update..", this._game);
         this.gameUpdateForm.patchValue(this._game);
+        this.showMsg = false;
     };
     GameDetailComponent.prototype.updateGame = function () {
         var _this = this;
@@ -482,20 +703,27 @@ var GameDetailComponent = /** @class */ (function () {
         this._game.spread = this.spread.value;
         this._game.team2_score = this.team2_score.value;
         this._gameService.updateGame(this._game).subscribe(function (data) {
-            console.log("Game updated with:", _this._game);
+            // console.log("Game updated with:", this._game);
+            _this.msg = "Game #: " + _this._game.id + " has been updated!";
+            _this.showMsg = true;
         });
     }; //end updateGame()
     GameDetailComponent.prototype.resetGame = function () {
         var _this = this;
         // console.log("Game id for reset is", this._game.id);
         this._gameService.resetGame(this._game.id).subscribe(function (data) {
-            console.log("Game #", _this._game.id, "has been reset!");
-            // navigate back to Retrieve Game page
+            // console.log("Game #", this._game.id, "has been reset!");
+            // navigate back to Retrieve Game page *** not working ***
             // this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
             // 	this.router.navigate(['/admin/u-games']));
-            // **not working** attempt to reset form with new _game data
-            // this.gameUpdateForm.reset();
-            // this.gameUpdateForm.patchValue(this._game);
+            // retrieve newly updated game and update form
+            _this._gameService.getGameDetails(_this._game.id).subscribe(function (data) {
+                _this._game = data;
+                _this.gameUpdateForm.reset();
+                _this.gameUpdateForm.patchValue(_this._game);
+                _this.msg = "Game #: " + _this._game.id + " has been reset!";
+                _this.showMsg = true;
+            });
         });
     }; //end resetGame()
     __decorate([
@@ -1153,20 +1381,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _brackets_brackets_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./brackets/brackets.component */ "./src/app/brackets/brackets.component.ts");
 /* harmony import */ var _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./profile-form-modal/profile-form-modal.component */ "./src/app/profile-form-modal/profile-form-modal.component.ts");
 /* harmony import */ var _team_details_team_details_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./team-details/team-details.component */ "./src/app/team-details/team-details.component.ts");
-/* harmony import */ var _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./admin/create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
-/* harmony import */ var _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./team-nextup/team-nextup.component */ "./src/app/team-nextup/team-nextup.component.ts");
-/* harmony import */ var _standings_standings_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./standings/standings.component */ "./src/app/standings/standings.component.ts");
-/* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
-/* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
-/* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
-/* harmony import */ var _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./admin/send-emails/send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
-/* harmony import */ var _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./admin/send-emails/send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
+/* harmony import */ var _admin_create_brackets_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./admin/create-brackets/delete-bracket-modal.component */ "./src/app/admin/create-brackets/delete-bracket-modal.component.ts");
+/* harmony import */ var _admin_create_brackets_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./admin/create-brackets/reassign-bracket-modal.component */ "./src/app/admin/create-brackets/reassign-bracket-modal.component.ts");
+/* harmony import */ var _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./admin/create-brackets/reset-bracket-modal.component */ "./src/app/admin/create-brackets/reset-bracket-modal.component.ts");
+/* harmony import */ var _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./team-nextup/team-nextup.component */ "./src/app/team-nextup/team-nextup.component.ts");
+/* harmony import */ var _standings_standings_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./standings/standings.component */ "./src/app/standings/standings.component.ts");
+/* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
+/* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
+/* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
+/* harmony import */ var _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./admin/send-emails/send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
+/* harmony import */ var _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./admin/send-emails/send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1209,14 +1441,16 @@ var AppModule = /** @class */ (function () {
                 _brackets_brackets_component__WEBPACK_IMPORTED_MODULE_16__["BracketsComponent"],
                 _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"],
                 _team_details_team_details_component__WEBPACK_IMPORTED_MODULE_18__["TeamDetailsComponent"],
-                _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"],
-                _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_20__["TeamNextupComponent"],
-                _standings_standings_component__WEBPACK_IMPORTED_MODULE_21__["StandingsComponent"],
-                _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_22__["StandingsNavComponent"],
-                _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_23__["BracketTabComponent"],
-                _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_24__["RosterTextboxComponent"],
-                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"],
-                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_26__["SendGamesModalComponent"],
+                _admin_create_brackets_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"],
+                _admin_create_brackets_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_20__["ReassignModalComponent"],
+                _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__["ResetModalComponent"],
+                _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_22__["TeamNextupComponent"],
+                _standings_standings_component__WEBPACK_IMPORTED_MODULE_23__["StandingsComponent"],
+                _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_24__["StandingsNavComponent"],
+                _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_25__["BracketTabComponent"],
+                _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_26__["RosterTextboxComponent"],
+                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendOrigModalComponent"],
+                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__["SendGamesModalComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1231,7 +1465,14 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [_app_store__WEBPACK_IMPORTED_MODULE_4__["appStoreProviders"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]],
-            entryComponents: [_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"], _admin_create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"], _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_25__["SendOrigModalComponent"], _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_26__["SendGamesModalComponent"]]
+            entryComponents: [
+                _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_17__["ProfileFormModalComponent"],
+                _admin_create_brackets_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"],
+                _admin_create_brackets_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_20__["ReassignModalComponent"],
+                _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__["ResetModalComponent"],
+                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendOrigModalComponent"],
+                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__["SendGamesModalComponent"],
+            ]
         })
     ], AppModule);
     return AppModule;
@@ -3728,7 +3969,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t<div class=\"d-flex flex-row order-2 order-lg-3 align-middle\">\r\n\t\t\t<a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">Hi, {{ currentUser.first_name }}!</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t</div>\r\n\t\t<div class=\"collapse navbar-collapse order-3 order-lg-2\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\r\n\t\t\t\t<li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\" [fragment]=\"_region_id\">Brackets</a>\r\n\t            </li>\r\n\t\t\t\t<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***\r\n\t            <li class=\"nav-item dropdown\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link dropdown-toggle\" [routerLink]=\"['/brackets', _bracketToShow]\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Brackets</a>\r\n\t            \t<ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n\t            \t\t<li *ngFor = \"let tbracket of tbracketList\">\r\n\t            \t\t\t<a class=\"dropdown-item\" [routerLink]=\"['/brackets', tbracket.id]\">\r\n\t            \t\t\t{{ tbracket.name }}</a>\r\n\t            \t\t</li>\r\n\t            \t</ul>\r\n\t            </li>\r\n\t\t\t\t -->\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t          Admin\r\n\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Create Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/s-emails']\">Send Emails</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t  \t</div> <!--end navbar-collapse -->\r\n  \t</div> <!--end container-fluid -->\r\n</nav>"
+module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar center navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t<div class=\"d-flex flex-row order-2 order-lg-3 align-middle\">\r\n\t\t\t<a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">Hi, {{ currentUser.first_name }}!</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t\t\t<button type=\"button\" class=\"navbar-toggler\" data-toggle=\"collapse\"\r\n\t\t\t\tdata-target=\"#navbar\" aria-controls=\"navbar\" aria-expanded=\"false\"\r\n\t\t\t\taria-label=\"Toggle navigation\" (click)=\"isCollapsed = !isCollapsed\">\r\n\t\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t\t</button>\r\n\t\t</div>\r\n\t\t<div class=\"collapse navbar-collapse order-3 order-lg-2\" id=\"navbar\" [collapse]=\"isCollapsed\">\r\n\t        <ul class=\"navbar-nav mr-auto\">\r\n\t        \t<li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n\t            </li>\r\n\t            <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n\t            \t<a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n\t            </li>\r\n\r\n\t\t\t\t<li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\" [fragment]=\"_region_id\">Brackets</a>\r\n\t            </li>\r\n\t\t\t\t<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***\r\n\t            <li class=\"nav-item dropdown\">\r\n\t            \t<a *ngIf=\"_bracketToShow\" class=\"nav-link dropdown-toggle\" [routerLink]=\"['/brackets', _bracketToShow]\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Brackets</a>\r\n\t            \t<ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n\t            \t\t<li *ngFor = \"let tbracket of tbracketList\">\r\n\t            \t\t\t<a class=\"dropdown-item\" [routerLink]=\"['/brackets', tbracket.id]\">\r\n\t            \t\t\t{{ tbracket.name }}</a>\r\n\t            \t\t</li>\r\n\t            \t</ul>\r\n\t            </li>\r\n\t\t\t\t -->\r\n\t            <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n\t\t\t        <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n\t\t\t        href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t          Admin\r\n\t\t\t        </a>\r\n\t\t\t        <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Manage Brackets</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n\t\t\t          <a class=\"dropdown-item\" [routerLink]=\"['/admin/s-emails']\">Send Emails</a>\r\n\t\t\t        </div>\r\n\t\t\t\t</li>\r\n\t        </ul>\r\n\t  \t</div> <!--end navbar-collapse -->\r\n  \t</div> <!--end container-fluid -->\r\n</nav>"
 
 /***/ }),
 
@@ -3798,6 +4039,7 @@ var HeaderComponent = /** @class */ (function () {
         this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
             if (data.length > 0) {
                 _this._bracketToShow = data[0].id;
+                // console.log("The bracketToShow is ", this._bracketToShow)
                 _this.tbracketList = data;
             }
         });
