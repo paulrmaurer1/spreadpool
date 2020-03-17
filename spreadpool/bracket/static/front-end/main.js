@@ -124,7 +124,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--assign-brackets.component.html-->\r\n<br>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col align-self-center\">\r\n\t\t\t<h6 *ngIf=\"_activeBracket\"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-secondary\" (click)=\"goBack()\">Go Back</button>\r\n\t\t\t&nbsp;\r\n\t\t\t<button class=\"btn btn-success\" (click)=\"saveAndGoBack()\">Save Assignments & Go Back</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>\r\n<div *ngIf=\"_unassignedEntries && _assignedEntries && _activeBracket\">\r\n\t<p-pickList [source] = \"_unassignedEntries\" [target] = \"_assignedEntries\" \r\n\t(onMoveToTarget)=\"recalculate()\" (onMoveToSource)=\"recalculate()\"\r\n\tsourceHeader=\"Unassigned Entries ({{ _unassignedEntries_len ? _unassignedEntries_len : '0' }})\" \r\n\ttargetHeader=\"{{_activeBracket.name}} Bracket Entries ({{ _assignEntries_len ? _assignEntries_len : '0'}})\" \r\n\t[responsive]=\"true\" filterBy=\"e_name\" dragdrop=\"true\" \r\n\tsourceFilterPlaceholder=\"Search by entry name\" targetFilterPlaceholder=\"Search by entry name\" \r\n\t[sourceStyle]=\"{'height':'500px'}\" [targetStyle]=\"{'height':'500px'}\">\r\n\t\t<ng-template let-entry pTemplate=\"item\">\r\n\t\t\t<div class=\"ui-helper-clearfix\">\r\n\t\t\t\t{{ entry.e_name }}\r\n\t\t\t</div>\r\n\t\t</ng-template>\r\n\t</p-pickList>\r\n</div>\r\n<br>"
+module.exports = "<!--assign-brackets.component.html-->\r\n<br>\r\n<div class = \"container\">\r\n\t<div class = \"row justify-content-start\">\r\n\t\t<div class = \"col align-self-center\">\r\n\t\t\t<h6 *ngIf=\"_activeBracket\"><strong>Assign Entries to the \r\n\t\t\t<select class = \"select-option\" #tbracketSelect (change)=\"onBracketSelected(tbracketSelect.value)\">\r\n\t\t\t\t<option class = \"option\" *ngFor = \"let tbracket of _tbracketList\" \r\n\t\t\t\t[selected] = \"tbracket.id == _activeBracket.id\" [value]=\"tbracket.id\">{{tbracket.name}}</option>\r\n\t\t\t</select> Bracket</strong></h6>\r\n\r\n\r\n\t\t</div>\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-secondary\" (click)=\"goBack()\">Go Back</button>\r\n\t\t\t&nbsp;\r\n\t\t\t<button class=\"btn btn-success\" (click)=\"saveAndGoBack()\">Save Assignments & Go Back</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>\r\n<div *ngIf=\"_unassignedEntries && _assignedEntries && _activeBracket\">\r\n\t<p-pickList [source] = \"_unassignedEntries\" [target] = \"_assignedEntries\" \r\n\t(onMoveToTarget)=\"recalculate()\" (onMoveToSource)=\"recalculate()\"\r\n\tsourceHeader=\"Unassigned Entries ({{ _unassignedEntries_len ? _unassignedEntries_len : '0' }})\" \r\n\ttargetHeader=\"{{_activeBracket.name}} Bracket Entries ({{ _assignEntries_len ? _assignEntries_len : '0'}})\" \r\n\t[responsive]=\"true\" filterBy=\"e_name\" dragdrop=\"true\" \r\n\tsourceFilterPlaceholder=\"Search by entry name\" targetFilterPlaceholder=\"Search by entry name\" \r\n\t[sourceStyle]=\"{'height':'500px'}\" [targetStyle]=\"{'height':'500px'}\">\r\n\t\t<ng-template let-entry pTemplate=\"item\">\r\n\t\t\t<div class=\"ui-helper-clearfix\">\r\n\t\t\t\t{{ entry.e_name }}\r\n\t\t\t</div>\r\n\t\t</ng-template>\r\n\t</p-pickList>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -164,21 +164,31 @@ var AssignBracketsComponent = /** @class */ (function () {
     }
     AssignBracketsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // Find tbracket id from parameter of url and update target array (_assignedEntries)
+        // Find tbracket id from parameter of url and refresh data
         this.route.params.subscribe(function (params) {
             _this.id = params['id'];
-            _this._tbracketService.getTbracket(_this.id).subscribe(function (data) {
-                _this._activeBracket = data;
-            });
-            _this._entryService.getEntryListByBracket(_this.id).subscribe(function (data) {
-                _this._assignedEntries = data;
-                _this._assignEntries_len = _this._assignedEntries.length;
-                // console.log("Entries that have bracket = ", this._activeBracket.name, " assigned: ", this._assignedEntries);
-            });
+            _this.refreshData(_this.id);
+        });
+        // Update bracket list to build drop-down menu contents
+        this._tbracketService.getList().subscribe(function (data) {
+            _this._tbracketList = data;
+        });
+    };
+    AssignBracketsComponent.prototype.refreshData = function (tbracket_id) {
+        // Update arrays to show in picklists as well as activeBracket for proper page display
+        var _this = this;
+        this._tbracketService.getTbracket(tbracket_id).subscribe(function (data) {
+            _this._activeBracket = data;
+        });
+        this._entryService.getEntryListByBracket(tbracket_id).subscribe(function (data) {
+            _this._assignedEntries = data;
+            _this._assignEntries_len = _this._assignedEntries.length;
+            // console.log("Entries that have bracket = ", this._activeBracket.name, " assigned: ", this._assignedEntries);
         });
         // source array = all entries without a tbracket assigned (_unassignedEntries)
         this._entryService.getEntryListbyNullBracket().subscribe(function (data) {
             _this._unassignedEntries = data;
+            _this._unassignedEntries_len = _this._unassignedEntries.length;
             // console.log("Entries that don't have a bracket assigned: ", this._unassignedEntries);
         });
     };
@@ -214,6 +224,9 @@ var AssignBracketsComponent = /** @class */ (function () {
     AssignBracketsComponent.prototype.recalculate = function () {
         this._assignEntries_len = this._assignedEntries.length;
         this._unassignedEntries_len = this._unassignedEntries.length;
+    };
+    AssignBracketsComponent.prototype.onBracketSelected = function (tbracket_id) {
+        this.refreshData(tbracket_id);
     };
     AssignBracketsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

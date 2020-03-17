@@ -3,7 +3,13 @@
 <div class = "container">
 	<div class = "row justify-content-start">
 		<div class = "col align-self-center">
-			<h6 *ngIf="_activeBracket"><strong>Assign Entries to the {{ _activeBracket.name }} Bracket</strong></h6>
+			<h6 *ngIf="_activeBracket"><strong>Assign Entries to the 
+			<select class = "select-option" #tbracketSelect (change)="onBracketSelected(tbracketSelect.value)">
+				<option class = "option" *ngFor = "let tbracket of _tbracketList" 
+				[selected] = "tbracket.id == _activeBracket.id" [value]="tbracket.id">{{tbracket.name}}</option>
+			</select> Bracket</strong></h6>
+
+
 		</div>
 		<div class = "col">
 			<button class="btn btn-secondary" (click)="goBack()">Go Back</button>

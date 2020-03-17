@@ -17,6 +17,7 @@ export class AssignBracketsComponent implements OnInit {
 	private id: number; //capture tbracket id url parameter
 	_assignEntries_len: number;
 	_unassignedEntries_len: number;
+	_tbracketList: TBracketData[];
 
 	constructor(
 		private _entryService: EntryService, 
@@ -26,25 +27,36 @@ export class AssignBracketsComponent implements OnInit {
 
 	ngOnInit() {
 
-		// Find tbracket id from parameter of url and update target array (_assignedEntries)
+		// Find tbracket id from parameter of url and refresh data
 		this.route.params.subscribe((params) => {
 			this.id = params['id'];
+			this.refreshData(this.id);
+		});
 			
-			this._tbracketService.getTbracket(this.id).subscribe((data) => {
-				this._activeBracket = data;
-			});
+		// Update bracket list to build drop-down menu contents
+		this._tbracketService.getList().subscribe(data => {
+			this._tbracketList = data;
+		});
+		
+	}
 
-			this._entryService.getEntryListByBracket(this.id).subscribe((data) => {
-				this._assignedEntries = data;
-				this._assignEntries_len = this._assignedEntries.length;
-				// console.log("Entries that have bracket = ", this._activeBracket.name, " assigned: ", this._assignedEntries);
-				
-			});
+	refreshData(tbracket_id: number) {
+		// Update arrays to show in picklists as well as activeBracket for proper page display
+
+		this._tbracketService.getTbracket(tbracket_id).subscribe((data) => {
+			this._activeBracket = data;
+		});
+
+		this._entryService.getEntryListByBracket(tbracket_id).subscribe((data) => {
+			this._assignedEntries = data;
+			this._assignEntries_len = this._assignedEntries.length;
+			// console.log("Entries that have bracket = ", this._activeBracket.name, " assigned: ", this._assignedEntries);
 		});
 
 		// source array = all entries without a tbracket assigned (_unassignedEntries)
 		this._entryService.getEntryListbyNullBracket().subscribe((data) => {
 			this._unassignedEntries = data;
+			this._unassignedEntries_len = this._unassignedEntries.length;
 			// console.log("Entries that don't have a bracket assigned: ", this._unassignedEntries);
 		});
 	}
@@ -85,6 +97,10 @@ export class AssignBracketsComponent implements OnInit {
 	recalculate() {
 		this._assignEntries_len = this._assignedEntries.length;
 		this._unassignedEntries_len = this._unassignedEntries.length;
+	}
+
+	onBracketSelected(tbracket_id: number) {
+		this.refreshData(tbracket_id);
 	}
 
 }
