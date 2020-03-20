@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EntryData, EntryBracketData, EntryNameData, EntryStandingsData } from '../shared/interfaces';
+import { EntryData, EntryBracketData, EntryNameData, EntryStandingsData, EntryMyTeamsData } from '../shared/interfaces';
 import { UserService } from './user.service';
 
 //entryUrl is base url for entries table end point
@@ -8,6 +8,7 @@ const entryUrl = '/api/entries/';
 const entry_bracketsUrl = '/api/entry_brackets/';
 const entry_namesUrl = '/api/entry_names/';
 const entry_standingsURL = '/api/entry_standings/';
+const entry_myteams = 'api/entry_myteams/';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,11 @@ export class EntryService {
 	emailOrigTeamsToOwners(tbracket_id) {
 	    return this.http.get<EntryData[]>(entryUrl + 'email_orig_teams_to_owners/' + '?tbracketid=' + tbracket_id)
 	}
+
+	//method to retrieve entry details list for a player
+	getEntryDetailsListMyTeamsByPlayer(id) {
+		return this.http.get<EntryMyTeamsData[]>(entry_myteams + '?playerid=' + id)
+		}
 
 	// helper function to build the HTTP headers
 	getHttpOptions() {

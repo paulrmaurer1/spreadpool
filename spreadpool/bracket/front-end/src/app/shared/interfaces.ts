@@ -68,6 +68,24 @@ export interface EntryStandingsData {
   team_d: string;
 }
 
+export interface EntryMyTeamsData {
+  orig_team_a: string;
+  orig_team_b: string;
+  orig_team_c: string;
+  orig_team_d: string;
+  team_a: string;
+  team_b: string;
+  team_c: string;
+  team_d: string;
+  player: string;
+  tbracket: number;
+  tbracket_id: number;
+  next_team_a: string;
+  next_team_b: string;
+  next_team_c: string;
+  next_team_d: string;
+}
+
 export interface GameData {
   id: number;
   region: string;

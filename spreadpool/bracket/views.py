@@ -26,7 +26,7 @@ User = get_user_model()
 from bracket import forms
 # from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket, Region
-from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame
+from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame, getLastGame_Team
 from .email_functions import email_original_teams, email_spreads
 from bracket import serializers
 
@@ -379,6 +379,25 @@ class EntryStandingsViewSet(ModelViewSet):
 		if tbracketid is not None:
 			queryset = queryset.filter(tbracket=tbracketid)
 
+		return queryset
+
+class EntryMyTeamsViewSet(ModelViewSet):
+	"""
+	API endpoint that retrieves a Player's entries and supplements with "Next Game" string
+	For My Teams page -> team-details.component
+	Optional GET parameters include: ?playerid=  e.g. entry_brackets?playerid=11
+	"""
+	queryset = Entry.objects.all()
+	serializer_class = serializers.EntryMyTeamsSerializer
+
+	def get_queryset(self):
+		"""
+		Optionally filter entries by playerid, tbracketid or teamid
+		"""
+		queryset = Entry.objects.all()
+		playerid = self.request.query_params.get('playerid', None)
+		if playerid is not None:
+			queryset = queryset.filter(player=playerid)
 		return queryset
 
 class GameViewSet(ModelViewSet):

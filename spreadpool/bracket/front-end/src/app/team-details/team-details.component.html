@@ -19,32 +19,36 @@
 				<td>{{ _regionList[0].name }}</td>
 				<td>{{ entry.orig_team_a }}</td>
 				<td>{{ entry.team_a || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_a_id" [region]="_regionList[0].id" 
-					[orig_team]="entry.orig_team_a_id"></app-team-nextup></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[0]-1">{{ entry.next_team_a }}</a></td>
+				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_a_id" [region]="_regionList[0].id" 
+					[orig_team]="entry.orig_team_a_id"></app-team-nextup></td> -->
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[1].name }}</td>
 				<td>{{ entry.orig_team_b }}</td>
 				<td>{{ entry.team_b || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_b_id" [region]="_regionList[1].id"
-					[orig_team]="entry.orig_team_b_id"></app-team-nextup></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[1]-1">{{ entry.next_team_b }}</a></td>
+				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_b_id" [region]="_regionList[1].id"
+					[orig_team]="entry.orig_team_b_id"></app-team-nextup></td> -->
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[2].name }}</td>
 				<td>{{ entry.orig_team_c }}</td>
 				<td>{{ entry.team_c || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_c_id" [region]="_regionList[2].id"
-					[orig_team]="entry.orig_team_c_id"></app-team-nextup></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[2]-1">{{ entry.next_team_c }}</a></td>
+				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_c_id" [region]="_regionList[2].id"
+					[orig_team]="entry.orig_team_c_id"></app-team-nextup></td> -->
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[3].name }}</td>
 				<td>{{ entry.orig_team_d }}</td>
 				<td>{{ entry.team_d || '**OUT**'}}</td>
-				<td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_d_id" [region]="_regionList[3].id"
-					[orig_team]="entry.orig_team_d_id"></app-team-nextup></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[3]-1">{{ entry.next_team_d }}</a></td>
+				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_d_id" [region]="_regionList[3].id"
+					[orig_team]="entry.orig_team_d_id"></app-team-nextup></td> -->
 			</tr>
 		</tbody>
 	</div>

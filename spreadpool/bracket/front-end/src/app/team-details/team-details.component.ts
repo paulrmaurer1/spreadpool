@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUserData, EntryData, GameData, RegionData } from '../shared/interfaces';
+import { IUserData, EntryData, GameData, RegionData, EntryMyTeamsData } from '../shared/interfaces';
 import { EntryService } from '../core/entry.service';
 import { GameService } from '../core/game.service';
 import { RegionService } from '../core/region.service';
@@ -13,7 +13,7 @@ import { RegionService } from '../core/region.service';
 export class TeamDetailsComponent implements OnInit {
 
 	_player: IUserData;
-	_entryList: EntryData[];
+	_entryList: EntryMyTeamsData[];
 	_regionList: RegionData[];
 	loading: boolean;
 
@@ -34,7 +34,11 @@ export class TeamDetailsComponent implements OnInit {
 	ngOnInit() {
 		this.loading=true;
 		//retrieve entries for user
-		this._entryService.getEntryDetailsListByPlayer(this._player.id).subscribe(data => {
+		
+		// this._entryService.getEntryDetailsListByPlayer(this._player.id).subscribe(data => {
+		// 	this._entryList = data;
+
+		this._entryService.getEntryDetailsListMyTeamsByPlayer(this._player.id).subscribe(data => {
 			this._entryList = data;
 
 			// Retrieve list of regions to display in tabs

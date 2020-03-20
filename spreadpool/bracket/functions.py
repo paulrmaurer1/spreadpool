@@ -9,42 +9,9 @@ import random
 #import django functions
 from django.db.models import Q
 
-def getLastTeam(tbracket_id, orig_teamid):
-	# determine the last team that a player who owned orig_teamid had within a particular bracket
-	# print (tbracket_id, orig_teamid)
-
-	#get first game that team played in
-	last_game = Game.objects.get((Q(team1_id=orig_teamid) | Q(team2_id=orig_teamid)) & Q(id__lte=32))
-	if last_game.team1.id == int(orig_teamid):
-		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team1_owner_id
-		last_team = last_game.team1_id
-	else:
-		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team2_owner_id
-		last_team = last_game.team2_id
-
-	#run while loop to keep finding child games where owner_id is either team1 or team2 owner of related matchup
-	alive=True
-	while alive:
-		try:
-			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
-			if owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team1_owner_id:
-				last_team = next_game.team1_id
-				last_game = next_game
-			elif owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team2_owner_id:
-				last_team = next_game.team2_id
-				last_game = next_game
-			else:
-				alive = False
-		except Game.DoesNotExist:
-			alive = False
-
-	last_team_obj = Team.objects.get(id=last_team)
-
-	return last_team_obj.bracket_name
-
-
 def getLastGame(tbracket_id, orig_teamid):
 	# determine last game that an original team's owner played in a particular bracket
+	# *** Deprecated in favor of "getLastGame_Team" method ***
 
 	#get first game that team played in
 	last_game = Game.objects.get((Q(team1_id=orig_teamid) | Q(team2_id=orig_teamid)) & Q(id__lte=32))
@@ -67,6 +34,125 @@ def getLastGame(tbracket_id, orig_teamid):
 			alive = False
 
 	return last_game
+
+def getLastGame_Team(tbracket_id, orig_teamid):
+	# determine last game that an original team's owner played in a particular bracket
+	# not necessarily with that same orig_team
+
+	#get first game that team played in
+	last_team_id = int(orig_teamid)
+	last_game = Game.objects.get((Q(team1_id=last_team_id) | Q(team2_id=last_team_id)) & Q(id__lte=32))
+	
+	alive = True
+	while alive:
+		winning_owner = ''
+
+		if last_team_id == last_game.team1_id:
+			owner = 'owner1'
+		else:
+			owner = 'owner2'
+		
+		if (last_game.team1_score > 0 and last_game.team2_score > 0 and last_game.team1 and last_game.team2):
+		
+			if last_game.team1_score > last_game.team2_score:
+				winning_team_id = last_game.team1_id
+			else:
+				winning_team_id = last_game.team2_id
+
+			if last_game.spread > 0: 													# if Team 1 is favored
+				if (last_game.team1_score - (last_game.spread + 0.5)) > last_game.team2_score:	# and Team1 beats spread
+					winning_owner = 'owner1'
+				else:																# and Team1 doesn't beat spread
+					winning_owner = 'owner2'
+			
+			elif last_game.spread < 0: 													# if Team 2 is favored
+				if (last_game.team2_score - (-last_game.spread + 0.5)) > last_game.team1_score:# and Team2 beats spread
+					winning_owner = 'owner2'
+				else:																		# and Team2 doesn't beat spread
+					winning_owner = 'owner1'
+			elif last_game.spread == 0: 																		# if pick'em, i.e. spread = 0
+				if last_game.team1_score > last_game.team2_score: 							# and Team1 wins
+					winning_owner = 'owner1'
+				else:  																		# and Team2 wins
+					winning_owner = 'owner2'
+
+		if owner == winning_owner:
+			# if owner == winning_owner, repeat while loop with next game in bracket
+			last_team_id = winning_team_id
+			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
+			last_game = next_game
+		else:
+			alive = False
+
+	return last_game, last_team_id
+
+
+def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team_id):
+	# determine the Next Game status for a given Player's active team
+
+	# if owner's team is out
+	if (team_id is None):
+		# determine which team the user owns and select the other team as having lost
+		if (last_game.team1_id == last_team_id):
+			nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
+		if (last_game.team2_id == last_team_id):
+			nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
+		
+		# append proper Round within which last game was lost
+		if (last_game.t_round <= 4):
+			nextup_game += " in Round " + str(last_game.t_round)
+		
+		elif (last_game.t_round == 5):
+			nextup_game += " in the Semi-Finals"
+		
+		else:
+			nextup_game += " in the Championship"
+
+		# if last game played is in Final Four round, update _region_id for proper route navigation purposes
+		# region_id = last_game.region_id
+	
+	# if owner's team is still in it
+	else:
+		# append proper Round within which next game is being played
+		if (last_game.t_round <= 4):
+			nextup_game = "Round " + str(last_game.t_round)
+		
+		elif (last_game.t_round == 5):
+			nextup_game = "Semi-Final"
+		
+		else:
+			nextup_game = "Finals"
+
+		# determine proper spread based on whether Team1 or Team 2
+		if (last_game.team1_id == last_team_id and last_game.team2 is not None):
+			if (last_game.spread is not None):
+				if (last_game.spread > 0):
+					nextup_game += " Favored by " + str(last_game.spread) + " 1/2"
+				elif (last_game.spread < 0):
+					nextup_game += " Underdog by " + str(abs(last_game.spread)) + " 1/2"
+				elif (last_game.spread == 0):
+					nextup_game += " Pick'em"
+			nextup_game += " vs. " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ")";
+		# end if
+		
+		elif (last_game.team2_id == last_team_id and last_game.team1 is not None):
+			if (last_game.spread is not None):
+				if (last_game.spread < 0):
+					nextup_game += " Favored by " + str(abs(last_game.spread)) + " 1/2"
+				elif (last_game.spread > 0):
+					nextup_game += " Underdog by " + str(last_game.spread) + " 1/2"
+				elif (last_game.spread == 0):
+					nextup_game += " Pick'em"
+			nextup_game += " vs. " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ")";
+
+		# Otherwise if no opponent yet, show vs. TBD
+		else:
+			nextup_game += " vs. TBD"
+
+		#if last game played is in Final Four round, update _region_id for proper route navigation purposes
+		# region_id = last_matchup.region_id
+
+	return nextup_game
 
 
 def determineStatus(team_id, tbracket_id, player_id):

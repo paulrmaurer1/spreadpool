@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from django.db.models import Q
 
-from .models import Entry, Game, Matchup, Tbracket, Region
-from .functions import game_update, determineStatus, getLastTeam
+from .models import Entry, Game, Matchup, Tbracket, Region, Team
+from .functions import game_update, determineStatus, getLastGame_Team, getNextUpGameString
 
 User = get_user_model()
 
@@ -97,30 +97,75 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 		data = super().to_representation(obj)
 		if data['team_a'] is None:
 			data['team_a_status'] = '(OUT)'
-			data['team_a'] = getLastTeam(data['tbracket_id'], data['orig_team_a_id'])
+			last_team_a = getLastGame_Team(obj.tbracket_id, obj.orig_team_a_id)[1]
+			data['team_a'] = Team.objects.get(id=last_team_a).bracket_name
 		else:
 			data['team_a_status'] = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_b'] is None:
 			data['team_b_status'] = '(OUT)'
-			data['team_a'] = getLastTeam(data['tbracket_id'], data['orig_team_b_id'])
+			last_team_b = getLastGame_Team(obj.tbracket_id, obj.orig_team_b_id)[1]
+			data['team_b'] = Team.objects.get(id=last_team_b).bracket_name
 		else:
 			data['team_b_status'] = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_c'] is None:
 			data['team_c_status'] = '(OUT)'
-			data['team_c'] = getLastTeam(data['tbracket_id'], data['orig_team_c_id'])
+			last_team_c = getLastGame_Team(obj.tbracket_id, obj.orig_team_c_id)[1]
+			data['team_c'] = Team.objects.get(id=last_team_c).bracket_name
 		else:
 			data['team_c_status'] = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_d'] is None:
 			data['team_d_status'] = '(OUT)'
-			data['team_d'] = getLastTeam(data['tbracket_id'], data['orig_team_a_id'])
+			last_team_d = getLastGame_Team(obj.tbracket_id, obj.orig_team_d_id)[1]
+			data['team_d'] = Team.objects.get(id=last_team_d).bracket_name
 		else:
 			data['team_d_status'] = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
 		
 		return data
 	
+class EntryMyTeamsSerializer(serializers.ModelSerializer):
+	# Modify GET results to show '__str__' defined in Models
+	orig_team_a = serializers.StringRelatedField()
+	orig_team_b = serializers.StringRelatedField()
+	orig_team_c = serializers.StringRelatedField()
+	orig_team_d = serializers.StringRelatedField()
+	team_a = serializers.StringRelatedField()
+	team_b = serializers.StringRelatedField()
+	team_c = serializers.StringRelatedField()
+	team_d = serializers.StringRelatedField()
+	player = serializers.StringRelatedField()
+	tbracket = serializers.StringRelatedField()
+	
+	class Meta:
+		model = Entry
+		fields = (
+			'orig_team_a', 'orig_team_b', 'orig_team_c', 'orig_team_d', \
+			'team_a', 'team_b', 'team_c', 'team_d', \
+			'player', 'tbracket', 'tbracket_id'
+		 )
+
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
+		# Determine next game for each active entry team
+		last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_a_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
+
+		last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_b_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
+		
+		last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_c_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
+		
+		last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_d_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
+		
+		return data
 
 class GameSerializer(serializers.ModelSerializer):
 	"""
