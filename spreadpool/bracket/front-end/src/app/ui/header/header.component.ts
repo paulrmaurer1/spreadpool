@@ -40,23 +40,29 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() {
 		// See if the tourney is at the Final Four and show Final Four tab if true
-		this._region_id = 0
 		this._gameService.isFinalFour().subscribe(data => {
 			// console.log("The Final Four is happening now is: ", data['happening']);
 			if (data['happening']) {
 				this._region_id = 4;
 			}
-		})
-		// Attempted to use redux currentUser but doesn't render quick enough
-		// Instead use _userService to get logged in user id, then tbracketService to get player's bracket id
-		this._bracketToShow = null;
-		this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
-			if (data.length > 0) {
-				this._bracketToShow = data[0].id;
+			else {
+				this._region_id = 0
+			}
+			// Attempted to use redux currentUser but doesn't render quick enough
+			// Instead use _userService to get logged in user id, then tbracketService to get player's bracket id
+			this._tbracketService.getListWithPlayer(this._userService.id).subscribe(data => {
+				if (data.length > 0) {
+					this._bracketToShow = data[0].id;
+				}
+				else {
+					this._bracketToShow = null;
+				}
 				// console.log("The bracketToShow is ", this._bracketToShow)
 				this.tbracketList = data;
-			}
-		});
+			});
+		})
+		
+		
 	} //end ngOnInit()
 
   	// This function is used to keep Brackets nav bar option 'active' regardless of parameter

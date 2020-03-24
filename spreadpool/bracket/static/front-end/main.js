@@ -3553,7 +3553,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<div [class.loader] = \"loading\">\r\n<table class=\"table table-sm\" *ngIf=\"_regionList\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[0].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[1].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[2].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[3].name }}</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let entry of _standingsList; let i = index\" \r\n\t\t[class.bg-success]=\"entry.player_id == _userService.id\" \r\n\t\t[class.text-white]=\"entry.player_id == _userService.id\">\r\n\t\t\t<td >{{ entry.player }}</td>\r\n\t\t\t<td class=\"text-center\">{{ entry.team_count }}</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_a_status == '(OUT)'\">{{ entry.team_a }}</span>\r\n\t\t\t\t<small> {{ entry.team_a_status }}</small>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_b_status == '(OUT)'\">{{ entry.team_b }}</span>\r\n\t\t\t\t<small> {{ entry.team_b_status }}</small>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_c_status == '(OUT)'\">{{ entry.team_c }}</span>\r\n\t\t\t\t<small> {{ entry.team_c_status }}</small>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_d_status == '(OUT)'\">{{ entry.team_d }}</span>\r\n\t\t\t\t<small> {{ entry.team_d_status }}</small>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n</div>"
+module.exports = "<br>\r\n<div [class.loader] = \"loading\">\r\n<table class=\"table table-sm\" *ngIf=\"_regionList\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[0].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[1].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[2].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[3].name }}</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let entry of _standingsList; let i = index\" \r\n\t\t[class.bg-success]=\"entry.player_id == _userService.id\" \r\n\t\t[class.text-white]=\"entry.player_id == _userService.id\">\r\n\t\t\t<td >{{ entry.player }}</td>\r\n\t\t\t<td class=\"text-center\">{{ entry.team_count }}</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_a_status == '(OUT)'\">{{ entry.team_a }}\r\n\t\t\t\t<small> {{ entry.team_a_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_b_status == '(OUT)'\">{{ entry.team_b }}\r\n\t\t\t\t<small> {{ entry.team_b_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_c_status == '(OUT)'\">{{ entry.team_c }}\r\n\t\t\t\t<small> {{ entry.team_c_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_d_status == '(OUT)'\">{{ entry.team_d }}\r\n\t\t\t\t<small> {{ entry.team_d_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n</div>"
 
 /***/ }),
 
@@ -4046,22 +4046,26 @@ var HeaderComponent = /** @class */ (function () {
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         // See if the tourney is at the Final Four and show Final Four tab if true
-        this._region_id = 0;
         this._gameService.isFinalFour().subscribe(function (data) {
             // console.log("The Final Four is happening now is: ", data['happening']);
             if (data['happening']) {
                 _this._region_id = 4;
             }
-        });
-        // Attempted to use redux currentUser but doesn't render quick enough
-        // Instead use _userService to get logged in user id, then tbracketService to get player's bracket id
-        this._bracketToShow = null;
-        this._tbracketService.getListWithPlayer(this._userService.id).subscribe(function (data) {
-            if (data.length > 0) {
-                _this._bracketToShow = data[0].id;
+            else {
+                _this._region_id = 0;
+            }
+            // Attempted to use redux currentUser but doesn't render quick enough
+            // Instead use _userService to get logged in user id, then tbracketService to get player's bracket id
+            _this._tbracketService.getListWithPlayer(_this._userService.id).subscribe(function (data) {
+                if (data.length > 0) {
+                    _this._bracketToShow = data[0].id;
+                }
+                else {
+                    _this._bracketToShow = null;
+                }
                 // console.log("The bracketToShow is ", this._bracketToShow)
                 _this.tbracketList = data;
-            }
+            });
         });
     }; //end ngOnInit()
     // This function is used to keep Brackets nav bar option 'active' regardless of parameter

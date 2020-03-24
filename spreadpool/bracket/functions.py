@@ -77,7 +77,7 @@ def getLastGame_Team(tbracket_id, orig_teamid):
 					winning_owner = 'owner2'
 
 		if owner == winning_owner:
-			# if owner == winning_owner, repeat while loop with next game in bracket
+			# if owner == winning_owner, repeat while loop with next game in bracket (i.e. player advances)
 			last_team_id = winning_team_id
 			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
 			last_game = next_game
