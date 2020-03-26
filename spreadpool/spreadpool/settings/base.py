@@ -145,9 +145,9 @@ REST_FRAMEWORK = {
 # Specify to installed package, django-cors-headers, which origin hostnames 
 # are authorized to make cross-site HTTP requests, e.g. Angular server
 CORS_ORIGIN_WHITELIST = (
-    'localhost:4200',
-    '127.0.0.1:8000',
-    'spreadpool-fe.herokuapp.com',
+    'https://localhost:4200',
+    'https://127.0.0.1:8000',
+    'https://spreadpool-fe.herokuapp.com',
 )
 
 # Configuration settings for djangorestframework-jwt (JSON Web Token)
