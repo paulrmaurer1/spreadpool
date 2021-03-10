@@ -4,7 +4,7 @@
 <div [class.loader] = "loading">
 <div class="table-responsive" *ngIf="_entryList && _entryList.length">
 	<div class = "table table-borderless table-sm" *ngFor = "let entry of _entryList" id="my-teams">
-		<thead>
+		<!-- <thead>
 			<tr class="table-active">
 				<th scope="col">Bracket</th>
 				<th scope="col">Region</th>
@@ -20,8 +20,6 @@
 				<td>{{ entry.orig_team_a }}</td>
 				<td>{{ entry.team_a || '**OUT**'}}</td>
 				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[0]-1">{{ entry.next_team_a }}</a></td>
-				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_a_id" [region]="_regionList[0].id" 
-					[orig_team]="entry.orig_team_a_id"></app-team-nextup></td> -->
 			</tr>
 			<tr>
 				<td></td>
@@ -29,8 +27,6 @@
 				<td>{{ entry.orig_team_b }}</td>
 				<td>{{ entry.team_b || '**OUT**'}}</td>
 				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[1]-1">{{ entry.next_team_b }}</a></td>
-				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_b_id" [region]="_regionList[1].id"
-					[orig_team]="entry.orig_team_b_id"></app-team-nextup></td> -->
 			</tr>
 			<tr>
 				<td></td>
@@ -38,8 +34,6 @@
 				<td>{{ entry.orig_team_c }}</td>
 				<td>{{ entry.team_c || '**OUT**'}}</td>
 				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[2]-1">{{ entry.next_team_c }}</a></td>
-				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_c_id" [region]="_regionList[2].id"
-					[orig_team]="entry.orig_team_c_id"></app-team-nextup></td> -->
 			</tr>
 			<tr>
 				<td></td>
@@ -47,10 +41,8 @@
 				<td>{{ entry.orig_team_d }}</td>
 				<td>{{ entry.team_d || '**OUT**'}}</td>
 				<td><a [routerLink]="['/brackets', entry.tbracket_id]" [fragment]="_regionList[3]-1">{{ entry.next_team_d }}</a></td>
-				<!-- <td><app-team-nextup [bracket]="entry.tbracket_id" [team]="entry.team_d_id" [region]="_regionList[3].id"
-					[orig_team]="entry.orig_team_d_id"></app-team-nextup></td> -->
 			</tr>
-		</tbody>
+		</tbody> -->
 	</div>
 </div>
 </div> 
@@ -58,8 +50,8 @@
 <br>
 
 <!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->
-<!-- <div class="text-center">
+<div class="text-center">
 	<br>
-	<h5 class="font-italic text-muted">** Teams will be assigned by Thursday, March 19, 2020, at 10am CST **</h5>
+	<h5 class="font-italic text-muted">** Teams will be assigned by Thursday, March 18, 2021, at 10am CST **</h5>
 	<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>
-</div> -->
+</div>
