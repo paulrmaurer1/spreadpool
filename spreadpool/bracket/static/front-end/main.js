@@ -3926,7 +3926,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--src/app/ui/header/footer.component.html-->\r\n\r\n<nav class=\"navbar navbar-dark bg-primary fixed-bottom footer\">\r\n  <div class=\"navbar-expand m-auto navbar-text footer\">\r\n  \t<i class = \"fa fa-ban\"></i> Exit Zero Technologies 2018-2020\r\n  </div>\r\n</nav>"
+module.exports = "<!--src/app/ui/header/footer.component.html-->\r\n\r\n<nav class=\"navbar navbar-dark bg-primary fixed-bottom footer\">\r\n  <div class=\"navbar-expand m-auto navbar-text footer\">\r\n  \t<i class = \"fa fa-ban\"></i> Exit Zero Technologies 2018-2021\r\n  </div>\r\n</nav>"
 
 /***/ }),
 
