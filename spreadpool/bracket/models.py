@@ -37,7 +37,7 @@ class User(AbstractUser):
 		default = False
 		)
 	gm_updates = models.BooleanField(
-		default = False
+		default = True
 		)  #1 = receive an email when a game result is entered
 
 	# Used by views.ProfileEdit(UpdateView) to return to standard profile view
