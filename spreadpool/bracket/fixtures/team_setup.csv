@@ -1,65 +1,65 @@
 id,seed,region,short_name,long_name,school
-1,1,1,Duke,Duke Blue Devils,Duke University
-2,2,1,Mich St,Michigan State Spartans,Michigan State University
-3,3,1,LSU,LSU Tigers,Louisiana State University
-4,4,1,Va Tech,Virginia Tech Hokies,Virginia Polytechnic Institute and State University
-5,5,1,Miss St,Mississippi State Bulldogs,Mississippi State University
-6,6,1,Maryland,Maryland Terrapins,"University of Maryland, College Park"
-7,7,1,Louisville,Louisville Cardinals,University of Louisville
-8,8,1,VCU,VCU Rams,Virginia Commonwealth University
-9,9,1,UCF,UCF Knights,University of Central Florida
-10,10,1,Minnesota,Minnesota Golden Gophers,University of Minnesota
-11,11,1,TBD,,
-12,12,1,Liberty,Liberty Flames,Liberty University
-13,13,1,St Louis,Saint Louis Billikens,Saint Louis University
-14,14,1,Yale,Yale Bulldogs,Yale University
-15,15,1,Bradley,Bradley Braves,Bradley University
-16,16,1,TBD,,
-17,1,2,Gonzaga,Gonzaga Bulldogs,Gonzaga University
-18,2,2,Michigan,Michigan Wolverines,University of Michigan
-19,3,2,Texas Tech,Texas Tech Red Raiders,Texas Tech University
+1,1,1,Gonzaga,Gonzaga Bulldogs,Gonzaga University
+2,2,1,Iowa,Iowa Hawkeyes,University of Iowa
+3,3,1,Kansas,Kansas Jayhawks,University of Kansas
+4,4,1,Virginia,Virginia Cavaliers,University of Virginia
+5,5,1,Creighton,Creighton Bluejays,Creighton University
+6,6,1,USC,USC Trojans,University of Southern California
+7,7,1,Oregon,Oregon Ducks,University of Oregon
+8,8,1,Oklahoma,Oklahoma Sooners,University of Oklahoma
+9,9,1,Missouri,Missouri Tigers,University of Missouri
+10,10,1,VCU,VCU Rams,Virginia Commonwealth University
+11,11,1,WSU/Drake,,
+12,12,1,UCSB,UC Santa Barbara Gauchos,"University of California, Santa Barbara"
+13,13,1,Ohio,Ohio Bobcats,Ohio University
+14,14,1,Eastern Wa,Eastern Washington Eagles,Eastern Washington University
+15,15,1,Grand Cnyn,Grand Canyon Antelopes,Grand Canyon University
+16,16,1,Nor/App St,,
+17,1,2,Michigan,Michigan Wolverines,University of Michigan
+18,2,2,Alabama,Alabama Crimson Tide,University of Alabama
+19,3,2,Texas,Texas Longhorns,University of Texas at Austin
 20,4,2,Florida St,Florida State Seminoles,Florida State University
-21,5,2,Marquette,Marquette Golden Eagles,Marquette University
-22,6,2,Buffalo,Buffalo Bulls,"University at Buffalo, SUNY"
-23,7,2,Nevada,Nevada Wolf Pack,"University of Nevada, Reno"
-24,8,2,Syracuse,Syracuse Orange,Syracuse University
-25,9,2,Baylor,Baylor Bears,Baylor University
-26,10,2,Florida,Florida Gators,University of Florida
-27,11,2,TBD,,
-28,12,2,Murray St,Murray State Racers,Murray State University
-29,13,2,Vermont,Vermont Catamounts,University of Vermont
-30,14,2,N Kentucky,Northern Kentucky Norse,Northern Kentucky University
-31,15,2,Montana,Montana Grizzlies,University of Montana
-32,16,2,TBD,,
-33,1,3,Virginia,Virginia Cavaliers,University of Virginia
-34,2,3,Tennessee,Tennessee Volunteers,University of Tennessee
-35,3,3,Purdue,Purdue Boilermakers,Purdue University
-36,4,3,Kansas St,Kansas State Wildcats,Kansas State University
-37,5,3,Wisconsin,Wisconsin Badgers,University of Wisconsin
-38,6,3,Villanova,Villanova Wildcats,Villanova University
-39,7,3,Cincinnati,Cincinnati Bearcats,University of Cincinnati
-40,8,3,Ole Miss,Ole Miss Rebels,University of Mississippi
-41,9,3,Oklahoma,Oklahoma Sooners,University of Oklahoma
-42,10,3,Iowa,Iowa Hawkeyes,University of Iowa
-43,11,3,St Mary's,Saint Mary's Gaels,Saint Mary's College of California
-44,12,3,Oregon,Oregon Ducks,University of Oregon
-45,13,3,UC Irvine,UC Irvine Anteaters,"University of California, Irvine"
-46,14,3,O Dominion,Old Dominion Monarchs,Old Dominion University
-47,15,3,Colgate,Colgate Raiders,Colgate University
-48,16,3,Gard-Webb,Gardner-Webb Runnin Bulldogs,Gardner
-49,1,4,N Carolina,North Carolina Tar Heels,University of North Carolina at Chapel Hill
-50,2,4,Kentucky,Kentucky Wildcats,University of Kentucky
-51,3,4,Houston,Houston Cougars,University of Houston
-52,4,4,Kansas,Kansas Jayhawks,University of Kansas
-53,5,4,Auburn,Auburn Tigers,Auburn University
-54,6,4,Iowa St,Iowa State Cyclones,Iowa State University
-55,7,4,Wofford,Wofford Terriers,Wofford College
-56,8,4,Utah St,Utah State Aggies,Utah State University
-57,9,4,Washington,Washington Huskies,University of Washington
-58,10,4,Seton Hall,Seton Hall Pirates,Seton Hall University
-59,11,4,Ohio St,Ohio State Buckeyes,Ohio State University
-60,12,4,New Mex St,New Mexico State Aggies,New Mexico State University
-61,13,4,Northeastn,Northeastern Huskies,Northeastern University
-62,14,4,Georgia St,Georgia State Panthers,Georgia State University
-63,15,4,Abilene Ch,Abilene Christian Wildcats,Abilene Christian University
-64,16,4,Iona,Iona Gaels,Iona College
+21,5,2,Colorado,Colorado Buffaloes,University of Colorado at Boulder
+22,6,2,BYU,BYU Cougars,Brigham Young University
+23,7,2,UConn,Connecticut Huskies,University of Connecticut
+24,8,2,LSU,LSU Tigers,Louisiana State University
+25,9,2,St Bonaven,St. Bonaventure Bonnies,St. Bonaventure University
+26,10,2,Maryland,Maryland Terrapins,"University of Maryland, College Park"
+27,11,2,MSU/UCLA,,
+28,12,2,Georgetown,Georgetown Hoyas,Georgetown University
+29,13,2,UNC Greens,UNC Greensboro Spartans,University of North Carolina at Greensboro
+30,14,2,Abilene Ch,Abilene Christian Wildcats,Abilene Christian University
+31,15,2,Iona,Iona Gaels,Iona College
+32,16,2,MSM/Tx So,,
+33,1,3,Baylor,Baylor Bears,Baylor University
+34,2,3,Ohio St,Ohio State Buckeyes,Ohio State University
+35,3,3,Arkansas,Arkansas Razorbacks,University of Arkansas
+36,4,3,Purdue,Purdue Boilermakers,Purdue University
+37,5,3,Villanova,Villanova Wildcats,Villanova University
+38,6,3,Texas Tech,Texas Tech Red Raiders,Texas Tech University
+39,7,3,Florida,Florida Gators,University of Florida
+40,8,3,N Carolina,North Carolina Tar Heels,University of North Carolina at Chapel Hill
+41,9,3,Wisconsin,Wisconsin Badgers,University of Wisconsin
+42,10,3,Va Tech,Virginia Tech Hokies,Virginia Polytechnic Institute and State University
+43,11,3,Utah St,Utah State Aggies,Utah State University
+44,12,3,Winthrop,Winthrop Eagles,Winthrop University
+45,13,3,No Texas,North Texas Mean Green,University of North Texas
+46,14,3,Colgate,Colgate Raiders,Colgate University
+47,15,3,Oral Robts,Oral Roberts Golden Eagles,Oral Roberts University
+48,16,3,Hartford,Hartford Hawks,University of Hartford
+49,1,4,Illinois,Illinois Fighting Illini,University of Illinois at Urbana-Champaign
+50,2,4,Houston,Houston Cougars,University of Houston
+51,3,4,W Virginia,West Virginia Mountaineers,West Virginia University
+52,4,4,OK State,Oklahoma State Cowboys,Oklahoma State University-Stillwater
+53,5,4,Tennessee,Tennessee Volunteers,University of Tennessee
+54,6,4,San Dgo St,San Diego State Aztecs,San Diego State University
+55,7,4,Clemson,Clemson Tigers,Clemson University
+56,8,4,Loyola Chi,Loyola Ramblers,Loyola University Chicago
+57,9,4,Ga Tech,Georgia Tech Yellow Jackets,Georgia Institute of Technology
+58,10,4,Rutgers,Rutgers Scarlet Knights,Rutgers University
+59,11,4,Syracuse,Syracuse Orange,Syracuse University
+60,12,4,Oregon St,Oregon State Beavers,Oregon State University
+61,13,4,Liberty,Liberty Flames,Liberty University
+62,14,4,Morehead,Morehead State Eagles,Morehead State University
+63,15,4,Clevlnd St,Cleveland State Vikings,Cleveland State University
+64,16,4,Drexel,Drexel Dragons,Drexel University

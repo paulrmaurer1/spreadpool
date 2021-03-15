@@ -1,37 +1,37 @@
 [
     {
-        "fields": {
-            "name": "East"
-        },
         "pk": 1,
-        "model": "bracket.Region"
-    },
-    {
+        "model": "bracket.Region",
         "fields": {
             "name": "West"
-        },
-        "pk": 2,
-        "model": "bracket.Region"
+        }
     },
     {
+        "pk": 2,
+        "model": "bracket.Region",
+        "fields": {
+            "name": "East"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "bracket.Region",
         "fields": {
             "name": "South"
-        },
-        "pk": 3,
-        "model": "bracket.Region"
+        }
     },
     {
+        "pk": 4,
+        "model": "bracket.Region",
         "fields": {
             "name": "Midwest"
-        },
-        "pk": 4,
-        "model": "bracket.Region"
+        }
     },
     {
+        "pk": 5,
+        "model": "bracket.Region",
         "fields": {
             "name": "Final Four"
-        },
-        "pk": 5,
-        "model": "bracket.Region"
+        }
     }
 ]
