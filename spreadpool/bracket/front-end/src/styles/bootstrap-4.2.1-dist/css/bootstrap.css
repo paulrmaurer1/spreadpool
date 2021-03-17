@@ -4221,7 +4221,9 @@ input[type="button"].btn-block {
 }
 
 .navbar-text {
-  display: inline-block;
+  /*display: inline-block;*/
+  display: flex;
+  align-items: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
