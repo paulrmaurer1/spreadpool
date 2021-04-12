@@ -393,7 +393,7 @@ def email_team_owners(game, outcome):
 				'target_email':to_target1,
 			}
 			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Unbelievable. Your team, ' + str(game.team2) + ', won despite being an underdog!'
+			subject1 = 'Unbelievable. Your team, ' + str(game.team1) + ', won despite being an underdog!'
 			msg1_plain = render_to_string(email_dir + 'game_result_c.txt', c1)
 			msg1_html = render_to_string(email_dir + 'game_result_c.html', c1)
 			
@@ -402,7 +402,7 @@ def email_team_owners(game, outcome):
 				'target_email':to_target2,
 			}
 			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Your team, ' + str(game.team1) + ', lost and won\'t advance :('
+			subject2 = 'Your team, ' + str(game.team2) + ', lost and won\'t advance :('
 			msg2_plain = render_to_string(email_dir + 'game_result_g.txt', c2)
 			msg2_html = render_to_string(email_dir + 'game_result_g.html', c2)
 
