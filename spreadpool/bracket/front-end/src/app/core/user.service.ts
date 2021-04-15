@@ -34,6 +34,9 @@ export class UserService {
   // use to communicate to components whethe API calls are being made
   public loading: boolean;
 
+  // use to show the user certain components & features
+  public beforeTourney: boolean;
+
   constructor(private http: HttpClient) {
   	this.httpOptions = {
   		headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -67,7 +70,7 @@ export class UserService {
         this.errors = err['error'];
       }
     );
-    // console.log("refreshToken method called");
+    console.log("refreshToken method called");
   }
 
   public logout() {

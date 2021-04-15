@@ -12,6 +12,7 @@
 		</tr>
 	</thead>
 	<tbody>
+		
 		<tr *ngFor = "let entry of _standingsList; let i = index" 
 		[class.bg-success]="entry.player_id == _userService.id" 
 		[class.text-white]="entry.player_id == _userService.id">

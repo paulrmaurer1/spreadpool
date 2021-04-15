@@ -18,6 +18,4 @@ export class ProfileComponent implements OnInit {
 		this.user = this.route.snapshot.data.loggedInUser;
 	}
 
-	
-
 }

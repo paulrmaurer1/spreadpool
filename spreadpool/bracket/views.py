@@ -38,6 +38,8 @@ from rest_framework import status
 from rest_framework_jwt.settings import api_settings
 from rest_framework.decorators import action
 
+from django.conf import settings
+
 # Create your views here.
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -63,6 +65,8 @@ class IndexView(LoginRequiredMixin, ListView):
 		# Return token to view for localStorage.setItem within template for passing to Angular
 		context['token'] = token
 		context['id'] = self.request.user.id
+		context['before_tourney'] = settings.BEFORE_TOURNEY
+		print("IndexView context is", context)
 		return context
 
 '''

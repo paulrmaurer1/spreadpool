@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     private _userService: UserService,
     private _playerService: PlayerService,
     private route: ActivatedRoute,
+    
     // Using Redux store to capture logged in user details
     @Inject(AppStore) private store: Store<AppState>
     ) {
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
     this._userService.loggedInUser = this.loggedInUser;
     this.setCurrentUser(this.loggedInUser);
     // console.log("The current Redux user is", this.currentUser)
+    // console.log("The current _userService user is", this._userService)
 
     // Retrieve roster for passing to child roster.component
     this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(data => {

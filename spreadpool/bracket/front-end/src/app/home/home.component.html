@@ -1,9 +1,12 @@
 <!--home.component.html-->
 <br>
 
-<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->
-<!-- <app-roster *ngIf="roster" [loggedInUser] = "loggedInUser" [roster] = "roster"></app-roster> -->
+<!-- <div *ngIf="_beforeTourney"> -->
+<div *ngIf="_userService.beforeTourney">
+	<app-roster *ngIf="roster" [loggedInUser] = "loggedInUser" [roster] = "roster"></app-roster>
+</div>
 
-
-<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->
-<app-standings-nav></app-standings-nav>
+<!-- <div *ngIf="!_beforeTourney"> -->
+<div *ngIf="!_userService.beforeTourney">
+	<app-standings-nav></app-standings-nav>
+</div>

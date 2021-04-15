@@ -5,6 +5,7 @@ import { PlayerService } from '../core/player.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-modal.component';
+// import { PartialProfileFormModalComponent } from '../profile-form-modal/partial-profile-form-modal.component';
 
 @Component({
   selector: 'app-profile-details',
@@ -50,7 +51,12 @@ export class ProfileDetailsComponent implements OnInit {
 	      id: this._player.id,
 	      profile_user: this._player
 	    };
-	    this.bsModalRef = this.bsModalService.show(ProfileFormModalComponent, {initialState});
+	    if (this._userService.beforeTourney) {
+		    this.bsModalRef = this.bsModalService.show(ProfileFormModalComponent, {initialState});
+		  } else {
+		  	// this.bsModalRef = this.bsModalService.show(PartialProfileFormModalComponent, {initialState});
+		  	console.log ("show limited profile edit modal");
+		  };
 
 	    this.bsModalService.onHidden.subscribe((reason: string) => {
 	    	// Upon modal being closed run these actions

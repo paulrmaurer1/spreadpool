@@ -1317,7 +1317,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var AppComponent = /** @class */ (function () {
-    // isCollapsed = true;
     function AppComponent(router, _userService) {
         this.router = router;
         this._userService = _userService;
@@ -1331,20 +1330,29 @@ var AppComponent = /** @class */ (function () {
             // Get token passed from Django view to localStorage and pass to UserService
             // refresh UserService token for subsequent use, removeItem from localStorage
             this.token_id = JSON.parse(window.localStorage.getItem('tokenid'));
+            // console.log ("token is: ", this.token_id);
             this._userService.id = this.token_id['id'];
             this._userService.token = this.token_id['token'];
+            if (this.token_id['before_tourney'] == "True") {
+                this._userService.beforeTourney = true;
+            }
+            else {
+                this._userService.beforeTourney = false;
+            }
+            ;
             this._userService.refreshToken();
             window.localStorage.clear();
         }
         // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
-        // Login via _userService to establish token with preset values 
+        // Login via _userService to establish token with preset values ***
         else {
+            this._userService.id = 1;
+            this._userService.beforeTourney = false;
+            this._userService.login({ 'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!' });
             // this._userService.id = 2;
             // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
             // this._userService.id = 8;
             // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
-            this._userService.id = 1;
-            this._userService.login({ 'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!' });
             // this._userService.id = 29;
             // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
         }
@@ -2715,7 +2723,7 @@ var UserService = /** @class */ (function () {
         }, function (err) {
             _this.errors = err['error'];
         });
-        // console.log("refreshToken method called");
+        console.log("refreshToken method called");
     };
     UserService.prototype.logout = function () {
         this.token = null;
@@ -2769,7 +2777,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS TO SHOW ROSTER ON HOME PAGE -->\r\n<!-- <app-roster *ngIf=\"roster\" [loggedInUser] = \"loggedInUser\" [roster] = \"roster\"></app-roster> -->\r\n\r\n\r\n<!-- UNCOMMENT THIS TO SHOW STANDINGS ON HOME PAGE -->\r\n<app-standings-nav></app-standings-nav>\r\n"
+module.exports = "<!--home.component.html-->\r\n<br>\r\n\r\n<!-- <div *ngIf=\"_beforeTourney\"> -->\r\n<div *ngIf=\"_userService.beforeTourney\">\r\n\t<app-roster *ngIf=\"roster\" [loggedInUser] = \"loggedInUser\" [roster] = \"roster\"></app-roster>\r\n</div>\r\n\r\n<!-- <div *ngIf=\"!_beforeTourney\"> -->\r\n<div *ngIf=\"!_userService.beforeTourney\">\r\n\t<app-standings-nav></app-standings-nav>\r\n</div>"
 
 /***/ }),
 
@@ -2825,6 +2833,7 @@ var HomeComponent = /** @class */ (function () {
         this._userService.loggedInUser = this.loggedInUser;
         this.setCurrentUser(this.loggedInUser);
         // console.log("The current Redux user is", this.currentUser)
+        // console.log("The current _userService user is", this._userService)
         // Retrieve roster for passing to child roster.component
         this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(function (data) {
             _this.roster = data;
@@ -2937,7 +2946,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!--profile-details.component.html-->\r\n<div class=\"container-fluid\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col-xs col-md-3\">\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Receive Game Result email updates?&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.gm_updates ? 'Yes' : 'No' }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Paid up?:</strong></div>\r\n\t\t\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}</div>\r\n\t\t\t</div>\r\n\t\t\t<!-- UNCOMMENT BELOW DURING REGISTRATION SO USERS CAN DELETE/EDIT THEIR PROFILE INFO -->\r\n<!-- \t\t\t<div class = \"row top10\">\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div> -->\r\n\t\t\t\r\n\t\t</div>\r\n\t\t<div *ngIf = \"!player.paid\" \r\n\t\tclass = \"col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2\">\r\n\t\t\t\t<p class=\"mb-2\"><strong>Payment Options:</strong></p>\r\n\t\t\t\t<p class=\"mb-2\">1) <i class=\"fa fa-paypal\"></i> via PayPal : <a target=\"_blank\" rel=\"noopener noreferrer\"\r\n\t\t\t\t\thref=\"https://www.paypal.me/PaulMaurer1\">www.paypal.me/PaulMaurer1</a></p>\r\n\t\t\t\t<p class=\"mb-2\">2) <i class=\"fa fa-vimeo-square\"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>\r\n\t\t\t\t<p class=\"mb-2\">3) Send <i class=\"fa fa-usd\"></i> to:\r\n\t\t\t\tPaul Maurer, 3227 N. Seminary Avenue, Chicago, IL 60657</p>\r\n\t\t</div>\r\n\t\t<div class = \"col hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
+module.exports = "  <!--profile-details.component.html-->\r\n<div class=\"container-fluid\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col-xs col-md-3\">\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Receive Game Result email updates?&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.gm_updates ? 'Yes' : 'No' }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Paid up?:</strong></div>\r\n\t\t\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row top10\">\r\n\t\t\t\t<div *ngIf=\"_userService.beforeTourney\" class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\t\r\n\r\n\t\t<div *ngIf = \"!player.paid\" \r\n\t\tclass = \"col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2\">\r\n\t\t\t<p class=\"mb-2\"><strong>Payment Options:</strong></p>\r\n\t\t\t<p class=\"mb-2\">1) <i class=\"fa fa-paypal\"></i> via PayPal : <a target=\"_blank\" rel=\"noopener noreferrer\"\r\n\t\t\t\thref=\"https://www.paypal.me/PaulMaurer1\">www.paypal.me/PaulMaurer1</a></p>\r\n\t\t\t<p class=\"mb-2\">2) <i class=\"fa fa-vimeo-square\"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>\r\n\t\t\t<p class=\"mb-2\">3) Send <i class=\"fa fa-usd\"></i> to:\r\n\t\t\tPaul Maurer, 3227 N. Seminary Avenue, Chicago, IL 60657</p>\r\n\t\t</div>\r\n\t\t<div class = \"col hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -2972,6 +2981,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// import { PartialProfileFormModalComponent } from '../profile-form-modal/partial-profile-form-modal.component';
 var ProfileDetailsComponent = /** @class */ (function () {
     function ProfileDetailsComponent(_playerService, _userService, router, modalService, bsModalService) {
         this._playerService = _playerService;
@@ -3009,7 +3019,14 @@ var ProfileDetailsComponent = /** @class */ (function () {
             id: this._player.id,
             profile_user: this._player
         };
-        this.bsModalRef = this.bsModalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__["ProfileFormModalComponent"], { initialState: initialState });
+        if (this._userService.beforeTourney) {
+            this.bsModalRef = this.bsModalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__["ProfileFormModalComponent"], { initialState: initialState });
+        }
+        else {
+            // this.bsModalRef = this.bsModalService.show(PartialProfileFormModalComponent, {initialState});
+            console.log("show limited profile edit modal");
+        }
+        ;
         this.bsModalService.onHidden.subscribe(function (reason) {
             // Upon modal being closed run these actions
             // const _reason = reason ? `, dismissed by ${reason}` : '';
@@ -3553,7 +3570,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<div [class.loader] = \"loading\">\r\n<table class=\"table table-sm\" *ngIf=\"_regionList\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[0].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[1].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[2].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[3].name }}</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr *ngFor = \"let entry of _standingsList; let i = index\" \r\n\t\t[class.bg-success]=\"entry.player_id == _userService.id\" \r\n\t\t[class.text-white]=\"entry.player_id == _userService.id\">\r\n\t\t\t<td >{{ entry.player }}</td>\r\n\t\t\t<td class=\"text-center\">{{ entry.team_count }}</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_a_status == '(OUT)'\">{{ entry.team_a }}\r\n\t\t\t\t<small> {{ entry.team_a_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_b_status == '(OUT)'\">{{ entry.team_b }}\r\n\t\t\t\t<small> {{ entry.team_b_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_c_status == '(OUT)'\">{{ entry.team_c }}\r\n\t\t\t\t<small> {{ entry.team_c_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_d_status == '(OUT)'\">{{ entry.team_d }}\r\n\t\t\t\t<small> {{ entry.team_d_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n</div>"
+module.exports = "<br>\r\n<div [class.loader] = \"loading\">\r\n<table class=\"table table-sm\" *ngIf=\"_regionList\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\" class=\"text-center\" style=\"width: 15%\"># Active Teams</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[0].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[1].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[2].name }}</th>\r\n\t\t\t<th scope=\"col\">{{ _regionList[3].name }}</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t\r\n\t\t<tr *ngFor = \"let entry of _standingsList; let i = index\" \r\n\t\t[class.bg-success]=\"entry.player_id == _userService.id\" \r\n\t\t[class.text-white]=\"entry.player_id == _userService.id\">\r\n\t\t\t<td >{{ entry.player }}</td>\r\n\t\t\t<td class=\"text-center\">{{ entry.team_count }}</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_a_status == '(OUT)'\">{{ entry.team_a }}\r\n\t\t\t\t<small> {{ entry.team_a_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_b_status == '(OUT)'\">{{ entry.team_b }}\r\n\t\t\t\t<small> {{ entry.team_b_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_c_status == '(OUT)'\">{{ entry.team_c }}\r\n\t\t\t\t<small> {{ entry.team_c_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t\t<td><span [class.standings-out]=\"entry.team_d_status == '(OUT)'\">{{ entry.team_d }}\r\n\t\t\t\t<small> {{ entry.team_d_status }}</small></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n</div>"
 
 /***/ }),
 
@@ -3657,7 +3674,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- roster.component.html-->\r\n<h4>My Teams</h4>\r\n \r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[0]-1\">{{ entry.next_team_a }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[1]-1\">{{ entry.next_team_b }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[2]-1\">{{ entry.next_team_c }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[3]-1\">{{ entry.next_team_d }}</a></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div> \r\n\r\n<br>\r\n\r\n<!-- UNCOMMENT THIS PRE REGISTRATION PERIOD -->\r\n<!-- <div class=\"text-center\">\r\n\t<br>\r\n\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Friday, March 19, 2021, at 10am CST **</h5>\r\n\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n</div>  -->"
+module.exports = "<!-- roster.component.html-->\r\n<h4>My Teams</h4>\r\n\r\n<div *ngIf=\"!_userService.beforeTourney\">\r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[0]-1\">{{ entry.next_team_a }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[1]-1\">{{ entry.next_team_b }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[2]-1\">{{ entry.next_team_c }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" [fragment]=\"_regionList[3]-1\">{{ entry.next_team_d }}</a></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n\r\n<div *ngIf=\"_userService.beforeTourney\">\r\n\t<br>\r\n\t<div class=\"text-center\">\r\n\t\t<br>\r\n\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Friday, March 19, 2021, at 10am CST **</h5>\r\n\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t</div>\r\n</div>"
 
 /***/ }),
 
@@ -3676,6 +3693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
 /* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
 /* harmony import */ var _core_region_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/region.service */ "./src/app/core/region.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3690,12 +3708,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var TeamDetailsComponent = /** @class */ (function () {
-    function TeamDetailsComponent(_entryService, router, _gameService, _regionService) {
+    function TeamDetailsComponent(_entryService, router, _gameService, _regionService, _userService) {
         this._entryService = _entryService;
         this.router = router;
         this._gameService = _gameService;
         this._regionService = _regionService;
+        this._userService = _userService;
     }
     Object.defineProperty(TeamDetailsComponent.prototype, "player", {
         get: function () {
@@ -3742,7 +3762,8 @@ var TeamDetailsComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
-            _core_region_service__WEBPACK_IMPORTED_MODULE_4__["RegionService"]])
+            _core_region_service__WEBPACK_IMPORTED_MODULE_4__["RegionService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])
     ], TeamDetailsComponent);
     return TeamDetailsComponent;
 }());

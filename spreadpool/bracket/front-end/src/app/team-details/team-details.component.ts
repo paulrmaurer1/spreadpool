@@ -4,6 +4,7 @@ import { IUserData, EntryData, GameData, RegionData, EntryMyTeamsData } from '..
 import { EntryService } from '../core/entry.service';
 import { GameService } from '../core/game.service';
 import { RegionService } from '../core/region.service';
+import { UserService } from '../core/user.service';
 
 @Component({
   selector: 'app-team-details',
@@ -29,7 +30,8 @@ export class TeamDetailsComponent implements OnInit {
 	constructor(private _entryService: EntryService,
 		private router: Router,
 		private _gameService: GameService,
-		private _regionService: RegionService) { }
+		private _regionService: RegionService,
+		private _userService: UserService,) { }
 
 	ngOnInit() {
 		this.loading=true;

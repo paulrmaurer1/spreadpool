@@ -17,7 +17,6 @@ export class AppComponent {
   title = 'front-end';
   token_id : object;
   currentUser : IUserData;
-  // isCollapsed = true;
   
   constructor(
     private router: Router, 
@@ -30,21 +29,30 @@ export class AppComponent {
     if (window.localStorage.getItem('tokenid')) {
     	// Get token passed from Django view to localStorage and pass to UserService
       // refresh UserService token for subsequent use, removeItem from localStorage
+      
       this.token_id = JSON.parse(window.localStorage.getItem('tokenid'));
+      // console.log ("token is: ", this.token_id);
       this._userService.id = this.token_id['id'];
       this._userService.token = this.token_id['token'];
+      if (this.token_id['before_tourney'] == "True") {
+        this._userService.beforeTourney = true
+      } else {
+        this._userService.beforeTourney = false
+      };
       this._userService.refreshToken();
       window.localStorage.clear();
     }
       // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
-      // Login via _userService to establish token with preset values 
+      // Login via _userService to establish token with preset values ***
     else {
+      this._userService.id = 1;
+      this._userService.beforeTourney = false;
+      this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
+      
       // this._userService.id = 2;
       // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
       // this._userService.id = 8;
       // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
-      this._userService.id = 1;
-      this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
       // this._userService.id = 29;
       // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
     }
