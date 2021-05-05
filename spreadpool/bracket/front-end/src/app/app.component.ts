@@ -46,7 +46,7 @@ export class AppComponent {
       // Login via _userService to establish token with preset values ***
     else {
       this._userService.id = 1;
-      this._userService.beforeTourney = false;
+      this._userService.beforeTourney = true;
       this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
       
       // this._userService.id = 2;

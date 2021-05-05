@@ -176,3 +176,8 @@ body{
   color:lightgrey;
   text-decoration:line-through;
 }
+
+/*On Profile edit modal, this helps keep the checkbox label aligned vertically */
+.custom-control-label {
+  padding-top:3px;
+}

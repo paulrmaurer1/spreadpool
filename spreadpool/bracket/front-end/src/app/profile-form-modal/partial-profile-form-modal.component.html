@@ -1,0 +1,47 @@
+<!-- profile-form-modal.component.html -->
+
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{title}} {{profile_user.full_name}}</h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)">
+	<div class="modal-body">
+		<div class="container">
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Name:&nbsp;</strong></div>
+				<div class = "col" class="text-muted">{{ profile_user.full_name }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Email:&nbsp;</strong></div>
+				<div class = "col" class="text-muted">{{ profile_user.email }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>Number of Entries:&nbsp;</strong></div>
+				<div class = "col" class="text-muted">{{ profile_user.num_entries }}</div>
+			</div>
+			<div class = "row justify-content-start">
+				<div class = "col-xs-auto"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>
+				<div class = "col" class="text-muted" >{{ profile_user.num_entries == 1 ? '-' : profile_user.mult_entry_type }}</div>
+			</div>
+			<br>
+			<div class = "row justify-content-start">
+				<div class="form-group">
+					<div class = "custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input"
+					    id="gm_updates" [formControl] = "gm_updates">
+					    <label class="custom-control-label" for="gm_updates">
+						    Receive email for game updates?
+						</label>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end container-->
+		<div class="modal-footer">
+			<button type="submit" id="submit" class="btn btn-success" 
+			[disabled]="!profileForm.valid"
+			(click)="bsModalRef.hide()">{{closeBtnName}}</button>
+		</div>
+	</div>  <!-- end modal-body-->
+</form>

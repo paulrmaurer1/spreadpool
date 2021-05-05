@@ -1347,7 +1347,7 @@ var AppComponent = /** @class */ (function () {
         // Login via _userService to establish token with preset values ***
         else {
             this._userService.id = 1;
-            this._userService.beforeTourney = false;
+            this._userService.beforeTourney = true;
             this._userService.login({ 'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!' });
             // this._userService.id = 2;
             // this._userService.login({'email': 'vcaratini@cubs.com', 'password': 'Maddon55'});
@@ -1412,12 +1412,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
 /* harmony import */ var _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./admin/send-emails/send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
 /* harmony import */ var _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./admin/send-emails/send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
+/* harmony import */ var _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./profile-form-modal/partial-profile-form-modal.component */ "./src/app/profile-form-modal/partial-profile-form-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1472,6 +1474,7 @@ var AppModule = /** @class */ (function () {
                 _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_26__["RosterTextboxComponent"],
                 _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendOrigModalComponent"],
                 _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__["SendGamesModalComponent"],
+                _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__["PartialProfileFormModalComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1493,6 +1496,7 @@ var AppModule = /** @class */ (function () {
                 _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__["ResetModalComponent"],
                 _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendOrigModalComponent"],
                 _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__["SendGamesModalComponent"],
+                _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__["PartialProfileFormModalComponent"],
             ]
         })
     ], AppModule);
@@ -2946,7 +2950,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!--profile-details.component.html-->\r\n<div class=\"container-fluid\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col-xs col-md-3\">\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Receive Game Result email updates?&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.gm_updates ? 'Yes' : 'No' }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Paid up?:</strong></div>\r\n\t\t\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t\t\t{{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }}\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row top10\">\r\n\t\t\t\t<div *ngIf=\"_userService.beforeTourney\" class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\t\r\n\r\n\t\t<div *ngIf = \"!player.paid\" \r\n\t\tclass = \"col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2\">\r\n\t\t\t<p class=\"mb-2\"><strong>Payment Options:</strong></p>\r\n\t\t\t<p class=\"mb-2\">1) <i class=\"fa fa-paypal\"></i> via PayPal : <a target=\"_blank\" rel=\"noopener noreferrer\"\r\n\t\t\t\thref=\"https://www.paypal.me/PaulMaurer1\">www.paypal.me/PaulMaurer1</a></p>\r\n\t\t\t<p class=\"mb-2\">2) <i class=\"fa fa-vimeo-square\"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>\r\n\t\t\t<p class=\"mb-2\">3) Send <i class=\"fa fa-usd\"></i> to:\r\n\t\t\tPaul Maurer, 3227 N. Seminary Avenue, Chicago, IL 60657</p>\r\n\t\t</div>\r\n\t\t<div class = \"col hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
+module.exports = "  <!--profile-details.component.html-->\r\n<div class=\"container-fluid\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col-xs col-md-3\">\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.full_name }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.email }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ _player.num_entries }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Receive Game Result email updates?&nbsp;</strong></div>\r\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ player.gm_updates ? 'Yes' : 'No' }}</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row justify-content-start\">\r\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Paid up?:</strong></div>\r\n\t\t\t\t<div class = \"col\" [ngClass] = \"{'text-muted': player.paid, 'text-danger': !player.paid}\">\r\n\t\t\t\t\t<!-- {{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }} -->\r\n\t\t\t\t\t{{ player.paid ? \"YES - Thank you!\" : \"Due($\" + player.num_entries*20 + \".00)\"  }}\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"row top10\">\r\n\t\t\t\t<div *ngIf=\"_userService.beforeTourney\" class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-secondary custom m-2\" (click)=\"openModal(template)\">Delete</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class = \"col-xs-auto\">\r\n\t\t\t\t\t<button class=\"btn btn-primary custom m-2\" (click)=\"openProfileModal()\">Edit</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\t\r\n\r\n\t\t<div *ngIf = \"!player.paid\" \r\n\t\tclass = \"col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2\">\r\n\t\t\t<p class=\"mb-2\"><strong>Payment Options:</strong></p>\r\n\t\t\t<p class=\"mb-2\">1) <i class=\"fa fa-paypal\"></i> via PayPal : <a target=\"_blank\" rel=\"noopener noreferrer\"\r\n\t\t\t\thref=\"https://www.paypal.me/PaulMaurer1\">www.paypal.me/PaulMaurer1</a></p>\r\n\t\t\t<p class=\"mb-2\">2) <i class=\"fa fa-vimeo-square\"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>\r\n\t\t\t<p class=\"mb-2\">3) Send <i class=\"fa fa-usd\"></i> to:\r\n\t\t\tPaul Maurer, 3227 N. Seminary Avenue, Chicago, IL 60657</p>\r\n\t\t</div>\r\n\t\t<div class = \"col hidden-xs\"></div>\r\n\t</div>\r\n</div>\r\n\r\n<ng-template #template>\r\n\t<div class=\"modal-header\">\r\n\t\t<h4 class=\"modal-title pull-left\">Delete Profile</h4>\r\n\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t</button>\r\n\t</div>\r\n\t<div class=\"modal-body\">\r\n\t\tAre you sure you want to delete your Profile?\r\n\t</div>\r\n\t<div class=\"modal-footer\">\r\n\t\t\t<button class=\"btn btn-secondary custom\" \r\n\t\t\t(click)=\"modalRef.hide(); delete()\">Delete</button>\r\n\t</div>\r\n</ng-template>"
 
 /***/ }),
 
@@ -2966,6 +2970,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
 /* harmony import */ var _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile-form-modal/profile-form-modal.component */ "./src/app/profile-form-modal/profile-form-modal.component.ts");
+/* harmony import */ var _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile-form-modal/partial-profile-form-modal.component */ "./src/app/profile-form-modal/partial-profile-form-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2981,7 +2986,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-// import { PartialProfileFormModalComponent } from '../profile-form-modal/partial-profile-form-modal.component';
+
 var ProfileDetailsComponent = /** @class */ (function () {
     function ProfileDetailsComponent(_playerService, _userService, router, modalService, bsModalService) {
         this._playerService = _playerService;
@@ -3023,8 +3028,8 @@ var ProfileDetailsComponent = /** @class */ (function () {
             this.bsModalRef = this.bsModalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__["ProfileFormModalComponent"], { initialState: initialState });
         }
         else {
-            // this.bsModalRef = this.bsModalService.show(PartialProfileFormModalComponent, {initialState});
-            console.log("show limited profile edit modal");
+            this.bsModalRef = this.bsModalService.show(_profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_6__["PartialProfileFormModalComponent"], { initialState: initialState });
+            // console.log ("show limited profile edit modal");
         }
         ;
         this.bsModalService.onHidden.subscribe(function (reason) {
@@ -3061,6 +3066,94 @@ var ProfileDetailsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/profile-form-modal/partial-profile-form-modal.component.css":
+/*!*****************************************************************************!*\
+  !*** ./src/app/profile-form-modal/partial-profile-form-modal.component.css ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Byb2ZpbGUtZm9ybS1tb2RhbC9wYXJ0aWFsLXByb2ZpbGUtZm9ybS1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/profile-form-modal/partial-profile-form-modal.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/profile-form-modal/partial-profile-form-modal.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- profile-form-modal.component.html -->\n\n<div class=\"modal-header\">\n\t<h4 class=\"modal-title pull-left\">{{title}} {{profile_user.full_name}}</h4>\n\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\n\t\t<span aria-hidden=\"true\">&times;</span>\n\t</button>\n</div>\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"submitForm(profileForm.value)\">\n\t<div class=\"modal-body\">\n\t\t<div class=\"container\">\n\t\t\t<div class = \"row justify-content-start\">\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Name:&nbsp;</strong></div>\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ profile_user.full_name }}</div>\n\t\t\t</div>\n\t\t\t<div class = \"row justify-content-start\">\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Email:&nbsp;</strong></div>\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ profile_user.email }}</div>\n\t\t\t</div>\n\t\t\t<div class = \"row justify-content-start\">\n\t\t\t\t<div class = \"col-xs-auto\"><strong>Number of Entries:&nbsp;</strong></div>\n\t\t\t\t<div class = \"col\" class=\"text-muted\">{{ profile_user.num_entries }}</div>\n\t\t\t</div>\n\t\t\t<div class = \"row justify-content-start\">\n\t\t\t\t<div class = \"col-xs-auto\"><strong>(S)ame or (D)ifferent Brackets:&nbsp;</strong></div>\n\t\t\t\t<div class = \"col\" class=\"text-muted\" >{{ profile_user.num_entries == 1 ? '-' : profile_user.mult_entry_type }}</div>\n\t\t\t</div>\n\t\t\t<br>\n\t\t\t<div class = \"row justify-content-start\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class = \"custom-control custom-checkbox\">\n\t\t\t\t\t\t<input type=\"checkbox\" class=\"custom-control-input\"\n\t\t\t\t\t    id=\"gm_updates\" [formControl] = \"gm_updates\">\n\t\t\t\t\t    <label class=\"custom-control-label\" for=\"gm_updates\">\n\t\t\t\t\t\t    Receive email for game updates?\n\t\t\t\t\t\t</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div> <!-- end container-->\n\t\t<div class=\"modal-footer\">\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \n\t\t\t[disabled]=\"!profileForm.valid\"\n\t\t\t(click)=\"bsModalRef.hide()\">{{closeBtnName}}</button>\n\t\t</div>\n\t</div>  <!-- end modal-body-->\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/profile-form-modal/partial-profile-form-modal.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/profile-form-modal/partial-profile-form-modal.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: PartialProfileFormModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PartialProfileFormModalComponent", function() { return PartialProfileFormModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/player.service */ "./src/app/core/player.service.ts");
+// partial-profile-form-modal.component.ts
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PartialProfileFormModalComponent = /** @class */ (function () {
+    function PartialProfileFormModalComponent(bsModalRef, fb, _playerService) {
+        this.bsModalRef = bsModalRef;
+        this._playerService = _playerService;
+        this.title = "Update profile for ";
+        this.closeBtnName = "Update";
+        this.profileForm = fb.group({
+            'gm_updates': [],
+        });
+        this.gm_updates = this.profileForm.controls['gm_updates'];
+    }
+    PartialProfileFormModalComponent.prototype.ngOnInit = function () {
+        this.profileForm.patchValue(this.profile_user);
+    };
+    PartialProfileFormModalComponent.prototype.submitForm = function (value) {
+        this.profile_user.gm_updates = this.gm_updates.value;
+        // console.log("gm_updates = ", this.profile_user.gm_updates);
+        this._playerService.updatePlayer(this.profile_user).subscribe(function (data) {
+            // console.log("Player updated:", this.profile_user);
+        });
+    };
+    PartialProfileFormModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-partial-profile-form-modal',
+            template: __webpack_require__(/*! ./partial-profile-form-modal.component.html */ "./src/app/profile-form-modal/partial-profile-form-modal.component.html"),
+            styles: [__webpack_require__(/*! ./partial-profile-form-modal.component.css */ "./src/app/profile-form-modal/partial-profile-form-modal.component.css")]
+        }),
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__["BsModalRef"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _core_player_service__WEBPACK_IMPORTED_MODULE_3__["PlayerService"]])
+    ], PartialProfileFormModalComponent);
+    return PartialProfileFormModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/profile-form-modal/profile-form-modal.component.css":
 /*!*********************************************************************!*\
   !*** ./src/app/profile-form-modal/profile-form-modal.component.css ***!
@@ -3079,7 +3172,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- profile-form-modal.component.html -->\r\n\r\n<div class=\"modal-header\">\r\n\t<h4 class=\"modal-title pull-left\">{{title}} {{profile_user.full_name}}</h4>\r\n\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\r\n\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t</button>\r\n</div>\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"submitForm(profileForm.value)\">\r\n\t<div class=\"modal-body\">\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"first_name\">First Name</label>\r\n\t\t\t\t    <input type=\"text\" class=\"form-control\"\r\n\t\t\t\t    id=\"first_name\" [formControl] = \"first_name\"\r\n\t\t\t\t    [class.is-invalid] = \"first_name.invalid\">\r\n\t\t\t\t    <span *ngIf=\"first_name.invalid\" class=\"text-danger\">\r\n    \t\t\t\t\tFirst Name is required\r\n  \t\t\t\t\t</span>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"last_name\">Last Name</label>\r\n\t\t\t\t    <input type=\"text\" class=\"form-control\"\r\n\t\t\t\t    id=\"last_name\" [formControl] = \"last_name\"\r\n\t\t\t\t    [class.is-invalid] = \"last_name.invalid\">\r\n\t\t\t\t    <span *ngIf=\"last_name.invalid\" class=\"text-danger\">\r\n    \t\t\t\t\tLast Name is required\r\n  \t\t\t\t\t</span>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"form-group\">\r\n\t\t\t\t<label for=\"email\">Email</label>\r\n\t\t\t    <input type=\"email\" class=\"form-control\"\r\n\t\t\t    id=\"email\" [formControl] = \"email\"\r\n\t\t\t    [class.is-invalid] = \"email.invalid\">\r\n\t\t\t    <span *ngIf=\"email.invalid && email.errors.required\" class=\"text-danger\">\r\n    \t\t\t\t\tEmail is required\r\n  \t\t\t\t</span>\r\n  \t\t\t\t<span *ngIf=\"email.invalid && email.errors.email\" class=\"text-danger\">\r\n    \t\t\t\t\tEmail must be a valid address\r\n  \t\t\t\t</span>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"num_entries\">Number of Entries</label>\r\n\t\t\t\t    <input type=\"number\" min = \"1\" max = \"4\" class=\"form-control\" #entries\r\n\t\t\t\t    id=\"num_entries\" [formControl] = \"num_entries\"\r\n\t\t\t\t    [class.is-invalid] = \"num_entries.invalid\">\r\n\t\t\t\t    <span *ngIf=\"num_entries.invalid && num_entries.errors.required\" class=\"text-danger\">\r\n    \t\t\t\t\tNumber of Entries is required\r\n  \t\t\t\t\t</span>\r\n  \t\t\t\t\t<span *ngIf=\"num_entries.invalid && (num_entries.errors.minlength || num_entries.errors.maxlength)\" class=\"text-danger\">\r\n    \t\t\t\t\tMust submit a number between 1-4\r\n  \t\t\t\t\t</span>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\" *ngIf=\"entries.value>1\">\r\n\t\t\t\t\t<label for=\"mult_entry_type\">(S)ame or (D)ifferent</label>\r\n\t\t\t\t    <select class=\"form-control\"\r\n\t\t\t\t    id=\"mult_entry_type\" [formControl] = \"mult_entry_type\">\r\n\t\t\t\t    \t<option>S</option>\r\n\t\t\t\t    \t<option>D</option>\r\n\t\t\t\t    </select>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<div class = \"custom-control custom-checkbox\">\r\n\t\t\t\t\t<input type=\"checkbox\" class=\"custom-control-input\"\r\n\t\t\t\t    id=\"gm_updates\" [formControl] = \"gm_updates\">\r\n\t\t\t\t    <label class=\"custom-control-label\" for=\"gm_updates\">\r\n\t\t\t\t\t    Receive email for game updates?\r\n\t\t\t\t\t</label>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"modal-footer\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t[disabled]=\"!profileForm.valid\"\r\n\t\t\t(click)=\"bsModalRef.hide()\">{{closeBtnName}}</button>\r\n\t\t</div>\r\n\t</div>  <!-- end modal-body-->\r\n</form>"
+module.exports = "<!-- profile-form-modal.component.html -->\r\n\r\n<div class=\"modal-header\">\r\n\t<h4 class=\"modal-title pull-left\">{{title}} {{profile_user.full_name}}</h4>\r\n\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\r\n\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t</button>\r\n</div>\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"submitForm(profileForm.value)\">\r\n\t<div class=\"modal-body\">\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"first_name\">First Name</label>\r\n\t\t\t\t    <input type=\"text\" class=\"form-control\"\r\n\t\t\t\t    id=\"first_name\" [formControl] = \"first_name\"\r\n\t\t\t\t    [class.is-invalid] = \"first_name.invalid\">\r\n\t\t\t\t    <span *ngIf=\"first_name.invalid\" class=\"text-danger\">\r\n    \t\t\t\t\tFirst Name is required\r\n  \t\t\t\t\t</span>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"last_name\">Last Name</label>\r\n\t\t\t\t    <input type=\"text\" class=\"form-control\"\r\n\t\t\t\t    id=\"last_name\" [formControl] = \"last_name\"\r\n\t\t\t\t    [class.is-invalid] = \"last_name.invalid\">\r\n\t\t\t\t    <span *ngIf=\"last_name.invalid\" class=\"text-danger\">\r\n    \t\t\t\t\tLast Name is required\r\n  \t\t\t\t\t</span>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class = \"form-group\">\r\n\t\t\t\t<label for=\"email\">Email</label>\r\n\t\t\t    <input type=\"email\" class=\"form-control\"\r\n\t\t\t    id=\"email\" [formControl] = \"email\"\r\n\t\t\t    [class.is-invalid] = \"email.invalid\">\r\n\t\t\t    <span *ngIf=\"email.invalid && email.errors.required\" class=\"text-danger\">\r\n    \t\t\t\t\tEmail is required\r\n  \t\t\t\t</span>\r\n  \t\t\t\t<span *ngIf=\"email.invalid && email.errors.email\" class=\"text-danger\">\r\n    \t\t\t\t\tEmail must be a valid address\r\n  \t\t\t\t</span>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"num_entries\">Number of Entries</label>\r\n\t\t\t\t    <input type=\"number\" min = \"1\" max = \"4\" class=\"form-control\" #entries\r\n\t\t\t\t    id=\"num_entries\" [formControl] = \"num_entries\"\r\n\t\t\t\t    [class.is-invalid] = \"num_entries.invalid\">\r\n\t\t\t\t    <span *ngIf=\"num_entries.invalid && num_entries.errors.required\" class=\"text-danger\">\r\n    \t\t\t\t\tNumber of Entries is required\r\n  \t\t\t\t\t</span>\r\n  \t\t\t\t\t<span *ngIf=\"num_entries.invalid && (num_entries.errors.minlength || num_entries.errors.maxlength)\" class=\"text-danger\">\r\n    \t\t\t\t\tMust submit a number between 1-4\r\n  \t\t\t\t\t</span>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\" *ngIf=\"entries.value>1\">\r\n\t\t\t\t\t<label for=\"mult_entry_type\">(S)ame or (D)ifferent</label>\r\n\t\t\t\t    <select class=\"form-control\"\r\n\t\t\t\t    id=\"mult_entry_type\" [formControl] = \"mult_entry_type\">\r\n\t\t\t\t    \t<option>S</option>\r\n\t\t\t\t    \t<option>D</option>\r\n\t\t\t\t    </select>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<div class = \"custom-control custom-checkbox\">\r\n\t\t\t\t\t<input type=\"checkbox\" class=\"custom-control-input\"\r\n\t\t\t\t    id=\"gm_updates\" [formControl] = \"gm_updates\">\r\n\t\t\t\t    <label class=\"custom-control-label\" for=\"gm_updates\">\r\n\t\t\t\t\t    Receive email for game updates?\r\n\t\t\t\t\t</label>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>  <!-- end container -->\r\n\t\t<div class=\"modal-footer\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t[disabled]=\"!profileForm.valid\"\r\n\t\t\t(click)=\"bsModalRef.hide()\">{{closeBtnName}}</button>\r\n\t\t</div>\r\n\t</div>  <!-- end modal-body -->\r\n</form>"
 
 /***/ }),
 
