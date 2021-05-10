@@ -16,7 +16,10 @@
 		<tr *ngFor = "let entry of _standingsList; let i = index" 
 		[class.bg-success]="entry.player_id == _userService.id" 
 		[class.text-white]="entry.player_id == _userService.id">
-			<td >{{ entry.player }}</td>
+			<td *ngIf="entry.player_id == _userService.id">{{ entry.player }}</td>
+			<td *ngIf="entry.player_id != _userService.id">
+				<a [routerLink]="['/profile']" [queryParams]="{id: entry.player_id}">{{ entry.player }}</a>
+			</td>
 			<td class="text-center">{{ entry.team_count }}</td>
 			<td><span [class.standings-out]="entry.team_a_status == '(OUT)'">{{ entry.team_a }}
 				<small> {{ entry.team_a_status }}</small></span>

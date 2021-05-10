@@ -1,7 +1,10 @@
 <!--profile.component.html-->
-<br>
-<h4>My Info</h4>
-<app-profile-details [player] = "user"></app-profile-details>
-<br>
-<app-team-details [player] = "user"></app-team-details>
-<br>
+<div *ngIf="user">
+	<br>
+	<h4>{{ _pageTitle }} Info</h4>
+	<app-profile-details [player] = "user"></app-profile-details>
+	<br>
+	<h4>{{ _pageTitle }} Teams</h4>
+	<app-team-details [player] = "user"></app-team-details>
+	<br>
+</div>

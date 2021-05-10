@@ -13,6 +13,7 @@ import { PartialProfileFormModalComponent } from '../profile-form-modal/partial-
   styleUrls: ['./profile-details.component.css']
 })
 export class ProfileDetailsComponent implements OnInit {
+	_showEditButton: boolean;
 	_player: IUserData;
 	@Input() get player(): IUserData {
 		return this._player;
@@ -29,10 +30,15 @@ export class ProfileDetailsComponent implements OnInit {
 	constructor(private _playerService: PlayerService,
 	  private _userService: UserService, 
 	  private router: Router,
+	  private route: ActivatedRoute,
 	  private modalService: BsModalService,
 	  private bsModalService: BsModalService,) { }
 
 	ngOnInit() {
+		this.route.queryParams.subscribe(params => {
+			// if profile page is called for other player, don't show edit button
+			params.id === undefined ? this._showEditButton = true : this._showEditButton = false
+		});
 	}
 
 	openModal(template: TemplateRef<any>) {
@@ -55,17 +61,19 @@ export class ProfileDetailsComponent implements OnInit {
 		    this.bsModalRef = this.bsModalService.show(ProfileFormModalComponent, {initialState});
 		  } else {
 		  	this.bsModalRef = this.bsModalService.show(PartialProfileFormModalComponent, {initialState});
-		  	// console.log ("show limited profile edit modal");
 		  };
 
 	    this.bsModalService.onHidden.subscribe((reason: string) => {
 	    	// Upon modal being closed run these actions
-	        // const _reason = reason ? `, dismissed by ${reason}` : '';
-	        // console.log ("Profile modal was closed ", _reason);
-	        // Update logged in User against database after modal closes
-	        this._userService.getLoggedInUser().subscribe(data => {
-	        	this._player = data;
-	        })
+        
+        // *** This isn't working ***
+        // const _reason = reason ? `, dismissed by ${reason}` : '';
+        // console.log ("Profile modal was closed ", _reason);
+        
+        // Update logged in User against database after modal closes
+        this._userService.getLoggedInUser().subscribe(data => {
+        	this._player = data;
+        })
 	    })
 	
 	}

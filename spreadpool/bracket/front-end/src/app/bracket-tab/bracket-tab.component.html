@@ -18,8 +18,13 @@
 			<li class="game game-top"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team1_owner_id}">
 				{{ _bracketGames[g].team1}}
-				<ng-container *ngIf="_bracketOwners[g].team1_owner">
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id == _bracketOwners[g].team1_owner_id">
 					({{ _bracketOwners[g].team1_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id != _bracketOwners[g].team1_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team1_owner_id}">
+						({{ _bracketOwners[g].team1_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam1Result(_bracketGames[g]) }}</span>
 			</li>
@@ -27,8 +32,13 @@
 			<li class="game game-bottom"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team2_owner_id}">
 				{{ _bracketGames[g].team2}}
-				<ng-container *ngIf="_bracketOwners[g].team2_owner">
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id == _bracketOwners[g].team2_owner_id">
 					({{ _bracketOwners[g].team2_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id != _bracketOwners[g].team2_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team2_owner_id}">
+						({{ _bracketOwners[g].team2_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam2Result(_bracketGames[g]) }}</span>
 			</li>
@@ -42,8 +52,13 @@
 			<li class="game game-top"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team1_owner_id}">
 				{{ _bracketGames[g].team1}}
-				<ng-container *ngIf="_bracketOwners[g].team1_owner">
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id == _bracketOwners[g].team1_owner_id">
 					({{ _bracketOwners[g].team1_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id != _bracketOwners[g].team1_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team1_owner_id}">
+						({{ _bracketOwners[g].team1_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam1Result(_bracketGames[g]) }}</span>
 			</li>
@@ -51,8 +66,13 @@
 			<li class="game game-bottom"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team2_owner_id}">
 				{{ _bracketGames[g].team2}}
-				<ng-container *ngIf="_bracketOwners[g].team2_owner">
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id == _bracketOwners[g].team2_owner_id">
 					({{ _bracketOwners[g].team2_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id != _bracketOwners[g].team2_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team2_owner_id}">
+						({{ _bracketOwners[g].team2_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam2Result(_bracketGames[g]) }}</span>
 			</li>
@@ -66,8 +86,13 @@
 			<li class="game game-top"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team1_owner_id}">
 				{{ _bracketGames[g].team1}}
-				<ng-container *ngIf="_bracketOwners[g].team1_owner">
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id == _bracketOwners[g].team1_owner_id">
 					({{ _bracketOwners[g].team1_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id != _bracketOwners[g].team1_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team1_owner_id}">
+						({{ _bracketOwners[g].team1_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam1Result(_bracketGames[g]) }}</span>
 			</li>
@@ -75,8 +100,13 @@
 			<li class="game game-bottom"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team2_owner_id}">
 				{{ _bracketGames[g].team2}}
-				<ng-container *ngIf="_bracketOwners[g].team2_owner">
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id == _bracketOwners[g].team2_owner_id">
 					({{ _bracketOwners[g].team2_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id != _bracketOwners[g].team2_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team2_owner_id}">
+						({{ _bracketOwners[g].team2_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam2Result(_bracketGames[g]) }}</span>
 			</li>
@@ -90,8 +120,13 @@
 			<li class="game game-top"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team1_owner_id}">
 				{{ _bracketGames[g].team1}}
-				<ng-container *ngIf="_bracketOwners[g].team1_owner">
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id == _bracketOwners[g].team1_owner_id">
 					({{ _bracketOwners[g].team1_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id != _bracketOwners[g].team1_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team1_owner_id}">
+						({{ _bracketOwners[g].team1_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam1Result(_bracketGames[g]) }}</span>
 			</li>
@@ -99,8 +134,13 @@
 			<li class="game game-bottom"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team2_owner_id}">
 				{{ _bracketGames[g].team2}}
-				<ng-container *ngIf="_bracketOwners[g].team2_owner">
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id == _bracketOwners[g].team2_owner_id">
 					({{ _bracketOwners[g].team2_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id != _bracketOwners[g].team2_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team2_owner_id}">
+						({{ _bracketOwners[g].team2_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam2Result(_bracketGames[g]) }}</span>
 			</li>
@@ -117,8 +157,13 @@
 			<li class="game game-top"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team1_owner_id}">
 				{{ _bracketGames[g].team1}}
-				<ng-container *ngIf="_bracketOwners[g].team1_owner">
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id == _bracketOwners[g].team1_owner_id">
 					({{ _bracketOwners[g].team1_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id != _bracketOwners[g].team1_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team1_owner_id}">
+						({{ _bracketOwners[g].team1_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam1Result(_bracketGames[g]) }}</span>
 			</li>
@@ -129,8 +174,13 @@
 			<li class="game game-bottom"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team2_owner_id}">
 				{{ _bracketGames[g].team2}}
-				<ng-container *ngIf="_bracketOwners[g].team2_owner">
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id == _bracketOwners[g].team2_owner_id">
 					({{ _bracketOwners[g].team2_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id != _bracketOwners[g].team2_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team2_owner_id}">
+						({{ _bracketOwners[g].team2_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam2Result(_bracketGames[g]) }}</span>
 			</li>
@@ -145,8 +195,13 @@
 			<li class="game game-top"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team1_owner_id}">
 				{{ _bracketGames[g].team1}}
-				<ng-container *ngIf="_bracketOwners[g].team1_owner">
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id == _bracketOwners[g].team1_owner_id">
 					({{ _bracketOwners[g].team1_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team1_owner && _userService.id != _bracketOwners[g].team1_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team1_owner_id}">
+						({{ _bracketOwners[g].team1_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam1Result(_bracketGames[g]) }}</span>
 			</li>
@@ -154,8 +209,13 @@
 			<li class="game game-bottom"
 				[ngClass]="{'text-light bg-success':_userService.id == _bracketOwners[g].team2_owner_id}">
 				{{ _bracketGames[g].team2}}
-				<ng-container *ngIf="_bracketOwners[g].team2_owner">
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id == _bracketOwners[g].team2_owner_id">
 					({{ _bracketOwners[g].team2_owner }})
+				</ng-container>
+				<ng-container *ngIf="_bracketOwners[g].team2_owner && _userService.id != _bracketOwners[g].team2_owner_id">
+					<a [routerLink]="['/profile']" [queryParams]="{id: _bracketOwners[g].team2_owner_id}">
+						({{ _bracketOwners[g].team2_owner }})
+					</a>
 				</ng-container>
 				<span>{{ getTeam2Result(_bracketGames[g]) }}</span>
 			</li>

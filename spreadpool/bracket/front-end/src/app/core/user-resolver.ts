@@ -13,7 +13,6 @@ import { IUserData } from '../shared/interfaces';
 @Injectable()
 
 export class UserResolver implements Resolve<Observable<any>> {
-	private loggedInUser: IUserData;
 
 	constructor (private _userService: UserService) { }
 
