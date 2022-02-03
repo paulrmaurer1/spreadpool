@@ -135,6 +135,7 @@ REST_FRAMEWORK = {
     #   'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)
     #
     # These settings are needed for the djangorestframework-jwt (JSON Web Token)
+    # See https://jpadilla.github.io/django-rest-framework-jwt/ for more info
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
