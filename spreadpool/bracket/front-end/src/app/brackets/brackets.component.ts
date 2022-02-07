@@ -83,7 +83,7 @@ export class BracketsComponent implements OnInit {
 				this.route.fragment.subscribe(fragment => { 
 					if (fragment) {
 						var id = parseInt(fragment);
-						// console.log("Tab Id to navigate to is: ", this.tabId);
+						// console.log("Tab Id to navigate to is: ", id);
 						this.staticTabs.tabs[id].active = true;
 					}
 				});
