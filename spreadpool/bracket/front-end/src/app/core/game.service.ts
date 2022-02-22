@@ -36,15 +36,17 @@ export class GameService {
 		return this.http.get<GameData[]>(gameUrl + '?regionid=' + region_id)
 	}
 
+	//(deprecated) endpoint in favor of improved 'getNewGameWithMatchupDataList'
 	getGameWithOwnerList(tbracket_id) {
 		return this.http.get<GameWithOwnerData[]>(game_ownerURL + '?tbracketid=' + tbracket_id)
 	}
 
+  //(deprecated) endpoint in favor of improved 'getNewGameWithMatchupDataList'
 	getGameWithMatchupDataList(tbracket_id) {
 		return this.http.get<GameWithOwnerData[]>(game_matchupURL + '?tbracketid=' + tbracket_id)
 	}
 
-	//method to return all games with owner info for a particular bracket
+	//endpoint to return all games with owner info for a particular bracket
 	getNewGameWithMatchupDataList(tbracket_id) {
 		return this.http.get<NewGameWithOwnerData[]>(new_game_matchupURL + '?tbracketid=' + tbracket_id)
 	}

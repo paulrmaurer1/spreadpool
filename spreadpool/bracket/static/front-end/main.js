@@ -41,11 +41,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_font_awesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angular-font-awesome */ "./node_modules/angular-font-awesome/dist/angular-font-awesome.es5.js");
 /* harmony import */ var primeng_picklist__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primeng/picklist */ "./node_modules/primeng/picklist.js");
 /* harmony import */ var primeng_picklist__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(primeng_picklist__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assign-brackets/assign-brackets.component */ "./src/app/admin/assign-brackets/assign-brackets.component.ts");
-/* harmony import */ var _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
-/* harmony import */ var _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./update-games/update-games.component */ "./src/app/admin/update-games/update-games.component.ts");
-/* harmony import */ var _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./game-detail/game-detail.component */ "./src/app/admin/game-detail/game-detail.component.ts");
-/* harmony import */ var _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
+/* harmony import */ var primeng_calendar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/calendar */ "./node_modules/primeng/calendar.js");
+/* harmony import */ var primeng_calendar__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(primeng_calendar__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./assign-brackets/assign-brackets.component */ "./src/app/admin/assign-brackets/assign-brackets.component.ts");
+/* harmony import */ var _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./create-brackets/create-brackets.component */ "./src/app/admin/create-brackets/create-brackets.component.ts");
+/* harmony import */ var _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./update-games/update-games.component */ "./src/app/admin/update-games/update-games.component.ts");
+/* harmony import */ var _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./game-detail/game-detail.component */ "./src/app/admin/game-detail/game-detail.component.ts");
+/* harmony import */ var _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,7 +60,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
- //Needed for Assign Entries page, assign-brackets.component
+ //Used on Assign Entries page, assign-brackets.component
+ //Used on Update Game page, game-detail.component
+ //Needed by CalendarModule
 
 
 
@@ -65,10 +70,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var routes = [
     { path: '', redirectTo: 'c-brackets', pathMatch: 'full' },
-    { path: 'c-brackets', component: _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__["CreateBracketsComponent"] },
-    { path: 'a-brackets/:id', component: _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__["AssignBracketsComponent"] },
-    { path: 'u-games', component: _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__["UpdateGamesComponent"] },
-    { path: 's-emails', component: _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__["SendEmailsComponent"] },
+    { path: 'c-brackets', component: _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_9__["CreateBracketsComponent"] },
+    { path: 'a-brackets/:id', component: _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_8__["AssignBracketsComponent"] },
+    { path: 'u-games', component: _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__["UpdateGamesComponent"] },
+    { path: 's-emails', component: _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__["SendEmailsComponent"] },
 ];
 var AdminModule = /** @class */ (function () {
     function AdminModule() {
@@ -76,18 +81,18 @@ var AdminModule = /** @class */ (function () {
     AdminModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
-                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__["AssignBracketsComponent"],
-                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__["CreateBracketsComponent"],
-                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__["UpdateGamesComponent"],
-                _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_9__["GameDetailComponent"],
-                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__["SendEmailsComponent"]
+                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_8__["AssignBracketsComponent"],
+                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_9__["CreateBracketsComponent"],
+                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__["UpdateGamesComponent"],
+                _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_11__["GameDetailComponent"],
+                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__["SendEmailsComponent"],
             ],
             exports: [
-                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_6__["AssignBracketsComponent"],
-                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_7__["CreateBracketsComponent"],
-                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_8__["UpdateGamesComponent"],
-                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_10__["SendEmailsComponent"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]
+                _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_8__["AssignBracketsComponent"],
+                _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_9__["CreateBracketsComponent"],
+                _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__["UpdateGamesComponent"],
+                _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__["SendEmailsComponent"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"],
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -95,7 +100,9 @@ var AdminModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
                 primeng_picklist__WEBPACK_IMPORTED_MODULE_5__["PickListModule"],
                 angular_font_awesome__WEBPACK_IMPORTED_MODULE_4__["AngularFontAwesomeModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"],
+                primeng_calendar__WEBPACK_IMPORTED_MODULE_6__["CalendarModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"],
             ]
         })
     ], AdminModule);
@@ -644,7 +651,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
+module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Game Date/Time: </strong></div>\r\n      <div class=\"form-group col\">\r\n        <p-calendar \r\n          [formControl]=\"game_date\" \r\n          dateFormat=\"yy-mm-dd\" \r\n          dataType=\"string\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <p-calendar \r\n          [formControl]=\"game_time\" \r\n          [timeOnly]=\"true\" \r\n          [hourFormat]=\"12\" \r\n          dataType=\"string\" \r\n          >\r\n        </p-calendar>\r\n      </div>\r\n    </div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n        [disabled]=\"!gameUpdateForm.valid\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -662,6 +669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/game.service */ "./src/app/core/game.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shared_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/functions */ "./src/app/shared/functions.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -675,21 +683,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var GameDetailComponent = /** @class */ (function () {
     function GameDetailComponent(_gameService, fb, router) {
         this._gameService = _gameService;
         this.fb = fb;
         this.router = router;
         this.msg = '';
+        this._todayDate = new Date();
         // Update Game form setup
         this.gameUpdateForm = fb.group({
             'spread': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             'team1_score': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             'team2_score': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            'game_date': [this._todayDate.toISOString().substring(0, 10)],
+            'game_time': ['12:00 PM'],
         });
         this.spread = this.gameUpdateForm.controls['spread'];
         this.team1_score = this.gameUpdateForm.controls['team1_score'];
         this.team2_score = this.gameUpdateForm.controls['team2_score'];
+        this.game_date = this.gameUpdateForm.controls['game_date'];
+        this.game_time = this.gameUpdateForm.controls['game_time'];
     }
     Object.defineProperty(GameDetailComponent.prototype, "game", {
         get: function () {
@@ -706,8 +720,17 @@ var GameDetailComponent = /** @class */ (function () {
     GameDetailComponent.prototype.ngOnInit = function () {
     };
     GameDetailComponent.prototype.ngOnChanges = function () {
-        // console.log("game-detail component received _game update..", this._game);
+        console.log("game-detail component received _game update..", this._game);
         this.gameUpdateForm.patchValue(this._game);
+        if (this._game.tipoff_date_time !== null) {
+            // set form values from back-end tipoff_date_time if not null
+            this.gameUpdateForm.controls['game_date'].patchValue(this._game.tipoff_date_time.substring(0, 10));
+            this.gameUpdateForm.controls['game_time'].patchValue(Object(_shared_functions__WEBPACK_IMPORTED_MODULE_4__["convertTime24to12"])(this._game.tipoff_date_time.substring(11, 16)));
+        }
+        else { //otherwise set to today's date and 12:00PM
+            this.gameUpdateForm.controls['game_date'].patchValue(this._todayDate.toISOString().substring(0, 10));
+            this.gameUpdateForm.controls['game_time'].patchValue('12:00 PM');
+        }
         this.showMsg = false;
     };
     GameDetailComponent.prototype.updateGame = function () {
@@ -715,8 +738,9 @@ var GameDetailComponent = /** @class */ (function () {
         this._game.team1_score = this.team1_score.value;
         this._game.spread = this.spread.value;
         this._game.team2_score = this.team2_score.value;
+        this._game.tipoff_date_time = this.game_date.value + " " + Object(_shared_functions__WEBPACK_IMPORTED_MODULE_4__["convertTime12to24"])(this.game_time.value);
         this._gameService.updateGame(this._game).subscribe(function (data) {
-            // console.log("Game updated with:", this._game);
+            console.log("Game updated with:", _this._game);
             _this.msg = "Game #: " + _this._game.id + " has been updated!";
             _this.showMsg = true;
         });
@@ -1104,7 +1128,7 @@ var UpdateGamesComponent = /** @class */ (function () {
     UpdateGamesComponent.prototype.retrieveGame = function () {
         var _this = this;
         this._gameService.getGameDetails(this.game_id.value).subscribe(function (data) {
-            // console.log("Game retrieved is:", data);
+            console.log("Game retrieved is:", data);
             _this._currentGame = data;
             _this.gameRetrieveForm.reset(); // clear out fields after form submit
         });
@@ -2004,7 +2028,7 @@ var entryUrl = '/api/entries/';
 var entry_bracketsUrl = '/api/entry_brackets/';
 var entry_namesUrl = '/api/entry_names/';
 var entry_standingsURL = '/api/entry_standings/';
-var entry_myteams = 'api/entry_myteams/';
+var entry_myteamsURL = 'api/entry_myteams/';
 var EntryService = /** @class */ (function () {
     function EntryService(http, _userService) {
         this.http = http;
@@ -2048,7 +2072,7 @@ var EntryService = /** @class */ (function () {
     };
     //method to retrieve entry details list for a player
     EntryService.prototype.getEntryDetailsListMyTeamsByPlayer = function (id) {
-        return this.http.get(entry_myteams + '?playerid=' + id);
+        return this.http.get(entry_myteamsURL + '?playerid=' + id);
     };
     // helper function to build the HTTP headers
     EntryService.prototype.getHttpOptions = function () {
@@ -2123,13 +2147,15 @@ var GameService = /** @class */ (function () {
     GameService.prototype.getGameListByRegion = function (region_id) {
         return this.http.get(gameUrl + '?regionid=' + region_id);
     };
+    //(deprecated) endpoint in favor of improved 'getNewGameWithMatchupDataList'
     GameService.prototype.getGameWithOwnerList = function (tbracket_id) {
         return this.http.get(game_ownerURL + '?tbracketid=' + tbracket_id);
     };
+    //(deprecated) endpoint in favor of improved 'getNewGameWithMatchupDataList'
     GameService.prototype.getGameWithMatchupDataList = function (tbracket_id) {
         return this.http.get(game_matchupURL + '?tbracketid=' + tbracket_id);
     };
-    //method to return all games with owner info for a particular bracket
+    //endpoint to return all games with owner info for a particular bracket
     GameService.prototype.getNewGameWithMatchupDataList = function (tbracket_id) {
         return this.http.get(new_game_matchupURL + '?tbracketid=' + tbracket_id);
     };
@@ -3595,6 +3621,49 @@ var RosterComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/functions.ts":
+/*!*************************************!*\
+  !*** ./src/app/shared/functions.ts ***!
+  \*************************************/
+/*! exports provided: convertTime12to24, convertTime24to12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertTime12to24", function() { return convertTime12to24; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertTime24to12", function() { return convertTime24to12; });
+// Functions used by the app
+var convertTime12to24 = function (time12h) {
+    // This function converts a 12 hour time returned by the Calendar widget (hh:mm PM) to
+    // a 24 hour time (hh:mm) that can be sent to, stored by the back-end
+    var _a = time12h.split(" "), time = _a[0], modifier = _a[1];
+    var _b = time.split(":"), hours = _b[0], minutes = _b[1];
+    if (hours === "12") {
+        hours = "00";
+    }
+    if (modifier === "PM") {
+        hours = parseInt(hours, 10) + 12;
+    }
+    return hours + ":" + minutes;
+};
+var convertTime24to12 = function (time24h) {
+    // This function converts a 24 hr time from the back-end (hh:mm) into a 
+    // 12 hour time string (hh:mm PM) that can populate the calendar widget with the currently
+    // set value
+    // Check correct time format and split into components
+    var time = time24h.match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time24h];
+    if (time.length > 1) { // If time format correct
+        time = time.slice(1); // Remove full string match value
+        time[5] = " "; // add space between time & AM/PM
+        time[6] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+        time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join(''); // return adjusted time or original string
+};
+
+
+/***/ }),
+
 /***/ "./src/app/standings-nav/standings-nav.component.css":
 /*!***********************************************************!*\
   !*** ./src/app/standings-nav/standings-nav.component.css ***!
@@ -3939,6 +4008,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// ****THIS COMPONENT HAS BEEN DEPRECATED IN FAVOR OF THE getEntryDetailsListMyTeamsByPlayer entry.service.ts endpoint
+// called by team-details.component.ts****
 var TeamNextupComponent = /** @class */ (function () {
     function TeamNextupComponent(router, _matchupService, _userService) {
         this.router = router;
@@ -3950,6 +4021,7 @@ var TeamNextupComponent = /** @class */ (function () {
         // Get last matching game which will either be last game played or next game up
         this._matchupService.getMatchupLastGame(this._bracket_id, this._orig_team_id).subscribe(function (matchups) {
             _this._lastGame = matchups[0];
+            // console.log ("this._lastGame is: ", this._lastGame);
             //if owner's team is out
             if (_this._team_id == null) {
                 // determine which team the user owns and select the other team as having lost

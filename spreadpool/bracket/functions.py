@@ -88,71 +88,75 @@ def getLastGame_Team(tbracket_id, orig_teamid):
 
 
 def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team_id):
-	# determine the Next Game status for a given Player's active team
+  # determine the Next Game status for a given Player's active team
 
-	# if owner's team is out
-	if (team_id is None):
-		# determine which team the user owns and select the other team as having lost
-		if (last_game.team1_id == last_team_id):
-			nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
-		if (last_game.team2_id == last_team_id):
-			nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
+  # if owner's team is out
+  if (team_id is None):
+    # determine which team the user owns and select the other team as having lost
+    if (last_game.team1_id == last_team_id):
+      nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
+    if (last_game.team2_id == last_team_id):
+      nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
 		
-		# append proper Round within which last game was lost
-		if (last_game.t_round <= 4):
-			nextup_game += " in Round " + str(last_game.t_round)
+    # append proper Round within which last game was lost
+    if (last_game.t_round <= 4):
+      nextup_game += " in Round " + str(last_game.t_round)
 		
-		elif (last_game.t_round == 5):
-			nextup_game += " in the Semi-Finals"
+    elif (last_game.t_round == 5):
+      nextup_game += " in the Semi-Finals"
 		
-		else:
-			nextup_game += " in the Championship"
+    else:
+      nextup_game += " in the Championship"
 
 		# if last game played is in Final Four round, update _region_id for proper route navigation purposes
 		# region_id = last_game.region_id
 	
 	# if owner's team is still in it
-	else:
+  else:
 		# append proper Round within which next game is being played
-		if (last_game.t_round <= 4):
-			nextup_game = "Round " + str(last_game.t_round)
+    if (last_game.t_round <= 4):
+      nextup_game = "Round " + str(last_game.t_round)
 		
-		elif (last_game.t_round == 5):
-			nextup_game = "Semi-Final"
+    elif (last_game.t_round == 5):
+      nextup_game = "Semi-Final"
 		
-		else:
-			nextup_game = "Finals"
+    else:
+      nextup_game = "Finals"
 
 		# determine proper spread based on whether Team1 or Team 2
-		if (last_game.team1_id == last_team_id and last_game.team2 is not None):
-			if (last_game.spread is not None):
-				if (last_game.spread > 0):
-					nextup_game += " Favored by " + str(last_game.spread) + " 1/2"
-				elif (last_game.spread < 0):
-					nextup_game += " Underdog by " + str(abs(last_game.spread)) + " 1/2"
-				elif (last_game.spread == 0):
-					nextup_game += " Pick'em"
-			nextup_game += " vs. " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ")";
+    if (last_game.team1_id == last_team_id and last_game.team2 is not None):
+      if (last_game.spread is not None):
+        if (last_game.spread > 0):
+          nextup_game += " Favored by " + str(last_game.spread) + " 1/2"
+        elif (last_game.spread < 0):
+          nextup_game += " Underdog by " + str(abs(last_game.spread)) + " 1/2"
+        elif (last_game.spread == 0):
+          nextup_game += " Pick'em"
+      nextup_game += " vs. " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ")"
 		# end if
 		
-		elif (last_game.team2_id == last_team_id and last_game.team1 is not None):
-			if (last_game.spread is not None):
-				if (last_game.spread < 0):
-					nextup_game += " Favored by " + str(abs(last_game.spread)) + " 1/2"
-				elif (last_game.spread > 0):
-					nextup_game += " Underdog by " + str(last_game.spread) + " 1/2"
-				elif (last_game.spread == 0):
-					nextup_game += " Pick'em"
-			nextup_game += " vs. " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ")";
+    elif (last_game.team2_id == last_team_id and last_game.team1 is not None):
+      if (last_game.spread is not None):
+        if (last_game.spread < 0):
+          nextup_game += " Favored by " + str(abs(last_game.spread)) + " 1/2"
+        elif (last_game.spread > 0):
+          nextup_game += " Underdog by " + str(last_game.spread) + " 1/2"
+        elif (last_game.spread == 0):
+          nextup_game += " Pick'em"
+      nextup_game += " vs. " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ")"
 
 		# Otherwise if no opponent yet, show vs. TBD
-		else:
-			nextup_game += " vs. TBD"
+    else:
+      nextup_game += " vs. TBD"
 
-		#if last game played is in Final Four round, update _region_id for proper route navigation purposes
-		# region_id = last_matchup.region_id
+    # Append game time & date if available
+    if (last_game.tipoff_date_time is not None):
+      nextup_game += " on "+last_game.tipoff_date_time.strftime('%m/%d/%y (%a)')+" at "+last_game.tipoff_date_time.strftime('%I:%M %p')
 
-	return nextup_game
+    #if last game played is in Final Four round, update _region_id for proper route navigation purposes
+    # region_id = last_matchup.region_id
+
+  return nextup_game
 
 
 def determineStatus(team_id, tbracket_id, player_id):
@@ -191,33 +195,35 @@ def create_entries():
 
 
 def reset_game(gameid):
-	"""
-	Clear teams (except if Round 1), scores, and spread of each game; clear team_owners and winner from related Matchups
-	"""
-	game = Game.objects.get(id=gameid)
-	# print (game, game.id, game.team1_id, game.team2_id, game.spread)
-	"""
-	Set game spared and scores to 0/None
-	"""
-	game.spread = None
-	game.team1_score = 0
-	game.team2_score = 0
-	"""
+  """
+  Clear teams (except if Round 1), scores, and spread of each game; clear team_owners and winner from related Matchups
+  """
+  game = Game.objects.get(id=gameid)
+  # print (game, game.id, game.team1_id, game.team2_id, game.spread)
+  """
+  Set game spread, scores, and tipoff_date_time to 0/None
+  """
+  game.spread = None
+  game.team1_score = 0
+  game.team2_score = 0
+  game.tipoff_date_time = None
+
+  """
 	If game in Round 2-6, clear out Teams and all related Matchups
 	Round 1 Matchups not touched...they can only be changed with
 	Bracket - Reassign & Bracket - Reset actions
 	"""
-	if game.id > 32:
-		game.team1 = None
-		game.team2 = None
-		related_matchups = Matchup.objects.filter(game=gameid)
-		for match in related_matchups:
-			match.winner = None
-			match.team1_owner = None
-			match.team2_owner = None
-			match.save()
-	game.save()
-	return
+  if game.id > 32:
+    game.team1 = None
+    game.team2 = None
+    related_matchups = Matchup.objects.filter(game=gameid)
+    for match in related_matchups:
+      match.winner = None
+      match.team1_owner = None
+      match.team2_owner = None
+      match.save()
+  game.save()
+  return
 
 def reset_rnd2to6_matchups(bracketid):
 	"""

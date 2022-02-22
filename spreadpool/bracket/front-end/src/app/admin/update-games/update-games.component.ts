@@ -33,7 +33,7 @@ export class UpdateGamesComponent implements OnInit {
 
 	retrieveGame() {
 		this._gameService.getGameDetails(this.game_id.value).subscribe((data) => {
-			// console.log("Game retrieved is:", data);
+			console.log("Game retrieved is:", data);
 			this._currentGame = data;
 			this.gameRetrieveForm.reset(); // clear out fields after form submit
 		});

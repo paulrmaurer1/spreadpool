@@ -30,7 +30,6 @@ from .functions import find_game, reassign_bracket, reset_game, reset_bracket, g
 from .email_functions import email_original_teams, email_spreads
 from bracket import serializers
 
-
 #REST framework modules
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
@@ -40,7 +39,9 @@ from rest_framework.decorators import action
 
 from django.conf import settings
 
-# Create your views here.
+#############################################################
+# Django Views used as part of Production site
+#############################################################
 
 class IndexView(LoginRequiredMixin, ListView):
 	# This is view within which to render all Angular pages
@@ -69,37 +70,6 @@ class IndexView(LoginRequiredMixin, ListView):
 		print("IndexView context is", context)
 		return context
 
-'''
-FBV approach to above
-'''
-# @login_required
-# def index(request, path = ''):
-# 	"""
-# 	Renders the Angular Single Page App (SPA)
-# 	"""
-# 	return render(request, 'bracket/index.html')
-
-# class HomeView(LoginRequiredMixin, ListView):
-# 	# Main Page with roster list during signup period
-# 	# **TO DO** Create view of brackets on main page after signup period
-# 	template_name = 'bracket/home.html'
-# 	login_url = '/login/'
-# 	# redirect_field_name = 'redirect_to'
-
-# 	def get_queryset(self):  # this is referenced as 'user_list' by default in template
-# 		# Create list that exludes admin and the user who is logged in, sorted by most recent joined
-# 		custom_user_list = User.objects.exclude(username='admin')
-# 		custom_user_list = custom_user_list.exclude(email=self.request.user.email)
-# 		custom_user_list = custom_user_list.order_by('-date_joined')
-# 		return custom_user_list
-
-# 	def get_context_data(self, **kwargs):
-# 		# Call the base implementation first to get a context
-# 		context = super(HomeView, self).get_context_data(**kwargs)
-# 		# Pass back the currently logged in user as 'logged_in_user'
-# 		context['logged_in_user'] = User.objects.get(email=self.request.user.email)
-# 		return context
-		
 class SignUp(CreateView):
 	# Sign up page for people to enter pool
 	form_class = forms.SignupForm
@@ -127,25 +97,9 @@ class SignUp(CreateView):
 		# return invalid submitted data back to form so user doesn't have to re-enter
 		return self.render_to_response(context)
 
-'''
-FBV approach to above
-'''
-# def signup(request):
-# 	if request.method == "POST":  #after Sign-up form is submitted
-# 		form = forms.SignupForm(request.POST)
-# 		if form.is_valid():
-# 			new_user = form.save(commit=False)
-# 			# create a default username from first & last name since required by User model
-# 			new_user.username = form.cleaned_data.get('first_name')[0].lower() + form.cleaned_data.get('last_name').lower()
-# 			new_user.save()
-# 			email = form.cleaned_data.get('email')
-# 			raw_password = form.cleaned_data.get('password1')
-# 			user = authenticate(email=email, password=raw_password)
-# 			login(request, user)
-# 			return redirect('bracket:home')
-# 	else:
-# 		form = forms.SignupForm()
-# 	return render(request, 'bracket/signup.html', {'form': form})
+#############################################################
+# Django Views used as part of original site
+#############################################################
 
 class LoggedInUserMixin(object):
 	# Ensure that logged in User is only one allowed to delete/change their Profile
@@ -191,8 +145,6 @@ Unnecessary CBV views replaced by Angular pages
 # 	form_class = forms.TbracketForm
 # 	model = Tbracket
 # 	template_name = 'bracket/tbracket_page.html'
-
-
 
 '''
 FBV approach to Edit Brackets page
@@ -243,18 +195,72 @@ FBV approach to above
 # 		form = forms.DeleteProfileForm(instance=user_to_delete)
 # 	return render(request, 'bracket/profile_delete.html', {'form': form})
 
-	
-#REST framework ViewSet classes
+'''
+FBV for old Django pages
+'''
+
+def tbracket_reassign_teams(request):
+	"""
+	Use this API endpoint once 16 players are assigned a bracket (though will work with less)
+	Reassign teams to players within Entry model, based upon bracket id sent by API call to this view
+	"""
+	if request.method == 'POST':
+		tbracketid = request.POST.get('tbracketid')
+		entry_team_assignments = {}
+		seed_counter = 1
+		for entry in Entry.objects.filter(tbracket=tbracketid):
+			#Following line works with existing team ids:
+			# entry_team_assignments[entry.id] = [entry.team_a, entry.team_b, entry.team_c, entry.team_d]
+			#Following line works with teams as long as their team ids = 1 - 64:
+			entry_team_assignments[entry.id] = [seed_counter, seed_counter+16, seed_counter+32, seed_counter+48]
+			seed_counter += 1
+
+		# assign team_id's from each region to list
+		region1, region2, region3, region4 = [], [], [], []
+		for entry, teams in entry_team_assignments.items():
+			region1.append(teams[0])
+			region2.append(teams[1])
+			region3.append(teams[2])
+			region4.append(teams[3])
+		
+		# randomly assign teams within each region
+		random.shuffle(region1)
+		random.shuffle(region2)
+		random.shuffle(region3)
+		random.shuffle(region4)
+		
+		#update Entry objects
+		n = 0
+		for entry in entry_team_assignments:
+			Entry.objects.filter(pk=entry).update(team_a=region1[n],team_b=region2[n],team_c=region3[n],team_d=region4[n])
+			Entry.objects.filter(pk=entry).update(orig_team_a=region1[n],orig_team_b=region2[n],orig_team_c=region3[n],orig_team_d=region4[n])
+			n += 1
+
+		reassigned_bracket = Tbracket.objects.get(id=tbracketid)
+
+		return HttpResponse(
+			json.dumps(reassigned_bracket.name), # return name of bracket for alerting purposes
+			content_type="application/json"
+		)
+	else:
+		return HttpResponse(
+			json.dumps({"nothing to see": "this isn't happening"}),
+			content_type="application/json"
+		)
+
+
+#############################################################
+# Django REST framework ViewSet classes for End Points
+#############################################################
+
 class UserViewSet(ModelViewSet):
 	"""
 	API endpoint that allows users to be viewed or edited.
 	Exclude admin for roster display purposes
 	"""
 	custom_user_list = User.objects.exclude(username='admin')
-	# custom_user_list = custom_user_list.exclude(email=self.request.user.email)
 	custom_user_list = custom_user_list.order_by('-date_joined')
 	queryset = custom_user_list
-	# queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = serializers.UserSerializer
 
 class GroupViewSet(ModelViewSet):
@@ -316,8 +322,6 @@ class EntryViewSet(ModelViewSet):
 		email_original_teams(tbracketid)
 		
 		return Response({'tbracketid': tbracketid})
-
-
 
 class EntryPlayerByBracketAndTeamViewSet(ModelViewSet):
 	"""
@@ -497,11 +501,10 @@ class GameViewSet(ModelViewSet):
 		
 		return Response({'tbracketid': tbracketid})
 	
-
 class GameWithTeamOwnersViewSet(ModelViewSet):
 	"""
-	API endpoint that allows Games to be viewed with respective owner of each team1 & team2
-	Games can be filtered by game table id, e.g. api/games/18
+	API endpoint that allows games to be retrieved for a Bracket
+	Games can be filtered by game table id, e.g. /api/games_owners/
 	Optional GET parameters include: ?tbracketid=
 	"""
 	queryset = Game.objects.all()
@@ -510,7 +513,7 @@ class GameWithTeamOwnersViewSet(ModelViewSet):
 class GameWithMatchupDataViewSet(ModelViewSet):
 	"""
 	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
-	Games can be filtered by game table id, e.g. api/games/18
+	Games can be filtered by game table id, e.g. /api/games_matchups/
 	Optional GET parameters include: ?tbracketid=
 	"""
 	queryset = Game.objects.all()
@@ -518,9 +521,9 @@ class GameWithMatchupDataViewSet(ModelViewSet):
 
 class NewGameWithMatchupDataViewSet(ModelViewSet):
 	"""
-	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
-	Games can be filtered by game table id, e.g. api/games/18
-	Required GET parameter (to get owners) is: ?tbracketid=. Optional parameter is ?regionid to further filter
+	API endpoint that allows game/matchup info to be retrieved for a Bracket. Data is used by brackets.component.ts
+  to populate bracket view for each Region, e.g. /api/games_new_matchups/
+	Required GET parameter (to get owners) is: ?tbracketid=
 	"""
 	queryset = Game.objects.all()
 	serializer_class = serializers.NewGameWithMatchupDataSerializer
@@ -535,7 +538,6 @@ class NewGameWithMatchupDataViewSet(ModelViewSet):
 			queryset = queryset.filter(region=regionid)
 		return queryset
 		
-
 class MatchupViewSet(ModelViewSet):
 	"""
 	API endpoint that allows Matchups to be viewed or edited.
@@ -579,7 +581,6 @@ class MatchupLastGameViewSet(ModelViewSet):
 			queryset = queryset.filter(game=last_game.id, tbracket=tbracketid)
 		return queryset
 
-
 class TbracketViewSet(ModelViewSet):
 	"""
 	API endpoint that allows Tbracket:games to be viewed
@@ -614,7 +615,6 @@ class TbracketViewSet(ModelViewSet):
 					sorted_queryset.append(tb)
 			# print(sorted_queryset)
 		return sorted_queryset
-
 
 	def destroy(self, request, *args, **kwargs):
 		"""
@@ -663,55 +663,3 @@ class RegionViewSet(ModelViewSet):
 	"""
 	queryset = Region.objects.all().order_by('id')
 	serializer_class = serializers.RegionSerializer
-
-
-#Functional views for (old) Django pages
-
-def tbracket_reassign_teams(request):
-	"""
-	Use this API endpoint once 16 players are assigned a bracket (though will work with less)
-	Reassign teams to players within Entry model, based upon bracket id sent by API call to this view
-	"""
-	if request.method == 'POST':
-		tbracketid = request.POST.get('tbracketid')
-		entry_team_assignments = {}
-		seed_counter = 1
-		for entry in Entry.objects.filter(tbracket=tbracketid):
-			#Following line works with existing team ids:
-			# entry_team_assignments[entry.id] = [entry.team_a, entry.team_b, entry.team_c, entry.team_d]
-			#Following line works with teams as long as their team ids = 1 - 64:
-			entry_team_assignments[entry.id] = [seed_counter, seed_counter+16, seed_counter+32, seed_counter+48]
-			seed_counter += 1
-
-		# assign team_id's from each region to list
-		region1, region2, region3, region4 = [], [], [], []
-		for entry, teams in entry_team_assignments.items():
-			region1.append(teams[0])
-			region2.append(teams[1])
-			region3.append(teams[2])
-			region4.append(teams[3])
-		
-		# randomly assign teams within each region
-		random.shuffle(region1)
-		random.shuffle(region2)
-		random.shuffle(region3)
-		random.shuffle(region4)
-		
-		#update Entry objects
-		n = 0
-		for entry in entry_team_assignments:
-			Entry.objects.filter(pk=entry).update(team_a=region1[n],team_b=region2[n],team_c=region3[n],team_d=region4[n])
-			Entry.objects.filter(pk=entry).update(orig_team_a=region1[n],orig_team_b=region2[n],orig_team_c=region3[n],orig_team_d=region4[n])
-			n += 1
-
-		reassigned_bracket = Tbracket.objects.get(id=tbracketid)
-
-		return HttpResponse(
-			json.dumps(reassigned_bracket.name), # return name of bracket for alerting purposes
-			content_type="application/json"
-		)
-	else:
-		return HttpResponse(
-			json.dumps({"nothing to see": "this isn't happening"}),
-			content_type="application/json"
-		)

@@ -8,7 +8,7 @@ const entryUrl = '/api/entries/';
 const entry_bracketsUrl = '/api/entry_brackets/';
 const entry_namesUrl = '/api/entry_names/';
 const entry_standingsURL = '/api/entry_standings/';
-const entry_myteams = 'api/entry_myteams/';
+const entry_myteamsURL = 'api/entry_myteams/';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +64,7 @@ export class EntryService {
 
 	//method to retrieve entry details list for a player
 	getEntryDetailsListMyTeamsByPlayer(id) {
-		return this.http.get<EntryMyTeamsData[]>(entry_myteams + '?playerid=' + id)
+		return this.http.get<EntryMyTeamsData[]>(entry_myteamsURL + '?playerid=' + id)
 		}
 
 	// helper function to build the HTTP headers

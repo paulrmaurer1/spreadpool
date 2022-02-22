@@ -5,7 +5,9 @@ import { RouterModule, ActivatedRoute, Router, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
-import { PickListModule } from 'primeng/picklist'; //Needed for Assign Entries page, assign-brackets.component
+import { PickListModule } from 'primeng/picklist'; //Used on Assign Entries page, assign-brackets.component
+import { CalendarModule } from 'primeng/calendar'; //Used on Update Game page, game-detail.component
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; //Needed by CalendarModule
 
 import { AssignBracketsComponent } from './assign-brackets/assign-brackets.component';
 import { CreateBracketsComponent } from './create-brackets/create-brackets.component';
@@ -28,14 +30,14 @@ export const routes: Routes = [
   	CreateBracketsComponent,
   	UpdateGamesComponent,
   	GameDetailComponent,
-  	SendEmailsComponent
+  	SendEmailsComponent,
   ],
   exports: [
   	AssignBracketsComponent,
   	CreateBracketsComponent,
   	UpdateGamesComponent,
     SendEmailsComponent,
-    RouterModule
+    RouterModule,
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,9 @@ export const routes: Routes = [
     ReactiveFormsModule,
     PickListModule,
     AngularFontAwesomeModule,
-    RouterModule
+    RouterModule,
+    CalendarModule,
+    BrowserAnimationsModule,
   ]
 
 })

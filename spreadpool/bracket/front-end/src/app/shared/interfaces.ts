@@ -98,8 +98,10 @@ export interface GameData {
   spread: number;
   team1_score: number;
   team2_score: number;
+  tipoff_date_time: string;
 }
 
+// ***Deprecated in favor of NewGameWithOwnerData***
 export interface GameWithOwnerData {
   id: number;
   region: string;
@@ -126,6 +128,7 @@ export interface NewGameWithOwnerData {
   t_round: number;
   spread: number;
   tbracket_id: number;
+  tipoff_date_time: string;
 }
 
 export interface MatchupData {

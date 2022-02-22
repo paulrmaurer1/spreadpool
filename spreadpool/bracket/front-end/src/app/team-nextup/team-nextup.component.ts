@@ -5,6 +5,9 @@ import { MatchupService } from '../core/matchup.service';
 import { GameService } from '../core/game.service';
 import { UserService } from '../core/user.service';
 
+// ****THIS COMPONENT HAS BEEN DEPRECATED IN FAVOR OF THE getEntryDetailsListMyTeamsByPlayer entry.service.ts endpoint
+// called by team-details.component.ts****
+
 @Component({
   selector: 'app-team-nextup',
   templateUrl: './team-nextup.component.html',
@@ -20,7 +23,7 @@ export class TeamNextupComponent implements OnInit {
 	_lastGame: MatchupLastGameData;
 
 	constructor(
-	  	private router: Router,
+    private router: Router,
 		private _matchupService: MatchupService,
 		private _userService: UserService) { }
 
@@ -28,6 +31,7 @@ export class TeamNextupComponent implements OnInit {
 		// Get last matching game which will either be last game played or next game up
 		this._matchupService.getMatchupLastGame(this._bracket_id, this._orig_team_id).subscribe(matchups => {
 			this._lastGame = matchups[0];  
+      // console.log ("this._lastGame is: ", this._lastGame);
 			
 			//if owner's team is out
 			if (this._team_id == null) { 
@@ -64,7 +68,6 @@ export class TeamNextupComponent implements OnInit {
 					this._nextup_game = "Semi-Final";
 				}
 				else { this._nextup_game = "Finals"; }
-
 
 				// determine proper spread based on whether Team1 or Team 2
 				if (this._lastGame.team1_owner_id == this._userService.id && this._lastGame.team2 != null) {

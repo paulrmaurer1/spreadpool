@@ -3,6 +3,7 @@ import { GameService } from '../../core/game.service';
 import { GameData } from '../../shared/interfaces';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { convertTime12to24, convertTime24to12 } from '../../shared/functions';
 
 @Component({
   selector: 'app-game-detail',
@@ -16,9 +17,13 @@ export class GameDetailComponent implements OnInit {
 	spread : AbstractControl;
 	team1_score : AbstractControl;
 	team2_score : AbstractControl;
+  game_date: AbstractControl;
+  game_time: AbstractControl;
 	_game: GameData;
 	showMsg: boolean;
 	msg: string = '';
+
+  _todayDate: Date = new Date();
 	
 	@Input() get game(): GameData {
 		return this._game;
@@ -40,10 +45,14 @@ export class GameDetailComponent implements OnInit {
 			'spread' : ['', Validators.required],
 			'team1_score' : ['', Validators.required],
 			'team2_score' : ['', Validators.required],
+      'game_date' : [this._todayDate.toISOString().substring(0,10)],
+      'game_time' : ['12:00 PM'],
 		});
 		this.spread = this.gameUpdateForm.controls['spread'];
 		this.team1_score = this.gameUpdateForm.controls['team1_score'];
 		this.team2_score = this.gameUpdateForm.controls['team2_score'];
+    this.game_date = this.gameUpdateForm.controls['game_date'];
+    this.game_time = this.gameUpdateForm.controls['game_time'];
 		}
 
 	ngOnInit() {
@@ -51,8 +60,16 @@ export class GameDetailComponent implements OnInit {
 	}
 
 	ngOnChanges() {
-		// console.log("game-detail component received _game update..", this._game);
+		console.log("game-detail component received _game update..", this._game);
 		this.gameUpdateForm.patchValue(this._game);
+    if (this._game.tipoff_date_time !== null) {
+      // set form values from back-end tipoff_date_time if not null
+      this.gameUpdateForm.controls['game_date'].patchValue(this._game.tipoff_date_time.substring(0,10))
+      this.gameUpdateForm.controls['game_time'].patchValue(convertTime24to12(this._game.tipoff_date_time.substring(11,16)))
+    } else {  //otherwise set to today's date and 12:00PM
+      this.gameUpdateForm.controls['game_date'].patchValue(this._todayDate.toISOString().substring(0,10));
+      this.gameUpdateForm.controls['game_time'].patchValue('12:00 PM');
+    }
 		this.showMsg = false;
 	}
 
@@ -60,9 +77,10 @@ export class GameDetailComponent implements OnInit {
 		this._game.team1_score = this.team1_score.value;
 		this._game.spread = this.spread.value;
 		this._game.team2_score = this.team2_score.value;
+    this._game.tipoff_date_time = this.game_date.value + " " + convertTime12to24(this.game_time.value);
 		
 		this._gameService.updateGame(this._game).subscribe((data) => {
-			// console.log("Game updated with:", this._game);
+			console.log("Game updated with:", this._game);
 			this.msg = "Game #: " + this._game.id + " has been updated!";
 			this.showMsg = true;
 		});

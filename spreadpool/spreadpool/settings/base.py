@@ -93,7 +93,8 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# Set to False since all dates/times written to database should be used as is for display purposes
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -150,6 +151,9 @@ CORS_ORIGIN_WHITELIST = (
     'https://127.0.0.1:8000',
     'https://spreadpool-fe.herokuapp.com',
 )
+
+# This allows for cookies to be sent to the browser
+CORS_ALLOW_CREDENTIALS = True
 
 # Configuration settings for djangorestframework-jwt (JSON Web Token)
 JWT_AUTH = {
