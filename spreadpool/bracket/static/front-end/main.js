@@ -1623,15 +1623,15 @@ var BracketTabComponent = /** @class */ (function () {
         set: function (value) {
             if (value) {
                 this._bracketOwners = value;
-                console.log("Detail component bracketOwners for ", this._region_id, " Region", this._bracketOwners);
+                // console.log ("Detail component bracketOwners for ", this._region_id, " Region", this._bracketOwners);
             }
         },
         enumerable: true,
         configurable: true
     });
     BracketTabComponent.prototype.ngOnInit = function () {
+        // console.log ("Detail component bracketGames for ", this._region_id, " Region", this._bracketGames);
         var _this = this;
-        console.log("Detail component bracketGames for ", this._region_id, " Region", this._bracketGames);
         //Create game id arrays for each Round with round # as index
         this._rnd_game_ids = {};
         this._rnd_game_ids[1] = Array.from({ length: 8 }, function (v, k) { return k + 1 + _this.getRdIncr(1); });

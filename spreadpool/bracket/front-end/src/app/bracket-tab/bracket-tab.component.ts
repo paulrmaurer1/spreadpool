@@ -26,7 +26,7 @@ export class BracketTabComponent implements OnInit {
 	set bracketOwners(value: NewGameWithOwnerData[]) {
 		if (value) {
 			this._bracketOwners = value;
-			console.log ("Detail component bracketOwners for ", this._region_id, " Region", this._bracketOwners);
+			// console.log ("Detail component bracketOwners for ", this._region_id, " Region", this._bracketOwners);
 		}
 	}
 
@@ -35,7 +35,7 @@ export class BracketTabComponent implements OnInit {
 		private _regionService: RegionService) { }
 
 	ngOnInit() {
-		console.log ("Detail component bracketGames for ", this._region_id, " Region", this._bracketGames);
+		// console.log ("Detail component bracketGames for ", this._region_id, " Region", this._bracketGames);
 
 		//Create game id arrays for each Round with round # as index
 		this._rnd_game_ids = {}

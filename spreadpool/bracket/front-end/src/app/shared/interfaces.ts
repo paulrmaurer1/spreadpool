@@ -129,7 +129,7 @@ export interface NewGameWithOwnerData {
   team2_owner_id: number;
   // t_round: number;
   // spread: number;
-  // tbracket_id: number;
+  tbracket_id: number;
 }
 
 export interface MatchupData {
