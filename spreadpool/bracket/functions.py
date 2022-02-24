@@ -149,9 +149,10 @@ def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team
     else:
       nextup_game += " vs. TBD"
 
-    # Append game time & date if available
+    # Append display friendly game time & date if available
     if (last_game.tipoff_date_time is not None):
-      nextup_game += " on "+last_game.tipoff_date_time.strftime('%m/%d/%y (%a)')+" at "+last_game.tipoff_date_time.strftime('%I:%M %p')
+      nextup_game += " on "+'{dt.month}/{dt.day} ({dt:%a})'.format(dt=last_game.tipoff_date_time)
+      nextup_game += " at "+'{dt:%I}:{dt:%M} {dt:%p}'.format(dt=last_game.tipoff_date_time)
 
     #if last game played is in Final Four round, update _region_id for proper route navigation purposes
     # region_id = last_matchup.region_id
@@ -744,3 +745,17 @@ def find_game(x):
 		63: {'game_id': 32, 'owner_field': 'team2_owner'},
 		64: {'game_id': 25, 'owner_field': 'team2_owner'},
 	}.get(x, {'game_id': 0, 'owner_field': ''})
+
+def getFriendlyDate(storedDate):
+	# Convert the stored tipoff_date_time to a front-end friendly date
+
+  friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
+
+  return friendlyDate
+
+def getFriendlyTime(storedDate):
+	# Convert the stored tipoff_date_time to a front-end friendly time
+
+  friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
+
+  return friendlyTime

@@ -99,6 +99,8 @@ export interface GameData {
   team1_score: number;
   team2_score: number;
   tipoff_date_time: string;
+  tipoff_date: string;
+  tipoff_time: string;
 }
 
 // ***Deprecated in favor of NewGameWithOwnerData***
@@ -115,20 +117,19 @@ export interface GameWithOwnerData {
 
 export interface NewGameWithOwnerData {
   id: number;
-  region: string;
+  // region: string;
   region_id: number;
-  team1: string;
-  team2: string;
-  team1_id: number;
-  team2_id: number;
+  // team1: string;
+  // team2: string;
+  // team1_id: number;
+  // team2_id: number;
   team1_owner: string;
   team2_owner: string;
   team1_owner_id: number;
   team2_owner_id: number;
-  t_round: number;
-  spread: number;
-  tbracket_id: number;
-  tipoff_date_time: string;
+  // t_round: number;
+  // spread: number;
+  // tbracket_id: number;
 }
 
 export interface MatchupData {
