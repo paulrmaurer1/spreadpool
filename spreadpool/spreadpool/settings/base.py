@@ -152,9 +152,6 @@ CORS_ORIGIN_WHITELIST = (
     'https://spreadpool-fe.herokuapp.com',
 )
 
-# This allows for cookies to be sent to the browser
-CORS_ALLOW_CREDENTIALS = True
-
 # Configuration settings for djangorestframework-jwt (JSON Web Token)
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,  # enables ability to request a refreshed token with a new expiration date
