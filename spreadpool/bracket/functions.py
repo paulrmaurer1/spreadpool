@@ -35,7 +35,7 @@ def getLastGame(tbracket_id, orig_teamid):
 
 	return last_game
 
-def getLastGame_Team(tbracket_id, orig_teamid):
+def getLastGame_Team(orig_teamid):
 	# determine last game that an original team's owner played in a particular bracket
 	# not necessarily with that same orig_team
 

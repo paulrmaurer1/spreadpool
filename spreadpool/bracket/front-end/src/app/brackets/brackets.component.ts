@@ -78,15 +78,6 @@ export class BracketsComponent implements OnInit {
 				this.ffourOwners=ffourOwners;
 				
 				this.loading = false;
-
-				// Set active tab based on fragment contained in url, if it exists
-				this.route.fragment.subscribe(fragment => { 
-					if (fragment) {
-						var id = parseInt(fragment);
-						// console.log("Tab Id to navigate to is: ", id);
-						this.staticTabs.tabs[id].active = true;
-					}
-				});
 			})
 		})
 		
@@ -131,6 +122,15 @@ export class BracketsComponent implements OnInit {
 		this._regionService.getRegionList().subscribe(data => {
 			this.regionList = data;
 		});
+
+    // Set active tab based on fragment contained in url, if it exists
+    this.route.fragment.subscribe(fragment => { 
+      if (fragment) {
+        var id = parseInt(fragment);
+        console.log("Tab Id to navigate to is: ", id);
+        this.staticTabs.tabs[id].active = true;
+      }
+    });
 	
 	} //end ngOnInit
 

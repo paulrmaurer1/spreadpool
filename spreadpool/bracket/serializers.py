@@ -5,21 +5,21 @@ from django.db.models import Q
 
 from .models import Entry, Game, Matchup, Tbracket, Region, Team
 from .functions import game_update, determineStatus, getLastGame_Team, getNextUpGameString, \
-  getFriendlyDate, getFriendlyTime
+	getFriendlyDate, getFriendlyTime
 
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
-        	'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
+		class Meta:
+				model = User
+				fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
+					'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ('url', 'name')
+		class Meta:
+				model = Group
+				fields = ('url', 'name')
 
 class EntrySerializer(serializers.ModelSerializer):
 	# Modify GET results to show '__str__' defined in Models
@@ -98,28 +98,28 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 		data = super().to_representation(obj)
 		if data['team_a'] is None:
 			data['team_a_status'] = '(OUT)'
-			last_team_a = getLastGame_Team(obj.tbracket_id, obj.orig_team_a_id)[1]
+			last_team_a = getLastGame_Team(obj.orig_team_a_id)[1]
 			data['team_a'] = Team.objects.get(id=last_team_a).bracket_name
 		else:
 			data['team_a_status'] = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_b'] is None:
 			data['team_b_status'] = '(OUT)'
-			last_team_b = getLastGame_Team(obj.tbracket_id, obj.orig_team_b_id)[1]
+			last_team_b = getLastGame_Team(obj.orig_team_b_id)[1]
 			data['team_b'] = Team.objects.get(id=last_team_b).bracket_name
 		else:
 			data['team_b_status'] = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_c'] is None:
 			data['team_c_status'] = '(OUT)'
-			last_team_c = getLastGame_Team(obj.tbracket_id, obj.orig_team_c_id)[1]
+			last_team_c = getLastGame_Team(obj.orig_team_c_id)[1]
 			data['team_c'] = Team.objects.get(id=last_team_c).bracket_name
 		else:
 			data['team_c_status'] = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_d'] is None:
 			data['team_d_status'] = '(OUT)'
-			last_team_d = getLastGame_Team(obj.tbracket_id, obj.orig_team_d_id)[1]
+			last_team_d = getLastGame_Team(obj.orig_team_d_id)[1]
 			data['team_d'] = Team.objects.get(id=last_team_d).bracket_name
 		else:
 			data['team_d_status'] = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
@@ -127,82 +127,82 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 		return data
 	
 class EntryMyTeamsSerializer(serializers.ModelSerializer):
-  """
-  Serializer to retrieve My Teams listings with next game up data
-  """
-  # Modify GET results to show '__str__' defined in Models
-  orig_team_a = serializers.StringRelatedField()
-  orig_team_b = serializers.StringRelatedField()
-  orig_team_c = serializers.StringRelatedField()
-  orig_team_d = serializers.StringRelatedField()
-  team_a = serializers.StringRelatedField()
-  team_b = serializers.StringRelatedField()
-  team_c = serializers.StringRelatedField()
-  team_d = serializers.StringRelatedField()
-  player = serializers.StringRelatedField()
-  tbracket = serializers.StringRelatedField()
+	"""
+	Serializer to retrieve My Teams listings with next game up data
+	"""
+	# Modify GET results to show '__str__' defined in Models
+	orig_team_a = serializers.StringRelatedField()
+	orig_team_b = serializers.StringRelatedField()
+	orig_team_c = serializers.StringRelatedField()
+	orig_team_d = serializers.StringRelatedField()
+	team_a = serializers.StringRelatedField()
+	team_b = serializers.StringRelatedField()
+	team_c = serializers.StringRelatedField()
+	team_d = serializers.StringRelatedField()
+	player = serializers.StringRelatedField()
+	tbracket = serializers.StringRelatedField()
 	
-  class Meta:
-    model = Entry
-    fields = (
+	class Meta:
+		model = Entry
+		fields = (
 			'orig_team_a', 'orig_team_b', 'orig_team_c', 'orig_team_d', \
 			'team_a', 'team_b', 'team_c', 'team_d', \
 			'player', 'tbracket', 'tbracket_id'
 		 )
 
-  def to_representation(self, obj):
-    data = super().to_representation(obj)
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
 		# Determine next game for each active entry team
-    last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_a_id)
-    last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-    data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
+		last_game, last_team_id = getLastGame_Team(obj.orig_team_a_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
 
-    last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_b_id)
-    last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-    data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
+		last_game, last_team_id = getLastGame_Team(obj.orig_team_b_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
 		
-    last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_c_id)
-    last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-    data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
+		last_game, last_team_id = getLastGame_Team( obj.orig_team_c_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
 		
-    last_game, last_team_id = getLastGame_Team(obj.tbracket_id, obj.orig_team_d_id)
-    last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-    data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
+		last_game, last_team_id = getLastGame_Team(obj.orig_team_d_id)
+		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
 		
-    return data
+		return data
 
 class GameSerializer(serializers.ModelSerializer):
-  """
-  Allows direct calls on Game model via games API
-  """
-  team1 = serializers.StringRelatedField()
-  team2 = serializers.StringRelatedField()
-  region = serializers.StringRelatedField()
+	"""
+	Allows direct calls on Game model via games API
+	"""
+	team1 = serializers.StringRelatedField()
+	team2 = serializers.StringRelatedField()
+	region = serializers.StringRelatedField()
 	
-  class Meta:
-    model = Game
-    fields = ('id', 'region', 'region_id', 't_round', 'team1', 'team2', 'team1_id', 'team2_id', 'spread', 'team1_score', 'team2_score', 'tipoff_date_time')
+	class Meta:
+		model = Game
+		fields = ('id', 'region', 'region_id', 't_round', 'team1', 'team2', 'team1_id', 'team2_id', 'spread', 'team1_score', 'team2_score', 'tipoff_date_time')
 
-  def update(self, instance, validated_data):
-    instance.team1_score = validated_data.get('team1_score', instance.team1_score)
-    instance.spread = validated_data.get('spread', instance.spread)
-    instance.team2_score = validated_data.get('team2_score', instance.team2_score)
-    instance.tipoff_date_time = validated_data.get('tipoff_date_time', instance.tipoff_date_time)
-    instance.save()
-    game_update(instance)
-    return instance
+	def update(self, instance, validated_data):
+		instance.team1_score = validated_data.get('team1_score', instance.team1_score)
+		instance.spread = validated_data.get('spread', instance.spread)
+		instance.team2_score = validated_data.get('team2_score', instance.team2_score)
+		instance.tipoff_date_time = validated_data.get('tipoff_date_time', instance.tipoff_date_time)
+		instance.save()
+		game_update(instance)
+		return instance
 
-  def to_representation(self, obj):
-    data = super().to_representation(obj)
-    data['tipoff_date'] = None
-    data['tipoff_time'] = None
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
+		data['tipoff_date'] = None
+		data['tipoff_time'] = None
 
-    # convert tipoff_date_time to front-end friendly strings for bracket display
-    if (obj.tipoff_date_time):
-      data['tipoff_date'] = getFriendlyDate(obj.tipoff_date_time)
-      data['tipoff_time'] = getFriendlyTime(obj.tipoff_date_time)
+		# convert tipoff_date_time to front-end friendly strings for bracket display
+		if (obj.tipoff_date_time):
+			data['tipoff_date'] = getFriendlyDate(obj.tipoff_date_time)
+			data['tipoff_time'] = getFriendlyTime(obj.tipoff_date_time)
 
-    return data
+		return data
 
 
 
@@ -220,8 +220,8 @@ class EntrySerializerForGameWithOwners(serializers.ModelSerializer):
 class GameWithOwnersSerializer(serializers.ModelSerializer):
 	"""
 	***DEPRECATED in favor of NewGameWithMatchupDataSerializer***
-  Serializer to retrieve game information for a bracket along with object data
-  for each owner associated with a game. 
+	Serializer to retrieve game information for a bracket along with object data
+	for each owner associated with a game. 
 	"""
 	team1_owner = serializers.SerializerMethodField()
 	team2_owner = serializers.SerializerMethodField()
@@ -254,8 +254,8 @@ class GameWithOwnersSerializer(serializers.ModelSerializer):
 class GameWithMatchupDataSerializer(serializers.ModelSerializer):
 	"""
 	***DEPRECATED in favor of NewGameWithMatchupDataSerializer***
-  Serializer to retrieve game information for a bracket along with a little more object data
-  for each owner associated with a game. 
+	Serializer to retrieve game information for a bracket along with a little more object data
+	for each owner associated with a game. 
 	"""
 	team1_owner = serializers.SerializerMethodField()
 	team2_owner = serializers.SerializerMethodField()
@@ -284,55 +284,55 @@ class GameWithMatchupDataSerializer(serializers.ModelSerializer):
 		return MatchupSerializer(team2_owner, many=True).data
 
 class NewGameWithMatchupDataSerializer(serializers.ModelSerializer):
-  """
-  End point that returns information needed to populate each bracket with key game & matchup data
-  including teams, owner, spread, and tipoff date/time
-  """
-  # team1 = serializers.StringRelatedField()
-  # team2 = serializers.StringRelatedField()
-  # region = serializers.StringRelatedField()
+	"""
+	End point that returns information needed to populate each bracket with key game & matchup data
+	including teams, owner, spread, and tipoff date/time
+	"""
+	# team1 = serializers.StringRelatedField()
+	# team2 = serializers.StringRelatedField()
+	# region = serializers.StringRelatedField()
 		
-  class Meta:
-    model = Game
-    # fields = ('id', 'region', 'region_id', 'team1', 'team1_id', 'team2', 'team2_id', 't_round', 'spread')
-    fields = ('id', 'region_id')
+	class Meta:
+		model = Game
+		# fields = ('id', 'region', 'region_id', 'team1', 'team1_id', 'team2', 'team2_id', 't_round', 'spread')
+		fields = ('id', 'region_id')
 
-  def to_representation(self, obj):
-    data = super().to_representation(obj)
-    data['tbracket_id'] = None
-    data['team1_owner'] = None
-    data['team1_owner_id'] = None
-    data['team2_owner'] = None
-    data['team2_owner_id'] = None
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
+		data['tbracket_id'] = None
+		data['team1_owner'] = None
+		data['team1_owner_id'] = None
+		data['team2_owner'] = None
+		data['team2_owner_id'] = None
 
 		# Grab owner related data for each Game from associated Matchup
-    related_matchups = Matchup.objects.filter(game=obj.id)
-    _tbracket_id = self.context['request'].GET.get('tbracketid')
-    try:
-      Tbracket.objects.get(id=_tbracket_id) # Check to make sure is a valid bracket
-      specific_matchup = related_matchups.get(tbracket=_tbracket_id) 
-    except:
-      return data
+		related_matchups = Matchup.objects.filter(game=obj.id)
+		_tbracket_id = self.context['request'].GET.get('tbracketid')
+		try:
+			Tbracket.objects.get(id=_tbracket_id) # Check to make sure is a valid bracket
+			specific_matchup = related_matchups.get(tbracket=_tbracket_id) 
+		except:
+			return data
 		
-    data['tbracket_id'] = _tbracket_id
-    if specific_matchup.team1_owner:
-      data['team1_owner'] = specific_matchup.team1_owner.short_name
-      data['team1_owner_id'] = specific_matchup.team1_owner.id
-    if specific_matchup.team2_owner:
-      data['team2_owner'] = specific_matchup.team2_owner.short_name
-      data['team2_owner_id'] = specific_matchup.team2_owner.id
+		data['tbracket_id'] = _tbracket_id
+		if specific_matchup.team1_owner:
+			data['team1_owner'] = specific_matchup.team1_owner.short_name
+			data['team1_owner_id'] = specific_matchup.team1_owner.id
+		if specific_matchup.team2_owner:
+			data['team2_owner'] = specific_matchup.team2_owner.short_name
+			data['team2_owner_id'] = specific_matchup.team2_owner.id
 
-    return data
+		return data
 
 class FilteredGameSerializer(serializers.ListSerializer):
-  """
-  This class allows nested 'games' serializer within TbracketSerializer to be filtered based on a ?gameid= parameter
-  within the tbrackets API call
-  """
-  def to_representation(self, data):
-    game_id=self.context['request'].GET.get('gameid')
-    data = data.filter(id=game_id)
-    return super(FilteredGameSerializer, self).to_representation(data)
+	"""
+	This class allows nested 'games' serializer within TbracketSerializer to be filtered based on a ?gameid= parameter
+	within the tbrackets API call
+	"""
+	def to_representation(self, data):
+		game_id=self.context['request'].GET.get('gameid')
+		data = data.filter(id=game_id)
+		return super(FilteredGameSerializer, self).to_representation(data)
 
 class TbracketGameSerializer(serializers.ModelSerializer):
 	"""
@@ -383,34 +383,34 @@ class MatchupSerializer(serializers.ModelSerializer):
 
 class MatchupLastGameSerializer(serializers.ModelSerializer):
 
-  team1_owner = serializers.StringRelatedField()
-  team2_owner = serializers.StringRelatedField()
+	team1_owner = serializers.StringRelatedField()
+	team2_owner = serializers.StringRelatedField()
 
-  class Meta:
-    model = Matchup
-    fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner', 'team1_owner_id', 'team2_owner_id')
+	class Meta:
+		model = Matchup
+		fields = ('id', 'tbracket', 'game', 'winner', 'team1_owner', 'team2_owner', 'team1_owner_id', 'team2_owner_id')
 
-  def to_representation(self, obj):
-    data = super().to_representation(obj)
-    related_game = obj.game
-    # set default values
-    data['team1'] = None
-    data['team1_id'] = None
-    data['team2'] = None
-    data['team2_id'] = None
-    data['spread'] = related_game.spread
-    data['region_id'] = related_game.region_id
-    data['t_round'] = related_game.t_round
-    data['tipoff_date_time'] = related_game.tipoff_date_time
+	def to_representation(self, obj):
+		data = super().to_representation(obj)
+		related_game = obj.game
+		# set default values
+		data['team1'] = None
+		data['team1_id'] = None
+		data['team2'] = None
+		data['team2_id'] = None
+		data['spread'] = related_game.spread
+		data['region_id'] = related_game.region_id
+		data['t_round'] = related_game.t_round
+		data['tipoff_date_time'] = related_game.tipoff_date_time
 
-    if related_game.team1:
-      data['team1'] = related_game.team1.bracket_name
-      data['team1_id'] = related_game.team1_id
-    if related_game.team2:
-      data['team2'] = related_game.team2.bracket_name
-      data['team2_id'] = related_game.team2_id
+		if related_game.team1:
+			data['team1'] = related_game.team1.bracket_name
+			data['team1_id'] = related_game.team1_id
+		if related_game.team2:
+			data['team2'] = related_game.team2.bracket_name
+			data['team2_id'] = related_game.team2_id
 		
-    return data
+		return data
 
 
 class RegionSerializer(serializers.ModelSerializer):

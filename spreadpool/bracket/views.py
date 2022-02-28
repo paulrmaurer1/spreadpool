@@ -522,7 +522,7 @@ class GameWithMatchupDataViewSet(ModelViewSet):
 class NewGameWithMatchupDataViewSet(ModelViewSet):
 	"""
 	API endpoint that allows game/matchup info to be retrieved for a Bracket. Data is used by brackets.component.ts
-  to populate bracket view for each Region, e.g. /api/games_new_matchups/
+	to populate bracket view for each Region, e.g. /api/games_new_matchups/
 	Required GET parameter (to get owners) is: ?tbracketid=
 	"""
 	queryset = Game.objects.all()
@@ -582,80 +582,80 @@ class MatchupLastGameViewSet(ModelViewSet):
 		return queryset
 
 class TbracketViewSet(ModelViewSet):
-  """
-  API endpoint that allows Tbracket:games to be viewed
-  Brackets can be filtered by tbracket table id, e.g. api/entries/1
-  Mandatory GET parameter: ?gameid=
-  """
-  queryset = Tbracket.objects.all()
-  serializer_class = serializers.TbracketSerializer
+	"""
+	API endpoint that allows Tbracket:games to be viewed
+	Brackets can be filtered by tbracket table id, e.g. api/entries/1
+	Mandatory GET parameter: ?gameid=
+	"""
+	queryset = Tbracket.objects.all()
+	serializer_class = serializers.TbracketSerializer
 
-  def get_queryset(self):
-    """
-    Optionally sort by playerid's entry tbrackets
-    """
-    queryset = Tbracket.objects.all().order_by('id')
-    player_tbrackets=[]
-    sorted_queryset = queryset
-    # print (queryset)
-    playerid = self.request.query_params.get('playerid', None)
-    if playerid is not None:
-      sorted_queryset = [] # empty sorted_querset for re-sort
-      # Create list of player tbracket ids
-      player_entries = Entry.objects.filter(player=playerid)
-      for player in player_entries:
-        if player.tbracket_id not in player_tbrackets:
-          player_tbrackets.append(player.tbracket_id)
-      # print (player_tbrackets)
-      # Re-sort querset putting player tbracket ids first
-      for tb in queryset:
-        if tb.id in player_tbrackets:
-          tb.name += "*"  # append * to any bracket.name to which a player belongs
-          sorted_queryset.insert(0, tb)
-        else:
-          sorted_queryset.append(tb)
-      # print(sorted_queryset)
-    return sorted_queryset
+	def get_queryset(self):
+		"""
+		Optionally sort by playerid's entry tbrackets
+		"""
+		queryset = Tbracket.objects.all().order_by('id')
+		player_tbrackets=[]
+		sorted_queryset = queryset
+		# print (queryset)
+		playerid = self.request.query_params.get('playerid', None)
+		if playerid is not None:
+			sorted_queryset = [] # empty sorted_querset for re-sort
+			# Create list of player tbracket ids
+			player_entries = Entry.objects.filter(player=playerid)
+			for player in player_entries:
+				if player.tbracket_id not in player_tbrackets:
+					player_tbrackets.append(player.tbracket_id)
+			# print (player_tbrackets)
+			# Re-sort querset putting player tbracket ids first
+			for tb in queryset:
+				if tb.id in player_tbrackets:
+					tb.name += "*"  # append * to any bracket.name to which a player belongs
+					sorted_queryset.insert(0, tb)
+				else:
+					sorted_queryset.append(tb)
+			# print(sorted_queryset)
+		return sorted_queryset
 
-  def destroy(self, request, *args, **kwargs):
-    """
-    Delete Tbracket entry and associated Matchup entries
-    """
-    try:
-      instance = self.get_object()
-      tbracket_id = instance.id
-      assigned_entries = Entry.objects.filter(tbracket=tbracket_id)
-      assigned_entries.update(tbracket=None)
-      self.perform_destroy(instance)
-      related_matchups = Matchup.objects.filter(tbracket=tbracket_id)
-      related_matchups.delete()
-    except Http404:
-      pass
-    return Response(status=status.HTTP_204_NO_CONTENT)
+	def destroy(self, request, *args, **kwargs):
+		"""
+		Delete Tbracket entry and associated Matchup entries
+		"""
+		try:
+			instance = self.get_object()
+			tbracket_id = instance.id
+			assigned_entries = Entry.objects.filter(tbracket=tbracket_id)
+			assigned_entries.update(tbracket=None)
+			self.perform_destroy(instance)
+			related_matchups = Matchup.objects.filter(tbracket=tbracket_id)
+			related_matchups.delete()
+		except Http404:
+			pass
+		return Response(status=status.HTTP_204_NO_CONTENT)
 
-  @action(detail=True)
-  def reassign(self, request, pk=None):
-    """
-    Assign teams or re-assign teams randomly to entries that match the called Tbracket
-    Only should perform this after Tbracket has just been created
-    """
-    tbracket = self.get_object()
-    tbracketid = tbracket.id
-    reassign_bracket(tbracketid)
-    return Response(status=status.HTTP_204_NO_CONTENT)
+	@action(detail=True)
+	def reassign(self, request, pk=None):
+		"""
+		Assign teams or re-assign teams randomly to entries that match the called Tbracket
+		Only should perform this after Tbracket has just been created
+		"""
+		tbracket = self.get_object()
+		tbracketid = tbracket.id
+		reassign_bracket(tbracketid)
+		return Response(status=status.HTTP_204_NO_CONTENT)
 
-  @action(detail=True)
-  def reset(self, request, pk=None):
-    """
-    Reset all Bracket Matchup to default values
-    Restore all Entry Active Teams to Original Active Teams
-    Update all First Round Matchups with restored Owners
-    No Games are affected
-    """
-    tbracket = self.get_object()
-    tbracketid = tbracket.id
-    reset_bracket(tbracketid)
-    return Response(status=status.HTTP_204_NO_CONTENT)
+	@action(detail=True)
+	def reset(self, request, pk=None):
+		"""
+		Reset all Bracket Matchup to default values
+		Restore all Entry Active Teams to Original Active Teams
+		Update all First Round Matchups with restored Owners
+		No Games are affected
+		"""
+		tbracket = self.get_object()
+		tbracketid = tbracket.id
+		reset_bracket(tbracketid)
+		return Response(status=status.HTTP_204_NO_CONTENT)
 
 class RegionViewSet(ModelViewSet):
 	"""

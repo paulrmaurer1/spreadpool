@@ -172,6 +172,7 @@ body{
   padding-bottom:1px;
 }
 
+/* Standings page format if team is out of tourney */
 .standings-out {
   color:lightgrey;
   text-decoration:line-through;

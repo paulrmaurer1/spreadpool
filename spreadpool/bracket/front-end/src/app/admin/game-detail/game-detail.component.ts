@@ -60,7 +60,7 @@ export class GameDetailComponent implements OnInit {
 	}
 
 	ngOnChanges() {
-		console.log("game-detail component received _game update..", this._game);
+		// console.log("game-detail component received _game update..", this._game);
 		this.gameUpdateForm.patchValue(this._game);
     if (this._game.tipoff_date_time !== null) {
       // set form values from back-end tipoff_date_time if not null
