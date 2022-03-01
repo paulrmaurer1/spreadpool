@@ -720,7 +720,7 @@ var GameDetailComponent = /** @class */ (function () {
     GameDetailComponent.prototype.ngOnInit = function () {
     };
     GameDetailComponent.prototype.ngOnChanges = function () {
-        console.log("game-detail component received _game update..", this._game);
+        // console.log("game-detail component received _game update..", this._game);
         this.gameUpdateForm.patchValue(this._game);
         if (this._game.tipoff_date_time !== null) {
             // set form values from back-end tipoff_date_time if not null
@@ -1128,7 +1128,7 @@ var UpdateGamesComponent = /** @class */ (function () {
     UpdateGamesComponent.prototype.retrieveGame = function () {
         var _this = this;
         this._gameService.getGameDetails(this.game_id.value).subscribe(function (data) {
-            console.log("Game retrieved is:", data);
+            // console.log("Game retrieved is:", data);
             _this._currentGame = data;
             _this.gameRetrieveForm.reset(); // clear out fields after form submit
         });
@@ -1909,14 +1909,6 @@ var BracketsComponent = /** @class */ (function () {
                 })));
                 _this.ffourOwners = ffourOwners;
                 _this.loading = false;
-                // Set active tab based on fragment contained in url, if it exists
-                _this.route.fragment.subscribe(function (fragment) {
-                    if (fragment) {
-                        var id = parseInt(fragment);
-                        // console.log("Tab Id to navigate to is: ", id);
-                        _this.staticTabs.tabs[id].active = true;
-                    }
-                });
             });
         });
         // Retrieve game list & convert each Region's games into indexed arrays
@@ -1967,6 +1959,16 @@ var BracketsComponent = /** @class */ (function () {
         // Retrieve list of regions to display in tabs
         this._regionService.getRegionList().subscribe(function (data) {
             _this.regionList = data;
+            // Set active tab based on fragment contained in url, if it exists
+            _this.route.fragment.subscribe(function (fragment) {
+                if (fragment) {
+                    var id = parseInt(fragment);
+                    // console.log("Tab Id to navigate to is: ", id);
+                    // Need the below delay in order for tabs to be rendered 
+                    // (lengthy call to backend to retrieve data) increase if necessary
+                    setTimeout(function () { _this.staticTabs.tabs[id].active = true; }, 200);
+                }
+            });
         });
     }; //end ngOnInit
     // Function to determine which bracket navbar to make 'active' in template based on route param

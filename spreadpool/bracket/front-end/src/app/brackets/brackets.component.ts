@@ -4,13 +4,13 @@ import { TBracketService } from '../core/tbracket.service';
 import { GameService } from '../core/game.service';
 import { UserService } from '../core/user.service';
 import { RegionService } from '../core/region.service';
-import { TBracketData, GameData, GameWithOwnerData, IUserData, RegionData, NewGameWithOwnerData } from '../shared/interfaces';
+import { TBracketData, RegionData } from '../shared/interfaces';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 @Component({
-  selector: 'app-brackets',
-  templateUrl: './brackets.component.html',
-  styleUrls: ['./brackets.component.css']
+	selector: 'app-brackets',
+	templateUrl: './brackets.component.html',
+	styleUrls: ['./brackets.component.css']
 })
 export class BracketsComponent implements OnInit {
 	@ViewChild('staticTabs') staticTabs: TabsetComponent;
@@ -41,11 +41,11 @@ export class BracketsComponent implements OnInit {
 		) { }
 
 	ngOnInit() {
-     	
+		 	
 		// Subscribe to activated route parameter and update activeBracket to pass to child components
-  		// Based on active bracket (in params), convert each Region's bracket owners (retrieved via Matchup table)
-  		// to indexed arrays for each Region
-  		// FYI - the following line would only work the first time the page is visited:
+			// Based on active bracket (in params), convert each Region's bracket owners (retrieved via Matchup table)
+			// to indexed arrays for each Region
+			// FYI - the following line would only work the first time the page is visited:
 		// this.id = this.route.snapshot.params['id'];
 		this.loading = true;
 		this.route.params.subscribe(params => {
@@ -121,17 +121,18 @@ export class BracketsComponent implements OnInit {
 		// Retrieve list of regions to display in tabs
 		this._regionService.getRegionList().subscribe(data => {
 			this.regionList = data;
-		});
 
-    // Set active tab based on fragment contained in url, if it exists
-    this.route.fragment.subscribe(fragment => { 
-      if (fragment) {
-        var id = parseInt(fragment);
-        console.log("Tab Id to navigate to is: ", id);
-        this.staticTabs.tabs[id].active = true;
-      }
-    });
-	
+			// Set active tab based on fragment contained in url, if it exists
+			this.route.fragment.subscribe((fragment: string) => { 
+				if (fragment) {
+					var id : number = parseInt(fragment);
+					// console.log("Tab Id to navigate to is: ", id);
+					// Need the below delay in order for tabs to be rendered 
+					// (lengthy call to backend to retrieve data) increase if necessary
+					setTimeout(() => {this.staticTabs.tabs[id].active = true;}, 200);
+				}
+			});
+		});
 	} //end ngOnInit
 
 	// Function to determine which bracket navbar to make 'active' in template based on route param

@@ -10,9 +10,7 @@ import {
 
 import { UserResolver } from './core/user-resolver';
 import { HomeComponent } from './home/home.component';
-import { RosterComponent } from './roster/roster.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BracketsComponent } from './brackets/brackets.component';
 
