@@ -98,29 +98,33 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 		data = super().to_representation(obj)
 		if data['team_a'] is None:
 			data['team_a_status'] = '(OUT)'
-			last_team_a = getLastGame_Team(obj.orig_team_a_id)[1]
-			data['team_a'] = Team.objects.get(id=last_team_a).bracket_name
+			# last_team_a = getLastGame_Team(obj.orig_team_a_id)[1]
+			# data['team_a'] = Team.objects.get(id=last_team_a).bracket_name
+			data['team_a'] = obj.last_team_a.bracket_name
 		else:
 			data['team_a_status'] = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_b'] is None:
 			data['team_b_status'] = '(OUT)'
-			last_team_b = getLastGame_Team(obj.orig_team_b_id)[1]
-			data['team_b'] = Team.objects.get(id=last_team_b).bracket_name
+			# last_team_b = getLastGame_Team(obj.orig_team_b_id)[1]
+			# data['team_b'] = Team.objects.get(id=last_team_b).bracket_name
+			data['team_b'] = obj.last_team_b.bracket_name
 		else:
 			data['team_b_status'] = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_c'] is None:
 			data['team_c_status'] = '(OUT)'
-			last_team_c = getLastGame_Team(obj.orig_team_c_id)[1]
-			data['team_c'] = Team.objects.get(id=last_team_c).bracket_name
+			# last_team_c = getLastGame_Team(obj.orig_team_c_id)[1]
+			# data['team_c'] = Team.objects.get(id=last_team_c).bracket_name
+			data['team_c'] = obj.last_team_c.bracket_name
 		else:
 			data['team_c_status'] = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
 		
 		if data['team_d'] is None:
 			data['team_d_status'] = '(OUT)'
-			last_team_d = getLastGame_Team(obj.orig_team_d_id)[1]
-			data['team_d'] = Team.objects.get(id=last_team_d).bracket_name
+			# last_team_d = getLastGame_Team(obj.orig_team_d_id)[1]
+			# data['team_d'] = Team.objects.get(id=last_team_d).bracket_name
+			data['team_d'] = obj.last_team_d.bracket_name
 		else:
 			data['team_d_status'] = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
 		
@@ -153,21 +157,30 @@ class EntryMyTeamsSerializer(serializers.ModelSerializer):
 	def to_representation(self, obj):
 		data = super().to_representation(obj)
 		# Determine next game for each active entry team
-		last_game, last_team_id = getLastGame_Team(obj.orig_team_a_id)
-		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
+		
+		# last_game, last_team_id = getLastGame_Team(obj.orig_team_a_id)
+		# last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		last_matchup_a = Matchup.objects.get(game=obj.last_game_a.id, tbracket=obj.tbracket_id)
+		# data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
+		data['next_team_a'] = getNextUpGameString(obj.last_game_a, last_matchup_a, obj.tbracket_id, obj.team_a_id, obj.last_team_a.id)
 
-		last_game, last_team_id = getLastGame_Team(obj.orig_team_b_id)
-		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
+		# last_game, last_team_id = getLastGame_Team(obj.orig_team_b_id)
+		# last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		last_matchup_b = Matchup.objects.get(game=obj.last_game_b.id, tbracket=obj.tbracket_id)
+		# data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
+		data['next_team_b'] = getNextUpGameString(obj.last_game_b, last_matchup_b, obj.tbracket_id, obj.team_b_id, obj.last_team_b.id)
 		
-		last_game, last_team_id = getLastGame_Team( obj.orig_team_c_id)
-		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
+		# last_game, last_team_id = getLastGame_Team( obj.orig_team_c_id)
+		# last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		last_matchup_c = Matchup.objects.get(game=obj.last_game_c.id, tbracket=obj.tbracket_id)
+		# data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
+		data['next_team_c'] = getNextUpGameString(obj.last_game_c, last_matchup_c, obj.tbracket_id, obj.team_c_id, obj.last_team_c.id)
 		
-		last_game, last_team_id = getLastGame_Team(obj.orig_team_d_id)
-		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
+		# last_game, last_team_id = getLastGame_Team(obj.orig_team_d_id)
+		# last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
+		last_matchup_d = Matchup.objects.get(game=obj.last_game_d.id, tbracket=obj.tbracket_id)
+		# data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
+		data['next_team_d'] = getNextUpGameString(obj.last_game_d, last_matchup_d, obj.tbracket_id, obj.team_d_id, obj.last_team_d.id)
 		
 		return data
 

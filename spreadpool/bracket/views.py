@@ -372,7 +372,7 @@ class EntryStandingsViewSet(ModelViewSet):
 	"""
 	API endpoint to retrieve names associated with entries
 	Optional GET parameters include: ?tbracketid= 
-	If no tbracketid, will retrive all users whose entries match either team 1 or team 2
+	If no tbracketid, will retrieve all users whose entries match either team 1 or team 2
 	"""
 	queryset = Entry.objects.all()
 	serializer_class = serializers.EntryStandingsSerializer

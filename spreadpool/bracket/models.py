@@ -103,55 +103,55 @@ class Team(models.Model):
 		return '%d-%s' % (self.seed, self.short_name)
 
 class Game(models.Model):
-  # Table which contains information about each of the 63 games in each tourney bracket
-  # auto id will be populated via a fixture by the integer 1-63 to represent each game in tourney
-  class Meta:
-    db_table = 'game'
+	# Table which contains information about each of the 63 games in each tourney bracket
+	# auto id will be populated via a fixture by the integer 1-63 to represent each game in tourney
+	class Meta:
+		db_table = 'game'
 
-  region = models.ForeignKey(  #Region in which game is played
-    Region,
-    on_delete=models.CASCADE
-  )
-  t_round = models.IntegerField()  #Tournament round 1-6
-  team1 = models.ForeignKey(  #Team that appears on top in this pairing
+	region = models.ForeignKey(  #Region in which game is played
+		Region,
+		on_delete=models.CASCADE
+	)
+	t_round = models.IntegerField()  #Tournament round 1-6
+	team1 = models.ForeignKey(  #Team that appears on top in this pairing
 		Team,
 		on_delete=models.CASCADE,
 		related_name="team1",
 		null=True,
 		blank=True
-  )
-  team2 = models.ForeignKey(  #Team that appears on bottom in this pairing
+	)
+	team2 = models.ForeignKey(  #Team that appears on bottom in this pairing
 		Team,
 		on_delete=models.CASCADE,
 		related_name="team2",
 		null=True,
 		blank=True
-  )
-  spread = models.IntegerField(null=True)  #Point Spread for game
-  favorite = models.IntegerField(default=1)  #Team (1 or 2) that is favored in the pairing
-  team1_score = models.IntegerField(default=0)  #Team 1 final score
-  team2_score = models.IntegerField(default=0)  #Team 2 final score
-  parent_game1 = models.ForeignKey(  #The feeder game, at top, of this pairing
+	)
+	spread = models.IntegerField(null=True)  #Point Spread for game
+	favorite = models.IntegerField(default=1)  #Team (1 or 2) that is favored in the pairing
+	team1_score = models.IntegerField(default=0)  #Team 1 final score
+	team2_score = models.IntegerField(default=0)  #Team 2 final score
+	parent_game1 = models.ForeignKey(  #The feeder game, at top, of this pairing
 		'self',
 		on_delete=models.CASCADE,
 		related_name="p_game1",
 		null=True,
 		blank=True
-  )
-  parent_game2 = models.ForeignKey(  #The feeder game, at bottom, of this pairing
+	)
+	parent_game2 = models.ForeignKey(  #The feeder game, at bottom, of this pairing
 		'self',
 		on_delete=models.CASCADE,
 		related_name="p_game2",
 		null=True,
 		blank=True
-  )
-  tipoff_date_time = models.DateTimeField(  #Game start date & time; format = YYYY-MM-DD HH:MM
-    blank=True,
-    null=True
-  )
+	)
+	tipoff_date_time = models.DateTimeField(  #Game start date & time; format = YYYY-MM-DD HH:MM
+		blank=True,
+		null=True
+	)
 
-  def __str__(self):
-    return "Game #: {}".format(str(self.id))
+	def __str__(self):
+		return "Game #: {}".format(str(self.id))
 
 class Tbracket(models.Model):
 	#Tracks info about each Tournament Bracket
@@ -272,3 +272,61 @@ class Entry(models.Model):
 		blank=True
 		)
 	e_name = models.CharField(max_length=255, default='')  #To make it easy for user to assign to brackets
+
+	last_team_a = models.ForeignKey(  #Region 1 Last Team Owned
+		Team,
+		on_delete=models.CASCADE,
+		related_name="last_team_a",
+		null=True,
+		blank=True
+		)
+	last_team_b = models.ForeignKey(  #Region 2 Last Team Owned
+		Team,
+		on_delete=models.CASCADE,
+		related_name="last_team_b",
+		null=True,
+		blank=True
+		)
+	last_team_c = models.ForeignKey(  #Region 3 Last Team Owned
+		Team,
+		on_delete=models.CASCADE,
+		related_name="last_team_c",
+		null=True,
+		blank=True
+		)
+	last_team_d = models.ForeignKey(  #Region 4 Last Team Owned
+		Team,
+		on_delete=models.CASCADE,
+		related_name="last_team_d",
+		null=True,
+		blank=True
+		)
+
+	last_game_a = models.ForeignKey(  #Region 1 Last Game Played
+		Game,
+		on_delete=models.CASCADE,
+		related_name="last_game_a",
+		null=True,
+		blank=True
+		)
+	last_game_b = models.ForeignKey(  #Region 2 Last Game Played
+		Game,
+		on_delete=models.CASCADE,
+		related_name="last_game_b",
+		null=True,
+		blank=True
+		)
+	last_game_c = models.ForeignKey(  #Region 3 Last Game Played
+		Game,
+		on_delete=models.CASCADE,
+		related_name="last_game_c",
+		null=True,
+		blank=True
+		)
+	last_game_d = models.ForeignKey(  #Region 4 Last Game Played
+		Game,
+		on_delete=models.CASCADE,
+		related_name="last_game_d",
+		null=True,
+		blank=True
+		)

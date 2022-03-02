@@ -36,7 +36,7 @@ def getLastGame(tbracket_id, orig_teamid):
 	return last_game
 
 def getLastGame_Team(orig_teamid):
-	# determine last game that an original team's owner played in a particular bracket
+	# determine last game & team that an original team's owner played in & with in a particular bracket
 	# not necessarily with that same orig_team
 
 	#get first game that team played in
@@ -88,76 +88,76 @@ def getLastGame_Team(orig_teamid):
 
 
 def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team_id):
-  # determine the Next Game status for a given Player's active team
+	# determine the Next Game status for a given Player's active team
 
-  # if owner's team is out
-  if (team_id is None):
-    # determine which team the user owns and select the other team as having lost
-    if (last_game.team1_id == last_team_id):
-      nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
-    if (last_game.team2_id == last_team_id):
-      nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
+	# if owner's team is out
+	if (team_id is None):
+		# determine which team the user owns and select the other team as having lost
+		if (last_game.team1_id == last_team_id):
+			nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
+		if (last_game.team2_id == last_team_id):
+			nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
 		
-    # append proper Round within which last game was lost
-    if (last_game.t_round <= 4):
-      nextup_game += " in Round " + str(last_game.t_round)
+		# append proper Round within which last game was lost
+		if (last_game.t_round <= 4):
+			nextup_game += " in Round " + str(last_game.t_round)
 		
-    elif (last_game.t_round == 5):
-      nextup_game += " in the Semi-Finals"
+		elif (last_game.t_round == 5):
+			nextup_game += " in the Semi-Finals"
 		
-    else:
-      nextup_game += " in the Championship"
+		else:
+			nextup_game += " in the Championship"
 
 		# if last game played is in Final Four round, update _region_id for proper route navigation purposes
 		# region_id = last_game.region_id
 	
 	# if owner's team is still in it
-  else:
+	else:
 		# append proper Round within which next game is being played
-    if (last_game.t_round <= 4):
-      nextup_game = "Round " + str(last_game.t_round)
+		if (last_game.t_round <= 4):
+			nextup_game = "Round " + str(last_game.t_round)
 		
-    elif (last_game.t_round == 5):
-      nextup_game = "Semi-Final"
+		elif (last_game.t_round == 5):
+			nextup_game = "Semi-Final"
 		
-    else:
-      nextup_game = "Finals"
+		else:
+			nextup_game = "Finals"
 
 		# determine proper spread based on whether Team1 or Team 2
-    if (last_game.team1_id == last_team_id and last_game.team2 is not None):
-      if (last_game.spread is not None):
-        if (last_game.spread > 0):
-          nextup_game += " Favored by " + str(last_game.spread) + " 1/2"
-        elif (last_game.spread < 0):
-          nextup_game += " Underdog by " + str(abs(last_game.spread)) + " 1/2"
-        elif (last_game.spread == 0):
-          nextup_game += " Pick'em"
-      nextup_game += " vs. " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ")"
+		if (last_game.team1_id == last_team_id and last_game.team2 is not None):
+			if (last_game.spread is not None):
+				if (last_game.spread > 0):
+					nextup_game += " Favored by " + str(last_game.spread) + " 1/2"
+				elif (last_game.spread < 0):
+					nextup_game += " Underdog by " + str(abs(last_game.spread)) + " 1/2"
+				elif (last_game.spread == 0):
+					nextup_game += " Pick'em"
+			nextup_game += " vs. " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ")"
 		# end if
 		
-    elif (last_game.team2_id == last_team_id and last_game.team1 is not None):
-      if (last_game.spread is not None):
-        if (last_game.spread < 0):
-          nextup_game += " Favored by " + str(abs(last_game.spread)) + " 1/2"
-        elif (last_game.spread > 0):
-          nextup_game += " Underdog by " + str(last_game.spread) + " 1/2"
-        elif (last_game.spread == 0):
-          nextup_game += " Pick'em"
-      nextup_game += " vs. " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ")"
+		elif (last_game.team2_id == last_team_id and last_game.team1 is not None):
+			if (last_game.spread is not None):
+				if (last_game.spread < 0):
+					nextup_game += " Favored by " + str(abs(last_game.spread)) + " 1/2"
+				elif (last_game.spread > 0):
+					nextup_game += " Underdog by " + str(last_game.spread) + " 1/2"
+				elif (last_game.spread == 0):
+					nextup_game += " Pick'em"
+			nextup_game += " vs. " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ")"
 
 		# Otherwise if no opponent yet, show vs. TBD
-    else:
-      nextup_game += " vs. TBD"
+		else:
+			nextup_game += " vs. TBD"
 
-    # Append display friendly game time & date if available
-    if (last_game.tipoff_date_time is not None):
-      nextup_game += " on "+'{dt.month}/{dt.day} ({dt:%a})'.format(dt=last_game.tipoff_date_time)
-      nextup_game += " at "+'{dt:%I}:{dt:%M} {dt:%p}'.format(dt=last_game.tipoff_date_time)
+		# Append display friendly game time & date if available
+		if (last_game.tipoff_date_time is not None):
+			nextup_game += " on "+'{dt.month}/{dt.day} ({dt:%a})'.format(dt=last_game.tipoff_date_time)
+			nextup_game += " at "+'{dt:%I}:{dt:%M} {dt:%p}'.format(dt=last_game.tipoff_date_time)
 
-    #if last game played is in Final Four round, update _region_id for proper route navigation purposes
-    # region_id = last_matchup.region_id
+		#if last game played is in Final Four round, update _region_id for proper route navigation purposes
+		# region_id = last_matchup.region_id
 
-  return nextup_game
+	return nextup_game
 
 
 def determineStatus(team_id, tbracket_id, player_id):
@@ -196,35 +196,35 @@ def create_entries():
 
 
 def reset_game(gameid):
-  """
-  Clear teams (except if Round 1), scores, and spread of each game; clear team_owners and winner from related Matchups
-  """
-  game = Game.objects.get(id=gameid)
-  # print (game, game.id, game.team1_id, game.team2_id, game.spread)
-  """
-  Set game spread, scores, and tipoff_date_time to 0/None
-  """
-  game.spread = None
-  game.team1_score = 0
-  game.team2_score = 0
-  game.tipoff_date_time = None
+	"""
+	Clear teams (except if Round 1), scores, and spread of each game; clear team_owners and winner from related Matchups
+	"""
+	game = Game.objects.get(id=gameid)
+	# print (game, game.id, game.team1_id, game.team2_id, game.spread)
+	"""
+	Set game spread, scores, and tipoff_date_time to 0/None
+	"""
+	game.spread = None
+	game.team1_score = 0
+	game.team2_score = 0
+	game.tipoff_date_time = None
 
-  """
+	"""
 	If game in Round 2-6, clear out Teams and all related Matchups
 	Round 1 Matchups not touched...they can only be changed with
 	Bracket - Reassign & Bracket - Reset actions
 	"""
-  if game.id > 32:
-    game.team1 = None
-    game.team2 = None
-    related_matchups = Matchup.objects.filter(game=gameid)
-    for match in related_matchups:
-      match.winner = None
-      match.team1_owner = None
-      match.team2_owner = None
-      match.save()
-  game.save()
-  return
+	if game.id > 32:
+		game.team1 = None
+		game.team2 = None
+		related_matchups = Matchup.objects.filter(game=gameid)
+		for match in related_matchups:
+			match.winner = None
+			match.team1_owner = None
+			match.team2_owner = None
+			match.save()
+	game.save()
+	return
 
 def reset_rnd2to6_matchups(bracketid):
 	"""
@@ -274,6 +274,15 @@ def reassign_bracket(tbracketid):
 	for entry, teams in entry_team_assignments.items():
 		Entry.objects.filter(pk=entry).update(team_a=region1[n],team_b=region2[n],team_c=region3[n],team_d=region4[n])
 		Entry.objects.filter(pk=entry).update(orig_team_a=region1[n],orig_team_b=region2[n],orig_team_c=region3[n],orig_team_d=region4[n])
+		Entry.objects.filter(pk=entry).update(last_team_a=region1[n],last_team_b=region2[n],last_team_c=region3[n],last_team_d=region4[n])
+
+		# Reset last_game to first round game assigned
+		Entry.objects.filter(pk=entry).update(
+			last_game_a=find_game(region1[n])['game_id'],
+			last_game_b=find_game(region2[n])['game_id'],
+			last_game_c=find_game(region3[n])['game_id'],
+			last_game_d=find_game(region4[n])['game_id']
+		)
 		
 		# print (find_game(region1[n])['game_id'], find_game(region1[n])['owner_field'], tbracketid, teams[4])
 
@@ -313,12 +322,19 @@ def reset_bracket(tbracketid):
 	# Reset all Bracket Matchups to their default values
 	Matchup.objects.filter(tbracket=tbracketid).update(winner = None, team1_owner = None, team2_owner = None)
 
-	# Reset Entry Active Teams to Original Active Teams
+	# Reset Entry Active Teams & Last Teams to Original Active Teams
 	for entry in Entry.objects.filter(tbracket=tbracketid):
-		entry.team_a = entry.orig_team_a
-		entry.team_b = entry.orig_team_b
-		entry.team_c = entry.orig_team_c
-		entry.team_d = entry.orig_team_d
+		entry.team_a = entry.last_team_a = entry.orig_team_a
+		entry.team_b = entry.last_team_b = entry.orig_team_b
+		entry.team_c = entry.last_team_c = entry.orig_team_c
+		entry.team_d = entry.last_team_d = entry.orig_team_d
+
+		# Reset Entry Last Games to first round games
+		entry.last_game_a = Game.objects.get(id=find_game(entry.team_a_id)['game_id'])
+		entry.last_game_b = Game.objects.get(id=find_game(entry.team_b_id)['game_id'])
+		entry.last_game_c = Game.objects.get(id=find_game(entry.team_c_id)['game_id'])
+		entry.last_game_d = Game.objects.get(id=find_game(entry.team_d_id)['game_id'])
+
 		entry.save()
 
 		# Update all First Round Matchups to related Entry team_owners
@@ -349,7 +365,7 @@ def reset_bracket(tbracketid):
 
 def game_update(game):
 	"""
-	This function takes the result of a game update makes appropriate changes
+	This function takes the result of a game update and makes appropriate changes
 	game = Game entry that was updated by API call to api/games/x/
 	"""
 
@@ -458,30 +474,49 @@ def owner1_retains(game, c_game1, c_game2):
 		match.winner=match.team1_owner
 		match.save()
 
-		# Update respective entry's Active Teams based on owner1 retaining
-		if game.region_id == 1:
-			entry_team1.team_a=game.team1
-			entry_team2.team_a=None
-		if game.region_id == 2:
-			entry_team1.team_b=game.team1
-			entry_team2.team_b=None
-		if game.region_id == 3:
-			entry_team1.team_c=game.team1
-			entry_team2.team_c=None
-		if game.region_id == 4:
-			entry_team1.team_d=game.team1
-			entry_team2.team_d=None
-		# if game.region_id == 5, don't do anything...owners keep teams
-
-
-		entry_team1.save()
-		entry_team2.save()
 		# Update approprate child game with retaining owner
 		if c_game1 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game1.id).update(team1_owner=match.team1_owner_id)
+			winner_c_game = c_game1
 		if c_game2 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team1_owner_id)
+			winner_c_game = c_game2
+
+		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner1 retaining
+		if game.region_id == 1:
+			entry_team1.last_team_a=game.team1
+			entry_team2.last_team_a=game.team2
+			entry_team1.team_a=game.team1
+			entry_team2.team_a=None
+			entry_team1.last_game_a=winner_c_game
+			entry_team2.last_game_a=game
+		if game.region_id == 2:
+			entry_team1.last_team_b=game.team1
+			entry_team2.last_team_b=game.team2
+			entry_team1.team_b=game.team1
+			entry_team2.team_b=None
+			entry_team1.last_game_b=winner_c_game
+			entry_team2.last_game_b=game
+		if game.region_id == 3:
+			entry_team1.last_team_c=game.team1
+			entry_team2.last_team_c=game.team2
+			entry_team1.team_c=game.team1
+			entry_team2.team_c=None
+			entry_team1.last_game_c=winner_c_game
+			entry_team2.last_game_c=game
+		if game.region_id == 4:
+			entry_team1.last_team_d=game.team1
+			entry_team2.last_team_d=game.team2
+			entry_team1.team_d=game.team1
+			entry_team2.team_d=None
+			entry_team1.last_game_d=winner_c_game
+			entry_team2.last_game_d=game
+		# if game.region_id == 5, don't do anything...owners keep teams
 			
+		# save entries
+		entry_team1.save()
+		entry_team2.save()
+
 	return
 
 def owner2_retains(game, c_game1, c_game2):
@@ -510,29 +545,49 @@ def owner2_retains(game, c_game1, c_game2):
 		match.winner=match.team2_owner
 		match.save()
 
-		# Update respective entry's Active Teams based on owner1 retaining
-		if game.region_id == 1:
-			entry_team1.team_a=None
-			entry_team2.team_a=game.team2
-		if game.region_id == 2:
-			entry_team1.team_b=None
-			entry_team2.team_b=game.team2
-		if game.region_id == 3:
-			entry_team1.team_c=None
-			entry_team2.team_c=game.team2
-		if game.region_id == 4:
-			entry_team1.team_d=None
-			entry_team2.team_d=game.team2
-		# if game.region_id == 5, don't do anything...owners keep teams
-
-		entry_team1.save()
-		entry_team2.save()
 		# Update approprate child game with retaining owner
 		if c_game1 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game1.id).update(team1_owner=match.team2_owner_id)
+			winner_c_game = c_game1
 		if c_game2 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team2_owner_id)
+			winner_c_game = c_game2
 
+		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner2 retaining
+		if game.region_id == 1:
+			entry_team1.last_team_a=game.team1
+			entry_team2.last_team_a=game.team2
+			entry_team1.team_a=None
+			entry_team2.team_a=game.team2
+			entry_team1.last_game_a=game
+			entry_team2.last_game_a=winner_c_game
+		if game.region_id == 2:
+			entry_team1.last_team_b=game.team1
+			entry_team2.last_team_b=game.team2
+			entry_team1.team_b=None
+			entry_team2.team_b=game.team2
+			entry_team1.last_game_b=game
+			entry_team2.last_game_b=winner_c_game
+		if game.region_id == 3:
+			entry_team1.last_team_c=game.team1
+			entry_team2.last_team_c=game.team2
+			entry_team1.team_c=None
+			entry_team2.team_c=game.team2
+			entry_team1.last_game_c=game
+			entry_team2.last_game_c=winner_c_game
+		if game.region_id == 4:
+			entry_team1.last_team_d=game.team1
+			entry_team2.last_team_d=game.team2
+			entry_team1.team_d=None
+			entry_team2.team_d=game.team2
+			entry_team1.last_game_d=game
+			entry_team2.last_game_d=winner_c_game
+		# if game.region_id == 5, don't do anything...owners keep teams
+
+		# save entries
+		entry_team1.save()
+		entry_team2.save()
+		
 	return
 
 def owner1_inherits(game, c_game1, c_game2):
@@ -561,46 +616,82 @@ def owner1_inherits(game, c_game1, c_game2):
 		match.winner=match.team1_owner
 		match.save()
 
-		# Update respective entry's Active Teams based on owner1 inheriting
+		# Update approprate child game with retaining owner
+		if c_game1 != None:
+			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game1.id).update(team1_owner=match.team1_owner_id)
+			winner_c_game = c_game1
+		if c_game2 != None:
+			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team1_owner_id)
+			winner_c_game = c_game2
+
+		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner1 inheriting
 		if game.region_id == 1:
+			entry_team1.last_team_a=game.team2
+			entry_team2.last_team_a=game.team1
 			entry_team1.team_a=game.team2
 			entry_team2.team_a=None
+			entry_team1.last_game_a=winner_c_game
+			entry_team2.last_game_a=game
 		if game.region_id == 2:
+			entry_team1.last_team_b=game.team2
+			entry_team2.last_team_b=game.team1
 			entry_team1.team_b=game.team2
 			entry_team2.team_b=None
+			entry_team1.last_game_b=winner_c_game
+			entry_team2.last_game_b=game
 		if game.region_id == 3:
+			entry_team1.last_team_c=game.team2
+			entry_team2.last_team_c=game.team1
 			entry_team1.team_c=game.team2
 			entry_team2.team_c=None
+			entry_team1.last_game_c=winner_c_game
+			entry_team2.last_game_c=game
 		if game.region_id == 4:
+			entry_team1.last_team_d=game.team2
+			entry_team2.last_team_d=game.team1
 			entry_team1.team_d=game.team2
 			entry_team2.team_d=None
+			entry_team1.last_game_d=winner_c_game
+			entry_team2.last_game_d=game
 		if game.region_id == 5:
 		# If Final Four team, swap teams so that both owners retain a team for Standings purposes
 			if entry_team1.team_a_id == game.team1_id:
 				entry_team1.team_a=game.team2
+				entry_team1.last_team_a=game.team2
+				entry_team1.last_game_a=winner_c_game
 			elif entry_team1.team_b_id == game.team1_id:
 				entry_team1.team_b=game.team2
+				entry_team1.last_team_b=game.team2
+				entry_team1.last_game_b=winner_c_game
 			elif entry_team1.team_c_id == game.team1_id:
 				entry_team1.team_c=game.team2
+				entry_team1.last_team_c=game.team2
+				entry_team1.last_game_c=winner_c_game
 			elif entry_team1.team_d_id == game.team1_id:
 				entry_team1.team_d=game.team2
+				entry_team1.last_team_d=game.team2
+				entry_team1.last_game_d=winner_c_game
 
 			if entry_team2.team_a_id == game.team2_id:
 				entry_team2.team_a=game.team1
+				entry_team2.last_team_a=game.team1
+				entry_team2.last_game_a=game
 			elif entry_team2.team_b_id == game.team2_id:
 				entry_team2.team_b=game.team1
+				entry_team2.last_team_b=game.team1
+				entry_team2.last_game_b=game
 			elif entry_team2.team_c_id == game.team2_id:
 				entry_team2.team_c=game.team1
+				entry_team2.last_team_c=game.team1
+				entry_team2.last_game_c=game
 			elif entry_team2.team_d_id == game.team2_id:
 				entry_team2.team_d=game.team1
+				entry_team2.last_team_d=game.team1
+				entry_team2.last_game_d=game
 		
+		# save entries
 		entry_team1.save()
 		entry_team2.save()
-		# Update approprate child game with retaining owner
-		if c_game1 != None:
-			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game1.id).update(team1_owner=match.team1_owner_id)
-		if c_game2 != None:
-			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team1_owner_id)
 
 	return
 
@@ -630,52 +721,88 @@ def owner2_inherits(game, c_game1, c_game2):
 		match.winner=match.team2_owner
 		match.save()
 
-		# Update respective entry's Active Teams based on owner2 inheriting
+		# Update approprate child game with retaining owner
+		if c_game1 != None:
+			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game1.id).update(team1_owner=match.team2_owner_id)
+			winner_c_game = c_game1
+		if c_game2 != None:
+			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team2_owner_id)
+			winner_c_game = c_game2
+
+		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner2 inheriting
 		if game.region_id == 1:
+			entry_team1.last_team_a=game.team2
+			entry_team2.last_team_a=game.team1
 			entry_team1.team_a=None
 			entry_team2.team_a=game.team1
+			entry_team1.last_game_a=game
+			entry_team2.last_game_a=winner_c_game
 		if game.region_id == 2:
+			entry_team1.last_team_b=game.team2
+			entry_team2.last_team_b=game.team1
 			entry_team1.team_b=None
 			entry_team2.team_b=game.team1
+			entry_team1.last_game_b=game
+			entry_team2.last_game_b=winner_c_game
 		if game.region_id == 3:
+			entry_team1.last_team_c=game.team2
+			entry_team2.last_team_c=game.team1
 			entry_team1.team_c=None
 			entry_team2.team_c=game.team1
+			entry_team1.last_game_c=game
+			entry_team2.last_game_c=winner_c_game
 		if game.region_id == 4:
+			entry_team1.last_team_d=game.team2
+			entry_team2.last_team_d=game.team1
 			entry_team1.team_d=None
 			entry_team2.team_d=game.team1
+			entry_team1.last_game_d=game
+			entry_team2.last_game_d=winner_c_game
 		if game.region_id == 5:
 		# If Final Four team, swap teams so that both owners retain a team for Standings purposes
 			if entry_team1.team_a_id == game.team1_id:
 				entry_team1.team_a=game.team2
+				entry_team1.last_team_a=game.team2
+				entry_team1.last_game_a=game
 			elif entry_team1.team_b_id == game.team1_id:
 				entry_team1.team_b=game.team2
+				entry_team1.last_team_b=game.team2
+				entry_team1.last_game_b=game
 			elif entry_team1.team_c_id == game.team1_id:
 				entry_team1.team_c=game.team2
+				entry_team1.last_team_c=game.team2
+				entry_team1.last_game_c=game
 			elif entry_team1.team_d_id == game.team1_id:
 				entry_team1.team_d=game.team2
+				entry_team1.last_team_d=game.team2
+				entry_team1.last_game_d=game
 
 			if entry_team2.team_a_id == game.team2_id:
 				entry_team2.team_a=game.team1
+				entry_team2.last_team_a=game.team1
+				entry_team2.last_game_a=winner_c_game
 			elif entry_team2.team_b_id == game.team2_id:
 				entry_team2.team_b=game.team1
+				entry_team2.last_team_b=game.team1
+				entry_team2.last_game_b=winner_c_game
 			elif entry_team2.team_c_id == game.team2_id:
 				entry_team2.team_c=game.team1
+				entry_team2.last_team_c=game.team1
+				entry_team2.last_game_c=winner_c_game
 			elif entry_team2.team_d_id == game.team2_id:
 				entry_team2.team_d=game.team1
+				entry_team2.last_team_d=game.team1
+				entry_team2.last_game_d=winner_c_game
 		
+		# save entries
 		entry_team1.save()
 		entry_team2.save()
-		# Update approprate child game with retaining owner
-		if c_game1 != None:
-			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game1.id).update(team1_owner=match.team2_owner_id)
-		if c_game2 != None:
-			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team2_owner_id)
-
+		
 	return
 
 def find_game(x):
 	"""
-	x = team_id. Returns a dict with {'game_id', matchup 'owner_field' to udpate}
+	x = team_id. Returns a dict with {'game_id', matchup 'owner_field'} to update
 	For purpose of updating related First Round matchup game when Brackets are
 	Reassigned or Reset
 	"""
@@ -749,13 +876,13 @@ def find_game(x):
 def getFriendlyDate(storedDate):
 	# Convert the stored tipoff_date_time to a front-end friendly date
 
-  friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
+	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
 
-  return friendlyDate
+	return friendlyDate
 
 def getFriendlyTime(storedDate):
 	# Convert the stored tipoff_date_time to a front-end friendly time
 
-  friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
+	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
 
-  return friendlyTime
+	return friendlyTime
