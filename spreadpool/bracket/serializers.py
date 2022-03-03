@@ -202,7 +202,18 @@ class GameSerializer(serializers.ModelSerializer):
 		instance.team2_score = validated_data.get('team2_score', instance.team2_score)
 		instance.tipoff_date_time = validated_data.get('tipoff_date_time', instance.tipoff_date_time)
 		instance.save()
-		game_update(instance)
+
+		# if url param '?send_email=true', update game & send emails
+		_send_email = self.context['request'].GET.get('send_email')
+		if _send_email is not None:
+			if _send_email == "true":
+				print ("_send_email is True!")
+				game_update(instance, True)
+				return instance
+
+		# otherwise, update game without sending emails
+		print ("_send_email is None or not set to true. It's set to:", _send_email)
+		game_update(instance, False)
 		return instance
 
 	def to_representation(self, obj):

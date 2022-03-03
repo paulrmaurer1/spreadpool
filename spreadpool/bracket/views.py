@@ -471,7 +471,7 @@ class GameViewSet(ModelViewSet):
 		games = Game.objects.filter(team1_score__gt=0, team2_score__gt=0, team1__isnull=False, team2__isnull=False).order_by('id')
 		for game in games:
 			print ("Game #: " + str(game.id) + " updating...")
-			game_update(game)
+			game_update(game, False)
 		return Response(status=status.HTTP_204_NO_CONTENT)
 
 	@action(detail=False)
