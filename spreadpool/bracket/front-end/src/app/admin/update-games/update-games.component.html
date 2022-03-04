@@ -5,19 +5,16 @@
 	<div class = "row">
 		<div class = "col">
 			<form [formGroup]="gameRetrieveForm" (ngSubmit)="retrieveGame()">
-				<!-- <div class="container"> -->
 					<div class="form-row">
 						<div class="form-group col-3">
-							<!-- <label for="bracket_name">Bracket</label> -->
-						    <input type="number" min = "1" max = "63" class="form-control" placeholder="Enter game id to Update.." 
-						    id="game_id" [formControl] = "game_id">
+						    <input type="number" min = "1" max = "63" class="form-control" placeholder="Enter game id to Update.."
+                id="game_id" [formControl] = "game_id">
 						</div>
 						<div class="col">
 							<button type="submit" id="submit" class="btn btn-success" 
 							[disabled]="!gameRetrieveForm.valid">Retrieve Game</button>
 						</div>
 					</div>
-				<!-- </div> -->
 			</form>
 		</div>
 	</div> <!--row-->

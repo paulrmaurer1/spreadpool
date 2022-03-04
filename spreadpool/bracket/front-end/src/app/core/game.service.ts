@@ -55,6 +55,10 @@ export class GameService {
 		return this.http.patch<GameData>(gameUrl + game.id + '/', JSON.stringify(game), this.getHttpOptions())
 	}
 
+  updateGame_sendEmail(game) {
+		return this.http.patch<GameData>(gameUrl + game.id + '/?send_email=true', JSON.stringify(game), this.getHttpOptions())
+	}
+
 	resetGame(id) {
 		return this.http.get<GameData>(gameUrl + id + '/reset/', this.getHttpOptions())
 	}

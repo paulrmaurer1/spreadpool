@@ -101,9 +101,9 @@ body{
   }
 
 /*Add space between nav pills - Standings page*/
-.nav-pills > li {
+/* .nav-pills > li { */
 /*  margin-right: 40px;*/
-}
+/* } */
 
 /*To turn cursor into a pointer, so user sees an element can be clicked*/
 /*e.g. for pendil edit icon on Roster page & Roster Page table title headings (for sort)*/
@@ -143,6 +143,12 @@ body{
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
+}
+
+/*For checkbox on Update Game Form */
+input[type=checkbox] {
+  transform: scale(1.5);
+  margin-top: 1.2rem;
 }
 
 /*On Brackets page, remove padding around navbar class to be consisistent*/

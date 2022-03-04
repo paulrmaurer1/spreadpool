@@ -5,6 +5,7 @@
 		<div class="form-row">
 			<div class="col non-form-element"><strong>Game id: </strong>{{ _game.id }}</div>
 			<div class="col non-form-element"><strong>Region: </strong>{{ _game.region }}</div>
+      <div class="form-group col"></div>
 		</div>
 			
 		<div class="form-row align-items-center">
@@ -30,24 +31,35 @@
 			<div class="form-group col"></div>
 		</div>
     <div class="form-row align-items-center">
-      <div class="col non-form-element"><strong>Game Date/Time: </strong></div>
+      <div class="col non-form-element"><strong>Game Date/Time:</strong></div>
       <div class="form-group col">
+        <label for="game_date">Date:&nbsp;</label>
         <p-calendar 
           [formControl]="game_date" 
           dateFormat="yy-mm-dd" 
           dataType="string"
+          id="game_date"
           >
         </p-calendar>
       </div>
       <div class="form-group col">
+        <label for="game_time">Time (ET):&nbsp;</label>
         <p-calendar 
           [formControl]="game_time" 
           [timeOnly]="true" 
           [hourFormat]="12" 
-          dataType="string" 
+          dataType="string"
+          id="game_time"
           >
         </p-calendar>
       </div>
+    </div>
+    <div class="form-row align-items-center">
+      <div class="col non-form-element"><strong>Send Email?:</strong></div>
+      <div class="form-group col">
+        <input type="checkbox" [formControl]="send_email"/>
+      </div>
+      <div class="form-group col"></div>
     </div>
 		<div class="form-row">
 			<button type="submit" id="submit" class="btn btn-success" 

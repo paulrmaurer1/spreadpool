@@ -207,12 +207,12 @@ class GameSerializer(serializers.ModelSerializer):
 		_send_email = self.context['request'].GET.get('send_email')
 		if _send_email is not None:
 			if _send_email == "true":
-				print ("_send_email is True!")
+				# print ("_send_email is True!")
 				game_update(instance, True)
 				return instance
 
 		# otherwise, update game without sending emails
-		print ("_send_email is None or not set to true. It's set to:", _send_email)
+		# print ("_send_email is None or not set to true. It's set to:", _send_email)
 		game_update(instance, False)
 		return instance
 
