@@ -651,7 +651,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Game Date/Time: </strong></div>\r\n      <div class=\"form-group col\">\r\n        <p-calendar \r\n          [formControl]=\"game_date\" \r\n          dateFormat=\"yy-mm-dd\" \r\n          dataType=\"string\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <p-calendar \r\n          [formControl]=\"game_time\" \r\n          [timeOnly]=\"true\" \r\n          [hourFormat]=\"12\" \r\n          dataType=\"string\" \r\n          >\r\n        </p-calendar>\r\n      </div>\r\n    </div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n        [disabled]=\"!gameUpdateForm.valid\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
+module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n      <div class=\"form-group col\"></div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Game Date/Time:</strong></div>\r\n      <div class=\"form-group col\">\r\n        <label for=\"game_date\">Date:&nbsp;</label>\r\n        <p-calendar \r\n          [formControl]=\"game_date\" \r\n          dateFormat=\"yy-mm-dd\" \r\n          dataType=\"string\"\r\n          id=\"game_date\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <label for=\"game_time\">Time (ET):&nbsp;</label>\r\n        <p-calendar \r\n          [formControl]=\"game_time\" \r\n          [timeOnly]=\"true\" \r\n          [hourFormat]=\"12\" \r\n          dataType=\"string\"\r\n          id=\"game_time\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n    </div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Send Email?:</strong></div>\r\n      <div class=\"form-group col\">\r\n        <input type=\"checkbox\" [formControl]=\"send_email\"/>\r\n      </div>\r\n      <div class=\"form-group col\"></div>\r\n    </div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n        [disabled]=\"!gameUpdateForm.valid\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -698,12 +698,14 @@ var GameDetailComponent = /** @class */ (function () {
             'team2_score': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             'game_date': [this._todayDate.toISOString().substring(0, 10)],
             'game_time': ['12:00 PM'],
+            'send_email': [true],
         });
         this.spread = this.gameUpdateForm.controls['spread'];
         this.team1_score = this.gameUpdateForm.controls['team1_score'];
         this.team2_score = this.gameUpdateForm.controls['team2_score'];
         this.game_date = this.gameUpdateForm.controls['game_date'];
         this.game_time = this.gameUpdateForm.controls['game_time'];
+        this.send_email = this.gameUpdateForm.controls['send_email'];
     }
     Object.defineProperty(GameDetailComponent.prototype, "game", {
         get: function () {
@@ -731,6 +733,7 @@ var GameDetailComponent = /** @class */ (function () {
             this.gameUpdateForm.controls['game_date'].patchValue(this._todayDate.toISOString().substring(0, 10));
             this.gameUpdateForm.controls['game_time'].patchValue('12:00 PM');
         }
+        this.gameUpdateForm.controls['send_email'].patchValue(true);
         this.showMsg = false;
     };
     GameDetailComponent.prototype.updateGame = function () {
@@ -738,12 +741,25 @@ var GameDetailComponent = /** @class */ (function () {
         this._game.team1_score = this.team1_score.value;
         this._game.spread = this.spread.value;
         this._game.team2_score = this.team2_score.value;
-        this._game.tipoff_date_time = this.game_date.value + " " + Object(_shared_functions__WEBPACK_IMPORTED_MODULE_4__["convertTime12to24"])(this.game_time.value);
-        this._gameService.updateGame(this._game).subscribe(function (data) {
-            console.log("Game updated with:", _this._game);
-            _this.msg = "Game #: " + _this._game.id + " has been updated!";
-            _this.showMsg = true;
-        });
+        if (this.game_date.value && this.game_time.value) {
+            this._game.tipoff_date_time = this.game_date.value + " " + Object(_shared_functions__WEBPACK_IMPORTED_MODULE_4__["convertTime12to24"])(this.game_time.value);
+        }
+        else {
+            this._game.tipoff_date_time = null;
+        }
+        // Depending on whether send_email checkbox is checked, send different request to backend
+        if (this.send_email.value) {
+            this._gameService.updateGame_sendEmail(this._game).subscribe(function (data) {
+                _this.msg = "Game #: " + _this._game.id + " has been updated & email sent!";
+            });
+        }
+        else {
+            this._gameService.updateGame(this._game).subscribe(function (data) {
+                _this.msg = "Game #: " + _this._game.id + " has been updated!";
+            });
+        }
+        console.log("Game updated with:", this._game);
+        this.showMsg = true;
     }; //end updateGame()
     GameDetailComponent.prototype.resetGame = function () {
         var _this = this;
@@ -1084,7 +1100,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--update-gamess.component.html-->\r\n<br>\r\n<h5><strong>Retrieve Game</strong></h5>\r\n<div class=\"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<form [formGroup]=\"gameRetrieveForm\" (ngSubmit)=\"retrieveGame()\">\r\n\t\t\t\t<!-- <div class=\"container\"> -->\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-3\">\r\n\t\t\t\t\t\t\t<!-- <label for=\"bracket_name\">Bracket</label> -->\r\n\t\t\t\t\t\t    <input type=\"number\" min = \"1\" max = \"63\" class=\"form-control\" placeholder=\"Enter game id to Update..\" \r\n\t\t\t\t\t\t    id=\"game_id\" [formControl] = \"game_id\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t\t\t\t\t[disabled]=\"!gameRetrieveForm.valid\">Retrieve Game</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t<!-- </div> -->\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div> <!--row-->\r\n</div> <!--container-->\r\n<br>\r\n\r\n<h5><strong>Update Game</strong></h5>\r\n<app-game-detail *ngIf=\"_currentGame\" [game]=\"_currentGame\"></app-game-detail>\r\n<br>\r\n<h5><strong>Testing Features</strong></h5>\r\n<div class = \"col\">\r\n\t<button class=\"btn btn-dark\" (click)=\"replayAllGames()\">Replay All Games</button>\r\n\t&nbsp;\r\n\t<button class=\"btn btn-warning\" (click)=\"resetAllGames()\">Reset All Games (Testing Only)</button>\r\n</div>\r\n<br>"
+module.exports = "<!--update-gamess.component.html-->\r\n<br>\r\n<h5><strong>Retrieve Game</strong></h5>\r\n<div class=\"container\">\r\n\t<div class = \"row\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<form [formGroup]=\"gameRetrieveForm\" (ngSubmit)=\"retrieveGame()\">\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-3\">\r\n\t\t\t\t\t\t    <input type=\"number\" min = \"1\" max = \"63\" class=\"form-control\" placeholder=\"Enter game id to Update..\"\r\n                id=\"game_id\" [formControl] = \"game_id\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n\t\t\t\t\t\t\t[disabled]=\"!gameRetrieveForm.valid\">Retrieve Game</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div> <!--row-->\r\n</div> <!--container-->\r\n<br>\r\n\r\n<h5><strong>Update Game</strong></h5>\r\n<app-game-detail *ngIf=\"_currentGame\" [game]=\"_currentGame\"></app-game-detail>\r\n<br>\r\n<h5><strong>Testing Features</strong></h5>\r\n<div class = \"col\">\r\n\t<button class=\"btn btn-dark\" (click)=\"replayAllGames()\">Replay All Games</button>\r\n\t&nbsp;\r\n\t<button class=\"btn btn-warning\" (click)=\"resetAllGames()\">Reset All Games (Testing Only)</button>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -2163,6 +2179,9 @@ var GameService = /** @class */ (function () {
     };
     GameService.prototype.updateGame = function (game) {
         return this.http.patch(gameUrl + game.id + '/', JSON.stringify(game), this.getHttpOptions());
+    };
+    GameService.prototype.updateGame_sendEmail = function (game) {
+        return this.http.patch(gameUrl + game.id + '/?send_email=true', JSON.stringify(game), this.getHttpOptions());
     };
     GameService.prototype.resetGame = function (id) {
         return this.http.get(gameUrl + id + '/reset/', this.getHttpOptions());
