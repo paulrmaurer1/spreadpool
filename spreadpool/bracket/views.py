@@ -67,7 +67,7 @@ class IndexView(LoginRequiredMixin, ListView):
 		context['token'] = token
 		context['id'] = self.request.user.id
 		context['before_tourney'] = settings.BEFORE_TOURNEY
-		print("IndexView context is", context)
+		# print("IndexView context is", context)
 		return context
 
 class SignUp(CreateView):
