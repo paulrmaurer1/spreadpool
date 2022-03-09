@@ -1,58 +1,41 @@
 <!--src/app/ui/header/header.component.html-->
 
 <!-- Navigation Menu for site -->
-<nav class="navbar center navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 	<div class="container-fluid">
-		<a class="navbar-brand" [routerLink]="['/home']">
+		<a class="navbar-brand p-2" [routerLink]="['/home']">
 			<img src="../static/front-end/assets/spreadpool_white_no_background_48x114.png" alt="Spreadpool">
 		</a>
-		<div class="d-flex flex-row order-2 order-lg-3 align-middle">
+		<div class="d-flex ml-auto p-2 flex-row order-2 order-md-3 align-middle">
 			<a *ngIf="currentUser" class="navbar-text" [routerLink]="['/profile']">Hi, {{ currentUser.first_name }}!</a>
 	        <form class="form-inline">
 		    	<button type="button" class="btn btn-outline-light" (click)="logout()">Log Out</button>
 		  	</form>
-			<button type="button" class="navbar-toggler" data-toggle="collapse"
-				data-target="#navbar" aria-controls="navbar" aria-expanded="false"
-				aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
-				<span class="navbar-toggler-icon"></span>
-			</button>
 		</div>
-		<div class="collapse navbar-collapse order-3 order-lg-2" id="navbar" [collapse]="isCollapsed">
-	        <ul class="navbar-nav mr-auto">
-	        	<li class="nav-item" [routerLinkActive]="['active']">
-	            	<a class="nav-link" [routerLink]="['/home']">Home</a>
-	            </li>
-	            <li class="nav-item" [routerLinkActive]="['active']">
-	            	<a class="nav-link" [routerLink]="['/profile']">My Teams</a>
-	            </li>
-
-				<li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
-	            	<a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]" [fragment]="_region_id">Brackets</a>
-	            </li>
-				<!-- ***CODE TO DROP-DOWN UPON HOVER OVER BRACKETS MENU ITEM***
-	            <li class="nav-item dropdown">
-	            	<a *ngIf="_bracketToShow" class="nav-link dropdown-toggle" [routerLink]="['/brackets', _bracketToShow]" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brackets</a>
-	            	<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	            		<li *ngFor = "let tbracket of tbracketList">
-	            			<a class="dropdown-item" [routerLink]="['/brackets', tbracket.id]">
-	            			{{ tbracket.name }}</a>
-	            		</li>
-	            	</ul>
-	            </li>
-				 -->
-	            <li class="nav-item dropdown" dropdown *ngIf="isUserAdmin()">
-			        <a class="nav-link dropdown-toggle" dropdownToggle (click)="false" 
-			        href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          Admin
-			        </a>
-			        <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
-			          <a class="dropdown-item" [routerLink]="['/admin/c-brackets']">Manage Brackets</a>
-			          <a class="dropdown-item" [routerLink]="['/admin/a-brackets', _bracketToShow]">Assign Entries</a>
-			          <a class="dropdown-item" [routerLink]="['/admin/u-games']">Update Games</a>
-			          <a class="dropdown-item" [routerLink]="['/admin/s-emails']">Send Emails</a>
-			        </div>
-				</li>
-	        </ul>
-	  	</div> <!--end navbar-collapse -->
-  	</div> <!--end container-fluid -->
+    <div class="p-2 order-3 order-md-2 mob-display">
+      <ul class="navbar-nav d-flex flex-row justify-content-between">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/profile']">My Teams</a>
+        </li>
+        <li class="nav-item" [class.active]="isActive(['/brackets'])" *ngIf = "_bracketToShow">
+          <a *ngIf="_bracketToShow" class="nav-link" [routerLink]="['/brackets', _bracketToShow]" [fragment]="_region_id">Brackets</a>
+        </li>
+        <li class="nav-item dropdown" dropdown *ngIf="isUserAdmin()">
+          <a class="nav-link dropdown-toggle" dropdownToggle (click)="false" 
+          href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+          </a>
+          <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/admin/c-brackets']">Manage Brackets</a>
+            <a class="dropdown-item" [routerLink]="['/admin/a-brackets', _bracketToShow]">Assign Entries</a>
+            <a class="dropdown-item" [routerLink]="['/admin/u-games']">Update Games</a>
+            <a class="dropdown-item" [routerLink]="['/admin/s-emails']">Send Emails</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div> <!--end container-fluid -->
 </nav>

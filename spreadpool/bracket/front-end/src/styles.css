@@ -8,9 +8,10 @@
 
 /*CUSTOM STYLES BELOW TO APPLY ON TOP OF ABOVE IMPORTS*/
 
-/*Styling changes for mobile vs. laptop screens*/
+/*Styling changes for mobile vs. laptop/ipad screens*/
 
-@media all and (max-width: 991px) {
+/* Mobile (vertical) specific styling i.e. everything up to breakpoint Small (sm)*/
+@media all and (max-width: 767px) {
     .container {
       /* Occupy full width of screen */
        max-width: 100%; 
@@ -27,9 +28,28 @@
     li.game-bottom {
       height: 14px;
     }
+
+    /*Styling of text in navbar, e.g. Hi, Paul!*/
+    .navbar-text {
+      font-size: 10px;
+      padding-right: 10px;
+    }
+
+    /*Style of navbar upon collapsing in mobile */
+    
+    /*Menu bar items text */
+    .navbar-nav .nav-link {
+      font-size: 14px !important;
+    }
+    
+    div.mob-display {
+      width: 100%;
+    }
 }
 
-@media all and (min-width: 992px) {
+/* Laptop/iPad/mobile horizontal specific styling, 
+i.e. everything including/larger than breakpoint Medium (md) */
+@media all and (min-width: 768px) {
     body {
       font-size:small;
     }
@@ -39,19 +59,18 @@
     li.game-bottom {
       height: 20px;
     }
+
+    /*Styling of text in navbar, e.g. Hi, Paul!*/
+    .navbar-text {
+      font-size: 12px;
+      padding-right: 12px;
+    }
+
 }
-
-
 
 /*General body style*/
 body{
   font-family:sans-serif;
-}
-
-/*Styling of text in navbar, e.g. Hi, Paul!*/
-.navbar-text {
-	font-size: 10px;
-	padding-right: 10px;
 }
 
 /*Add white underline to clicked navbar element*/
@@ -60,13 +79,6 @@ body{
   position: relative;
   margin-left: 20px;
   padding-left: 0px;
-  /*font-size: 20px;*/
-}
-
-/*On main menu when hover over Brackets, show dropdown-menu*/
-.navbar-nav li:hover > ul.dropdown-menu {
-    display: block;
-    margin-top: -6px;
 }
 
 .navbar-dark .navbar-nav .active a::after {
@@ -78,6 +90,11 @@ body{
   right: 0;
 }
 
+/*On main menu when hover over Brackets, show dropdown-menu*/
+.navbar-nav li:hover > ul.dropdown-menu {
+  display: block;
+  margin-top: -6px;
+}
 .navbar.center .navbar-collapse .navbar-nav {
     display:inline-block;
     float: none;
