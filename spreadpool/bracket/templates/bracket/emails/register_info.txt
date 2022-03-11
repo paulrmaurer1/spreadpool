@@ -1,0 +1,12 @@
+Hey {{first_name}},
+Thanks for registering for the NCAA Spreapool 2022!
+
+To confirm your entry, you registered with the following info:
+Name: {{full_name}}
+Number of Entries: {{num_entries}}
+{% if mult_entry_type == "S" and num_entries > 1 %}
+Your {{num_entries}} entries will be assigned to the Same bracket.
+{% endif %}
+{% if mult_entry_type == "D" and num_entries > 1 %}
+Your {{num_entries}} entries will be assigned to the Different brackets.
+{% endif %}

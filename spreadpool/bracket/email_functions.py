@@ -13,6 +13,34 @@ from django.template import Context
 The below functions execute lookups to populate email messages with to, from, subject, message
 Templates used are located in the bracket templates directory in the folder "emails"
 """
+def email_registration_info(player_id):
+	"""
+	This funcion prepares & sends an email to the player who just registered with key info about 
+	how to change profile, payment details, and key days/times on timeline
+	"""
+	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+
+	player = User.objects.get(id=player_id)
+
+	# context elements for email
+	c = {
+		'first_name': player.first_name,
+		'full_name': player.full_name,
+		'num_entries': player.num_entries,
+		'mult_entry_type': player.mult_entry_type,
+		'target_email': player.email,
+	}
+
+	subject = 'NCAA Spreadpool registration for {} successfully processed!'.format(player.full_name)
+	msg_plain = render_to_string(email_dir + 'register_info.txt', c)
+	msg_html = render_to_string(email_dir + 'register_info.html', c)
+
+	print (c)
+	send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [player.email], html_message=msg_html)
+
+	return
+
+
 def email_spreads(tbracket_id, tround):
 	"""
 	This function prepares & sends emails to each team owner for games in which their team is playing. This function
@@ -24,7 +52,7 @@ def email_spreads(tbracket_id, tround):
 	print ("tbracket_id =", tbracket_id, " & tround =", tround)
 
 	# only include games that have had a spread posted but game is not complete (scores = 0)
-	games = Game.objects.filter(t_round=tround).filter(spread__isnull=False).filter(team1_score=0).filter(team2_score=0)
+	games = Game.objects.filter(t_round=tround).filter(spread__isnull=False).filter(team1_score=0).filter(team2_score=0).order_by('tipoff_date_time')
 	
 	# build a dict of user_id : [match_ids] for matches in which an owner is involved in games
 	user_matches = {}
@@ -64,11 +92,18 @@ def email_spreads(tbracket_id, tround):
 			u1 = User.objects.get(id=match.team1_owner_id)
 			u2 = User.objects.get(id=match.team2_owner_id)
 			if game.spread > 0:
-				game_bullet_list += '<li/>'+str(game.team1)+' ('+str(u1)+') ['+str(-game.spread)+'.5] vs. '+str(game.team2)+' ('+str(u2)+')</li>'
+				game_bullet_list += '<li>'+str(game.team1)+' ('+str(u1)+') ['+str(-game.spread)+'.5] vs. '+str(game.team2)+' ('+str(u2)+')'
 			elif game.spread == 0:
-				game_bullet_list += '<li/>'+str(game.team1)+' ('+str(u1)+') [PICK EM] vs. '+str(game.team2)+' ('+str(u2)+')</li>'
+				game_bullet_list += '<li>'+str(game.team1)+' ('+str(u1)+') [PICK EM] vs. '+str(game.team2)+' ('+str(u2)+')'
 			else:
-				game_bullet_list += '<li/>'+str(game.team1)+' ('+str(u1)+') vs. '+str(game.team2)+' ('+str(u2)+') ['+str(game.spread)+'.5]</li>'
+				game_bullet_list += '<li>'+str(game.team1)+' ('+str(u1)+') vs. '+str(game.team2)+' ('+str(u2)+') ['+str(game.spread)+'.5]'
+
+			if game.tipoff_date_time:
+				game_bullet_list += ' at '+getFriendlyTime(game.tipoff_date_time)+' on '+getFriendlyDate(game.tipoff_date_time)+'</li>'
+			else:
+				game_bullet_list += '</li>'
+				
+		bracket = Tbracket.objects.get(id=tbracket_id)
 
 		print ("Games for :", to_target_first_name)
 		print (game_bullet_list)
@@ -77,12 +112,12 @@ def email_spreads(tbracket_id, tround):
 		c = {
 			'first_name': to_target_first_name,
 			'target_email': to_target,
-			'bracket_id': tbracket_id,
+			'bracket_name': bracket.name,
 			't_round' : tround,
 			'game_bullet_list' : game_bullet_list,
 		}
 
-		subject = 'Here are your Round ' + str(tround) + ' matchups for today. Good luck!'
+		subject = 'Here are your {} Bracket, Round {} matchups for today. Good luck!'.format(bracket.name, str(tround))
 		msg_plain = render_to_string(email_dir + 'today_matches.txt', c)
 		msg_html = render_to_string(email_dir + 'today_matches.html', c)
 
@@ -487,3 +522,22 @@ def email_team_owners(game, outcome):
 			send_mail(subject2, msg2_plain, settings.DEFAULT_FROM_EMAIL, [to_target2], html_message=msg2_html)
 		
 	return
+
+
+"""
+Need to have these functions here as well as in functions.py because of circular reference
+Put in separate file and import from both function.py & email_functions.py?
+"""
+def getFriendlyDate(storedDate):
+	# Convert the stored tipoff_date_time to a front-end friendly date
+
+	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
+
+	return friendlyDate
+
+def getFriendlyTime(storedDate):
+	# Convert the stored tipoff_date_time to a front-end friendly time
+
+	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
+
+	return friendlyTime

@@ -2,8 +2,10 @@
 
 {% block content %}
 Hey {{first_name}},<br>
-Here are your Round {{t_round}} matchups for today.  Good luck!<br>
+Here are your <strong>{{bracket_name}}</strong> Bracket, Round <strong>{{t_round}}</strong> matchups for today.  Good luck!<br>
 <ul>
 {% autoescape off %}{{ game_bullet_list }}{% endautoescape %}
 </ul>
+<small>*All times are Eastern Time (ET)</small>
+<br>
 {% endblock %}

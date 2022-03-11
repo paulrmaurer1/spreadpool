@@ -14,6 +14,7 @@ export class SendGamesModalComponent implements OnInit {
 	tbracket_name: string;
 	tround_values: number[];
 	gamesList: string[];
+  game_entry: string;
  
 	constructor(
 		public sendGamesModalRef: BsModalRef,
@@ -39,20 +40,27 @@ export class SendGamesModalComponent implements OnInit {
 
      }
 
-    refreshGameListing(value: number){
-	     this._gameService.getGamesSpreadNoScore(value).subscribe(data => {
-			this.gamesList = data.map(target => {
-				// Build an array of games to display in modal
-				if (target.spread > 0) {
-					return ' '+ target.team1 + ' [-' + target.spread + '.5] vs. ' + target.team2;
-				}
-				else if (target.spread == 0) {
-					return ' '+ target.team1 + ' [PICK EM] vs. ' + target.team2;
-				}
-				else {
-					return ' '+ target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
-				}
-			})
-		})
-    }
+  refreshGameListing(value: number){
+    this._gameService.getGamesSpreadNoScore(value).subscribe(data => {
+      this.gamesList = data.map(target => {
+        // Build an array of games to display in modal
+        if (target.spread > 0) {
+          // return ' ' + target.team1 + ' [-' + target.spread + '.5] vs.' +target.team2;
+          this.game_entry = ' ' + target.team1 + ' [-' + target.spread + '.5] vs.' +target.team2;
+        }
+        else if (target.spread == 0) {
+          // return ' ' + target.team1 + ' [PICK EM] vs. ' + target.team2;
+          this.game_entry = ' ' + target.team1 + ' [PICK EM] vs. ' + target.team2;
+        }
+        else {
+          // return ' ' + target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
+          this.game_entry = ' ' + target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
+        }
+        if (target.tipoff_date) {
+          this.game_entry += ' at ' + target.tipoff_time + ' on ' + target.tipoff_date;
+        }
+        return this.game_entry;
+      })
+    })
+  }
 }

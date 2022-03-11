@@ -1,0 +1,19 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+Hi {{first_name}},<br>
+Thanks for registering for the NCAA Spreapool 2022!<br>
+<br>
+To confirm your entry, you registered with the following info:<br>
+Name: <strong>{{full_name}}</strong><br>
+Number of Entries: <strong>{{num_entries}}</strong><br>
+{% if mult_entry_type == "S" and num_entries > 1 %}
+Your {{num_entries}} entries will be assigned to the <strong>Same</strong> bracket.<br>
+{% endif %}
+{% if mult_entry_type == "D" and num_entries > 1 %}
+Your {{num_entries}} entries will be assigned to <strong>Different</strong> brackets.<br>
+{% endif %}
+
+
+
+{% endblock %}

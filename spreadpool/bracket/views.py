@@ -27,7 +27,7 @@ from bracket import forms
 # from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket, Region
 from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame, getLastGame_Team
-from .email_functions import email_original_teams, email_spreads
+from .email_functions import email_original_teams, email_spreads, email_registration_info
 from bracket import serializers
 
 #REST framework modules
@@ -86,6 +86,7 @@ class SignUp(CreateView):
 		email = model.email
 		raw_password = form.cleaned_data.get('password1')
 		user = authenticate(email=email, password=raw_password)
+		email_registration_info(model.id)
 		login(self.request, user)
 		return redirect('bracket:home')
 
@@ -438,7 +439,7 @@ class GameViewSet(ModelViewSet):
 			queryset = queryset.filter(t_round=tround)
 		
 		if 'spread_set_no_score' in self.request.query_params:
-			queryset = queryset.filter(spread__isnull=False).filter(team1_score=0).filter(team2_score=0)
+			queryset = queryset.filter(spread__isnull=False).filter(team1_score=0).filter(team2_score=0).order_by('tipoff_date_time')
 		
 		return queryset.order_by('id')
 

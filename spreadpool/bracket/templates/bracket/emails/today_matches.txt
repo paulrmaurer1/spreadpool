@@ -1,3 +1,4 @@
 Hey {{first_name}},
-Here are your Round {{t_round}} matchups for today.  Good luck!
+Here are your {{bracket_name}} Bracket, Round {{t_round}} matchups for today.  Good luck!
 {% autoescape off %}{{game_bullet_list}}{% endautoescape %}
+*All times are Eastern Time (ET)
