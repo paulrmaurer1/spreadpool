@@ -10,3 +10,17 @@ Your {{num_entries}} entries will be assigned to the Same bracket.
 {% if mult_entry_type == "D" and num_entries > 1 %}
 Your {{num_entries}} entries will be assigned to the Different brackets.
 {% endif %}
+Thanks for registering!  You have until the Registration deadline to make any changes 
+needed to your Registration settings. These include: the # of brackets, whether you want them in the Same or 
+Different brackets, your registered First & Last name, and your email address. If you decide you don't want to participate, you can 
+Login again and Delete your profile.
+
+Shortly after the registration period closes, you will receive an email with your team assignments.  You'll get 4 teams, one per 
+Region, assigned for each entry that you registered. Then on each day during the Tournament , you will receive an 
+email with the Spread and game date/time (ET) for each of your teams.
+
+If you have any questions about how this all works, don't hesitate to reach out to me (paulrmaurer@yahoo.com) with any questions.
+
+Regards,
+Paul
+Spreadpool Administrator

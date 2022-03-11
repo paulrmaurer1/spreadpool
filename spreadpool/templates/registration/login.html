@@ -1,6 +1,7 @@
 <!-- templates/registration/login.html -->
 {% extends 'base.html' %}
 {% load static %}
+{% load bracket_extras %}
 {% block content %}
 <br>
 <div class="container">
@@ -46,8 +47,7 @@
 					<button class="btn btn-primary custom" type="submit">Register</button>
 				</form>
 				
-				<h6 class="mt-2 mb-1"><small class="text-muted">Registration countdown to Thursday, March 17, 10AM ET (9AM CT). Don't be late!</small></h6>
-				
+				<h6 class="mt-2 mb-1"><small class="text-muted">Registration countdown to {% settings_value "REGISTRATION_DEADLINE_FRIENDLY" %}. Don't be late!</small></h6>
 				<!-- Display the countdown timer in an element -->
 				<p id="timer" class="m-0 text-primary h2"></p>
 				<div class = "d-flex flex-row">
@@ -70,7 +70,8 @@
 				</div>
 				<script>
 					// Set the date we're counting down to (East Coast Time)
-					var countDownDate = new Date("Mar 17, 2022 10:00:00").getTime();
+					// var countDownDate = new Date("Mar 17, 2022 10:00:00").getTime();
+          var countDownDate = new Date("{% settings_value "REGISTRATION_DEADLINE_COUNTER" %}").getTime();
 
 					// Update the count down every 1 second
 					var x = setInterval(function() {
