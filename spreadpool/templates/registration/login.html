@@ -31,9 +31,9 @@
 					<li>If your team makes it to the Final Four, you are assured of breaking even. Player with champion wins $200. Runner up finalist wins $80. Final Four participants win $20 (break-even).</li>
 				</ul>
 				<!-- UNCOMMENT THIS DURING REGISTRATION PERIOD -->
- 				{% comment %} <h5 class="pt-2"><small class="text-muted"><strong>Easy!</strong> <a href="{% url 'bracket:signup' %}">Register</a> before Friday (March 17, 2022) at 9AM CST and get 4 teams assigned at random before the tournament starts.</small></h5> {% endcomment %}
+ 				<h5 class="pt-2"><small class="text-muted"><strong>Easy!</strong> <a href="{% url 'bracket:signup' %}">Register</a> before {% settings_value "REGISTRATION_DEADLINE_FRIENDLY" %} and get 4 teams assigned at random before the tournament starts.</small></h5>
 
-        <h5 class="pt-2"><small class="text-muted">**** Registration will be opening soon...check back here later. ****</small></h5>
+        <!--<h5 class="pt-2"><small class="text-muted">**** Registration will be opening soon...check back here later. ****</small></h5> -->
 
 				<!-- UNCOMMENT THIS AFTER REGISTRATION PERIOD -->
  				{% comment %} <h5 class="pt-2"><small class="text-muted">**** Registration is now closed ****</small></h5>

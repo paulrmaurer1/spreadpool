@@ -170,5 +170,5 @@ BEFORE_TOURNEY = True
 
 # This is the time (ET) by which Counter on login.html will display remaining time
 REGISTRATION_DEADLINE_COUNTER = "Mar 17, 2022 10:00:00"
-# This is the time (ET) that can be used in templates, emails, etc.
+# This is the time (ET) that can be used in templates, emails, etc. on Django side
 REGISTRATION_DEADLINE_FRIENDLY = "Thursday, March 17, 10AM ET (9AM CT)"

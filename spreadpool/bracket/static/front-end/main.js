@@ -651,7 +651,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n      <div class=\"form-group col\"></div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Game Date/Time:</strong></div>\r\n      <div class=\"form-group col\">\r\n        <label for=\"game_date\">Date:&nbsp;</label>\r\n        <p-calendar \r\n          [formControl]=\"game_date\" \r\n          dateFormat=\"yy-mm-dd\" \r\n          dataType=\"string\"\r\n          id=\"game_date\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <label for=\"game_time\">Time (ET):&nbsp;</label>\r\n        <p-calendar \r\n          [formControl]=\"game_time\" \r\n          [timeOnly]=\"true\" \r\n          [hourFormat]=\"12\" \r\n          dataType=\"string\"\r\n          id=\"game_time\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n    </div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Send Email?:</strong></div>\r\n      <div class=\"form-group col\">\r\n        <input type=\"checkbox\" [formControl]=\"send_email\"/>\r\n      </div>\r\n      <div class=\"form-group col\"></div>\r\n    </div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n        [disabled]=\"!gameUpdateForm.valid\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
+module.exports = "<!--game-detail.component.html-->\r\n<form [formGroup]=\"gameUpdateForm\" (ngSubmit)=\"updateGame()\">\r\n\t<div class=\"container\">\r\n\t\t<span *ngIf = \"showMsg\" class=\"text-success\">{{msg}}</span>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Game id: </strong>{{ _game.id }}</div>\r\n\t\t\t<div class=\"col non-form-element\"><strong>Region: </strong>{{ _game.region }}</div>\r\n      <div class=\"form-group col\"></div>\r\n\t\t</div>\r\n\t\t\t\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 1: </strong>{{ _game.team1 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team1_score\">Team 1 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team1_score\" [formControl] = \"team1_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"spread\">Game Spread:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"spread\" [formControl] = \"spread\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"form-row align-items-center\">\r\n\t\t\t<div class=\"col non-form-element\"><strong>Team 2: </strong>{{ _game.team2 }}</div>\r\n\t\t\t<div class=\"form-group col\">\r\n\t\t\t\t<label for=\"team2_score\">Team 2 Score:</label>\r\n\t\t\t    <input type=\"number\" class=\"form-control\"\r\n\t\t\t    id=\"team2_score\" [formControl] = \"team2_score\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group col\"></div>\r\n\t\t</div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Game Date/Time:</strong></div>\r\n      <div class=\"form-group col\">\r\n        <label for=\"game_date\">Date:&nbsp;</label>\r\n        <p-calendar \r\n          [formControl]=\"game_date\" \r\n          dateFormat=\"yy-mm-dd\" \r\n          dataType=\"string\"\r\n          id=\"game_date\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n      <div class=\"form-group col\">\r\n        <label for=\"game_time\">Time (ET):&nbsp;</label>\r\n        <p-calendar \r\n          [formControl]=\"game_time\" \r\n          [timeOnly]=\"true\" \r\n          [hourFormat]=\"12\" \r\n          dataType=\"string\"\r\n          id=\"game_time\"\r\n          >\r\n        </p-calendar>\r\n      </div>\r\n    </div>\r\n    <div class=\"form-row align-items-center\">\r\n      <div class=\"col non-form-element\"><strong>Send Email? (upon Score entry):</strong></div>\r\n      <div class=\"form-group col\">\r\n        <input type=\"checkbox\" [formControl]=\"send_email\"/>\r\n      </div>\r\n      <div class=\"form-group col\"></div>\r\n    </div>\r\n\t\t<div class=\"form-row\">\r\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \r\n        [disabled]=\"!gameUpdateForm.valid\">Update Game</button>\r\n\t\t\t&nbsp;\r\n\t\t</div>\r\n\t</div>\r\n</form>\r\n<br>\r\n<br>\r\n<br>\r\n<div class = \"container\">\r\n\t<div class=\"row justify-content-start\">\r\n\t\t<div class = \"col\">\r\n\t\t\t<button class=\"btn btn-info\" (click)=\"resetGame()\">Reset Game</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<br>"
 
 /***/ }),
 
@@ -693,7 +693,8 @@ var GameDetailComponent = /** @class */ (function () {
         this._todayDate = new Date();
         // Update Game form setup
         this.gameUpdateForm = fb.group({
-            'spread': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            // 'spread' : ['', Validators.required],
+            'spread': ['',],
             'team1_score': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             'team2_score': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             'game_date': [this._todayDate.toISOString().substring(0, 10)],
@@ -992,14 +993,21 @@ var SendGamesModalComponent = /** @class */ (function () {
             _this.gamesList = data.map(function (target) {
                 // Build an array of games to display in modal
                 if (target.spread > 0) {
-                    return ' ' + target.team1 + ' [-' + target.spread + '.5] vs. ' + target.team2;
+                    // return ' ' + target.team1 + ' [-' + target.spread + '.5] vs.' +target.team2;
+                    _this.game_entry = ' ' + target.team1 + ' [-' + target.spread + '.5] vs.' + target.team2;
                 }
                 else if (target.spread == 0) {
-                    return ' ' + target.team1 + ' [PICK EM] vs. ' + target.team2;
+                    // return ' ' + target.team1 + ' [PICK EM] vs. ' + target.team2;
+                    _this.game_entry = ' ' + target.team1 + ' [PICK EM] vs. ' + target.team2;
                 }
                 else {
-                    return ' ' + target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
+                    // return ' ' + target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
+                    _this.game_entry = ' ' + target.team1 + ' vs. ' + target.team2 + ' [-' + -target.spread + '.5]';
                 }
+                if (target.tipoff_date) {
+                    _this.game_entry += ' at ' + target.tipoff_time + ' on ' + target.tipoff_date;
+                }
+                return _this.game_entry;
             });
         });
     };

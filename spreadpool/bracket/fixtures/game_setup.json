@@ -1,632 +1,632 @@
 [
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 16,
-            "region": 1,
-            "team1": 1
-        },
         "pk": 1,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 1,
+            "team2": 16
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 9,
-            "region": 1,
-            "team1": 8
-        },
         "pk": 2,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 8,
+            "team2": 9
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 12,
-            "region": 1,
-            "team1": 5
-        },
         "pk": 3,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 5,
+            "team2": 12
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 13,
-            "region": 1,
-            "team1": 4
-        },
         "pk": 4,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 4,
+            "team2": 13
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 11,
-            "region": 1,
-            "team1": 6
-        },
         "pk": 5,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 6,
+            "team2": 11
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 14,
-            "region": 1,
-            "team1": 3
-        },
         "pk": 6,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 3,
+            "team2": 14
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 10,
-            "region": 1,
-            "team1": 7
-        },
         "pk": 7,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 7,
+            "team2": 10
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 15,
-            "region": 1,
-            "team1": 2
-        },
         "pk": 8,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 1,
+            "team1": 2,
+            "team2": 15
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 32,
-            "region": 2,
-            "team1": 17
-        },
         "pk": 9,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 17,
+            "team2": 32
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 25,
-            "region": 2,
-            "team1": 24
-        },
         "pk": 10,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 24,
+            "team2": 25
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 28,
-            "region": 2,
-            "team1": 21
-        },
         "pk": 11,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 21,
+            "team2": 28
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 29,
-            "region": 2,
-            "team1": 20
-        },
         "pk": 12,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 20,
+            "team2": 29
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 27,
-            "region": 2,
-            "team1": 22
-        },
         "pk": 13,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 22,
+            "team2": 27
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 30,
-            "region": 2,
-            "team1": 19
-        },
         "pk": 14,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 19,
+            "team2": 30
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 26,
-            "region": 2,
-            "team1": 23
-        },
         "pk": 15,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 23,
+            "team2": 26
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 31,
-            "region": 2,
-            "team1": 18
-        },
         "pk": 16,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 1,
+            "team1": 18,
+            "team2": 31
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 48,
-            "region": 3,
-            "team1": 33
-        },
         "pk": 17,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 33,
+            "team2": 48
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 41,
-            "region": 3,
-            "team1": 40
-        },
         "pk": 18,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 40,
+            "team2": 41
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 44,
-            "region": 3,
-            "team1": 37
-        },
         "pk": 19,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 37,
+            "team2": 44
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 45,
-            "region": 3,
-            "team1": 36
-        },
         "pk": 20,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 36,
+            "team2": 45
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 43,
-            "region": 3,
-            "team1": 38
-        },
         "pk": 21,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 38,
+            "team2": 43
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 46,
-            "region": 3,
-            "team1": 35
-        },
         "pk": 22,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 35,
+            "team2": 46
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 42,
-            "region": 3,
-            "team1": 39
-        },
         "pk": 23,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 39,
+            "team2": 42
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 47,
-            "region": 3,
-            "team1": 34
-        },
         "pk": 24,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 1,
+            "team1": 34,
+            "team2": 47
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 64,
-            "region": 4,
-            "team1": 49
-        },
         "pk": 25,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 49,
+            "team2": 64
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 57,
-            "region": 4,
-            "team1": 56
-        },
         "pk": 26,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 56,
+            "team2": 57
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 60,
-            "region": 4,
-            "team1": 53
-        },
         "pk": 27,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 53,
+            "team2": 60
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 61,
-            "region": 4,
-            "team1": 52
-        },
         "pk": 28,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 52,
+            "team2": 61
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 59,
-            "region": 4,
-            "team1": 54
-        },
         "pk": 29,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 54,
+            "team2": 59
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 62,
-            "region": 4,
-            "team1": 51
-        },
         "pk": 30,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 51,
+            "team2": 62
+        }
     },
     {
-        "fields": {
-            "t_round": 1,
-            "team2": 58,
-            "region": 4,
-            "team1": 55
-        },
         "pk": 31,
-        "model": "bracket.Game"
-    },
-    {
+        "model": "bracket.Game",
         "fields": {
+            "region": 4,
             "t_round": 1,
-            "team2": 63,
-            "region": 4,
-            "team1": 50
-        },
+            "team1": 55,
+            "team2": 58
+        }
+    },
+    {
         "pk": 32,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 1,
+            "team1": 50,
+            "team2": 63
+        }
     },
     {
-        "fields": {
-            "parent_game1": 1,
-            "t_round": 2,
-            "region": 1,
-            "parent_game2": 2
-        },
         "pk": 33,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 2,
+            "parent_game1": 1,
+            "parent_game2": 2
+        }
     },
     {
-        "fields": {
-            "parent_game1": 3,
-            "t_round": 2,
-            "region": 1,
-            "parent_game2": 4
-        },
         "pk": 34,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 2,
+            "parent_game1": 3,
+            "parent_game2": 4
+        }
     },
     {
-        "fields": {
-            "parent_game1": 5,
-            "t_round": 2,
-            "region": 1,
-            "parent_game2": 6
-        },
         "pk": 35,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 2,
+            "parent_game1": 5,
+            "parent_game2": 6
+        }
     },
     {
-        "fields": {
-            "parent_game1": 7,
-            "t_round": 2,
-            "region": 1,
-            "parent_game2": 8
-        },
         "pk": 36,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 2,
+            "parent_game1": 7,
+            "parent_game2": 8
+        }
     },
     {
-        "fields": {
-            "parent_game1": 9,
-            "t_round": 2,
-            "region": 2,
-            "parent_game2": 10
-        },
         "pk": 37,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 2,
+            "parent_game1": 9,
+            "parent_game2": 10
+        }
     },
     {
-        "fields": {
-            "parent_game1": 11,
-            "t_round": 2,
-            "region": 2,
-            "parent_game2": 12
-        },
         "pk": 38,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 2,
+            "parent_game1": 11,
+            "parent_game2": 12
+        }
     },
     {
-        "fields": {
-            "parent_game1": 13,
-            "t_round": 2,
-            "region": 2,
-            "parent_game2": 14
-        },
         "pk": 39,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 2,
+            "parent_game1": 13,
+            "parent_game2": 14
+        }
     },
     {
-        "fields": {
-            "parent_game1": 15,
-            "t_round": 2,
-            "region": 2,
-            "parent_game2": 16
-        },
         "pk": 40,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 2,
+            "parent_game1": 15,
+            "parent_game2": 16
+        }
     },
     {
-        "fields": {
-            "parent_game1": 17,
-            "t_round": 2,
-            "region": 3,
-            "parent_game2": 18
-        },
         "pk": 41,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 2,
+            "parent_game1": 17,
+            "parent_game2": 18
+        }
     },
     {
-        "fields": {
-            "parent_game1": 19,
-            "t_round": 2,
-            "region": 3,
-            "parent_game2": 20
-        },
         "pk": 42,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 2,
+            "parent_game1": 19,
+            "parent_game2": 20
+        }
     },
     {
-        "fields": {
-            "parent_game1": 21,
-            "t_round": 2,
-            "region": 3,
-            "parent_game2": 22
-        },
         "pk": 43,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 2,
+            "parent_game1": 21,
+            "parent_game2": 22
+        }
     },
     {
-        "fields": {
-            "parent_game1": 23,
-            "t_round": 2,
-            "region": 3,
-            "parent_game2": 24
-        },
         "pk": 44,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 2,
+            "parent_game1": 23,
+            "parent_game2": 24
+        }
     },
     {
-        "fields": {
-            "parent_game1": 25,
-            "t_round": 2,
-            "region": 4,
-            "parent_game2": 26
-        },
         "pk": 45,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 2,
+            "parent_game1": 25,
+            "parent_game2": 26
+        }
     },
     {
-        "fields": {
-            "parent_game1": 27,
-            "t_round": 2,
-            "region": 4,
-            "parent_game2": 28
-        },
         "pk": 46,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 2,
+            "parent_game1": 27,
+            "parent_game2": 28
+        }
     },
     {
-        "fields": {
-            "parent_game1": 29,
-            "t_round": 2,
-            "region": 4,
-            "parent_game2": 30
-        },
         "pk": 47,
-        "model": "bracket.Game"
-    },
-    {
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 31,
+            "region": 4,
             "t_round": 2,
-            "region": 4,
-            "parent_game2": 32
-        },
+            "parent_game1": 29,
+            "parent_game2": 30
+        }
+    },
+    {
         "pk": 48,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 2,
+            "parent_game1": 31,
+            "parent_game2": 32
+        }
     },
     {
-        "fields": {
-            "parent_game1": 33,
-            "t_round": 3,
-            "region": 1,
-            "parent_game2": 34
-        },
         "pk": 49,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 3,
+            "parent_game1": 33,
+            "parent_game2": 34
+        }
     },
     {
-        "fields": {
-            "parent_game1": 35,
-            "t_round": 3,
-            "region": 1,
-            "parent_game2": 36
-        },
         "pk": 50,
-        "model": "bracket.Game"
-    },
-    {
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 37,
-            "t_round": 3,
-            "region": 2,
-            "parent_game2": 38
-        },
-        "pk": 51,
-        "model": "bracket.Game"
-    },
-    {
-        "fields": {
-            "parent_game1": 39,
-            "t_round": 3,
-            "region": 2,
-            "parent_game2": 40
-        },
-        "pk": 52,
-        "model": "bracket.Game"
-    },
-    {
-        "fields": {
-            "parent_game1": 41,
-            "t_round": 3,
-            "region": 3,
-            "parent_game2": 42
-        },
-        "pk": 53,
-        "model": "bracket.Game"
-    },
-    {
-        "fields": {
-            "parent_game1": 43,
-            "t_round": 3,
-            "region": 3,
-            "parent_game2": 44
-        },
-        "pk": 54,
-        "model": "bracket.Game"
-    },
-    {
-        "fields": {
-            "parent_game1": 45,
-            "t_round": 3,
-            "region": 4,
-            "parent_game2": 46
-        },
-        "pk": 55,
-        "model": "bracket.Game"
-    },
-    {
-        "fields": {
-            "parent_game1": 47,
-            "t_round": 3,
-            "region": 4,
-            "parent_game2": 48
-        },
-        "pk": 56,
-        "model": "bracket.Game"
-    },
-    {
-        "fields": {
-            "parent_game1": 49,
-            "t_round": 4,
             "region": 1,
-            "parent_game2": 50
-        },
-        "pk": 57,
-        "model": "bracket.Game"
+            "t_round": 3,
+            "parent_game1": 35,
+            "parent_game2": 36
+        }
     },
     {
+        "pk": 51,
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 51,
-            "t_round": 4,
             "region": 2,
-            "parent_game2": 52
-        },
-        "pk": 58,
-        "model": "bracket.Game"
+            "t_round": 3,
+            "parent_game1": 37,
+            "parent_game2": 38
+        }
     },
     {
+        "pk": 52,
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 53,
-            "t_round": 4,
+            "region": 2,
+            "t_round": 3,
+            "parent_game1": 39,
+            "parent_game2": 40
+        }
+    },
+    {
+        "pk": 53,
+        "model": "bracket.Game",
+        "fields": {
             "region": 3,
-            "parent_game2": 54
-        },
-        "pk": 59,
-        "model": "bracket.Game"
+            "t_round": 3,
+            "parent_game1": 41,
+            "parent_game2": 42
+        }
     },
     {
+        "pk": 54,
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 55,
-            "t_round": 4,
+            "region": 3,
+            "t_round": 3,
+            "parent_game1": 43,
+            "parent_game2": 44
+        }
+    },
+    {
+        "pk": 55,
+        "model": "bracket.Game",
+        "fields": {
             "region": 4,
-            "parent_game2": 56
-        },
+            "t_round": 3,
+            "parent_game1": 45,
+            "parent_game2": 46
+        }
+    },
+    {
+        "pk": 56,
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 3,
+            "parent_game1": 47,
+            "parent_game2": 48
+        }
+    },
+    {
+        "pk": 57,
+        "model": "bracket.Game",
+        "fields": {
+            "region": 1,
+            "t_round": 4,
+            "parent_game1": 49,
+            "parent_game2": 50
+        }
+    },
+    {
+        "pk": 58,
+        "model": "bracket.Game",
+        "fields": {
+            "region": 2,
+            "t_round": 4,
+            "parent_game1": 51,
+            "parent_game2": 52
+        }
+    },
+    {
+        "pk": 59,
+        "model": "bracket.Game",
+        "fields": {
+            "region": 3,
+            "t_round": 4,
+            "parent_game1": 53,
+            "parent_game2": 54
+        }
+    },
+    {
         "pk": 60,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 4,
+            "t_round": 4,
+            "parent_game1": 55,
+            "parent_game2": 56
+        }
     },
     {
-        "fields": {
-            "parent_game1": 57,
-            "t_round": 5,
-            "region": 5,
-            "parent_game2": 58
-        },
         "pk": 61,
-        "model": "bracket.Game"
-    },
-    {
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 59,
+            "region": 5,
             "t_round": 5,
-            "region": 5,
-            "parent_game2": 60
-        },
-        "pk": 62,
-        "model": "bracket.Game"
+            "parent_game1": 57,
+            "parent_game2": 58
+        }
     },
     {
+        "pk": 62,
+        "model": "bracket.Game",
         "fields": {
-            "parent_game1": 61,
-            "t_round": 6,
             "region": 5,
-            "parent_game2": 62
-        },
+            "t_round": 5,
+            "parent_game1": 59,
+            "parent_game2": 60
+        }
+    },
+    {
         "pk": 63,
-        "model": "bracket.Game"
+        "model": "bracket.Game",
+        "fields": {
+            "region": 5,
+            "t_round": 6,
+            "parent_game1": 61,
+            "parent_game2": 62
+        }
     }
 ]

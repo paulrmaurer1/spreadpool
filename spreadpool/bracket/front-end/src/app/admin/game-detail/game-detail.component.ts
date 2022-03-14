@@ -43,7 +43,8 @@ export class GameDetailComponent implements OnInit {
 		) { 
 		// Update Game form setup
 		this.gameUpdateForm = fb.group({
-			'spread' : ['', Validators.required],
+			// 'spread' : ['', Validators.required],
+      'spread' : ['', ],
 			'team1_score' : ['', Validators.required],
 			'team2_score' : ['', Validators.required],
       'game_date' : [this._todayDate.toISOString().substring(0,10)],

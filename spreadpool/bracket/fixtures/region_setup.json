@@ -3,7 +3,7 @@
         "pk": 1,
         "model": "bracket.Region",
         "fields": {
-            "name": "Midwest"
+            "name": "West"
         }
     },
     {
@@ -17,14 +17,14 @@
         "pk": 3,
         "model": "bracket.Region",
         "fields": {
-            "name": "West"
+            "name": "South"
         }
     },
     {
         "pk": 4,
         "model": "bracket.Region",
         "fields": {
-            "name": "South"
+            "name": "Midwest"
         }
     },
     {
