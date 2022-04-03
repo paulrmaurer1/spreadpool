@@ -80,6 +80,7 @@ def getLastGame_Team(orig_teamid):
 			# if owner == winning_owner, repeat while loop with next game in bracket (i.e. player advances)
 			last_team_id = winning_team_id
 			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
+			# print ("last_team_id =",last_team_id,". next_game =",next_game)
 			last_game = next_game
 		else:
 			alive = False
