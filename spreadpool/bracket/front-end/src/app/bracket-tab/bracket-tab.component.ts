@@ -126,11 +126,11 @@ export class BracketTabComponent implements OnInit {
 			// console.log("Determining winning info...")
 			if (this._bracketGames[63].team1_score > this._bracketGames[63].team2_score ) {
 				this._champion = this._bracketGames[63].team1
-				this._winningTeamOwner = this._bracketOwners[63].team1_owner
+				this._winningTeamOwner = this._bracketOwners[63].team2_owner
 			}
 			else {
 				this._champion = this._bracketGames[63].team2
-				this._winningTeamOwner = this._bracketOwners[63].team2_owner
+				this._winningTeamOwner = this._bracketOwners[63].team1_owner
 			}
 		}
 		return isChampion
