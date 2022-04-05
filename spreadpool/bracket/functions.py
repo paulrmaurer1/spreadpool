@@ -79,7 +79,11 @@ def getLastGame_Team(orig_teamid):
 		if owner == winning_owner:
 			# if owner == winning_owner, repeat while loop with next game in bracket (i.e. player advances)
 			last_team_id = winning_team_id
-			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
+			try:
+				next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
+			except Game.DoesNotExist:
+				return last_game, last_team_id
+			# next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
 			# print ("last_team_id =",last_team_id,". next_game =",next_game)
 			last_game = next_game
 		else:
@@ -490,6 +494,8 @@ def owner1_retains(game, c_game1, c_game2):
 		if c_game2 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team1_owner_id)
 			winner_c_game = c_game2
+		if c_game1 == None and c_game2 == None:
+			winner_c_game = Game.objects.get(id=63)  # only game without child game is Finals
 
 		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner1 retaining
 		if game.region_id == 1:
@@ -561,6 +567,8 @@ def owner2_retains(game, c_game1, c_game2):
 		if c_game2 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team2_owner_id)
 			winner_c_game = c_game2
+		if c_game1 == None and c_game2 == None:
+			winner_c_game = Game.objects.get(id=63)  # only game without child game is Finals
 
 		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner2 retaining
 		if game.region_id == 1:
@@ -632,6 +640,8 @@ def owner1_inherits(game, c_game1, c_game2):
 		if c_game2 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team1_owner_id)
 			winner_c_game = c_game2
+		if c_game1 == None and c_game2 == None:
+			winner_c_game = Game.objects.get(id=63)  # only game without child game is Finals
 
 		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner1 inheriting
 		if game.region_id == 1:
@@ -737,6 +747,8 @@ def owner2_inherits(game, c_game1, c_game2):
 		if c_game2 != None:
 			Matchup.objects.filter(tbracket=match.tbracket_id, game=c_game2.id).update(team2_owner=match.team2_owner_id)
 			winner_c_game = c_game2
+		if c_game1 == None and c_game2 == None:
+			winner_c_game = Game.objects.get(id=63)  # only game without child game is Finals
 
 		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner2 inheriting
 		if game.region_id == 1:
