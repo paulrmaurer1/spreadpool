@@ -78,31 +78,55 @@ def getLastGame_Team(orig_teamid):
 
 		if owner == winning_owner:
 			# if owner == winning_owner, repeat while loop with next game in bracket (i.e. player advances)
-			last_team_id = winning_team_id
 			try:
 				next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
 			except Game.DoesNotExist:
+				# Championship game doesn't have a child game so return last result
 				return last_game, last_team_id
-			# next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
-			# print ("last_team_id =",last_team_id,". next_game =",next_game)
+
+			last_team_id = winning_team_id
 			last_game = next_game
+			print ("last_team_id =",last_team_id,"; last_game =",last_game)
 		else:
 			alive = False
 
 	return last_game, last_team_id
 
 
-def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team_id):
+# def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team_id):
+def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, player):
 	# determine the Next Game status for a given Player's active team
 
-	# if owner's team is out
-	if (team_id is None):
-		# determine which team the user owns and select the other team as having lost
-		if (last_game.team1_id == last_team_id):
-			nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
-		if (last_game.team2_id == last_team_id):
-			nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
-		
+	if (active_team is None # Team lost before the Final Four
+		or (last_game.id in [61,62] and last_matchup.winner_id and player.id != last_matchup.winner_id) # User was in Final Four but lost
+		or (last_game.id==63 and last_matchup.winner_id)): # User was in championship and game has concluded
+		if last_game.id not in [61,62,63]: # Team lost before the Final Four in which case User's active team is null, **OUT**
+			# determine which team the user owns and select the other team & owner as having lost to
+			if last_game.team1_id == last_team_id:
+				nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
+			if last_game.team2_id == last_team_id:
+				nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
+		elif last_game.id in [61,62]: # User's last game was a Final Four game, i.e. Semi-Final
+			if player.id != last_matchup.winner_id: # and User did not win
+				# determine which team the user owns and select the other team & owner as having lost to
+				if last_game.team1_id == last_team_id:
+					nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
+				if last_game.team2_id == last_team_id:
+					nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
+		else: # User's last game was the Championship game
+			if player.id == last_matchup.winner_id: # User was the winner
+				if player.id == last_matchup.team1_owner_id:
+					# determine which team the user owns and state that won against other owner
+					nextup_game = "Won against: " + str(last_matchup.team2_owner) + " with " + str(last_game.team1)
+				else:
+					nextup_game = "Won against: " + str(last_matchup.team1_owner) + " with " + str(last_game.team2)
+			else:
+				# determine which team the user owns and state that lost against the other owner
+				if player.id == last_matchup.team1_owner_id:
+					nextup_game = "Lost to: " + str(last_matchup.team2_owner) + " with " + str(last_game.team1)
+				else: # player held team2
+					nextup_game = "Lost to: " + str(last_matchup.team1_owner) + " with " + str(last_game.team2)
+
 		# append proper Round within which last game was lost
 		if (last_game.t_round <= 4):
 			nextup_game += " in Round " + str(last_game.t_round)

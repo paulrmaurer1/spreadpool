@@ -162,7 +162,8 @@ class EntryMyTeamsSerializer(serializers.ModelSerializer):
 		# last_team_a_id = getLastGame_Team(obj.orig_team_a_id)[1]
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
 		# last_matchup_a = Matchup.objects.get(game=obj.last_game_a.id, tbracket=obj.tbracket_id)
-		data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
+		# data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_a_id, last_team_id)
+		data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.team_a, last_team_id, obj.player)
 		# data['next_team_a'] = getNextUpGameString(obj.last_game_a, last_matchup_a, obj.tbracket_id, obj.team_a_id, obj.last_team_a.id)
 		# data['next_team_a'] = getNextUpGameString(obj.last_game_a, last_matchup_a, obj.tbracket_id, obj.team_a_id, last_team_a_id)
 
@@ -170,7 +171,8 @@ class EntryMyTeamsSerializer(serializers.ModelSerializer):
 		# last_team_b_id = getLastGame_Team(obj.orig_team_b_id)[1]
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
 		# last_matchup_b = Matchup.objects.get(game=obj.last_game_b.id, tbracket=obj.tbracket_id)
-		data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
+		# data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_b_id, last_team_id)
+		data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.team_b, last_team_id, obj.player)
 		# data['next_team_b'] = getNextUpGameString(obj.last_game_b, last_matchup_b, obj.tbracket_id, obj.team_b_id, obj.last_team_b.id)
 		# data['next_team_b'] = getNextUpGameString(obj.last_game_b, last_matchup_b, obj.tbracket_id, obj.team_b_id, last_team_b_id)
 		
@@ -178,7 +180,8 @@ class EntryMyTeamsSerializer(serializers.ModelSerializer):
 		# last_team_c_id = getLastGame_Team(obj.orig_team_c_id)[1]
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
 		# last_matchup_c = Matchup.objects.get(game=obj.last_game_c.id, tbracket=obj.tbracket_id)
-		data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
+		# data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_c_id, last_team_id)
+		data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.team_c, last_team_id, obj.player)
 		# data['next_team_c'] = getNextUpGameString(obj.last_game_c, last_matchup_c, obj.tbracket_id, obj.team_c_id, obj.last_team_c.id)
 		# data['next_team_c'] = getNextUpGameString(obj.last_game_c, last_matchup_c, obj.tbracket_id, obj.team_c_id, last_team_c_id)
 		
@@ -186,7 +189,8 @@ class EntryMyTeamsSerializer(serializers.ModelSerializer):
 		# last_team_d_id = getLastGame_Team(obj.orig_team_d_id)[1]
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
 		# last_matchup_d = Matchup.objects.get(game=obj.last_game_d.id, tbracket=obj.tbracket_id)
-		data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
+		# data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.tbracket_id, obj.team_d_id, last_team_id)
+		data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.team_d, last_team_id, obj.player)
 		# data['next_team_d'] = getNextUpGameString(obj.last_game_d, last_matchup_d, obj.tbracket_id, obj.team_d_id, obj.last_team_d.id)
 		# data['next_team_d'] = getNextUpGameString(obj.last_game_d, last_matchup_d, obj.tbracket_id, obj.team_d_id, last_team_d_id)
 		
@@ -320,13 +324,8 @@ class NewGameWithMatchupDataSerializer(serializers.ModelSerializer):
 	End point that returns information needed to populate each bracket with key game & matchup data
 	including teams, owner, spread, and tipoff date/time
 	"""
-	# team1 = serializers.StringRelatedField()
-	# team2 = serializers.StringRelatedField()
-	# region = serializers.StringRelatedField()
-		
 	class Meta:
 		model = Game
-		# fields = ('id', 'region', 'region_id', 'team1', 'team1_id', 'team2', 'team2_id', 't_round', 'spread')
 		fields = ('id', 'region_id')
 
 	def to_representation(self, obj):
@@ -336,6 +335,7 @@ class NewGameWithMatchupDataSerializer(serializers.ModelSerializer):
 		data['team1_owner_id'] = None
 		data['team2_owner'] = None
 		data['team2_owner_id'] = None
+		data['winner_id'] = None
 
 		# Grab owner related data for each Game from associated Matchup
 		related_matchups = Matchup.objects.filter(game=obj.id)
@@ -349,10 +349,12 @@ class NewGameWithMatchupDataSerializer(serializers.ModelSerializer):
 		data['tbracket_id'] = _tbracket_id
 		if specific_matchup.team1_owner:
 			data['team1_owner'] = specific_matchup.team1_owner.short_name
-			data['team1_owner_id'] = specific_matchup.team1_owner.id
+			data['team1_owner_id'] = specific_matchup.team1_owner_id
 		if specific_matchup.team2_owner:
 			data['team2_owner'] = specific_matchup.team2_owner.short_name
-			data['team2_owner_id'] = specific_matchup.team2_owner.id
+			data['team2_owner_id'] = specific_matchup.team2_owner_id
+		if specific_matchup.winner_id:
+			data['winner_id'] = specific_matchup.winner_id
 
 		return data
 
