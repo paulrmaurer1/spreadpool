@@ -86,14 +86,12 @@ def getLastGame_Team(orig_teamid):
 
 			last_team_id = winning_team_id
 			last_game = next_game
-			print ("last_team_id =",last_team_id,"; last_game =",last_game)
+			# print ("last_team_id =",last_team_id,"; last_game =",last_game)
 		else:
 			alive = False
 
 	return last_game, last_team_id
 
-
-# def getNextUpGameString(last_game, last_matchup, tbracket_id, team_id, last_team_id):
 def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, player):
 	# determine the Next Game status for a given Player's active team
 
@@ -140,7 +138,7 @@ def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, play
 		# if last game played is in Final Four round, update _region_id for proper route navigation purposes
 		# region_id = last_game.region_id
 	
-	# if owner's team is still in it
+	# if owner's team is still Active and is playing in a game before the Championship
 	else:
 		# append proper Round within which next game is being played
 		if (last_game.t_round <= 4):
@@ -150,7 +148,7 @@ def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, play
 			nextup_game = "Semi-Final"
 		
 		else:
-			nextup_game = "Finals"
+			nextup_game = "Championship"
 
 		# determine proper spread based on whether Team1 or Team 2
 		if (last_game.team1_id == last_team_id and last_game.team2 is not None):
@@ -202,8 +200,12 @@ def determineStatus(team_id, tbracket_id, player_id):
 		else:
 			# determine champion to assign status of either Champion or Semifinalist
 			related_matchup = Matchup.objects.get(tbracket_id=tbracket_id, game_id=latest_game.id)
-			print ("Championship matchup is:", related_matchup, related_matchup.winner_id, player_id)
-			if related_matchup.winner_id == player_id:
+			# print ("Championship matchup is:", related_matchup, related_matchup.winner_id, player_id)
+			if latest_game.team1_score > latest_game.team2_score:
+				winning_team = latest_game.team1_id
+			else:
+				winning_team = latest_game.team2_id
+			if related_matchup.winner_id == player_id and team_id == winning_team:
 				status = "(Champion)"
 			else:
 				status = "(Semi-finalist)"

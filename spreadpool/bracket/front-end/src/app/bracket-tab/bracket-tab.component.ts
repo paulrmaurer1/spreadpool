@@ -26,7 +26,7 @@ export class BracketTabComponent implements OnInit {
 	set bracketOwners(value: NewGameWithOwnerData[]) {
 		if (value) {
 			this._bracketOwners = value;
-			console.log ("Detail component bracketOwners for ", this._region_id, " Region", this._bracketOwners);
+			// console.log ("Detail component bracketOwners for ", this._region_id, " Region", this._bracketOwners);
 		}
 	}
 
@@ -130,12 +130,7 @@ export class BracketTabComponent implements OnInit {
 			else {
 				this._champion = this._bracketGames[63].team2
 			}
-      if (this._bracketOwners[63].team1_owner_id = this._bracketOwners[63].winner_id) {
-        this._winningTeamOwner = this._bracketOwners[63].team1_owner
-      }
-      else {
-        this._winningTeamOwner = this._bracketOwners[63].team2_owner
-      }
+      this._winningTeamOwner = this._bracketOwners[63].winner
 		}
 		return isChampion
 	} //end getChampion

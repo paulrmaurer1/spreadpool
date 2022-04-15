@@ -123,7 +123,7 @@ export interface NewGameWithOwnerData {
   team1_owner_id: number;
   team2_owner: string;
   team2_owner_id: number;
-  winner_id: number;
+  winner: string;
 }
 
 export interface MatchupData {
