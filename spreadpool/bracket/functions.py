@@ -208,7 +208,7 @@ def determineStatus(team_id, tbracket_id, player_id):
 			if related_matchup.winner_id == player_id and team_id == winning_team:
 				status = "(Champion)"
 			else:
-				status = "(Semi-finalist)"
+				status = "(Semi-final Winner)"
 	return status
 
 
@@ -508,7 +508,7 @@ def owner1_retains(game, c_game1, c_game2):
 		except Entry.DoesNotExist:
 			continue
 		
-		print (match, entry_team1, entry_team2)
+		print ("owner1_retains", match, entry_team1, entry_team2)
 		# Update game's matchup winner_id with owner1
 		match.winner=match.team1_owner
 		match.save()
@@ -531,28 +531,59 @@ def owner1_retains(game, c_game1, c_game2):
 			entry_team2.team_a=None
 			entry_team1.last_game_a=winner_c_game
 			entry_team2.last_game_a=game
-		if game.region_id == 2:
+		elif game.region_id == 2:
 			entry_team1.last_team_b=game.team1
 			entry_team2.last_team_b=game.team2
 			entry_team1.team_b=game.team1
 			entry_team2.team_b=None
 			entry_team1.last_game_b=winner_c_game
 			entry_team2.last_game_b=game
-		if game.region_id == 3:
+		elif game.region_id == 3:
 			entry_team1.last_team_c=game.team1
 			entry_team2.last_team_c=game.team2
 			entry_team1.team_c=game.team1
 			entry_team2.team_c=None
 			entry_team1.last_game_c=winner_c_game
 			entry_team2.last_game_c=game
-		if game.region_id == 4:
+		elif game.region_id == 4:
 			entry_team1.last_team_d=game.team1
 			entry_team2.last_team_d=game.team2
 			entry_team1.team_d=game.team1
 			entry_team2.team_d=None
 			entry_team1.last_game_d=winner_c_game
 			entry_team2.last_game_d=game
-		# if game.region_id == 5, don't do anything...owners keep teams
+		elif game.region_id == 5:
+			# If Final Four team, owners retain teams, update last_team_n & last_game_n for Standings purposes
+			if entry_team1.team_a_id == game.team1_id:
+				# entry_team1.last_team_a=game.team1
+				entry_team1.last_game_a=winner_c_game
+			elif entry_team1.team_b_id == game.team1_id:
+				# entry_team1.last_team_b=game.team1
+				entry_team1.last_game_b=winner_c_game
+			elif entry_team1.team_c_id == game.team1_id:
+				# entry_team1.last_team_c=game.team1
+				entry_team1.last_game_c=winner_c_game
+			elif entry_team1.team_d_id == game.team1_id:
+				# entry_team1.last_team_d=game.team1
+				entry_team1.last_game_d=winner_c_game
+
+			# if a player has both teams in game, reset entry_team2 before writing
+			if entry_team1.id == entry_team2.id:
+				entry_team1.save()
+				entry_team2 = entry_team1
+
+			if entry_team2.team_a_id == game.team2_id:
+				# entry_team2.last_team_a=game.team2
+				entry_team2.last_game_a=game
+			elif entry_team2.team_b_id == game.team2_id:
+				# entry_team2.last_team_b=game.team2
+				entry_team2.last_game_b=game
+			elif entry_team2.team_c_id == game.team2_id:
+				# entry_team2.last_team_c=game.team2
+				entry_team2.last_game_c=game
+			elif entry_team2.team_d_id == game.team2_id:
+				# entry_team2.last_team_d=game.team2
+				entry_team2.last_game_d=game
 			
 		# save entries
 		entry_team1.save()
@@ -581,7 +612,7 @@ def owner2_retains(game, c_game1, c_game2):
 		except Entry.DoesNotExist:
 			continue
 		
-		print (match, entry_team1, entry_team2)
+		print ("owner2_retains", match, entry_team1, entry_team2)
 		# Update game's matchup winner_id with owner2
 		match.winner=match.team2_owner
 		match.save()
@@ -604,28 +635,59 @@ def owner2_retains(game, c_game1, c_game2):
 			entry_team2.team_a=game.team2
 			entry_team1.last_game_a=game
 			entry_team2.last_game_a=winner_c_game
-		if game.region_id == 2:
+		elif game.region_id == 2:
 			entry_team1.last_team_b=game.team1
 			entry_team2.last_team_b=game.team2
 			entry_team1.team_b=None
 			entry_team2.team_b=game.team2
 			entry_team1.last_game_b=game
 			entry_team2.last_game_b=winner_c_game
-		if game.region_id == 3:
+		elif game.region_id == 3:
 			entry_team1.last_team_c=game.team1
 			entry_team2.last_team_c=game.team2
 			entry_team1.team_c=None
 			entry_team2.team_c=game.team2
 			entry_team1.last_game_c=game
 			entry_team2.last_game_c=winner_c_game
-		if game.region_id == 4:
+		elif game.region_id == 4:
 			entry_team1.last_team_d=game.team1
 			entry_team2.last_team_d=game.team2
 			entry_team1.team_d=None
 			entry_team2.team_d=game.team2
 			entry_team1.last_game_d=game
 			entry_team2.last_game_d=winner_c_game
-		# if game.region_id == 5, don't do anything...owners keep teams
+		elif game.region_id == 5:
+			# If Final Four team, owners retain teams but need to update last_team_n & last_game_n for Standings purposes
+			if entry_team1.team_a_id == game.team1_id:
+				# entry_team1.last_team_a=game.team1
+				entry_team1.last_game_a=game
+			elif entry_team1.team_b_id == game.team1_id:
+				# entry_team1.last_team_b=game.team1
+				entry_team1.last_game_b=game
+			elif entry_team1.team_c_id == game.team1_id:
+				# entry_team1.last_team_c=game.team1
+				entry_team1.last_game_c=game
+			elif entry_team1.team_d_id == game.team1_id:
+				# entry_team1.last_team_d=game.team1
+				entry_team1.last_game_d=game
+
+			# if a player has both teams in game, reset entry_team2 before writing
+			if entry_team1.id == entry_team2.id:
+				entry_team1.save()
+				entry_team2 = entry_team1
+
+			if entry_team2.team_a_id == game.team2_id:
+				# entry_team2.last_team_a=game.team2
+				entry_team2.last_game_a=winner_c_game
+			elif entry_team2.team_b_id == game.team2_id:
+				# entry_team2.last_team_b=game.team2
+				entry_team2.last_game_b=winner_c_game
+			elif entry_team2.team_c_id == game.team2_id:
+				# entry_team2.last_team_c=game.team2
+				entry_team2.last_game_c=winner_c_game
+			elif entry_team2.team_d_id == game.team2_id:
+				# entry_team2.last_team_d=game.team2
+				entry_team2.last_game_d=winner_c_game
 
 		# save entries
 		entry_team1.save()
@@ -654,7 +716,7 @@ def owner1_inherits(game, c_game1, c_game2):
 		except Entry.DoesNotExist:
 			continue
 		
-		print (match, entry_team1, entry_team2)
+		print ("owner1 inherits", match, entry_team1, entry_team2)
 		# Update game's matchup winner_id with owner1
 		match.winner=match.team1_owner
 		match.save()
@@ -669,6 +731,8 @@ def owner1_inherits(game, c_game1, c_game2):
 		if c_game1 == None and c_game2 == None:
 			winner_c_game = Game.objects.get(id=63)  # only game without child game is Finals
 
+		print ("c_game1: ", c_game1, "c_game2: ", c_game2, "winner_c_game: ", winner_c_game)
+
 		# Update respective entry's Active Teams, Last Team & Last Game appeared based on owner1 inheriting
 		if game.region_id == 1:
 			entry_team1.last_team_a=game.team2
@@ -677,63 +741,74 @@ def owner1_inherits(game, c_game1, c_game2):
 			entry_team2.team_a=None
 			entry_team1.last_game_a=winner_c_game
 			entry_team2.last_game_a=game
-		if game.region_id == 2:
+		elif game.region_id == 2:
 			entry_team1.last_team_b=game.team2
 			entry_team2.last_team_b=game.team1
 			entry_team1.team_b=game.team2
 			entry_team2.team_b=None
 			entry_team1.last_game_b=winner_c_game
 			entry_team2.last_game_b=game
-		if game.region_id == 3:
+		elif game.region_id == 3:
 			entry_team1.last_team_c=game.team2
 			entry_team2.last_team_c=game.team1
 			entry_team1.team_c=game.team2
 			entry_team2.team_c=None
 			entry_team1.last_game_c=winner_c_game
 			entry_team2.last_game_c=game
-		if game.region_id == 4:
+		elif game.region_id == 4:
 			entry_team1.last_team_d=game.team2
 			entry_team2.last_team_d=game.team1
 			entry_team1.team_d=game.team2
 			entry_team2.team_d=None
 			entry_team1.last_game_d=winner_c_game
 			entry_team2.last_game_d=game
-		if game.region_id == 5:
+		elif game.region_id == 5:
 		# If Final Four team, swap teams so that both owners retain a team for Standings purposes
-			if entry_team1.team_a_id == game.team1_id:
-				entry_team1.team_a=game.team2
-				entry_team1.last_team_a=game.team2
+			round5entry_team1_team_a_id = entry_team1.team_a_id
+			round5entry_team1_team_b_id = entry_team1.team_b_id
+			round5entry_team1_team_c_id = entry_team1.team_c_id
+			round5entry_team1_team_d_id = entry_team1.team_d_id
+			# print (round5entry_team1_team_a_id,round5entry_team1_team_b_id,round5entry_team1_team_c_id,round5entry_team1_team_d_id)
+
+			round5entry_team2_team_a_id = entry_team2.team_a_id
+			round5entry_team2_team_b_id = entry_team2.team_b_id
+			round5entry_team2_team_c_id = entry_team2.team_c_id
+			round5entry_team2_team_d_id = entry_team2.team_d_id
+			# print (round5entry_team2_team_a_id,round5entry_team2_team_b_id,round5entry_team2_team_c_id,round5entry_team2_team_d_id)
+
+			# print ("game.team1_id=", game.team1_id, "game.team2_id=", game.team2_id)
+
+			if round5entry_team1_team_a_id == game.team1_id:
+				entry_team1.team_a = game.team2
 				entry_team1.last_game_a=winner_c_game
-			elif entry_team1.team_b_id == game.team1_id:
-				entry_team1.team_b=game.team2
-				entry_team1.last_team_b=game.team2
+			elif round5entry_team1_team_b_id == game.team1_id:
+				entry_team1.team_b = game.team2
 				entry_team1.last_game_b=winner_c_game
-			elif entry_team1.team_c_id == game.team1_id:
-				entry_team1.team_c=game.team2
-				entry_team1.last_team_c=game.team2
+			elif round5entry_team1_team_c_id == game.team1_id:
+				entry_team1.team_c = game.team2
 				entry_team1.last_game_c=winner_c_game
-			elif entry_team1.team_d_id == game.team1_id:
-				entry_team1.team_d=game.team2
-				entry_team1.last_team_d=game.team2
+			elif round5entry_team1_team_d_id == game.team1_id:
+				entry_team1.team_d = game.team2
 				entry_team1.last_game_d=winner_c_game
 
-			if entry_team2.team_a_id == game.team2_id:
+			# if a player has both teams in game, reset entry_team2 before writing
+			if entry_team1.id == entry_team2.id:
+				entry_team1.save()
+				entry_team2 = entry_team1
+
+			if round5entry_team2_team_a_id == game.team2_id:
 				entry_team2.team_a=game.team1
-				entry_team2.last_team_a=game.team1
 				entry_team2.last_game_a=game
-			elif entry_team2.team_b_id == game.team2_id:
+			elif round5entry_team2_team_b_id == game.team2_id:
 				entry_team2.team_b=game.team1
-				entry_team2.last_team_b=game.team1
 				entry_team2.last_game_b=game
-			elif entry_team2.team_c_id == game.team2_id:
+			elif round5entry_team2_team_c_id == game.team2_id:
 				entry_team2.team_c=game.team1
-				entry_team2.last_team_c=game.team1
 				entry_team2.last_game_c=game
-			elif entry_team2.team_d_id == game.team2_id:
+			elif round5entry_team2_team_d_id == game.team2_id:
 				entry_team2.team_d=game.team1
-				entry_team2.last_team_d=game.team1
 				entry_team2.last_game_d=game
-		
+
 		# save entries
 		entry_team1.save()
 		entry_team2.save()
@@ -761,7 +836,7 @@ def owner2_inherits(game, c_game1, c_game2):
 		except Entry.DoesNotExist:
 			continue
 		
-		print (match, entry_team1, entry_team2)
+		print ("owner2_inherits", match, entry_team1, entry_team2)
 		# Update game's matchup winner_id with owner2
 		match.winner=match.team2_owner
 		match.save()
@@ -784,61 +859,68 @@ def owner2_inherits(game, c_game1, c_game2):
 			entry_team2.team_a=game.team1
 			entry_team1.last_game_a=game
 			entry_team2.last_game_a=winner_c_game
-		if game.region_id == 2:
+		elif game.region_id == 2:
 			entry_team1.last_team_b=game.team2
 			entry_team2.last_team_b=game.team1
 			entry_team1.team_b=None
 			entry_team2.team_b=game.team1
 			entry_team1.last_game_b=game
 			entry_team2.last_game_b=winner_c_game
-		if game.region_id == 3:
+		elif game.region_id == 3:
 			entry_team1.last_team_c=game.team2
 			entry_team2.last_team_c=game.team1
 			entry_team1.team_c=None
 			entry_team2.team_c=game.team1
 			entry_team1.last_game_c=game
 			entry_team2.last_game_c=winner_c_game
-		if game.region_id == 4:
+		elif game.region_id == 4:
 			entry_team1.last_team_d=game.team2
 			entry_team2.last_team_d=game.team1
 			entry_team1.team_d=None
 			entry_team2.team_d=game.team1
 			entry_team1.last_game_d=game
 			entry_team2.last_game_d=winner_c_game
-		if game.region_id == 5:
+		elif game.region_id == 5:
 		# If Final Four team, swap teams so that both owners retain a team for Standings purposes
-			if entry_team1.team_a_id == game.team1_id:
-				entry_team1.team_a=game.team2
-				entry_team1.last_team_a=game.team2
+			round5entry_team1_team_a_id = entry_team1.team_a_id
+			round5entry_team1_team_b_id = entry_team1.team_b_id
+			round5entry_team1_team_c_id = entry_team1.team_c_id
+			round5entry_team1_team_d_id = entry_team1.team_d_id
+
+			round5entry_team2_team_a_id = entry_team2.team_a_id
+			round5entry_team2_team_b_id = entry_team2.team_b_id
+			round5entry_team2_team_c_id = entry_team2.team_c_id
+			round5entry_team2_team_d_id = entry_team2.team_d_id
+
+			if round5entry_team1_team_a_id == game.team1_id:
+				entry_team1.team_a = game.team2
 				entry_team1.last_game_a=game
-			elif entry_team1.team_b_id == game.team1_id:
-				entry_team1.team_b=game.team2
-				entry_team1.last_team_b=game.team2
+			elif round5entry_team1_team_b_id == game.team1_id:
+				entry_team1.team_b = game.team2
 				entry_team1.last_game_b=game
-			elif entry_team1.team_c_id == game.team1_id:
-				entry_team1.team_c=game.team2
-				entry_team1.last_team_c=game.team2
+			elif round5entry_team1_team_c_id == game.team1_id:
+				entry_team1.team_c = game.team2
 				entry_team1.last_game_c=game
-			elif entry_team1.team_d_id == game.team1_id:
-				entry_team1.team_d=game.team2
-				entry_team1.last_team_d=game.team2
+			elif round5entry_team1_team_d_id == game.team1_id:
+				entry_team1.team_d = game.team2
 				entry_team1.last_game_d=game
 
-			if entry_team2.team_a_id == game.team2_id:
+			# if a player has both teams in game, reset entry_team2 before writing
+			if entry_team1.id == entry_team2.id:
+				entry_team1.save()
+				entry_team2 = entry_team1
+
+			if round5entry_team2_team_a_id == game.team2_id:
 				entry_team2.team_a=game.team1
-				entry_team2.last_team_a=game.team1
 				entry_team2.last_game_a=winner_c_game
-			elif entry_team2.team_b_id == game.team2_id:
+			elif round5entry_team2_team_b_id == game.team2_id:
 				entry_team2.team_b=game.team1
-				entry_team2.last_team_b=game.team1
 				entry_team2.last_game_b=winner_c_game
-			elif entry_team2.team_c_id == game.team2_id:
+			elif round5entry_team2_team_c_id == game.team2_id:
 				entry_team2.team_c=game.team1
-				entry_team2.last_team_c=game.team1
 				entry_team2.last_game_c=winner_c_game
-			elif entry_team2.team_d_id == game.team2_id:
+			elif round5entry_team2_team_d_id == game.team2_id:
 				entry_team2.team_d=game.team1
-				entry_team2.last_team_d=game.team1
 				entry_team2.last_game_d=winner_c_game
 		
 		# save entries
