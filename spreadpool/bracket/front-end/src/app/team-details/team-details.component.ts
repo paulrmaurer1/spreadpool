@@ -29,7 +29,6 @@ export class TeamDetailsComponent implements OnInit {
 
 	constructor(private _entryService: EntryService,
 		private router: Router,
-		private _gameService: GameService,
 		private _regionService: RegionService,
 		private _userService: UserService,) { }
 
@@ -37,9 +36,6 @@ export class TeamDetailsComponent implements OnInit {
 		this.loading=true;
 		//retrieve entries for user
 		
-		// this._entryService.getEntryDetailsListByPlayer(this._player.id).subscribe(data => {
-		// 	this._entryList = data;
-
 		this._entryService.getEntryDetailsListMyTeamsByPlayer(this._player.id).subscribe(data => {
 			this._entryList = data;
 

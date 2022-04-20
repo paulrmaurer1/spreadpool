@@ -66,6 +66,11 @@ export interface EntryStandingsData {
   team_b: string;
   team_c: string;
   team_d: string;
+  team_a_status: string;
+  team_b_status: string;
+  team_c_status: string;
+  team_d_status: string;
+  standing_points: number
 }
 
 export interface EntryMyTeamsData {
@@ -84,6 +89,10 @@ export interface EntryMyTeamsData {
   next_team_b: string;
   next_team_c: string;
   next_team_d: string;
+  region_a: number;
+  region_b: number;
+  region_c: number;
+  region_d: number;
 }
 
 export interface GameData {

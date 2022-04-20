@@ -18,28 +18,28 @@
 				<td>{{ _regionList[0].name }}</td>
 				<td>{{ entry.orig_team_a }}</td>
 				<td>{{ entry.team_a || '**OUT**'}}</td>
-				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{_regionList[0].id-1}}>{{ entry.next_team_a }}</a></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{entry.region_a-1}}>{{ entry.next_team_a }}</a></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[1].name }}</td>
 				<td>{{ entry.orig_team_b }}</td>
 				<td>{{ entry.team_b || '**OUT**'}}</td>
-				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{_regionList[1].id-1}}>{{ entry.next_team_b }}</a></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{entry.region_b-1}}>{{ entry.next_team_b }}</a></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[2].name }}</td>
 				<td>{{ entry.orig_team_c }}</td>
 				<td>{{ entry.team_c || '**OUT**'}}</td>
-				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{_regionList[2].id-1}}>{{ entry.next_team_c }}</a></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{entry.region_c-1}}>{{ entry.next_team_c }}</a></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>{{ _regionList[3].name }}</td>
 				<td>{{ entry.orig_team_d }}</td>
 				<td>{{ entry.team_d || '**OUT**'}}</td>
-				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{_regionList[3].id-1}}>{{ entry.next_team_d }}</a></td>
+				<td><a [routerLink]="['/brackets', entry.tbracket_id]" fragment={{entry.region_d-1}}>{{ entry.next_team_d }}</a></td>
 			</tr>
 		</tbody>
 	</div>

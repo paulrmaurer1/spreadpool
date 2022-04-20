@@ -36,8 +36,9 @@ def getLastGame(tbracket_id, orig_teamid):
 	return last_game
 
 def getLastGame_Team(orig_teamid):
-	# determine last game & team that an original team's owner played in & with in a particular bracket
-	# not necessarily with that same orig_team
+	# determine last completed game and the team that an original team's owner played in
+	# The team returned won't necessarily be the current active team since teams may be swapped
+	# after a game if one owner inherits the other's team
 
 	#get first game that team played in
 	last_team_id = int(orig_teamid)
@@ -96,8 +97,7 @@ def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, play
 	# determine the Next Game status for a given Player's active team
 
 	if (active_team is None # Team lost before the Final Four
-		or (last_game.id in [61,62] and last_matchup.winner_id and player.id != last_matchup.winner_id) # User was in Final Four but lost
-		or (last_game.id==63 and last_matchup.winner_id)): # User was in championship and game has concluded
+		or (last_game.id in [61,62,63] and last_matchup.winner_id)): # User was in Semi-final or Championship & game is concluded
 		if last_game.id not in [61,62,63]: # Team lost before the Final Four in which case User's active team is null, **OUT**
 			# determine which team the user owns and select the other team & owner as having lost to
 			if last_game.team1_id == last_team_id:
@@ -105,25 +105,29 @@ def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, play
 			if last_game.team2_id == last_team_id:
 				nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
 		elif last_game.id in [61,62]: # User's last game was a Final Four game, i.e. Semi-Final
-			if player.id != last_matchup.winner_id: # and User did not win
+			# if player.id != last_matchup.winner_id: # and User did not win
 				# determine which team the user owns and select the other team & owner as having lost to
-				if last_game.team1_id == last_team_id:
+				if active_team.id == last_game.team1_id:
 					nextup_game = "Lost to: " + str(last_game.team2) + " (" + str(last_matchup.team2_owner) + ") with " + str(last_game.team1)
-				if last_game.team2_id == last_team_id:
+				else:
 					nextup_game = "Lost to: " + str(last_game.team1) + " (" + str(last_matchup.team1_owner) + ") with " + str(last_game.team2)
 		else: # User's last game was the Championship game
-			if player.id == last_matchup.winner_id: # User was the winner
+			if last_game.team1_score > last_game.team2_score:
+				winner_id = last_game.team1_id
+			else:
+				winner_id = last_game.team2_id
+			if player.id == last_matchup.winner_id and active_team.id == winner_id: # User was the winner
 				if player.id == last_matchup.team1_owner_id:
 					# determine which team the user owns and state that won against other owner
-					nextup_game = "Won against: " + str(last_matchup.team2_owner) + " with " + str(last_game.team1)
+					nextup_game = "Won against: " + str(last_matchup.team2_owner)
 				else:
-					nextup_game = "Won against: " + str(last_matchup.team1_owner) + " with " + str(last_game.team2)
+					nextup_game = "Won against: " + str(last_matchup.team1_owner)
 			else:
 				# determine which team the user owns and state that lost against the other owner
 				if player.id == last_matchup.team1_owner_id:
-					nextup_game = "Lost to: " + str(last_matchup.team2_owner) + " with " + str(last_game.team1)
+					nextup_game = "Lost to: " + str(last_matchup.team2_owner)
 				else: # player held team2
-					nextup_game = "Lost to: " + str(last_matchup.team1_owner) + " with " + str(last_game.team2)
+					nextup_game = "Lost to: " + str(last_matchup.team1_owner)
 
 		# append proper Round within which last game was lost
 		if (last_game.t_round <= 4):
@@ -136,7 +140,7 @@ def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, play
 			nextup_game += " in the Championship"
 
 		# if last game played is in Final Four round, update _region_id for proper route navigation purposes
-		# region_id = last_game.region_id
+		region_id = last_game.region_id
 	
 	# if owner's team is still Active and is playing in a game before the Championship
 	else:
@@ -182,22 +186,26 @@ def getNextUpGameString(last_game, last_matchup, active_team, last_team_id, play
 			nextup_game += " at "+'{dt:%I}:{dt:%M} {dt:%p}'.format(dt=last_game.tipoff_date_time)
 
 		#if last game played is in Final Four round, update _region_id for proper route navigation purposes
-		# region_id = last_matchup.region_id
+		region_id = last_game.region_id
 
-	return nextup_game
+	return nextup_game, region_id
 
 
-def determineStatus(team_id, tbracket_id, player_id):
+# def determineStatus(team_id, tbracket_id, player_id):
+def determineStatus(team_id, tbracket_id, player_id, latest_game):
 	# determine status, i.e. furthest/current round that team is in or whether semi-finalist or champion 
-	# for EntryStandingsSerializer and subsequently display within Standings page
+	# for EntryStandingsSerializer and subsequently display within Standings page. Also, determine
+	# "bonus points" to add to team count so that overall order sorts by Champion, Semi-Final Winner
+	# and Final Four teams upon conclusion fo tournament
 	status = None
 	if team_id:
-		latest_game = Game.objects.filter(Q(team1_id=team_id) | Q(team2_id=team_id)).order_by('-id')[0]
+		# latest_game = Game.objects.filter(Q(team1_id=team_id) | Q(team2_id=team_id)).order_by('-id')[0]
 		if latest_game.t_round <= 4:
 			status = "(Round " + str(latest_game.t_round) + ")"
 		elif latest_game.t_round == 5:
 			status = "(Final Four)"
-		else:
+			bonus = 1
+		else:  #latest_game.t_round == 6
 			# determine champion to assign status of either Champion or Semifinalist
 			related_matchup = Matchup.objects.get(tbracket_id=tbracket_id, game_id=latest_game.id)
 			# print ("Championship matchup is:", related_matchup, related_matchup.winner_id, player_id)
@@ -207,9 +215,11 @@ def determineStatus(team_id, tbracket_id, player_id):
 				winning_team = latest_game.team2_id
 			if related_matchup.winner_id == player_id and team_id == winning_team:
 				status = "(Champion)"
+				bonus = 5
 			else:
 				status = "(Semi-final Winner)"
-	return status
+				bonus = 2
+	return status, bonus
 
 
 def create_entries():

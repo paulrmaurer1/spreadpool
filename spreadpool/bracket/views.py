@@ -564,7 +564,8 @@ class MatchupLastGameViewSet(ModelViewSet):
 	"""
 	API endpoint that retrieves the last matchup in which the owner of orig_teamid
 	played in a specific bracket
-	Required GET parameters include: ?tbracketid=, ?orig_teamid= 
+	Required GET parameters include: ?tbracketid=, ?orig_teamid=
+  ***THIS ENDPOINT HAS BEEN DEPRECATED***
 	"""
 	queryset = Matchup.objects.all()
 	serializer_class = serializers.MatchupLastGameSerializer

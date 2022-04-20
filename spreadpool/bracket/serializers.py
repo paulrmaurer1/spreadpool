@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import get_user_model
+from django.forms import IntegerField
 from rest_framework import serializers
 from django.db.models import Q
 
@@ -75,11 +76,12 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 	team_c = serializers.StringRelatedField()
 	team_d = serializers.StringRelatedField()
 	team_count = serializers.SerializerMethodField()
+	count = IntegerField
 
 	class Meta:
 		model = Entry
 		fields = ('id', 'tbracket', 'tbracket_id', 'player', 'player_id', 'team_count', \
-			'team_a', 'team_b', 'team_c', 'team_d', 'orig_team_a_id', 'orig_team_b_id', 'orig_team_c_id', 'orig_team_d_id')
+			'team_a', 'team_b', 'team_c', 'team_d')
 
 	def get_team_count(self, obj):
 	# Return team_count field by adding up non-null (still active) teams
@@ -96,38 +98,38 @@ class EntryStandingsSerializer(serializers.ModelSerializer):
 
 	def to_representation(self, obj):
 		data = super().to_representation(obj)
+		team_a_bonus, team_b_bonus, team_c_bonus, team_d_bonus = 0,0,0,0
 		if data['team_a'] is None:
 			data['team_a_status'] = '(OUT)'
-			# last_team_a = getLastGame_Team(obj.orig_team_a_id)[1]
-			# data['team_a'] = Team.objects.get(id=last_team_a).bracket_name
 			data['team_a'] = obj.last_team_a.bracket_name
 		else:
-			data['team_a_status'] = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
+			# data['team_a_status'], team_a_bonus = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id)
+			data['team_a_status'], team_a_bonus = determineStatus(obj.team_a_id, obj.tbracket_id, obj.player_id, obj.last_game_a)
 		
 		if data['team_b'] is None:
 			data['team_b_status'] = '(OUT)'
-			# last_team_b = getLastGame_Team(obj.orig_team_b_id)[1]
-			# data['team_b'] = Team.objects.get(id=last_team_b).bracket_name
 			data['team_b'] = obj.last_team_b.bracket_name
 		else:
-			data['team_b_status'] = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
+			# data['team_b_status'], team_b_bonus = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id)
+			data['team_b_status'], team_b_bonus = determineStatus(obj.team_b_id, obj.tbracket_id, obj.player_id, obj.last_game_b)
 		
 		if data['team_c'] is None:
 			data['team_c_status'] = '(OUT)'
-			# last_team_c = getLastGame_Team(obj.orig_team_c_id)[1]
-			# data['team_c'] = Team.objects.get(id=last_team_c).bracket_name
 			data['team_c'] = obj.last_team_c.bracket_name
 		else:
-			data['team_c_status'] = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
+			# data['team_c_status'], team_c_bonus = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id)
+			data['team_c_status'], team_c_bonus = determineStatus(obj.team_c_id, obj.tbracket_id, obj.player_id, obj.last_game_c)
 		
 		if data['team_d'] is None:
 			data['team_d_status'] = '(OUT)'
-			# last_team_d = getLastGame_Team(obj.orig_team_d_id)[1]
-			# data['team_d'] = Team.objects.get(id=last_team_d).bracket_name
 			data['team_d'] = obj.last_team_d.bracket_name
 		else:
-			data['team_d_status'] = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
+			# data['team_d_status'], team_d_bonus = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id)
+			data['team_d_status'], team_d_bonus = determineStatus(obj.team_d_id, obj.tbracket_id, obj.player_id, obj.last_game_d)
 		
+		# Assign a point total adding bonus points for placing teams (5 for Champion, 2 for Semi-Final Winner, 1 for FF)
+		data['standing_points'] = data['team_count']+team_a_bonus+team_b_bonus+ team_c_bonus+team_d_bonus
+
 		return data
 	
 class EntryMyTeamsSerializer(serializers.ModelSerializer):
@@ -159,28 +161,20 @@ class EntryMyTeamsSerializer(serializers.ModelSerializer):
 		# Determine next game up string for each active entry team
 		
 		last_game, last_team_id = getLastGame_Team(obj.orig_team_a_id)
-		print ("getLastGame_Team last_team_id =",last_team_id,"; getLastGame_Team last_game =",last_game.id)
-		print ("DB last_team_a.id =", obj.last_team_a.id, "DB last_game_a.id = ", obj.last_game_a.id)
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_a'] = getNextUpGameString(last_game, last_matchup, obj.team_a, last_team_id, obj.player)
+		data['next_team_a'], data['region_a'] = getNextUpGameString(last_game, last_matchup, obj.team_a, last_team_id, obj.player)
 		
 		last_game, last_team_id = getLastGame_Team(obj.orig_team_b_id)
-		print ("getLastGame_Team last_team_id =",last_team_id,"; getLastGame_Team last_game =",last_game.id)
-		print ("DB last_team_b.id =", obj.last_team_b.id, "DB last_game_b.id = ", obj.last_game_b.id)
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_b'] = getNextUpGameString(last_game, last_matchup, obj.team_b, last_team_id, obj.player)
+		data['next_team_b'], data['region_b'] = getNextUpGameString(last_game, last_matchup, obj.team_b, last_team_id, obj.player)
 		
 		last_game, last_team_id = getLastGame_Team( obj.orig_team_c_id)
-		print ("getLastGame_Team last_team_id =",last_team_id,"; getLastGame_Team last_game =",last_game.id)
-		print ("DB last_team_c.id =", obj.last_team_c.id, "DB last_game_c.id = ", obj.last_game_c.id)
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_c'] = getNextUpGameString(last_game, last_matchup, obj.team_c, last_team_id, obj.player)
+		data['next_team_c'], data['region_c'] = getNextUpGameString(last_game, last_matchup, obj.team_c, last_team_id, obj.player)
 		
 		last_game, last_team_id = getLastGame_Team(obj.orig_team_d_id)
-		print ("getLastGame_Team last_team_id =",last_team_id,"; getLastGame_Team last_game =",last_game.id)
-		print ("DB last_team_d.id =", obj.last_team_d.id, "DB last_game_d.id = ", obj.last_game_d.id)
 		last_matchup = Matchup.objects.get(game=last_game.id, tbracket=obj.tbracket_id)
-		data['next_team_d'] = getNextUpGameString(last_game, last_matchup, obj.team_d, last_team_id, obj.player)
+		data['next_team_d'], data['region_d'] = getNextUpGameString(last_game, last_matchup, obj.team_d, last_team_id, obj.player)
 		
 		return data
 
