@@ -1781,15 +1781,14 @@ var BracketTabComponent = /** @class */ (function () {
         var isChampion = false;
         if (this._bracketGames[63] && this._bracketGames[63].team1_score && this._bracketGames[63].team2_score) {
             isChampion = true;
-            // console.log("Determining winning info...")
+            // console.log("Determining championship info...", this._bracketGames[63], this._bracketOwners[63])
             if (this._bracketGames[63].team1_score > this._bracketGames[63].team2_score) {
                 this._champion = this._bracketGames[63].team1;
-                this._winningTeamOwner = this._bracketOwners[63].team2_owner;
             }
             else {
                 this._champion = this._bracketGames[63].team2;
-                this._winningTeamOwner = this._bracketOwners[63].team1_owner;
             }
+            this._winningTeamOwner = this._bracketOwners[63].winner;
         }
         return isChampion;
     }; //end getChampion
@@ -3842,7 +3841,8 @@ var StandingsComponent = /** @class */ (function () {
         this._entryService.getEntryStandings(this._bracketId).subscribe(function (data) {
             _this._standingsList = data;
             // Sort the standings by descending team_count (they're pre-sorted by last name descending)
-            _this._standingsList.sort(function (a, b) { return (a.team_count > b.team_count) ? -1 : ((b.team_count > a.team_count) ? 1 : 0); });
+            // this._standingsList.sort((a,b) => (a.team_count > b.team_count) ? -1 : ((b.team_count > a.team_count) ? 1 : 0));
+            _this._standingsList.sort(function (a, b) { return (a.standing_points > b.standing_points) ? -1 : ((b.standing_points > a.standing_points) ? 1 : 0); });
             _this.loading = false;
         });
         // Retrieve list of regions to display in column titles
@@ -3890,7 +3890,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- team-details.component.html-->\r\n<div *ngIf=\"!_userService.beforeTourney\">\r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{_regionList[0].id-1}}>{{ entry.next_team_a }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{_regionList[1].id-1}}>{{ entry.next_team_b }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{_regionList[2].id-1}}>{{ entry.next_team_c }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{_regionList[3].id-1}}>{{ entry.next_team_d }}</a></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n\r\n<div *ngIf=\"_userService.beforeTourney\">\r\n\t<br>\r\n\t<div class=\"text-center\">\r\n\t\t<br>\r\n\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 17, 2022, at 10am CST **</h5>\r\n\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t</div>\r\n</div>"
+module.exports = "<!-- team-details.component.html-->\r\n<div *ngIf=\"!_userService.beforeTourney\">\r\n<div [class.loader] = \"loading\">\r\n<div class=\"table-responsive\" *ngIf=\"_entryList && _entryList.length\">\r\n\t<div class = \"table table-borderless table-sm\" *ngFor = \"let entry of _entryList\" id=\"my-teams\">\r\n\t\t<thead>\r\n\t\t\t<tr class=\"table-active\">\r\n\t\t\t\t<th scope=\"col\">Bracket</th>\r\n\t\t\t\t<th scope=\"col\">Region</th>\r\n\t\t\t\t<th scope=\"col\">Original Teams</th>\r\n\t\t\t\t<th scope=\"col\">Active Team(s)</th>\r\n\t\t\t\t<th scope=\"col\">Next Game</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody *ngIf=\"_regionList\">\r\n\t\t\t<tr>\r\n\t\t\t\t<td class=\"text-primary text-pointer\" (click)=\"sendToBracket(entry.tbracket_id)\"><strong>{{ entry.tbracket }}</strong></td>\r\n\t\t\t\t<td>{{ _regionList[0].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_a }}</td>\r\n\t\t\t\t<td>{{ entry.team_a || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{entry.region_a-1}}>{{ entry.next_team_a }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[1].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_b }}</td>\r\n\t\t\t\t<td>{{ entry.team_b || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{entry.region_b-1}}>{{ entry.next_team_b }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[2].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_c }}</td>\r\n\t\t\t\t<td>{{ entry.team_c || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{entry.region_c-1}}>{{ entry.next_team_c }}</a></td>\r\n\t\t\t</tr>\r\n\t\t\t<tr>\r\n\t\t\t\t<td></td>\r\n\t\t\t\t<td>{{ _regionList[3].name }}</td>\r\n\t\t\t\t<td>{{ entry.orig_team_d }}</td>\r\n\t\t\t\t<td>{{ entry.team_d || '**OUT**'}}</td>\r\n\t\t\t\t<td><a [routerLink]=\"['/brackets', entry.tbracket_id]\" fragment={{entry.region_d-1}}>{{ entry.next_team_d }}</a></td>\r\n\t\t\t</tr>\r\n\t\t</tbody>\r\n\t</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n\r\n<div *ngIf=\"_userService.beforeTourney\">\r\n\t<br>\r\n\t<div class=\"text-center\">\r\n\t\t<br>\r\n\t\t<h5 class=\"font-italic text-muted\">** Teams will be assigned by Thursday, March 17, 2022, at 10am CST **</h5>\r\n\t\t<small>Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)</small>\r\n\t</div>\r\n</div>"
 
 /***/ }),
 
@@ -3907,9 +3907,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_entry_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/entry.service */ "./src/app/core/entry.service.ts");
-/* harmony import */ var _core_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/game.service */ "./src/app/core/game.service.ts");
-/* harmony import */ var _core_region_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/region.service */ "./src/app/core/region.service.ts");
-/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
+/* harmony import */ var _core_region_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/region.service */ "./src/app/core/region.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3924,12 +3923,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var TeamDetailsComponent = /** @class */ (function () {
-    function TeamDetailsComponent(_entryService, router, _gameService, _regionService, _userService) {
+    function TeamDetailsComponent(_entryService, router, _regionService, _userService) {
         this._entryService = _entryService;
         this.router = router;
-        this._gameService = _gameService;
         this._regionService = _regionService;
         this._userService = _userService;
     }
@@ -3949,8 +3946,6 @@ var TeamDetailsComponent = /** @class */ (function () {
         var _this = this;
         this.loading = true;
         //retrieve entries for user
-        // this._entryService.getEntryDetailsListByPlayer(this._player.id).subscribe(data => {
-        // 	this._entryList = data;
         this._entryService.getEntryDetailsListMyTeamsByPlayer(this._player.id).subscribe(function (data) {
             _this._entryList = data;
             // Retrieve list of regions to display in tabs
@@ -3977,9 +3972,8 @@ var TeamDetailsComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_core_entry_service__WEBPACK_IMPORTED_MODULE_2__["EntryService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _core_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"],
-            _core_region_service__WEBPACK_IMPORTED_MODULE_4__["RegionService"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])
+            _core_region_service__WEBPACK_IMPORTED_MODULE_3__["RegionService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
     ], TeamDetailsComponent);
     return TeamDetailsComponent;
 }());
