@@ -22,7 +22,6 @@ import { TeamDetailsComponent } from './team-details/team-details.component';
 import { DeleteModalComponent } from './admin/create-brackets/delete-bracket-modal.component';
 import { ReassignModalComponent } from './admin/create-brackets/reassign-bracket-modal.component';
 import { ResetModalComponent } from './admin/create-brackets/reset-bracket-modal.component';
-import { TeamNextupComponent } from './team-nextup/team-nextup.component';
 import { StandingsComponent } from './standings/standings.component';
 import { StandingsNavComponent } from './standings-nav/standings-nav.component';
 import { BracketTabComponent } from './bracket-tab/bracket-tab.component';
@@ -30,6 +29,7 @@ import { RosterTextboxComponent } from './roster-textbox/roster-textbox.componen
 import { SendOrigModalComponent } from './admin/send-emails/send-orig-modal.component';
 import { SendGamesModalComponent } from './admin/send-emails/send-games-modal.component';
 import { PartialProfileFormModalComponent } from './profile-form-modal/partial-profile-form-modal.component';
+import { AdminProfileFormModalComponent } from './profile-form-modal/admin-profile-form-modal.component';
 
 
 @NgModule({
@@ -46,7 +46,6 @@ import { PartialProfileFormModalComponent } from './profile-form-modal/partial-p
     DeleteModalComponent,
     ReassignModalComponent,
     ResetModalComponent,
-    TeamNextupComponent,
     StandingsComponent,
     StandingsNavComponent,
     BracketTabComponent,
@@ -54,6 +53,7 @@ import { PartialProfileFormModalComponent } from './profile-form-modal/partial-p
     SendOrigModalComponent,
     SendGamesModalComponent,
     PartialProfileFormModalComponent,
+    AdminProfileFormModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +76,7 @@ import { PartialProfileFormModalComponent } from './profile-form-modal/partial-p
     SendOrigModalComponent, 
     SendGamesModalComponent,
     PartialProfileFormModalComponent,
+    AdminProfileFormModalComponent,
   ]
 })
 export class AppModule { }

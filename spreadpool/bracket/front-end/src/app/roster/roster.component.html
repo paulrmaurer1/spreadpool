@@ -44,7 +44,7 @@
 	<tbody>
 		<tr on-mouseover="hoveredIndex=_loggedInUser.id" on-mouseleave="hoveredIndex=null">
 			<th scope="row">1</th>
-			<td><strong>{{ _loggedInUser.full_name }}*</strong></td>
+			<td><strong>{{ _loggedInUser.first_name }}&nbsp;{{ _loggedInUser.last_name }}*</strong></td>
 			<td><strong>{{ _loggedInUser.num_entries }}</strong></td>
 			<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>
 			<td>

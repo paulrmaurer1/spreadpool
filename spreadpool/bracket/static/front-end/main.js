@@ -49,6 +49,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./update-games/update-games.component */ "./src/app/admin/update-games/update-games.component.ts");
 /* harmony import */ var _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./game-detail/game-detail.component */ "./src/app/admin/game-detail/game-detail.component.ts");
 /* harmony import */ var _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./send-emails/send-emails.component */ "./src/app/admin/send-emails/send-emails.component.ts");
+/* harmony import */ var _edit_roster_edit_roster_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./edit-roster/edit-roster.component */ "./src/app/admin/edit-roster/edit-roster.component.ts");
+/* harmony import */ var _edit_roster_edit_roster_textbox_edit_roster_textbox_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./edit-roster/edit-roster-textbox/edit-roster-textbox.component */ "./src/app/admin/edit-roster/edit-roster-textbox/edit-roster-textbox.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,12 +70,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
     { path: '', redirectTo: 'c-brackets', pathMatch: 'full' },
     { path: 'c-brackets', component: _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_9__["CreateBracketsComponent"] },
     { path: 'a-brackets/:id', component: _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_8__["AssignBracketsComponent"] },
     { path: 'u-games', component: _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__["UpdateGamesComponent"] },
     { path: 's-emails', component: _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__["SendEmailsComponent"] },
+    { path: 'e-roster', component: _edit_roster_edit_roster_component__WEBPACK_IMPORTED_MODULE_13__["EditRosterComponent"] },
 ];
 var AdminModule = /** @class */ (function () {
     function AdminModule() {
@@ -86,12 +91,15 @@ var AdminModule = /** @class */ (function () {
                 _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__["UpdateGamesComponent"],
                 _game_detail_game_detail_component__WEBPACK_IMPORTED_MODULE_11__["GameDetailComponent"],
                 _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__["SendEmailsComponent"],
+                _edit_roster_edit_roster_component__WEBPACK_IMPORTED_MODULE_13__["EditRosterComponent"],
+                _edit_roster_edit_roster_textbox_edit_roster_textbox_component__WEBPACK_IMPORTED_MODULE_14__["EditRosterTextboxComponent"],
             ],
             exports: [
                 _assign_brackets_assign_brackets_component__WEBPACK_IMPORTED_MODULE_8__["AssignBracketsComponent"],
                 _create_brackets_create_brackets_component__WEBPACK_IMPORTED_MODULE_9__["CreateBracketsComponent"],
                 _update_games_update_games_component__WEBPACK_IMPORTED_MODULE_10__["UpdateGamesComponent"],
                 _send_emails_send_emails_component__WEBPACK_IMPORTED_MODULE_12__["SendEmailsComponent"],
+                _edit_roster_edit_roster_component__WEBPACK_IMPORTED_MODULE_13__["EditRosterComponent"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"],
             ],
             imports: [
@@ -627,6 +635,194 @@ var ResetModalComponent = /** @class */ (function () {
             _core_tbracket_service__WEBPACK_IMPORTED_MODULE_2__["TBracketService"]])
     ], ResetModalComponent);
     return ResetModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/edit-roster/edit-roster-textbox/edit-roster-textbox.component.css":
+/*!*****************************************************************************************!*\
+  !*** ./src/app/admin/edit-roster/edit-roster-textbox/edit-roster-textbox.component.css ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL2VkaXQtcm9zdGVyL2VkaXQtcm9zdGVyLXRleHRib3gvZWRpdC1yb3N0ZXItdGV4dGJveC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/admin/edit-roster/edit-roster-textbox/edit-roster-textbox.component.ts":
+/*!****************************************************************************************!*\
+  !*** ./src/app/admin/edit-roster/edit-roster-textbox/edit-roster-textbox.component.ts ***!
+  \****************************************************************************************/
+/*! exports provided: EditRosterTextboxComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditRosterTextboxComponent", function() { return EditRosterTextboxComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var EditRosterTextboxComponent = /** @class */ (function () {
+    function EditRosterTextboxComponent() {
+        this.changed = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    Object.defineProperty(EditRosterTextboxComponent.prototype, "filter", {
+        get: function () {
+            return this._filter;
+        },
+        set: function (val) {
+            this._filter = val;
+            this.changed.emit(this.filter); //Raise changed event
+        },
+        enumerable: true,
+        configurable: true
+    });
+    EditRosterTextboxComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [String])
+    ], EditRosterTextboxComponent.prototype, "filter", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], EditRosterTextboxComponent.prototype, "changed", void 0);
+    EditRosterTextboxComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-edit-roster-textbox',
+            // templateUrl: './edit-roster-textbox.component.html',
+            template: "\n        Search by Name/Email: <input type=\"text\" [(ngModel)]=\"filter\" />\n    ",
+            styles: [__webpack_require__(/*! ./edit-roster-textbox.component.css */ "./src/app/admin/edit-roster/edit-roster-textbox/edit-roster-textbox.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], EditRosterTextboxComponent);
+    return EditRosterTextboxComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/edit-roster/edit-roster.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/admin/edit-roster/edit-roster.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL2VkaXQtcm9zdGVyL2VkaXQtcm9zdGVyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/admin/edit-roster/edit-roster.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/admin/edit-roster/edit-roster.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--edit-roster.component.html-->\n<br>\n<h4>Players</h4>\n<!-- <div [class.loader] = \"loading\"> -->\n<div>\n<app-edit-roster-textbox (changed)=\"filter($event)\"></app-edit-roster-textbox>\n<br>\n<br>\n<table class=\"table table-sm\">\n\t<thead>\n\t\t<tr>\n\t\t\t<th scope=\"col\">#</th>\n\t\t\t<th scope=\"col\" (click)=\"sort('last_name')\" class=\"cursor-pointer\">Name\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==1\" name=\"caret-down\"></fa>\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==-1\" name=\"caret-up\"></fa>\n\t\t\t</th>\n      <th scope=\"col\">Email</th>\n\t\t\t<th scope=\"col\" (click)=\"sort('num_entries')\" class=\"cursor-pointer\">Num Entries\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==1\" name=\"caret-down\"></fa>\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==-1\" name=\"caret-up\"></fa>\n\t\t\t</th>\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\n      <th scope=\"col\" (click)=\"sort('paid')\" class=\"cursor-pointer\">Paid?\n        <fa *ngIf=\"_property=='paid' && _direction==1\" name=\"check-square-o\"></fa>\n\t\t\t\t<fa *ngIf=\"_property=='paid' && _direction==-1\" name=\"square-o\"></fa>\n      </th>\n      <!-- <th scope=\"col\">Paid?</th> -->\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr *ngFor = \"let player of _filteredRoster; let i = index\">\n\t\t\t<th scope=\"row\">{{i + 1}}</th>\n\t\t\t<td>{{ player.first_name }}&nbsp;{{ player.last_name }}</td>\n      <td>{{ player.email }}</td>\n\t\t\t<td>{{ player.num_entries }}</td>\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\n      <!-- <td>{{ player.paid }}</td> -->\n      <!-- <td><fa name = '{{ player.paid == true ? \"check-square-o\" : \"square-o\" }}'></fa></td> -->\n      <td>{{ player.paid == true ? 'YES' : 'NO' }}</td>\n      <td>\n           <fa name=\"edit\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openAdminProfileModal(player)\"></fa>\t\t\t\t\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n<br>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/admin/edit-roster/edit-roster.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/admin/edit-roster/edit-roster.component.ts ***!
+  \************************************************************/
+/*! exports provided: EditRosterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditRosterComponent", function() { return EditRosterComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/player.service */ "./src/app/core/player.service.ts");
+/* harmony import */ var _core_sorter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/sorter.service */ "./src/app/core/sorter.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _profile_form_modal_admin_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../profile-form-modal/admin-profile-form-modal.component */ "./src/app/profile-form-modal/admin-profile-form-modal.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var EditRosterComponent = /** @class */ (function () {
+    function EditRosterComponent(_playerService, _modalService, _sorterService) {
+        this._playerService = _playerService;
+        this._modalService = _modalService;
+        this._sorterService = _sorterService;
+        this._direction = 1;
+    }
+    EditRosterComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._playerService.getList().subscribe(function (data) {
+            _this._filteredRoster = _this._roster = data;
+        });
+    };
+    EditRosterComponent.prototype.openAdminProfileModal = function (_player) {
+        var initialState = {
+            id: _player.id,
+            profile_user: _player
+        };
+        this.bsModalRef = this._modalService.show(_profile_form_modal_admin_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_4__["AdminProfileFormModalComponent"], { initialState: initialState });
+        this._modalService.onHidden.subscribe(function () {
+            // Update and re-display roster so any changes are reflected in what the user sees on screen
+            // this._playerService.getList().subscribe(data => {
+            // 	this._filteredRoster = data;
+            // 	if (this._property) {
+            // 		this.sort(this._property);
+            // 	}
+            // });
+            // console.log("_property = ", this._property, " _direction = ", this._direction)
+        });
+    };
+    EditRosterComponent.prototype.filter = function (data) {
+        // Function that filters the Roster list based on what a user types in the edit-roster-textbox component
+        if (data) {
+            this._filteredRoster = this._roster.filter(function (item) { return item.full_name.toLowerCase().indexOf(data.toLowerCase()) > -1
+                || item.email.toLowerCase().indexOf(data.toLowerCase()) > -1; });
+        }
+        else {
+            this._filteredRoster = this._roster;
+        }
+    };
+    EditRosterComponent.prototype.sort = function (prop) {
+        this._sorterService.sort(this._filteredRoster, prop);
+        this._property = prop;
+        this._direction = (this._property === prop) ? this._direction * -1 : 1;
+        // console.log ("property = ", this._property, " & direction = ", this._direction);
+    };
+    EditRosterComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-edit-roster',
+            template: __webpack_require__(/*! ./edit-roster.component.html */ "./src/app/admin/edit-roster/edit-roster.component.html"),
+            styles: [__webpack_require__(/*! ./edit-roster.component.css */ "./src/app/admin/edit-roster/edit-roster.component.css")]
+        }),
+        __metadata("design:paramtypes", [_core_player_service__WEBPACK_IMPORTED_MODULE_1__["PlayerService"],
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["BsModalService"],
+            _core_sorter_service__WEBPACK_IMPORTED_MODULE_2__["SorterService"]])
+    ], EditRosterComponent);
+    return EditRosterComponent;
 }());
 
 
@@ -1453,14 +1649,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_create_brackets_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./admin/create-brackets/delete-bracket-modal.component */ "./src/app/admin/create-brackets/delete-bracket-modal.component.ts");
 /* harmony import */ var _admin_create_brackets_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./admin/create-brackets/reassign-bracket-modal.component */ "./src/app/admin/create-brackets/reassign-bracket-modal.component.ts");
 /* harmony import */ var _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./admin/create-brackets/reset-bracket-modal.component */ "./src/app/admin/create-brackets/reset-bracket-modal.component.ts");
-/* harmony import */ var _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./team-nextup/team-nextup.component */ "./src/app/team-nextup/team-nextup.component.ts");
-/* harmony import */ var _standings_standings_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./standings/standings.component */ "./src/app/standings/standings.component.ts");
-/* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
-/* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
-/* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
-/* harmony import */ var _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./admin/send-emails/send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
-/* harmony import */ var _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./admin/send-emails/send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
-/* harmony import */ var _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./profile-form-modal/partial-profile-form-modal.component */ "./src/app/profile-form-modal/partial-profile-form-modal.component.ts");
+/* harmony import */ var _standings_standings_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./standings/standings.component */ "./src/app/standings/standings.component.ts");
+/* harmony import */ var _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./standings-nav/standings-nav.component */ "./src/app/standings-nav/standings-nav.component.ts");
+/* harmony import */ var _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./bracket-tab/bracket-tab.component */ "./src/app/bracket-tab/bracket-tab.component.ts");
+/* harmony import */ var _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./roster-textbox/roster-textbox.component */ "./src/app/roster-textbox/roster-textbox.component.ts");
+/* harmony import */ var _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./admin/send-emails/send-orig-modal.component */ "./src/app/admin/send-emails/send-orig-modal.component.ts");
+/* harmony import */ var _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./admin/send-emails/send-games-modal.component */ "./src/app/admin/send-emails/send-games-modal.component.ts");
+/* harmony import */ var _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./profile-form-modal/partial-profile-form-modal.component */ "./src/app/profile-form-modal/partial-profile-form-modal.component.ts");
+/* harmony import */ var _profile_form_modal_admin_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./profile-form-modal/admin-profile-form-modal.component */ "./src/app/profile-form-modal/admin-profile-form-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1515,14 +1711,14 @@ var AppModule = /** @class */ (function () {
                 _admin_create_brackets_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"],
                 _admin_create_brackets_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_20__["ReassignModalComponent"],
                 _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__["ResetModalComponent"],
-                _team_nextup_team_nextup_component__WEBPACK_IMPORTED_MODULE_22__["TeamNextupComponent"],
-                _standings_standings_component__WEBPACK_IMPORTED_MODULE_23__["StandingsComponent"],
-                _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_24__["StandingsNavComponent"],
-                _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_25__["BracketTabComponent"],
-                _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_26__["RosterTextboxComponent"],
-                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendOrigModalComponent"],
-                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__["SendGamesModalComponent"],
-                _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__["PartialProfileFormModalComponent"],
+                _standings_standings_component__WEBPACK_IMPORTED_MODULE_22__["StandingsComponent"],
+                _standings_nav_standings_nav_component__WEBPACK_IMPORTED_MODULE_23__["StandingsNavComponent"],
+                _bracket_tab_bracket_tab_component__WEBPACK_IMPORTED_MODULE_24__["BracketTabComponent"],
+                _roster_textbox_roster_textbox_component__WEBPACK_IMPORTED_MODULE_25__["RosterTextboxComponent"],
+                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_26__["SendOrigModalComponent"],
+                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendGamesModalComponent"],
+                _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_28__["PartialProfileFormModalComponent"],
+                _profile_form_modal_admin_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__["AdminProfileFormModalComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1542,9 +1738,10 @@ var AppModule = /** @class */ (function () {
                 _admin_create_brackets_delete_bracket_modal_component__WEBPACK_IMPORTED_MODULE_19__["DeleteModalComponent"],
                 _admin_create_brackets_reassign_bracket_modal_component__WEBPACK_IMPORTED_MODULE_20__["ReassignModalComponent"],
                 _admin_create_brackets_reset_bracket_modal_component__WEBPACK_IMPORTED_MODULE_21__["ResetModalComponent"],
-                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendOrigModalComponent"],
-                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_28__["SendGamesModalComponent"],
-                _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__["PartialProfileFormModalComponent"],
+                _admin_send_emails_send_orig_modal_component__WEBPACK_IMPORTED_MODULE_26__["SendOrigModalComponent"],
+                _admin_send_emails_send_games_modal_component__WEBPACK_IMPORTED_MODULE_27__["SendGamesModalComponent"],
+                _profile_form_modal_partial_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_28__["PartialProfileFormModalComponent"],
+                _profile_form_modal_admin_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_29__["AdminProfileFormModalComponent"],
             ]
         })
     ], AppModule);
@@ -2148,8 +2345,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 //gameUrl is base url for users table end point
 var gameUrl = '/api/games/';
-var game_ownerURL = '/api/games_owners/';
-var game_matchupURL = '/api/games_matchups/';
 var new_game_matchupURL = '/api/games_new_matchups/';
 var GameService = /** @class */ (function () {
     function GameService(http, _userService) {
@@ -2171,14 +2366,6 @@ var GameService = /** @class */ (function () {
     //method to retrieve all games from a particular region
     GameService.prototype.getGameListByRegion = function (region_id) {
         return this.http.get(gameUrl + '?regionid=' + region_id);
-    };
-    //(deprecated) endpoint in favor of improved 'getNewGameWithMatchupDataList'
-    GameService.prototype.getGameWithOwnerList = function (tbracket_id) {
-        return this.http.get(game_ownerURL + '?tbracketid=' + tbracket_id);
-    };
-    //(deprecated) endpoint in favor of improved 'getNewGameWithMatchupDataList'
-    GameService.prototype.getGameWithMatchupDataList = function (tbracket_id) {
-        return this.http.get(game_matchupURL + '?tbracketid=' + tbracket_id);
     };
     //endpoint to return all games with owner info for a particular bracket
     GameService.prototype.getNewGameWithMatchupDataList = function (tbracket_id) {
@@ -2284,59 +2471,6 @@ var IsAdminGuard = /** @class */ (function () {
         __metadata("design:paramtypes", [Object])
     ], IsAdminGuard);
     return IsAdminGuard;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/core/matchup.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/core/matchup.service.ts ***!
-  \*****************************************/
-/*! exports provided: MatchupService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatchupService", function() { return MatchupService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-//entryUrl is base url for matchups table end point
-var matchupUrl = '/api/matchups/';
-var matchupLastGameUrl = '/api/matchups_last_game/';
-var MatchupService = /** @class */ (function () {
-    function MatchupService(http) {
-        this.http = http;
-    }
-    //method to retrieve entry details list for a player
-    MatchupService.prototype.getMatchupDetailsListByGame = function (id) {
-        return this.http.get(matchupUrl + '?gameid=' + id);
-    };
-    MatchupService.prototype.getMatchupsDetailsByBracketAndGame = function (b_id, g_id) {
-        return this.http.get(matchupUrl + '?tbracketid=' + b_id + '&gameid=' + g_id);
-    };
-    MatchupService.prototype.getMatchupLastGame = function (b_id, og_id) {
-        return this.http.get(matchupLastGameUrl + '?tbracketid=' + b_id + '&orig_teamid=' + og_id);
-    };
-    MatchupService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], MatchupService);
-    return MatchupService;
 }());
 
 
@@ -3127,6 +3261,112 @@ var ProfileDetailsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/profile-form-modal/admin-profile-form-modal.component.css":
+/*!***************************************************************************!*\
+  !*** ./src/app/profile-form-modal/admin-profile-form-modal.component.css ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Byb2ZpbGUtZm9ybS1tb2RhbC9hZG1pbi1wcm9maWxlLWZvcm0tbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/profile-form-modal/admin-profile-form-modal.component.html":
+/*!****************************************************************************!*\
+  !*** ./src/app/profile-form-modal/admin-profile-form-modal.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- admin-profile-form-modal.component.html -->\n\n<div class=\"modal-header\">\n\t<h4 class=\"modal-title pull-left\">{{title}} {{profile_user.full_name}}</h4>\n\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\n\t\t<span aria-hidden=\"true\">&times;</span>\n\t</button>\n</div>\n<form [formGroup]=\"adminProfileForm\" (ngSubmit)=\"submitForm(adminProfileForm.value)\">\n\t<div class=\"modal-body\">\n\t\t<div class=\"container\">\n\t\t\t<div class=\"form-row\">\n\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"first_name\">First Name</label>\n\t\t\t\t    <input type=\"text\" class=\"form-control\"\n\t\t\t\t    id=\"first_name\" [formControl] = \"first_name\"\n\t\t\t\t    [class.is-invalid] = \"first_name.invalid\">\n\t\t\t\t    <span *ngIf=\"first_name.invalid\" class=\"text-danger\">\n    \t\t\t\t\tFirst Name is required\n  \t\t\t\t\t</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"last_name\">Last Name</label>\n\t\t\t\t    <input type=\"text\" class=\"form-control\"\n\t\t\t\t    id=\"last_name\" [formControl] = \"last_name\"\n\t\t\t\t    [class.is-invalid] = \"last_name.invalid\">\n\t\t\t\t    <span *ngIf=\"last_name.invalid\" class=\"text-danger\">\n    \t\t\t\t\tLast Name is required\n  \t\t\t\t\t</span>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class = \"form-group\">\n\t\t\t\t<label for=\"email\">Email</label>\n\t\t\t    <input type=\"email\" class=\"form-control\"\n\t\t\t    id=\"email\" [formControl] = \"email\"\n\t\t\t    [class.is-invalid] = \"email.invalid\">\n\t\t\t    <span *ngIf=\"email.invalid && email.errors.required\" class=\"text-danger\">\n    \t\t\t\t\tEmail is required\n  \t\t\t\t</span>\n  \t\t\t\t<span *ngIf=\"email.invalid && email.errors.email\" class=\"text-danger\">\n    \t\t\t\t\tEmail must be a valid address\n  \t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"form-row\">\n\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"num_entries\">Number of Entries</label>\n\t\t\t\t    <input type=\"number\" min = \"1\" max = \"4\" class=\"form-control\" #entries\n\t\t\t\t    id=\"num_entries\" [formControl] = \"num_entries\"\n\t\t\t\t    [class.is-invalid] = \"num_entries.invalid\">\n\t\t\t\t    <span *ngIf=\"num_entries.invalid && num_entries.errors.required\" class=\"text-danger\">\n    \t\t\t\t\tNumber of Entries is required\n  \t\t\t\t\t</span>\n  \t\t\t\t\t<span *ngIf=\"num_entries.invalid && (num_entries.errors.minlength || num_entries.errors.maxlength)\" class=\"text-danger\">\n    \t\t\t\t\tMust submit a number between 1-4\n  \t\t\t\t\t</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group col-md-6\" *ngIf=\"entries.value>1\">\n\t\t\t\t\t<label for=\"mult_entry_type\">(S)ame or (D)ifferent</label>\n\t\t\t\t    <select class=\"form-control\"\n\t\t\t\t    id=\"mult_entry_type\" [formControl] = \"mult_entry_type\">\n\t\t\t\t    \t<option>S</option>\n\t\t\t\t    \t<option>D</option>\n\t\t\t\t    </select>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<div class = \"custom-control custom-checkbox\">\n\t\t\t\t\t<input type=\"checkbox\" class=\"custom-control-input\"\n\t\t\t\t    id=\"gm_updates\" [formControl] = \"gm_updates\">\n\t\t\t\t    <label class=\"custom-control-label\" for=\"gm_updates\">\n\t\t\t\t\t    Receive email for game updates?\n\t\t\t\t\t</label>\n\t\t\t\t</div>\n\t\t\t</div>\n      <div class=\"form-group\">\n\t\t\t\t<div class = \"custom-control custom-checkbox\">\n\t\t\t\t\t<input type=\"checkbox\" class=\"custom-control-input\"\n\t\t\t\t    id=\"paid\" [formControl] = \"paid\">\n\t\t\t\t    <label class=\"custom-control-label\" for=\"paid\">\n\t\t\t\t\t    Paid?\n\t\t\t\t\t</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>  <!-- end container -->\n\t\t<div class=\"modal-footer\">\n\t\t\t<button type=\"submit\" id=\"submit\" class=\"btn btn-success\" \n\t\t\t[disabled]=\"!adminProfileForm.valid\"\n\t\t\t(click)=\"bsModalRef.hide()\">{{closeBtnName}}</button>\n\t\t</div>\n\t</div>  <!-- end modal-body -->\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/profile-form-modal/admin-profile-form-modal.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/profile-form-modal/admin-profile-form-modal.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: AdminProfileFormModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminProfileFormModalComponent", function() { return AdminProfileFormModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/player.service */ "./src/app/core/player.service.ts");
+// admin-profile-form-modal.component.ts
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AdminProfileFormModalComponent = /** @class */ (function () {
+    function AdminProfileFormModalComponent(bsModalRef, fb, _playerService) {
+        this.bsModalRef = bsModalRef;
+        this._playerService = _playerService;
+        this.title = "Update profile for ";
+        this.closeBtnName = "Update";
+        this.adminProfileForm = fb.group({
+            'first_name': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            'last_name': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            'email': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email])],
+            'num_entries': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(4), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(1)])],
+            'mult_entry_type': ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            'gm_updates': [],
+            'paid': [],
+        });
+        this.first_name = this.adminProfileForm.controls['first_name']; // allows for other properties, e.g. error values
+        this.last_name = this.adminProfileForm.controls['last_name'];
+        this.email = this.adminProfileForm.controls['email'];
+        this.num_entries = this.adminProfileForm.controls['num_entries'];
+        this.mult_entry_type = this.adminProfileForm.controls['mult_entry_type'];
+        this.gm_updates = this.adminProfileForm.controls['gm_updates'];
+        this.paid = this.adminProfileForm.controls['paid'];
+    }
+    AdminProfileFormModalComponent.prototype.ngOnInit = function () {
+        // console.log ("AdminProfileForm's profile_user", this.profile_user);
+        this.adminProfileForm.patchValue(this.profile_user);
+    };
+    AdminProfileFormModalComponent.prototype.submitForm = function (value) {
+        this.profile_user.first_name = this.first_name.value;
+        this.profile_user.last_name = this.last_name.value;
+        this.profile_user.email = this.email.value.toLowerCase();
+        this.profile_user.num_entries = this.num_entries.value;
+        this.profile_user.mult_entry_type = this.mult_entry_type.value;
+        this.profile_user.gm_updates = this.gm_updates.value;
+        this.profile_user.paid = this.paid.value;
+        this._playerService.updatePlayer(this.profile_user).subscribe(function (data) {
+            console.log("Player updated:", data);
+        });
+    };
+    AdminProfileFormModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-admin-profile-form-modal',
+            template: __webpack_require__(/*! ./admin-profile-form-modal.component.html */ "./src/app/profile-form-modal/admin-profile-form-modal.component.html"),
+            styles: [__webpack_require__(/*! ./admin-profile-form-modal.component.css */ "./src/app/profile-form-modal/admin-profile-form-modal.component.css")]
+        }),
+        __metadata("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_1__["BsModalRef"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _core_player_service__WEBPACK_IMPORTED_MODULE_3__["PlayerService"]])
+    ], AdminProfileFormModalComponent);
+    return AdminProfileFormModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/profile-form-modal/partial-profile-form-modal.component.css":
 /*!*****************************************************************************!*\
   !*** ./src/app/profile-form-modal/partial-profile-form-modal.component.css ***!
@@ -3296,7 +3536,7 @@ var ProfileFormModalComponent = /** @class */ (function () {
         this.profile_user.num_entries = this.num_entries.value;
         this.profile_user.mult_entry_type = this.mult_entry_type.value;
         this.profile_user.gm_updates = this.gm_updates.value;
-        console.log("gm_updates = ", this.profile_user.gm_updates);
+        // console.log("gm_updates = ", this.profile_user.gm_updates);
         this._playerService.updatePlayer(this.profile_user).subscribe(function (data) {
             // console.log("Player updated:", this.profile_user);
         });
@@ -3495,7 +3735,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class = \"d-flex flex-row justify-content-around\">\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col col-3-md text-center bg-secondary text-white rounded py-2 mx-1\">\r\n\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col col-3-md text-center bg-secondary text-white rounded py-2 mx-1\">\r\n\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col col-2-md text-center bg-secondary text-white rounded py-2 mx-1\">\r\n\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n</div>\r\n<br>\r\n<app-roster-textbox (changed)=\"filter($event)\"></app-roster-textbox>\r\n<br>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\" (click)=\"sort('last_name')\" class=\"cursor-pointer\">Name\r\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==1\" name=\"caret-down\"></fa>\r\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==-1\" name=\"caret-up\"></fa>\r\n\t\t\t</th>\r\n\t\t\t<th scope=\"col\" (click)=\"sort('num_entries')\" class=\"cursor-pointer\">Num Entries\r\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==1\" name=\"caret-down\"></fa>\r\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==-1\" name=\"caret-up\"></fa>\r\n\t\t\t</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.full_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of _filteredRoster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>\r\n</div>"
+module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [class.loader] = \"loading\">\r\n<div class = \"d-flex flex-row justify-content-around\">\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col col-3-md text-center bg-secondary text-white rounded py-2 mx-1\">\r\n\t\t<p class=\"mb-0\">People Registered</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numRegistrants}}</h1>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col col-3-md text-center bg-secondary text-white rounded py-2 mx-1\">\r\n\t\t<p class=\"mb-0\">Number of Entries</p>\r\n\t\t<h1 class=\"display-3 m-0\">{{_numEntries}}</h1>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n\t<div class = \"col col-2-md text-center bg-secondary text-white rounded py-2 mx-1\">\r\n\t\t<p class=\"mb-0\">Number of Brackets</p>\r\n\t\t<h1 class=\"display-4 m-0\">{{_numBrackets}}</h1>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries > 1\">({{_numNeededEntries}} more entries for another!)</small>\r\n\t\t<small class=\"m-0\" *ngIf = \"_numNeededEntries == 1\">({{_numNeededEntries}} more entry for another!)</small>\r\n\t</div>\r\n\t<div class = \"col d-none d-md-block\"></div>\r\n</div>\r\n<br>\r\n<app-roster-textbox (changed)=\"filter($event)\"></app-roster-textbox>\r\n<br>\r\n<br>\r\n<table class=\"table table-sm\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">#</th>\r\n\t\t\t<th scope=\"col\" (click)=\"sort('last_name')\" class=\"cursor-pointer\">Name\r\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==1\" name=\"caret-down\"></fa>\r\n\t\t\t\t<fa *ngIf=\"_property=='last_name' && _direction==-1\" name=\"caret-up\"></fa>\r\n\t\t\t</th>\r\n\t\t\t<th scope=\"col\" (click)=\"sort('num_entries')\" class=\"cursor-pointer\">Num Entries\r\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==1\" name=\"caret-down\"></fa>\r\n\t\t\t\t<fa *ngIf=\"_property=='num_entries' && _direction==-1\" name=\"caret-up\"></fa>\r\n\t\t\t</th>\r\n\t\t\t<th scope=\"col\">(S)ame/(D)iff</th>\r\n\t\t\t<th scope=\"col\" style=\"width: 5%\">Edit</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr on-mouseover=\"hoveredIndex=_loggedInUser.id\" on-mouseleave=\"hoveredIndex=null\">\r\n\t\t\t<th scope=\"row\">1</th>\r\n\t\t\t<td><strong>{{ _loggedInUser.first_name }}&nbsp;{{ _loggedInUser.last_name }}*</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries }}</strong></td>\r\n\t\t\t<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>\r\n\t\t\t<td>\r\n\t\t\t\t<fa name=\"edit\" *ngIf=\"hoveredIndex==_loggedInUser.id\" class = \"cursor-pointer\" tooltip = \"Edit Profile\" (click)=\"openProfileModal()\"></fa>\t\t\t\t\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor = \"let player of _filteredRoster; let i = index\">\r\n\t\t\t<th scope=\"row\">{{i + 2}}</th>\r\n\t\t\t<td>{{ player.full_name }}</td>\r\n\t\t\t<td>{{ player.num_entries }}</td>\r\n\t\t\t<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br>\r\n</div>"
 
 /***/ }),
 
@@ -3510,12 +3750,11 @@ module.exports = "<!--roster.component.html-->\r\n<h4>Registrants</h4>\r\n<div [
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RosterComponent", function() { return RosterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/player.service */ "./src/app/core/player.service.ts");
-/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
-/* harmony import */ var _core_sorter_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/sorter.service */ "./src/app/core/sorter.service.ts");
-/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
-/* harmony import */ var _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile-form-modal/profile-form-modal.component */ "./src/app/profile-form-modal/profile-form-modal.component.ts");
+/* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/player.service */ "./src/app/core/player.service.ts");
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
+/* harmony import */ var _core_sorter_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/sorter.service */ "./src/app/core/sorter.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile-form-modal/profile-form-modal.component */ "./src/app/profile-form-modal/profile-form-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3531,13 +3770,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var RosterComponent = /** @class */ (function () {
-    function RosterComponent(_playerService, _userService, _modalService, router, sorterService) {
+    function RosterComponent(_playerService, _userService, _modalService, sorterService) {
         this._playerService = _playerService;
         this._userService = _userService;
         this._modalService = _modalService;
-        this.router = router;
         this.sorterService = sorterService;
         this._direction = 1;
     }
@@ -3569,40 +3806,34 @@ var RosterComponent = /** @class */ (function () {
     });
     RosterComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log();
-        // this.loading = true;
+        this.loading = true;
+        // Calculate registration stats needed at top of page
         this._numRegistrants = 1; // start at 1 since _loggedInUser counts as 1
         this._numBrackets = 0;
-        this._numEntries = this._loggedInUser.num_entries; // start numEtnries counter at # that loggedInUser has
-        // Calculate registration stats needed at top of page
+        this._numEntries = this._loggedInUser.num_entries; // start _numEntries counter at # that loggedInUser has
         this._roster.forEach(function (registrant) {
             _this._numRegistrants += 1;
             _this._numEntries += registrant.num_entries;
         });
         this._numBrackets = Math.floor(this._numEntries / 16);
         this._numNeededEntries = (this._numBrackets + 1) * 16 - this._numEntries;
-        // this.loading=false;
-        // console.log ("property = ", this._property, " & direction = ", this._direction);
+        this.loading = false;
     };
     RosterComponent.prototype.openProfileModal = function () {
-        var _this = this;
         var initialState = {
             id: this.hoveredIndex,
             profile_user: this._loggedInUser
         };
-        // Attempts here to figure out how to extract specific user from this.roster based on hoveredIndex
-        // console.log("Modal is opened for: ", this.roster.map(users => users.find(user => user.id == this.hoveredIndex)));
-        // console.log("Modal is opened for: ", this.roster, this.roster.find(user => user.id == this.hoveredIndex));
-        // console.log("Modal is opened for: ", this.roster.forEach(user => {if(user.id == this.hoveredIndex) return user}));
-        this.bsModalRef = this._modalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_6__["ProfileFormModalComponent"], { initialState: initialState });
+        this.bsModalRef = this._modalService.show(_profile_form_modal_profile_form_modal_component__WEBPACK_IMPORTED_MODULE_5__["ProfileFormModalComponent"], { initialState: initialState });
         this._modalService.onHidden.subscribe(function (reason) {
             // Upon modal being closed run these actions
-            //const _reason = reason ? `, dismissed by ${reason}` : '';
-            //console.log ("Profile modal was closed ", _reason);
+            // const _reason = reason ? `, dismissed by ${reason}` : '';
+            // console.log ("Profile modal was closed ", reason);
             // Update logged in User against database after modal closes
-            _this._userService.getLoggedInUser().subscribe(function (data) {
-                _this._loggedInUser = data;
-            });
+            // This updates the affected (1st) row for any changes that was made on the Modal
+            // this._userService.getLoggedInUser().subscribe(data => {
+            // 	this._loggedInUser = data;
+            // })
         });
     };
     RosterComponent.prototype.filter = function (data) {
@@ -3636,11 +3867,10 @@ var RosterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./roster.component.html */ "./src/app/roster/roster.component.html"),
             styles: [__webpack_require__(/*! ./roster.component.css */ "./src/app/roster/roster.component.css")]
         }),
-        __metadata("design:paramtypes", [_core_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
-            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__["BsModalService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _core_sorter_service__WEBPACK_IMPORTED_MODULE_4__["SorterService"]])
+        __metadata("design:paramtypes", [_core_player_service__WEBPACK_IMPORTED_MODULE_1__["PlayerService"],
+            _core_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"],
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__["BsModalService"],
+            _core_sorter_service__WEBPACK_IMPORTED_MODULE_3__["SorterService"]])
     ], RosterComponent);
     return RosterComponent;
 }());
@@ -3982,166 +4212,6 @@ var TeamDetailsComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/team-nextup/team-nextup.component.css":
-/*!*******************************************************!*\
-  !*** ./src/app/team-nextup/team-nextup.component.css ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlYW0tbmV4dHVwL3RlYW0tbmV4dHVwLmNvbXBvbmVudC5jc3MifQ== */"
-
-/***/ }),
-
-/***/ "./src/app/team-nextup/team-nextup.component.html":
-/*!********************************************************!*\
-  !*** ./src/app/team-nextup/team-nextup.component.html ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<a [routerLink]=\"['/brackets', _bracket_id]\" [fragment]=\"_region_id-1\">{{ _nextup_game }}</a>"
-
-/***/ }),
-
-/***/ "./src/app/team-nextup/team-nextup.component.ts":
-/*!******************************************************!*\
-  !*** ./src/app/team-nextup/team-nextup.component.ts ***!
-  \******************************************************/
-/*! exports provided: TeamNextupComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeamNextupComponent", function() { return TeamNextupComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_matchup_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/matchup.service */ "./src/app/core/matchup.service.ts");
-/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/user.service */ "./src/app/core/user.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-// ****THIS COMPONENT HAS BEEN DEPRECATED IN FAVOR OF THE getEntryDetailsListMyTeamsByPlayer entry.service.ts endpoint
-// called by team-details.component.ts****
-var TeamNextupComponent = /** @class */ (function () {
-    function TeamNextupComponent(router, _matchupService, _userService) {
-        this.router = router;
-        this._matchupService = _matchupService;
-        this._userService = _userService;
-    }
-    TeamNextupComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        // Get last matching game which will either be last game played or next game up
-        this._matchupService.getMatchupLastGame(this._bracket_id, this._orig_team_id).subscribe(function (matchups) {
-            _this._lastGame = matchups[0];
-            // console.log ("this._lastGame is: ", this._lastGame);
-            //if owner's team is out
-            if (_this._team_id == null) {
-                // determine which team the user owns and select the other team as having lost
-                if (_this._lastGame.team1_owner_id == _this._userService.id) {
-                    _this._nextup_game = " Lost to: " + _this._lastGame.team2 + " (" + _this._lastGame.team2_owner + ") with " + _this._lastGame.team1;
-                }
-                if (_this._lastGame.team2_owner_id == _this._userService.id) {
-                    _this._nextup_game = " Lost to: " + _this._lastGame.team1 + " (" + _this._lastGame.team1_owner + ") with " + _this._lastGame.team2;
-                }
-                // append proper Round within which last game was lost
-                if (_this._lastGame.t_round <= 4) {
-                    _this._nextup_game += " in Round " + _this._lastGame.t_round;
-                }
-                else if (_this._lastGame.t_round == 5) {
-                    _this._nextup_game += " in the Semi-Finals";
-                }
-                else {
-                    _this._nextup_game += " in the Championship";
-                }
-                //if last game played is in Final Four round, update _region_id for proper route navigation purposes
-                _this._region_id = _this._lastGame.region_id;
-            } //end if
-            //if owner's team is still in it
-            else {
-                // append proper Round within which next game is being played
-                if (_this._lastGame.t_round <= 4) {
-                    _this._nextup_game = "Round " + _this._lastGame.t_round;
-                }
-                else if (_this._lastGame.t_round == 5) {
-                    _this._nextup_game = "Semi-Final";
-                }
-                else {
-                    _this._nextup_game = "Finals";
-                }
-                // determine proper spread based on whether Team1 or Team 2
-                if (_this._lastGame.team1_owner_id == _this._userService.id && _this._lastGame.team2 != null) {
-                    if (_this._lastGame.spread != null)
-                        if (_this._lastGame.spread > 0)
-                            _this._nextup_game += " Favored by " + _this._lastGame.spread + " 1/2";
-                        else if (_this._lastGame.spread < 0)
-                            _this._nextup_game += " Underdog by " + Math.abs(_this._lastGame.spread) + " 1/2";
-                        else if (_this._lastGame.spread == 0)
-                            _this._nextup_game += " Pick'em";
-                    _this._nextup_game += " vs. " + _this._lastGame.team2 + " (" + _this._lastGame.team2_owner + ")";
-                } //end if
-                else if (_this._lastGame.team2_owner_id == _this._userService.id && _this._lastGame.team1 != null) {
-                    if (_this._lastGame.spread != null)
-                        if (_this._lastGame.spread < 0)
-                            _this._nextup_game += " Favored by " + Math.abs(_this._lastGame.spread) + " 1/2";
-                        else if (_this._lastGame.spread > 0)
-                            _this._nextup_game += " Underdog by " + _this._lastGame.spread + " 1/2";
-                        else if (_this._lastGame.spread == 0)
-                            _this._nextup_game += " Pick'em";
-                    _this._nextup_game += " vs. " + _this._lastGame.team1 + " (" + _this._lastGame.team1_owner + ")";
-                }
-                // Otherwise if no opponent yet, show vs. TBD
-                else {
-                    _this._nextup_game += " vs. TBD";
-                }
-                //if last game played is in Final Four round, update _region_id for proper route navigation purposes
-                _this._region_id = _this._lastGame.region_id;
-            } //end else
-        }); // end this._matchupService.getMatchupLastGame subscribe
-    }; //end ngOnInit
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('orig_team'),
-        __metadata("design:type", Number)
-    ], TeamNextupComponent.prototype, "_orig_team_id", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('bracket'),
-        __metadata("design:type", Number)
-    ], TeamNextupComponent.prototype, "_bracket_id", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('team'),
-        __metadata("design:type", Number)
-    ], TeamNextupComponent.prototype, "_team_id", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('region'),
-        __metadata("design:type", Number)
-    ], TeamNextupComponent.prototype, "_region_id", void 0);
-    TeamNextupComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-team-nextup',
-            template: __webpack_require__(/*! ./team-nextup.component.html */ "./src/app/team-nextup/team-nextup.component.html"),
-            styles: [__webpack_require__(/*! ./team-nextup.component.css */ "./src/app/team-nextup/team-nextup.component.css")]
-        }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _core_matchup_service__WEBPACK_IMPORTED_MODULE_2__["MatchupService"],
-            _core_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
-    ], TeamNextupComponent);
-    return TeamNextupComponent;
-}()); //end export class
-
-
-
-/***/ }),
-
 /***/ "./src/app/ui/footer/footer.component.css":
 /*!************************************************!*\
   !*** ./src/app/ui/footer/footer.component.css ***!
@@ -4223,7 +4293,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand p-2\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t<div class=\"d-flex ml-auto p-2 flex-row order-2 order-md-3 align-middle\">\r\n\t\t\t<a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">Hi, {{ currentUser.first_name }}!</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t\t</div>\r\n    <div class=\"p-2 order-3 order-md-2 mob-display\">\r\n      <ul class=\"navbar-nav d-flex flex-row justify-content-between\">\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n        </li>\r\n        <li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n          <a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\" [fragment]=\"_region_id\">Brackets</a>\r\n        </li>\r\n        <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n          <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n          href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n            Admin\r\n          </a>\r\n          <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Manage Brackets</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/s-emails']\">Send Emails</a>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div> <!--end container-fluid -->\r\n</nav>"
+module.exports = "<!--src/app/ui/header/header.component.html-->\r\n\r\n<!-- Navigation Menu for site -->\r\n<nav class=\"navbar navbar-expand-md navbar-dark bg-primary\">\r\n\t<div class=\"container-fluid\">\r\n\t\t<a class=\"navbar-brand p-2\" [routerLink]=\"['/home']\">\r\n\t\t\t<img src=\"../static/front-end/assets/spreadpool_white_no_background_48x114.png\" alt=\"Spreadpool\">\r\n\t\t</a>\r\n\t\t<div class=\"d-flex ml-auto p-2 flex-row order-2 order-md-3 align-middle\">\r\n\t\t\t<a *ngIf=\"currentUser\" class=\"navbar-text\" [routerLink]=\"['/profile']\">Hi, {{ currentUser.first_name }}!</a>\r\n\t        <form class=\"form-inline\">\r\n\t\t    \t<button type=\"button\" class=\"btn btn-outline-light\" (click)=\"logout()\">Log Out</button>\r\n\t\t  \t</form>\r\n\t\t</div>\r\n    <div class=\"p-2 order-3 order-md-2 mob-display\">\r\n      <ul class=\"navbar-nav d-flex flex-row justify-content-between\">\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/profile']\">My Teams</a>\r\n        </li>\r\n        <li class=\"nav-item\" [class.active]=\"isActive(['/brackets'])\" *ngIf = \"_bracketToShow\">\r\n          <a *ngIf=\"_bracketToShow\" class=\"nav-link\" [routerLink]=\"['/brackets', _bracketToShow]\" [fragment]=\"_region_id\">Brackets</a>\r\n        </li>\r\n        <li class=\"nav-item dropdown\" dropdown *ngIf=\"isUserAdmin()\">\r\n          <a class=\"nav-link dropdown-toggle\" dropdownToggle (click)=\"false\" \r\n          href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n            Admin\r\n          </a>\r\n          <div class=\"dropdown-menu\" *dropdownMenu aria-labelledby=\"navbarDropdown\">\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/c-brackets']\">Manage Brackets</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/a-brackets', _bracketToShow]\">Assign Entries</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/u-games']\">Update Games</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/s-emails']\">Send Emails</a>\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/admin/e-roster']\">Edit Roster</a>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div> <!--end container-fluid -->\r\n</nav>"
 
 /***/ }),
 

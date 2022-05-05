@@ -26,7 +26,7 @@ User = get_user_model()
 from bracket import forms
 # from .forms import SignupForm, ProfileForm, TbracketUpdateForm, TbracketNewForm
 from .models import Entry, Game, Matchup, Tbracket, Region
-from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame, getLastGame_Team
+from .functions import find_game, reassign_bracket, reset_game, reset_bracket, game_update, create_entries, getLastGame_Team
 from .email_functions import email_original_teams, email_spreads, email_registration_info
 from bracket import serializers
 
@@ -502,24 +502,6 @@ class GameViewSet(ModelViewSet):
 		
 		return Response({'tbracketid': tbracketid})
 	
-class GameWithTeamOwnersViewSet(ModelViewSet):
-	"""
-	API endpoint that allows games to be retrieved for a Bracket
-	Games can be filtered by game table id, e.g. /api/games_owners/
-	Optional GET parameters include: ?tbracketid=
-	"""
-	queryset = Game.objects.all()
-	serializer_class = serializers.GameWithOwnersSerializer
-
-class GameWithMatchupDataViewSet(ModelViewSet):
-	"""
-	API endpoint that allows Games to be viewed with respective Matchup owner(s) of each team1 & team2
-	Games can be filtered by game table id, e.g. /api/games_matchups/
-	Optional GET parameters include: ?tbracketid=
-	"""
-	queryset = Game.objects.all()
-	serializer_class = serializers.GameWithMatchupDataSerializer
-
 class NewGameWithMatchupDataViewSet(ModelViewSet):
 	"""
 	API endpoint that allows game/matchup info to be retrieved for a Bracket. Data is used by brackets.component.ts
@@ -560,28 +542,6 @@ class MatchupViewSet(ModelViewSet):
 			queryset = queryset.filter(game=gameid)
 		return queryset
 
-class MatchupLastGameViewSet(ModelViewSet):
-	"""
-	API endpoint that retrieves the last matchup in which the owner of orig_teamid
-	played in a specific bracket
-	Required GET parameters include: ?tbracketid=, ?orig_teamid=
-  ***THIS ENDPOINT HAS BEEN DEPRECATED***
-	"""
-	queryset = Matchup.objects.all()
-	serializer_class = serializers.MatchupLastGameSerializer
-
-	def get_queryset(self):
-		"""
-		Use parameters to find last matchup/game
-		"""
-		queryset = Matchup.objects.all()
-		tbracketid = self.request.query_params.get('tbracketid', None)
-		orig_teamid = self.request.query_params.get('orig_teamid', None)
-		if tbracketid is not None and orig_teamid is not None:
-			# if parameters are passed call function
-			last_game = getLastGame(tbracketid, orig_teamid)
-			queryset = queryset.filter(game=last_game.id, tbracket=tbracketid)
-		return queryset
 
 class TbracketViewSet(ModelViewSet):
 	"""

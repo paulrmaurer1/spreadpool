@@ -5,16 +5,33 @@ from rest_framework import serializers
 from django.db.models import Q
 
 from .models import Entry, Game, Matchup, Tbracket, Region, Team
-from .functions import game_update, determineStatus, getLastGame_Team, getNextUpGameString, \
-	getFriendlyDate, getFriendlyTime
+from .functions import game_update, determineStatus, getLastGame_Team, getNextUpGameString
+from .email_functions import email_thanks_for_paying
+from .core_functions import getFriendlyDate, getFriendlyTime
 
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
-		class Meta:
-				model = User
-				fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
-					'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
+  class Meta:
+    model = User
+    fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
+      'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
+
+  def update(self, instance, validated_data):
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+    instance.last_name = validated_data.get('last_name', instance.last_name)
+    instance.email = validated_data.get('email', instance.email)
+    instance.num_entries = validated_data.get('num_entries', instance.num_entries)
+    instance.mult_entry_type = validated_data.get('mult_entry_type', instance.mult_entry_type)
+    instance.gm_updates = validated_data.get('gm_updates', instance.gm_updates)
+    # Before updating 'paid' value, check to see if update is changing value from false (not paid) to true (paid)
+    # then trigger "thank you for paying email"
+    if (instance.paid == False and validated_data['paid'] == True):
+      email_thanks_for_paying(instance)
+      # print ("Existing Paid value is:", instance.paid, "Updated value is:", validated_data['paid'],)
+    instance.paid = validated_data.get('paid', instance.paid)
+    instance.save()
+    return instance
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -222,8 +239,6 @@ class GameSerializer(serializers.ModelSerializer):
 
 		return data
 
-
-
 class EntrySerializerForGameWithOwners(serializers.ModelSerializer):
 	"""
 	Serializer to nest within GameWithOwnersSerializer to provide entry details associated
@@ -234,72 +249,6 @@ class EntrySerializerForGameWithOwners(serializers.ModelSerializer):
 	class Meta:
 		model = Entry
 		fields = ('id', 'player', 'tbracket')
-
-class GameWithOwnersSerializer(serializers.ModelSerializer):
-	"""
-	***DEPRECATED in favor of NewGameWithMatchupDataSerializer***
-	Serializer to retrieve game information for a bracket along with object data
-	for each owner associated with a game. 
-	"""
-	team1_owner = serializers.SerializerMethodField()
-	team2_owner = serializers.SerializerMethodField()
-	team1 = serializers.StringRelatedField()
-	team2 = serializers.StringRelatedField()
-	region = serializers.StringRelatedField()
-		
-	class Meta:
-		model = Game
-		fields = ('id', 'region', 'team1', 'team2', 'team1_id', 'team2_id', 'team1_owner', 'team2_owner', 'tipoff_date_time')
-
-	def get_team1_owner(self, obj):
-		# retrieve team1_owner by filtering nested Entry (Serializer) on matching team1_id then on tbracket (if url parameter)
-		_team1_id = obj.team1_id
-		team1_owner = Entry.objects.filter(Q(team_a=_team1_id) | Q(team_b=_team1_id) | Q(team_c=_team1_id) | Q(team_d=_team1_id))
-		_tbracket_id = self.context['request'].GET.get('tbracketid')
-		if _tbracket_id is not None:
-			team1_owner = team1_owner.filter(tbracket = _tbracket_id)
-		return EntrySerializerForGameWithOwners(team1_owner, many=True).data
-
-	def get_team2_owner(self, obj):
-		# retrieve team1_owner by filtering nested Entry (Serializer) on matching team1_id then on tbracket (if url parameter)
-		_team2_id = obj.team2_id
-		team2_owner = Entry.objects.filter(Q(team_a=_team2_id) | Q(team_b=_team2_id) | Q(team_c=_team2_id) | Q(team_d=_team2_id))
-		_tbracket_id = self.context['request'].GET.get('tbracketid')
-		if _tbracket_id is not None:
-			team2_owner = team2_owner.filter(tbracket = _tbracket_id)
-		return EntrySerializerForGameWithOwners(team2_owner, many=True).data
-
-class GameWithMatchupDataSerializer(serializers.ModelSerializer):
-	"""
-	***DEPRECATED in favor of NewGameWithMatchupDataSerializer***
-	Serializer to retrieve game information for a bracket along with a little more object data
-	for each owner associated with a game. 
-	"""
-	team1_owner = serializers.SerializerMethodField()
-	team2_owner = serializers.SerializerMethodField()
-	team1 = serializers.StringRelatedField()
-	team2 = serializers.StringRelatedField()
-	region = serializers.StringRelatedField()
-		
-	class Meta:
-		model = Game
-		fields = ('id', 'region', 'team1', 'team2', 'team1_id', 'team2_id', 'team1_owner', 'team2_owner', 'tipoff_date_time')
-
-	def get_team1_owner(self, obj):
-		# Get team1_owner from related Matchup
-		team1_owner = Matchup.objects.filter(game=obj.id)
-		_tbracket_id = self.context['request'].GET.get('tbracketid')
-		if _tbracket_id is not None:
-			team1_owner = team1_owner.filter(tbracket=_tbracket_id)
-		return MatchupSerializer(team1_owner, many=True).data
-
-	def get_team2_owner(self, obj):
-		# Get team1_owner from related Matchup
-		team2_owner = Matchup.objects.filter(game=obj.id)
-		_tbracket_id = self.context['request'].GET.get('tbracketid')
-		if _tbracket_id is not None:
-			team2_owner = team2_owner.filter(tbracket=_tbracket_id)
-		return MatchupSerializer(team2_owner, many=True).data
 
 class NewGameWithMatchupDataSerializer(serializers.ModelSerializer):
 	"""

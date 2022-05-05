@@ -1,0 +1,48 @@
+<!--edit-roster.component.html-->
+<br>
+<h4>Players</h4>
+<!-- <div [class.loader] = "loading"> -->
+<div>
+<app-edit-roster-textbox (changed)="filter($event)"></app-edit-roster-textbox>
+<br>
+<br>
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col" (click)="sort('last_name')" class="cursor-pointer">Name
+				<fa *ngIf="_property=='last_name' && _direction==1" name="caret-down"></fa>
+				<fa *ngIf="_property=='last_name' && _direction==-1" name="caret-up"></fa>
+			</th>
+      <th scope="col">Email</th>
+			<th scope="col" (click)="sort('num_entries')" class="cursor-pointer">Num Entries
+				<fa *ngIf="_property=='num_entries' && _direction==1" name="caret-down"></fa>
+				<fa *ngIf="_property=='num_entries' && _direction==-1" name="caret-up"></fa>
+			</th>
+			<th scope="col">(S)ame/(D)iff</th>
+      <th scope="col" (click)="sort('paid')" class="cursor-pointer">Paid?
+        <fa *ngIf="_property=='paid' && _direction==1" name="check-square-o"></fa>
+				<fa *ngIf="_property=='paid' && _direction==-1" name="square-o"></fa>
+      </th>
+      <!-- <th scope="col">Paid?</th> -->
+			<th scope="col" style="width: 5%">Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let player of _filteredRoster; let i = index">
+			<th scope="row">{{i + 1}}</th>
+			<td>{{ player.first_name }}&nbsp;{{ player.last_name }}</td>
+      <td>{{ player.email }}</td>
+			<td>{{ player.num_entries }}</td>
+			<td>{{ player.num_entries == 1 ? '-' : player.mult_entry_type }}</td>
+      <!-- <td>{{ player.paid }}</td> -->
+      <!-- <td><fa name = '{{ player.paid == true ? "check-square-o" : "square-o" }}'></fa></td> -->
+      <td>{{ player.paid == true ? 'YES' : 'NO' }}</td>
+      <td>
+           <fa name="edit" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openAdminProfileModal(player)"></fa>				
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+</div>

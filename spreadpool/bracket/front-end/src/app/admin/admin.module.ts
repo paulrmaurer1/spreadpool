@@ -14,6 +14,8 @@ import { CreateBracketsComponent } from './create-brackets/create-brackets.compo
 import { UpdateGamesComponent } from './update-games/update-games.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SendEmailsComponent } from './send-emails/send-emails.component';
+import { EditRosterComponent } from './edit-roster/edit-roster.component';
+import { EditRosterTextboxComponent } from './edit-roster/edit-roster-textbox/edit-roster-textbox.component';
 
 
 export const routes: Routes = [
@@ -22,6 +24,7 @@ export const routes: Routes = [
   { path: 'a-brackets/:id', component: AssignBracketsComponent },
   { path: 'u-games', component: UpdateGamesComponent },
   { path: 's-emails', component: SendEmailsComponent },
+  { path: 'e-roster', component: EditRosterComponent },
 ];
 
 @NgModule({
@@ -31,12 +34,15 @@ export const routes: Routes = [
   	UpdateGamesComponent,
   	GameDetailComponent,
   	SendEmailsComponent,
+    EditRosterComponent,
+    EditRosterTextboxComponent,
   ],
   exports: [
   	AssignBracketsComponent,
   	CreateBracketsComponent,
   	UpdateGamesComponent,
     SendEmailsComponent,
+    EditRosterComponent,
     RouterModule,
   ],
   imports: [

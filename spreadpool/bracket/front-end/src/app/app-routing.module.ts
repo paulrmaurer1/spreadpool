@@ -15,6 +15,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { BracketsComponent } from './brackets/brackets.component';
 
 import { IsAdminGuard } from './core/is-admin.guard';
+import { RosterComponent } from './roster/roster.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },

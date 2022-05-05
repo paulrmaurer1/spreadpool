@@ -1,6 +1,7 @@
 # functions.py
 #import internal entitities
 from .models import Entry, Game, Matchup, Tbracket, Team, Region, User
+from .core_functions import getFriendlyDate, getFriendlyTime
 
 #import django functions
 from django.db.models import Q
@@ -13,6 +14,32 @@ from django.template import Context
 The below functions execute lookups to populate email messages with to, from, subject, message
 Templates used are located in the bracket templates directory in the folder "emails"
 """
+def email_thanks_for_paying(player):
+	"""
+	This funcion prepares & sends an email to the player who just registered with key info about 
+	how to change profile, payment details, and key days/times on timeline
+	"""
+	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+
+	# context elements for email
+	c = {
+		'first_name': player.first_name,
+		'full_name': player.full_name,
+		'num_entries': player.num_entries,
+		'mult_entry_type': player.mult_entry_type,
+		'target_email': player.email,
+		'payment': player.num_entries * 20,
+	}
+
+	subject = '{}, thanks for your Spreadpool payment!'.format(player.first_name)
+	msg_plain = render_to_string(email_dir + 'thx_payment.txt', c)
+	msg_html = render_to_string(email_dir + 'thx_payment.html', c)
+
+	# print (c)
+	send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [player.email], html_message=msg_html)
+
+	return
+
 def email_registration_info(player_id):
 	"""
 	This funcion prepares & sends an email to the player who just registered with key info about 
@@ -35,11 +62,10 @@ def email_registration_info(player_id):
 	msg_plain = render_to_string(email_dir + 'register_info.txt', c)
 	msg_html = render_to_string(email_dir + 'register_info.html', c)
 
-	print (c)
+	# print (c)
 	send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [player.email], html_message=msg_html)
 
 	return
-
 
 def email_spreads(tbracket_id, tround):
 	"""
@@ -209,8 +235,7 @@ def email_team_owners(game, outcome):
 		except Entry.DoesNotExist:
 			continue
 
-		print ('Processing email actions...')
-
+		# print ('Processing email actions...')
 		"""
 		Retrieve standard send_mail components across outcomes
 		"""
@@ -523,21 +548,20 @@ def email_team_owners(game, outcome):
 		
 	return
 
-
 """
 Need to have these functions here as well as in functions.py because of circular reference
 Put in separate file and import from both function.py & email_functions.py?
 """
-def getFriendlyDate(storedDate):
-	# Convert the stored tipoff_date_time to a front-end friendly date
+# def getFriendlyDate(storedDate):
+# 	# Convert the stored tipoff_date_time to a front-end friendly date
 
-	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
+# 	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
 
-	return friendlyDate
+# 	return friendlyDate
 
-def getFriendlyTime(storedDate):
-	# Convert the stored tipoff_date_time to a front-end friendly time
+# def getFriendlyTime(storedDate):
+# 	# Convert the stored tipoff_date_time to a front-end friendly time
 
-	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
+# 	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
 
-	return friendlyTime
+# 	return friendlyTime

@@ -1,0 +1,28 @@
+{% extends 'base_email.html' %}
+{% load bracket_extras %}
+
+{% block content %}
+Hi {{first_name}},<br>
+Thanks for your payment of ${{payment}}.00 for entry to the NCAA Spreapool 2023!<br>
+<br>
+To confirm, you registered for <strong>{{num_entries}}</strong> entries.
+{% if mult_entry_type == "S" and num_entries > 1 %}
+Your {{num_entries}} entries will be (or have been) assigned to the <strong>Same</strong> bracket.<br>
+{% endif %}
+{% if mult_entry_type == "D" and num_entries > 1 %}
+Your {{num_entries}} entries will be (or have been) assigned to <strong>Different</strong> brackets.<br>
+{% endif %}
+<p>
+If any of the above information is incorrect, please notify me (paulrmaurer@yahoo.com) immediately.  Otherwise,
+good luck with your teams!
+</p>
+<p>
+If you have any questions about how this all works, don't hesitate to reach out to me with any questions.
+</p>
+<p>
+Regards,<br>
+Paul<br>
+Spreadpool Administrator
+</p>
+
+{% endblock %}

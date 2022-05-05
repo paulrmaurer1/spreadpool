@@ -9,32 +9,6 @@ import random
 #import django functions
 from django.db.models import Q
 
-def getLastGame(tbracket_id, orig_teamid):
-	# determine last game that an original team's owner played in a particular bracket
-	# *** Deprecated in favor of "getLastGame_Team" method ***
-
-	#get first game that team played in
-	last_game = Game.objects.get((Q(team1_id=orig_teamid) | Q(team2_id=orig_teamid)) & Q(id__lte=32))
-	if last_game.team1.id == int(orig_teamid):
-		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team1_owner_id
-	else:
-		owner_id = Matchup.objects.get(game_id=last_game.id, tbracket_id=tbracket_id).team2_owner_id
-
-	#run while loop to keep finding child games where owner_id is either team1 or team2 owner of related matchup
-	alive=True
-	while alive:
-		try:
-			next_game = Game.objects.get(Q(parent_game1=last_game.id) | Q(parent_game2=last_game.id))
-			if owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team1_owner_id or \
-			owner_id == Matchup.objects.get(game_id=next_game.id, tbracket_id=tbracket_id).team2_owner_id:
-				last_game = next_game
-			else:
-				alive = False
-		except Game.DoesNotExist:
-			alive = False
-
-	return last_game
-
 def getLastGame_Team(orig_teamid):
 	# determine last completed game and the team that an original team's owner played in
 	# The team returned won't necessarily be the current active team since teams may be swapped
@@ -1012,16 +986,16 @@ def find_game(x):
 		64: {'game_id': 25, 'owner_field': 'team2_owner'},
 	}.get(x, {'game_id': 0, 'owner_field': ''})
 
-def getFriendlyDate(storedDate):
-	# Convert the stored tipoff_date_time to a front-end friendly date
+# def getFriendlyDate(storedDate):
+# 	# Convert the stored tipoff_date_time to a front-end friendly date
 
-	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
+# 	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
 
-	return friendlyDate
+# 	return friendlyDate
 
-def getFriendlyTime(storedDate):
-	# Convert the stored tipoff_date_time to a front-end friendly time
+# def getFriendlyTime(storedDate):
+# 	# Convert the stored tipoff_date_time to a front-end friendly time
 
-	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
+# 	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
 
-	return friendlyTime
+# 	return friendlyTime

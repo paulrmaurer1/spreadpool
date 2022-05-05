@@ -1,0 +1,19 @@
+Hey {{first_name}},
+
+Thanks for your payment of ${{payment}}.00 for entry to the NCAA Spreapool 2023!
+
+To confirm, you registered for {{num_entries}} entries.
+{% if mult_entry_type == "S" and num_entries > 1 %}
+Your {{num_entries}} entries will be (or have been) assigned to the Same bracket.
+{% endif %}
+{% if mult_entry_type == "D" and num_entries > 1 %}
+Your {{num_entries}} entries will be (or have been) assigned to Different brackets.
+{% endif %}
+If any of the above information is incorrect, please notify me (paulrmaurer@yahoo.com) immediately.  Otherwise,
+good luck with your teams!
+
+If you have any questions about how this all works, don't hesitate to reach out to me with any questions.
+
+Regards,
+Paul
+Spreadpool Administrator

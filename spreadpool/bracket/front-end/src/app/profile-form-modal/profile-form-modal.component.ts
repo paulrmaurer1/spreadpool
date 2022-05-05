@@ -60,7 +60,7 @@ export class ProfileFormModalComponent implements OnInit {
   	this.profile_user.num_entries = this.num_entries.value;
   	this.profile_user.mult_entry_type = this.mult_entry_type.value;
     this.profile_user.gm_updates = this.gm_updates.value;
-    console.log("gm_updates = ", this.profile_user.gm_updates);
+    // console.log("gm_updates = ", this.profile_user.gm_updates);
 
   	this._playerService.updatePlayer(this.profile_user).subscribe((data) => {
 		// console.log("Player updated:", this.profile_user);

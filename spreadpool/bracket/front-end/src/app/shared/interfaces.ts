@@ -112,18 +112,6 @@ export interface GameData {
   tipoff_time: string;
 }
 
-// ***Deprecated in favor of NewGameWithOwnerData***
-export interface GameWithOwnerData {
-  id: number;
-  region: string;
-  team1: string;
-  team2: string;
-  team1_id: number;
-  team2_id: number;
-  team1_owner: object[];
-  team2_owner: object[];
-}
-
 export interface NewGameWithOwnerData {
   id: number;
   region_id: number;
