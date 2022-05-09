@@ -79,6 +79,7 @@ export class GameDetailComponent implements OnInit {
 	}
 
 	updateGame() {
+    this.showMsg = false;
 		this._game.team1_score = this.team1_score.value;
 		this._game.spread = this.spread.value;
 		this._game.team2_score = this.team2_score.value;

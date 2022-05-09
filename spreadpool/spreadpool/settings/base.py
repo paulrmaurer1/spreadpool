@@ -162,8 +162,8 @@ JWT_AUTH = {
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Custom setting for Angular front-end as to whether the app is live in the period BEFORE tourney start date
-# or AFTER tourney start date.  This will affect which front-end pages & features are shown to user
+# Custom setting for Angular front-end as to whether the app is live in the period BEFORE tourney start date (True)
+# or AFTER tourney start date (False).  This will affect which front-end pages & features are shown to user
 # Setting is passed by the views.IndexView object via index.html, then set on the user.service.UserService injectable
 # in the beforeTourney variable within Angular
 BEFORE_TOURNEY = False
