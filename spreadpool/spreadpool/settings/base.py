@@ -150,7 +150,7 @@ CORS_ORIGIN_WHITELIST = (
     'https://localhost:4200',
     'https://127.0.0.1:8000',
     'https://spreadpool-fe.herokuapp.com',
-    'https://spreadpool-heroku-20.herokuapp.com',
+    'https://dashboard.heroku.com',
 )
 
 # Configuration settings for djangorestframework-jwt (JSON Web Token)
