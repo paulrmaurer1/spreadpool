@@ -5,7 +5,7 @@
 Hi {{first_name}},<br>
 Thanks for your payment of ${{payment}}.00 for entry to the NCAA Spreapool 2023!<br>
 <br>
-To confirm, you registered for <strong>{{num_entries}}</strong> entries.
+To confirm, you registered for <strong>{{num_entries}}</strong>&nbsp;{% if num_entries == 1 %}entry{% else %}entries{% endif %}.
 {% if mult_entry_type == "S" and num_entries > 1 %}
 Your {{num_entries}} entries will be (or have been) assigned to the <strong>Same</strong> bracket.<br>
 {% endif %}
