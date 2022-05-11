@@ -10,7 +10,12 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ['spreadpool.herokuapp.com', 'www.ncaaspreadpool.com', 'ncaaspreadpool.com', 'spreadpool-heroku-20.herokuapp.com']
+ALLOWED_HOSTS = [
+  'spreadpool.herokuapp.com',
+  'www.ncaaspreadpool.com',
+  'ncaaspreadpool.com',
+  # 'spreadpool-heroku-20.herokuapp.com',
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
