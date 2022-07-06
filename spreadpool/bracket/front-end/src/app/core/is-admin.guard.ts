@@ -32,6 +32,7 @@ export class IsAdminGuard implements CanActivate {
 		// Check to see if is_staff is equal to 1, if yes return True
 		if (this.currentUser) {
 			return (this.currentUser.is_staff == 1);
+      console.log("Admin user is being verified!");
 		}
 		else return false;
 	}
@@ -40,5 +41,6 @@ export class IsAdminGuard implements CanActivate {
 	readState() {
 		const state: AppState = this.store.getState() as AppState;
 		this.currentUser = state.currentUser;
+    console.log("readState being invoked here!");
 	}
 }

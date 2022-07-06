@@ -935,6 +935,7 @@ var GameDetailComponent = /** @class */ (function () {
     };
     GameDetailComponent.prototype.updateGame = function () {
         var _this = this;
+        this.showMsg = false;
         this._game.team1_score = this.team1_score.value;
         this._game.spread = this.spread.value;
         this._game.team2_score = this.team2_score.value;
@@ -2454,6 +2455,7 @@ var IsAdminGuard = /** @class */ (function () {
         // Check to see if is_staff is equal to 1, if yes return True
         if (this.currentUser) {
             return (this.currentUser.is_staff == 1);
+            console.log("Admin user is being verified!");
         }
         else
             return false;
@@ -2462,6 +2464,7 @@ var IsAdminGuard = /** @class */ (function () {
     IsAdminGuard.prototype.readState = function () {
         var state = this.store.getState();
         this.currentUser = state.currentUser;
+        console.log("readState being invoked here!");
     };
     IsAdminGuard = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -3024,7 +3027,7 @@ var HomeComponent = /** @class */ (function () {
         this.loggedInUser = this.route.snapshot.data.loggedInUser;
         this._userService.loggedInUser = this.loggedInUser;
         this.setCurrentUser(this.loggedInUser);
-        // console.log("The current Redux user is", this.currentUser)
+        console.log("The current Redux user is", this.currentUser);
         // console.log("The current _userService user is", this._userService)
         // Retrieve roster for passing to child roster.component
         this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(function (data) {
