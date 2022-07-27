@@ -28,14 +28,13 @@ export class HomeComponent implements OnInit {
     @Inject(AppStore) private store: Store<AppState>
     ) {
       store.subscribe(() => this.readState());
-      this.readState(); 
+      // this.readState(); //Need this twice here?
     }
   
   ngOnInit() {
     this.loggedInUser = this.route.snapshot.data.loggedInUser;
     this._userService.loggedInUser = this.loggedInUser;
     this.setCurrentUser(this.loggedInUser);
-    console.log("The current Redux user is", this.currentUser)
     // console.log("The current _userService user is", this._userService)
 
     // Retrieve roster for passing to child roster.component
@@ -48,6 +47,7 @@ export class HomeComponent implements OnInit {
   readState() {
     const state: AppState = this.store.getState() as AppState;
     this.currentUser = state.currentUser;
+    // console.log("readState called by home.component. The current Redux user is", state.currentUser)
   }
 
   setCurrentUser(user: IUserData) {

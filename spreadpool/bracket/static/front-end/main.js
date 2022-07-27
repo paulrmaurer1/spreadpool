@@ -1766,17 +1766,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppStore", function() { return createAppStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appStoreProviders", function() { return appStoreProviders; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _core_user_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./core/user.reducer */ "./src/app/core/user.reducer.ts");
+/* harmony import */ var _redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @redux-devtools/extension */ "./node_modules/@redux-devtools/extension/lib/esm/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _core_user_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/user.reducer */ "./src/app/core/user.reducer.ts");
 // .src/app/app.store.ts
 
+ //to work with Chrome redux devtools
 
 
 var AppStore = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('App.store');
-var devtools = window['devToolsExtension'] ?
-    window['devToolsExtension']() : function (f) { return f; };
 function createAppStore() {
-    return Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_core_user_reducer__WEBPACK_IMPORTED_MODULE_2__["UserReducer"], Object(redux__WEBPACK_IMPORTED_MODULE_1__["compose"])(devtools));
+    return Object(redux__WEBPACK_IMPORTED_MODULE_2__["createStore"])(_core_user_reducer__WEBPACK_IMPORTED_MODULE_3__["UserReducer"], Object(_redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__["devToolsEnhancer"])());
 }
 var appStoreProviders = [
     { provide: AppStore, useFactory: createAppStore }
@@ -2449,13 +2449,12 @@ var IsAdminGuard = /** @class */ (function () {
         var _this = this;
         this.store = store;
         store.subscribe(function () { return _this.readState(); });
-        this.readState();
+        this.readState(); //Need this twice?
     }
     IsAdminGuard.prototype.canActivate = function (next, state) {
         // Check to see if is_staff is equal to 1, if yes return True
         if (this.currentUser) {
             return (this.currentUser.is_staff == 1);
-            console.log("Admin user is being verified!");
         }
         else
             return false;
@@ -2464,7 +2463,7 @@ var IsAdminGuard = /** @class */ (function () {
     IsAdminGuard.prototype.readState = function () {
         var state = this.store.getState();
         this.currentUser = state.currentUser;
-        console.log("readState being invoked here!");
+        console.log("readState being invoked by IsAdminGuard.");
     };
     IsAdminGuard = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2845,10 +2844,13 @@ __webpack_require__.r(__webpack_exports__);
 // users.reducer.ts
 
 var initialState = { currentUser: null };
-var UserReducer = function (state, action) {
+var UserReducer = 
+// (state: AppState = initialState, action: Action): AppState => {
+function (state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
         case _user_actions__WEBPACK_IMPORTED_MODULE_0__["SET_CURRENT_USER"]:
+            // const user: IUserData = (<UserActions.SetCurrentUserAction>action).user;
             var user = action.user;
             return {
                 currentUser: user
@@ -3020,14 +3022,13 @@ var HomeComponent = /** @class */ (function () {
         this.route = route;
         this.store = store;
         store.subscribe(function () { return _this.readState(); });
-        this.readState();
+        // this.readState(); //Need this twice here?
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loggedInUser = this.route.snapshot.data.loggedInUser;
         this._userService.loggedInUser = this.loggedInUser;
         this.setCurrentUser(this.loggedInUser);
-        console.log("The current Redux user is", this.currentUser);
         // console.log("The current _userService user is", this._userService)
         // Retrieve roster for passing to child roster.component
         this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(function (data) {
@@ -3038,6 +3039,7 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.readState = function () {
         var state = this.store.getState();
         this.currentUser = state.currentUser;
+        // console.log("readState called by home.component. The current Redux user is", state.currentUser)
     };
     HomeComponent.prototype.setCurrentUser = function (user) {
         this.store.dispatch(_core_user_actions__WEBPACK_IMPORTED_MODULE_5__["setCurrentUser"](user));
