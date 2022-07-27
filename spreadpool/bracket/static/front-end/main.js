@@ -3034,6 +3034,7 @@ var HomeComponent = /** @class */ (function () {
         this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(function (data) {
             _this.roster = data;
         });
+        this._userService.refreshToken();
     };
     // Redux store methods
     HomeComponent.prototype.readState = function () {

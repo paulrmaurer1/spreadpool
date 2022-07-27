@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     this._playerService.getListOtherThan(this.loggedInUser.id).subscribe(data => {
       this.roster = data;
     });
+    this._userService.refreshToken();
   }
 
   // Redux store methods
