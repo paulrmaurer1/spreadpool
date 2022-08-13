@@ -14,7 +14,7 @@ ALLOWED_HOSTS = [
   'spreadpool.herokuapp.com',
   'www.ncaaspreadpool.com',
   'ncaaspreadpool.com',
-  # 'spreadpool-heroku-20.herokuapp.com', **This was to ensure that test app works on remote 'heroku-20'
+  'spreadpool-staging.herokuapp.com', # for staging app & pipeline
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
