@@ -1,5 +1,5 @@
-# /spreadpool/spreadpool/settings/prod.py
-# This is the settings.py file to use when deploying/running on Heroku
+# /spreadpool/spreadpool/settings/staging.py
+# This is the settings.py file to use when deploying/running on Heroku staging part of pipeline
 
 from .base import *
 
@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Update database for Heroku, psycopg2 required to read from environment variable
 import psycopg2
