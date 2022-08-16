@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Update database for Heroku, psycopg2 required to read from environment variable
 import psycopg2
