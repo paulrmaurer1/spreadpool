@@ -12,10 +12,12 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 HEROKU_APP_NAME = os.environ['HEROKU_APP_NAME']
 
+
 ALLOWED_HOSTS = [
-  'spreadpool-staging.herokuapp.com', # for staging app & pipeline
+  # 'spreadpool-staging.herokuapp.com', # for staging app & pipeline
   # 'spreadpool-p-registerbu-lvhse0.herokuapp.com', # for review app
-  'HEROKU_APP_NAME.herokuapp.com', # for review app
+  # 'HEROKU_APP_NAME.herokuapp.com', # for review app
+  '.herokuapp.com'
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
