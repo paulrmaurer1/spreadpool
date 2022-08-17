@@ -3,7 +3,10 @@
   "environments": {
     "review": {
       "stack": "heroku-22",
-      "addons": ["heroku-postgresql:hobby-dev"]
+      "addons": ["heroku-postgresql:hobby-dev"],
+      "scripts": {
+        "postdeploy": "python manage.py migrate && python manage.py loaddata region_setup.json && python manage.py loaddata team_setup.json && python manage.py loaddata game_setup.json"
+      }
     }
   }
 }
