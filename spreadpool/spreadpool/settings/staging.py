@@ -10,14 +10,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-HEROKU_APP_NAME = os.environ['HEROKU_APP_NAME']
-
-
 ALLOWED_HOSTS = [
-  # 'spreadpool-staging.herokuapp.com', # for staging app & pipeline
-  # 'spreadpool-p-registerbu-lvhse0.herokuapp.com', # for review app
-  # 'HEROKU_APP_NAME.herokuapp.com', # for review app
-  '.herokuapp.com'
+  '.herokuapp.com' # Ensures that any pipeline app (e.g. staging, Review, etc.) will work
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
