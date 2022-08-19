@@ -11,7 +11,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 ALLOWED_HOSTS = [
-  'spreadpool-staging.herokuapp.com', # for staging app & pipeline
+  '.herokuapp.com' # Ensures that any pipeline app (e.g. staging, Review, etc.) will work
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
