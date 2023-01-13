@@ -17,14 +17,15 @@
 # For spreadpool\bracket app, to populate teams for example, type:
 # csv2json <filename> <bracket.model>, e.g. csv2json team_setup.csv bracket.Team
 # from within spreadpool\bracket\fixtures\ directory.
-# Then enter command: python3 manage.py loaddata <JSON file>, e.g. python3 manage.py loaddata Sample1.json
-# from project directory
+# Then enter command: python manage.py loaddata <JSON file>, e.g. python manage.py loaddata Sample1.json
+# from project directory, C:\DjangoProjects\spreadpool_project\spreadpool
 
 import sys
 import getopt
 import csv
-from os.path import dirname
 import json
+import os
+import pathlib
 
 try:
     script, input_file_name, model_name = sys.argv
@@ -34,8 +35,14 @@ except ValueError:
     print ("\nNote: input_file_name should be a path relative to where this script is.")
     sys.exit()
 
-in_file = dirname(__file__) + input_file_name
-out_file = dirname(__file__) + input_file_name.rsplit( ".", 1 )[ 0 ] + ".json"
+# For directory of script being run:
+# pathlib.Path(__file__).parent.resolve()
+
+path_name = pathlib.Path().resolve()
+# print ("The input filename about to be used is: ", os.path.join(path, input_file_name))
+
+in_file = os.path.join(path_name, input_file_name)
+out_file = os.path.join(path_name, input_file_name.rsplit( ".", 1 )[ 0 ] + ".json")
 
 print ("Converting {} from CSV to JSON as {}".format(in_file, out_file))
 

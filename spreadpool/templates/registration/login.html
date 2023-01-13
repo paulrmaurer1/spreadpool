@@ -9,7 +9,7 @@
 	<div class = "col-12 col-md text-center reg-block"
 	style = "background-image: url({% static 'images/spreadpool_25opacity_bk4.png' %}); 
 	background-size: 100% auto; background-repeat: no-repeat;">
-		<h4 class="reg-headline">Register for the 2022 Spreadpool today!</h4>
+		<h4 class="reg-headline">Register for the 2023 Spreadpool today!</h4>
 		<br>
 		<div class = "row mb-1">
 			<div class = "col d-none d-md-block"></div>
@@ -31,16 +31,19 @@
 					<li>If your team makes it to the Final Four, you are assured of breaking even. Player with champion wins $200. Runner up finalist wins $80. Final Four participants win $20 (break-even).</li>
 				</ul>
 				<!-- UNCOMMENT THIS DURING REGISTRATION PERIOD -->
- 				<!-- <h5 class="pt-2"><small class="text-muted"><strong>Easy!</strong> <a href="{% url 'bracket:signup' %}">Register</a> before {% settings_value "REGISTRATION_DEADLINE_FRIENDLY" %} and get 4 teams assigned at random before the tournament starts.</small></h5> -->
-
-        <!--<h5 class="pt-2"><small class="text-muted">**** Registration will be opening soon...check back here later. ****</small></h5> -->
+        <!--
+ 				<h5 class="pt-2"><small class="text-muted"><strong>Easy!</strong> <a href="{% url 'bracket:signup' %}">Register</a> before {% settings_value "REGISTRATION_DEADLINE_FRIENDLY" %} and get 4 teams assigned at random before the tournament starts.</small></h5>
+        -->
+        <h5 class="pt-2"><small class="text-muted">**** Registration will be opening soon...check back here later. ****</small></h5>
 
 				<!-- UNCOMMENT THIS AFTER REGISTRATION PERIOD -->
- 				<h5 class="pt-2"><small class="text-muted">**** Registration is now closed ****</small></h5>
+ 				<!-- 
+        <h5 class="pt-2"><small class="text-muted">**** Registration is now closed ****</small></h5>
 				<h6><em><small class="text-muted">Check back in here next year for the 2023 NCAA Tournament.</small></em></h6>
+        
 				<br>
-				<br>
-				<br>
+				<br> -->
+				<br> 
 
 				<!-- UNCOMMENT THIS DURING REGISTRATION PERIOD -->
  				<!--
@@ -49,9 +52,11 @@
 				</form>
         -->
 				
-				<!--<h6 class="mt-2 mb-1"><small class="text-muted">Registration countdown to {% settings_value "REGISTRATION_DEADLINE_FRIENDLY" %}. Don't be late!</small></h6> -->
-				<!-- Display the countdown timer in an element -->
-				<!--<p id="timer" class="m-0 text-primary h2"></p>
+				<h6 class="mt-2 mb-1"><small class="text-muted">Registration countdown to {% settings_value "REGISTRATION_DEADLINE_FRIENDLY" %}. Don't be late!</small></h6>
+				
+        <!-- Display the countdown timer in an element -->
+
+				<p id="timer" class="m-0 text-primary h2"></p>
 				<div class = "d-flex flex-row">
 					<div class = "col col-2-md text-center border border-primary text-primary rounded p-0 m-1">
 						<p class="mb-0">Days</p>
@@ -106,7 +111,8 @@
 					    document.getElementById("timer").innerHTML = "SPREADPOOL TIME!";
 					  }
 					}, 1000);
-				</script> -->
+				</script>
+
 			</div>
 			<div class = "col"></div>
 		</div>
