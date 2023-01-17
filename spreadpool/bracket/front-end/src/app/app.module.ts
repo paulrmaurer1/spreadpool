@@ -7,7 +7,6 @@ import { appStoreProviders } from './app.store';
 import { AppBootstrapModule } from './app-bootstrap.module';
 import { UiModule } from './ui/ui.module';
 import { AdminModule } from './admin/admin.module';
-import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +29,7 @@ import { SendOrigModalComponent } from './admin/send-emails/send-orig-modal.comp
 import { SendGamesModalComponent } from './admin/send-emails/send-games-modal.component';
 import { PartialProfileFormModalComponent } from './profile-form-modal/partial-profile-form-modal.component';
 import { AdminProfileFormModalComponent } from './profile-form-modal/admin-profile-form-modal.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -64,7 +64,7 @@ import { AdminProfileFormModalComponent } from './profile-form-modal/admin-profi
         AppBootstrapModule,
         UiModule,
         AdminModule,
-        AngularFontAwesomeModule,
+        FontAwesomeModule,
     ],
     providers: [appStoreProviders],
     bootstrap: [AppComponent]

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   roster: IUserData[];
 
   constructor(
-    private _userService: UserService,
+    public _userService: UserService,
     private _playerService: PlayerService,
     private route: ActivatedRoute,
     

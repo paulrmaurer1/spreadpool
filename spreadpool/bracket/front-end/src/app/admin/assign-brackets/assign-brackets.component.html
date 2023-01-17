@@ -24,7 +24,7 @@
 	(onMoveToTarget)="recalculate()" (onMoveToSource)="recalculate()"
 	sourceHeader="Unassigned Entries ({{ _unassignedEntries_len ? _unassignedEntries_len : '0' }})" 
 	targetHeader="{{_activeBracket.name}} Bracket Entries ({{ _assignEntries_len ? _assignEntries_len : '0'}})" 
-	[responsive]="true" filterBy="e_name" dragdrop="true" 
+	[responsive]="true" [filterBy]="e_name" [dragdrop]="true" 
 	sourceFilterPlaceholder="Search by entry name" targetFilterPlaceholder="Search by entry name" 
 	[sourceStyle]="{'height':'500px'}" [targetStyle]="{'height':'500px'}">
 		<ng-template let-entry pTemplate="item">

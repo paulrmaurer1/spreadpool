@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, ActivatedRoute, Router, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFontAwesomeModule } from 'angular-font-awesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 import { PickListModule } from 'primeng/picklist'; //Used on Assign Entries page, assign-brackets.component
 import { CalendarModule } from 'primeng/calendar'; //Used on Update Game page, game-detail.component
@@ -50,7 +51,7 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     PickListModule,
-    AngularFontAwesomeModule,
+    FontAwesomeModule,
     RouterModule,
     CalendarModule,
     BrowserAnimationsModule,

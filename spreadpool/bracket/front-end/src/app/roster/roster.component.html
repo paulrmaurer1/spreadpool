@@ -30,12 +30,20 @@
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col" (click)="sort('last_name')" class="cursor-pointer">Name
-				<fa *ngIf="_property=='last_name' && _direction==1" name="caret-down"></fa>
+				<!-- 
+        <fa *ngIf="_property=='last_name' && _direction==1" name="caret-down"></fa>
 				<fa *ngIf="_property=='last_name' && _direction==-1" name="caret-up"></fa>
+        -->
+        <fa-icon *ngIf="_property=='last_name' && _direction==1" [icon]="faCaretDown"></fa-icon>
+				<fa-icon *ngIf="_property=='last_name' && _direction==-1" [icon]="faCaretUp"></fa-icon>
 			</th>
 			<th scope="col" (click)="sort('num_entries')" class="cursor-pointer">Num Entries
-				<fa *ngIf="_property=='num_entries' && _direction==1" name="caret-down"></fa>
+				<!-- 
+        <fa *ngIf="_property=='num_entries' && _direction==1" name="caret-down"></fa>
 				<fa *ngIf="_property=='num_entries' && _direction==-1" name="caret-up"></fa>
+        -->
+        <fa-icon *ngIf="_property=='num_entries' && _direction==1" [icon]="faCaretDown"></fa-icon>
+				<fa-icon *ngIf="_property=='num_entries' && _direction==-1" [icon]="faCaretUp"></fa-icon>
 			</th>
 			<th scope="col">(S)ame/(D)iff</th>
 			<th scope="col" style="width: 5%">Edit</th>
@@ -48,7 +56,10 @@
 			<td><strong>{{ _loggedInUser.num_entries }}</strong></td>
 			<td><strong>{{ _loggedInUser.num_entries == 1 ? '-' : _loggedInUser.mult_entry_type }}</strong></td>
 			<td>
-				<fa name="edit" *ngIf="hoveredIndex==_loggedInUser.id" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openProfileModal()"></fa>				
+				<!--
+        <fa name="edit" *ngIf="hoveredIndex==_loggedInUser.id" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openProfileModal()"></fa>
+        -->	
+        <fa-icon [icon]="faEdit" *ngIf="hoveredIndex==_loggedInUser.id" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openProfileModal()"></fa-icon>			
 			</td>
 		</tr>
 		<tr *ngFor = "let player of _filteredRoster; let i = index">

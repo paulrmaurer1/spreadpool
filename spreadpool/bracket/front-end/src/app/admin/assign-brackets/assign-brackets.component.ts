@@ -99,8 +99,10 @@ export class AssignBracketsComponent implements OnInit {
 		this._unassignedEntries_len = this._unassignedEntries.length;
 	}
 
-	onBracketSelected(tbracket_id: number) {
-		this.refreshData(tbracket_id);
+	// onBracketSelected(tbracket_id: number) {
+  onBracketSelected(tbracket_id: string) {
+    var tbracket_id_num: number = Number(tbracket_id);
+		this.refreshData(tbracket_id_num);
 	}
 
 }

@@ -11,18 +11,30 @@
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col" (click)="sort('last_name')" class="cursor-pointer">Name
-				<fa *ngIf="_property=='last_name' && _direction==1" name="caret-down"></fa>
+				<!-- 
+        <fa *ngIf="_property=='last_name' && _direction==1" name="caret-down"></fa>
 				<fa *ngIf="_property=='last_name' && _direction==-1" name="caret-up"></fa>
+        -->
+        <fa-icon *ngIf="_property=='last_name' && _direction==1" [icon]="faCaretDown"></fa-icon>
+				<fa-icon *ngIf="_property=='last_name' && _direction==-1" [icon]="faCaretDown"></fa-icon>
 			</th>
       <th scope="col">Email</th>
 			<th scope="col" (click)="sort('num_entries')" class="cursor-pointer">Num Entries
-				<fa *ngIf="_property=='num_entries' && _direction==1" name="caret-down"></fa>
+				<!--
+        <fa *ngIf="_property=='num_entries' && _direction==1" name="caret-down"></fa>
 				<fa *ngIf="_property=='num_entries' && _direction==-1" name="caret-up"></fa>
+        -->
+        <fa-icon *ngIf="_property=='num_entries' && _direction==1" [icon]="faCaretDown"></fa-icon>
+				<fa-icon *ngIf="_property=='num_entries' && _direction==-1" [icon]="faCaretDown"></fa-icon>
 			</th>
 			<th scope="col">(S)ame/(D)iff</th>
       <th scope="col" (click)="sort('paid')" class="cursor-pointer">Paid?
+        <!-- 
         <fa *ngIf="_property=='paid' && _direction==1" name="check-square-o"></fa>
 				<fa *ngIf="_property=='paid' && _direction==-1" name="square-o"></fa>
+        -->
+        <fa-icon *ngIf="_property=='paid' && _direction==1" [icon] = "faCheckSquare"></fa-icon>
+				<fa-icon *ngIf="_property=='paid' && _direction==-1" [icon] = "faSquare"></fa-icon>
       </th>
       <!-- <th scope="col">Paid?</th> -->
 			<th scope="col" style="width: 5%">Edit</th>
@@ -39,7 +51,10 @@
       <!-- <td><fa name = '{{ player.paid == true ? "check-square-o" : "square-o" }}'></fa></td> -->
       <td>{{ player.paid == true ? 'YES' : 'NO' }}</td>
       <td>
-           <fa name="edit" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openAdminProfileModal(player)"></fa>				
+          <!--
+          <fa name="edit" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openAdminProfileModal(player)"></fa>
+          -->
+          <fa-icon [icon]="faEdit" class = "cursor-pointer" tooltip = "Edit Profile" (click)="openAdminProfileModal(player)"></fa-icon>			
 			</td>
 		</tr>
 	</tbody>

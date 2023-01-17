@@ -6,6 +6,7 @@ import { SorterService } from '../../core/sorter.service';
 import { IUserData } from '../../shared/interfaces';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AdminProfileFormModalComponent } from '../../profile-form-modal/admin-profile-form-modal.component';
+import { faCaretDown, faCaretUp, faCheckSquare, faSquare, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-edit-roster',
@@ -21,8 +22,15 @@ export class EditRosterComponent implements OnInit {
 	// sort function variables
 	_property: string;
 	_direction: number=1;
+
+  // font-awesome icons
+  faCaretDown = faCaretDown;
+  faCaretUp = faCaretUp;
+  faCheckSquare = faCheckSquare;
+  faSquare = faSquare;
+  faEdit = faEdit;
 	
-		// Modal object to capture content
+  // Modal object to capture content
 	bsModalRef: BsModalRef;
 	
  	constructor(

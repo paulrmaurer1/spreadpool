@@ -30,7 +30,7 @@ export class TeamDetailsComponent implements OnInit {
 	constructor(private _entryService: EntryService,
 		private router: Router,
 		private _regionService: RegionService,
-		private _userService: UserService,) { }
+		public _userService: UserService,) { }
 
 	ngOnInit() {
 		this.loading=true;

@@ -7,6 +7,7 @@ import { IUserData } from '../shared/interfaces';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-modal.component';
 import { AdminProfileFormModalComponent } from '../profile-form-modal/admin-profile-form-modal.component';
+import { faCaretDown, faCaretUp, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-roster',
@@ -25,6 +26,11 @@ export class RosterComponent implements OnInit {
 	loading: boolean;
 	_property: string;
 	_direction: number=1;
+
+  // font-awesome icons
+  faCaretDown = faCaretDown;
+  faCaretUp = faCaretUp;
+  faEdit = faEdit;
 	
 	// Retrieve loggedInUser from parent component
 	@Input() get loggedInUser(): IUserData {

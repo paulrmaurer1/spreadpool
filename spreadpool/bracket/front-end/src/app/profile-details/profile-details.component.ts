@@ -28,7 +28,7 @@ export class ProfileDetailsComponent implements OnInit {
 	bsModalRef: BsModalRef;
 
 	constructor(private _playerService: PlayerService,
-	  private _userService: UserService, 
+	  public _userService: UserService, 
 	  private router: Router,
 	  private route: ActivatedRoute,
 	  private modalService: BsModalService,
