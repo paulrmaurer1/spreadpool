@@ -2,7 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, AbstractControl, Validators } from '@angular/forms';
 import { IUserData } from '../shared/interfaces';
 import { PlayerService } from '../core/player.service';
 
@@ -15,7 +15,7 @@ export class AdminProfileFormModalComponent implements OnInit {
   title: string;
 	closeBtnName: string;
 	profile_user: IUserData;
-	adminProfileForm: FormGroup;
+	adminProfileForm: UntypedFormGroup;
 	first_name : AbstractControl;
 	last_name : AbstractControl;
 	email : AbstractControl;
@@ -26,7 +26,7 @@ export class AdminProfileFormModalComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-  	fb: FormBuilder, 
+  	fb: UntypedFormBuilder, 
   	private _playerService: PlayerService
   	) {
     this.title = "Update profile for "

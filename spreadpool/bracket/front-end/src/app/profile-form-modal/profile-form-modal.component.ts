@@ -2,7 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, AbstractControl, Validators } from '@angular/forms';
 import { IUserData } from '../shared/interfaces';
 import { PlayerService } from '../core/player.service';
 
@@ -15,7 +15,7 @@ export class ProfileFormModalComponent implements OnInit {
 	title: string;
 	closeBtnName: string;
 	profile_user: IUserData;
-	profileForm: FormGroup;
+	profileForm: UntypedFormGroup;
 	first_name : AbstractControl;
 	last_name : AbstractControl;
 	email : AbstractControl;
@@ -25,7 +25,7 @@ export class ProfileFormModalComponent implements OnInit {
 
   constructor(
   	public bsModalRef: BsModalRef,
-  	fb: FormBuilder, 
+  	fb: UntypedFormBuilder, 
   	private _playerService: PlayerService
   	) {
   	

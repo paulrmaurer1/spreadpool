@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { GameService } from '../../core/game.service';
 import { GameData } from '../../shared/interfaces';
-import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, AbstractControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { convertTime12to24, convertTime24to12 } from '../../shared/functions';
 
@@ -13,7 +13,7 @@ import { convertTime12to24, convertTime24to12 } from '../../shared/functions';
 export class GameDetailComponent implements OnInit {
 
 	// Update Game form variables
-	gameUpdateForm: FormGroup;
+	gameUpdateForm: UntypedFormGroup;
 	spread : AbstractControl;
 	team1_score : AbstractControl;
 	team2_score : AbstractControl;
@@ -38,7 +38,7 @@ export class GameDetailComponent implements OnInit {
 
 	constructor(
 		private _gameService: GameService,
-		private fb: FormBuilder,
+		private fb: UntypedFormBuilder,
 		private router: Router
 		) { 
 		// Update Game form setup

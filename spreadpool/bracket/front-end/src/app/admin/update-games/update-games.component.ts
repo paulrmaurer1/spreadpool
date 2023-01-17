@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../core/game.service';
 import { GameData } from '../../shared/interfaces';
-import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, AbstractControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-games',
@@ -11,14 +11,14 @@ import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/fo
 export class UpdateGamesComponent implements OnInit {
 
 	// Retrieve Game form variables
-	gameRetrieveForm: FormGroup;
+	gameRetrieveForm: UntypedFormGroup;
 	game_id : AbstractControl;
 	_currentGame : GameData;
 	
 
 	constructor(
 		private _gameService: GameService,
-		private fb: FormBuilder,
+		private fb: UntypedFormBuilder,
 		) {
 		// Retrieve Game form setup
 		this.gameRetrieveForm = fb.group({

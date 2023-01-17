@@ -3,7 +3,7 @@ import { TBracketService } from '../../core/tbracket.service';
 import { TBracketData, EntryData } from '../../shared/interfaces';
 import { UserService } from '../../core/user.service';
 import { EntryService } from '../../core/entry.service';
-import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, AbstractControl, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DeleteModalComponent } from './delete-bracket-modal.component';
@@ -19,7 +19,7 @@ import { ResetModalComponent } from './reset-bracket-modal.component';
 export class CreateBracketsComponent implements OnInit {
 
 	_tbracketList: TBracketData[];
-	bracketAddForm: FormGroup;
+	bracketAddForm: UntypedFormGroup;
 	bracket_name : AbstractControl;
 	new_bracket : TBracketData;
 	deleteModalRef: BsModalRef;
@@ -32,7 +32,7 @@ export class CreateBracketsComponent implements OnInit {
 	constructor(
 		private _tbracketService: TBracketService,
 		private _userService: UserService,
-		private fb: FormBuilder,
+		private fb: UntypedFormBuilder,
 		private modalService: BsModalService,
 		private _entryService: EntryService,
 		private router: Router,
