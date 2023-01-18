@@ -2559,13 +2559,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const AppStore = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.InjectionToken('App.store');
 function createAppStore() {
-  // return createStore<AppState, any, any, any>(
   return (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.configureStore)({
     reducer: _core_user_reducer__WEBPACK_IMPORTED_MODULE_0__.UserReducer
-    // devToolsEnhancer()
   });
 }
-
 const appStoreProviders = [{
   provide: AppStore,
   useFactory: createAppStore
