@@ -177,7 +177,7 @@ input[type=checkbox] {
 .loader {
   height:100%;
   width:100%;
-  /*background:url('../static/front-end/assets/bball_loading.gif') no-repeat center center;*/
+  /* background:url('../static/front-end/assets/bball_loading.gif') no-repeat center center; */
   background:url('./assets/bball_loading.gif') no-repeat top left;
   position:absolute;
   z-index:10;
