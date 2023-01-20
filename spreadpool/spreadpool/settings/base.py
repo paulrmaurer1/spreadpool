@@ -155,7 +155,7 @@ CORS_ORIGIN_WHITELIST = (
 # Configuration settings for djangorestframework-jwt (JSON Web Token)
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,  # enables ability to request a refreshed token with a new expiration date
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),  # configurable life span of token (default = 5 minutes)
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # configurable life span of token (default = 5 minutes)
 }
 
 # Simplified static file serving.
@@ -166,7 +166,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # or AFTER tourney start date (False).  This will affect which front-end pages & features are shown to user
 # Setting is passed by the views.IndexView object via index.html, then set on the user.service.UserService injectable
 # in the beforeTourney variable within Angular
-BEFORE_TOURNEY = False
+BEFORE_TOURNEY = True
 
 # This is the time (ET) by which Counter on login.html will display remaining time
 REGISTRATION_DEADLINE_COUNTER = "Mar 16, 2023 10:00:00"

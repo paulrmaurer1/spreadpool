@@ -172,10 +172,12 @@ def determineStatus(team_id, tbracket_id, player_id, latest_game):
 	# "bonus points" to add to team count so that overall order sorts by Champion, Semi-Final Winner
 	# and Final Four teams upon conclusion fo tournament
 	status = None
+	bonus = 0
 	if team_id:
 		# latest_game = Game.objects.filter(Q(team1_id=team_id) | Q(team2_id=team_id)).order_by('-id')[0]
 		if latest_game.t_round <= 4:
 			status = "(Round " + str(latest_game.t_round) + ")"
+			bonus = 1
 		elif latest_game.t_round == 5:
 			status = "(Final Four)"
 			bonus = 1
