@@ -1,39 +1,38 @@
 <br>
-<div [class.loader] = "loading">
-<table class="table table-sm" *ngIf="_regionList">
-	<thead>
-		<tr>
-			<th scope="col">Name</th>
-			<th scope="col" class="text-center" style="width: 15%"># Active Teams</th>
-			<th scope="col">{{ _regionList[0].name }}</th>
-			<th scope="col">{{ _regionList[1].name }}</th>
-			<th scope="col">{{ _regionList[2].name }}</th>
-			<th scope="col">{{ _regionList[3].name }}</th>
-		</tr>
-	</thead>
-	<tbody>
-		
-		<tr *ngFor = "let entry of _standingsList; let i = index" 
-		[class.bg-success]="entry.player_id == _userService.id" 
-		[class.text-white]="entry.player_id == _userService.id">
-			<td *ngIf="entry.player_id == _userService.id">{{ entry.player }}</td>
-			<td *ngIf="entry.player_id != _userService.id">
-				<a [routerLink]="['/profile']" [queryParams]="{id: entry.player_id}">{{ entry.player }}</a>
-			</td>
-			<td class="text-center">{{ entry.team_count }}</td>
-			<td><span [class.standings-out]="entry.team_a_status == '(OUT)'">{{ entry.team_a }}
-				<small> {{ entry.team_a_status }}</small></span>
-			</td>
-			<td><span [class.standings-out]="entry.team_b_status == '(OUT)'">{{ entry.team_b }}
-				<small> {{ entry.team_b_status }}</small></span>
-			</td>
-			<td><span [class.standings-out]="entry.team_c_status == '(OUT)'">{{ entry.team_c }}
-				<small> {{ entry.team_c_status }}</small></span>
-			</td>
-			<td><span [class.standings-out]="entry.team_d_status == '(OUT)'">{{ entry.team_d }}
-				<small> {{ entry.team_d_status }}</small></span>
-			</td>
-		</tr>
-	</tbody>
-</table>
+<div [class.loader] = "loading" class="table-responsive">
+  <table class="table table-sm" *ngIf="_regionList">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col" class="text-center"># Active Teams</th>
+        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[0].name }}</th>
+        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[1].name }}</th>
+        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[2].name }}</th>
+        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[3].name }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let entry of _standingsList; let i = index" 
+      [class.bg-success]="entry.player_id == _userService.id" 
+      [class.text-white]="entry.player_id == _userService.id">
+        <td *ngIf="entry.player_id == _userService.id">{{ entry.player }}</td>
+        <td *ngIf="entry.player_id != _userService.id">
+          <a [routerLink]="['/profile']" [queryParams]="{id: entry.player_id}">{{ entry.player }}</a>
+        </td>
+        <td class="text-center">{{ entry.team_count }}</td>
+        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_a_status == '(OUT)'">{{ entry.team_a }}
+          <small class="d-none d-lg-table-cell"> {{ entry.team_a_status }}</small></span>
+        </td>
+        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_b_status == '(OUT)'">{{ entry.team_b }}
+          <small class="d-none d-lg-table-cell"> {{ entry.team_b_status }}</small></span>
+        </td>
+        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_c_status == '(OUT)'">{{ entry.team_c }}
+          <small class="d-none d-lg-table-cell"> {{ entry.team_c_status }}</small></span>
+        </td>
+        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_d_status == '(OUT)'">{{ entry.team_d }}
+          <small class="d-none d-lg-table-cell"> {{ entry.team_d_status }}</small></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

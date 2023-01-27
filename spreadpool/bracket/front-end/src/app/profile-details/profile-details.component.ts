@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ProfileFormModalComponent } from '../profile-form-modal/profile-form-modal.component';
 import { PartialProfileFormModalComponent } from '../profile-form-modal/partial-profile-form-modal.component';
+import { faPaypal, faVimeoSquare } from '@fortawesome/free-brands-svg-icons';
+import { faUsd } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-details',
@@ -26,6 +28,11 @@ export class ProfileDetailsComponent implements OnInit {
 	}
 	modalRef: BsModalRef;
 	bsModalRef: BsModalRef;
+
+  // font-awesome icons
+  faPaypal = faPaypal;
+  faVimeoSquare = faVimeoSquare;
+  faUsd = faUsd;
 
 	constructor(private _playerService: PlayerService,
 	  public _userService: UserService, 

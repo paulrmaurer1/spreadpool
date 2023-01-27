@@ -27,7 +27,7 @@ export class RosterComponent implements OnInit {
 	_property: string;
 	_direction: number=1;
 
-  // font-awesome icons
+  // fortawesome icons
   faCaretDown = faCaretDown;
   faCaretUp = faCaretUp;
   faEdit = faEdit;

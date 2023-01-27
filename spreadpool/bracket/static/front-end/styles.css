@@ -16889,6 +16889,7 @@ li.game-title-bottom{
     }
     body {
       /*Make font size smaller for mobile*/
+      /* font-size:x-small; */
       font-size:x-small;
 
     }
@@ -16907,14 +16908,22 @@ li.game-title-bottom{
     }
 
     /*Style of navbar upon collapsing in mobile */
-    
     /*Menu bar items text */
     .navbar-nav .nav-link {
       font-size: 14px !important;
     }
-    
     div.mob-display {
       width: 100%;
+    }
+
+    /* Keep table text a bit larger for Standings, Roster, and My Teams tables */
+    td, tr {
+      font-size:small;
+    }
+    /* Text next to title to indicate what user will see if rotate phone */
+    span.rotate {
+      font-size:small;
+      color:orange !important;
     }
 }
 

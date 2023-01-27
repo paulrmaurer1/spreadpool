@@ -1,6 +1,8 @@
 <!-- dtandings-nav.component.html -->
-
-<h4>Standings</h4>
+<div class="d-flex flex-row align-items-center">
+  <div class="h4">Standings</div>
+  <div class="d-inline d-md-none pl-3"><span class="rotate"><fa-icon [icon]="faRotate"></fa-icon>&nbsp;Rotate to see Teams</span></div>
+</div>
 <small class="text-muted">(Click to see bracket)</small>
 <tabset type="pills">
 	<tab *ngFor = "let tbracket of _tbracketList" heading="{{ tbracket.name }}">

@@ -1,7 +1,7 @@
   <!--profile-details.component.html-->
-<div class="container-fluid">
-	<div class = "row">
-		<div class = "col-xs col-md-4">
+<div class="container">
+	<div class = "row align-items-start">
+		<div class = "col-xs col-md-6">
 			<div class = "row justify-content-start">
 				<div class = "col-xs-auto"><strong>Name:&nbsp;</strong></div>
 				<div class = "col" class="text-muted">{{ _player.full_name }}</div>
@@ -25,30 +25,30 @@
 			<div class = "row justify-content-start">
 				<div class = "col-xs-auto"><strong>Paid up?:</strong></div>
 				<div class = "col" [ngClass] = "{'text-muted': player.paid, 'text-danger': !player.paid}">
-					<!-- {{ player.paid ? 'YES - Thank you!' : 'Due($' + player.num_entries*20 + '.00)'  }} -->
 					{{ player.paid ? "YES - Thank you!" : "Due($" + player.num_entries*20 + ".00)"  }}
 				</div>
 			</div>
-			<div class = "row top10">
+			<div class = "row">
 				<div *ngIf="_userService.beforeTourney && _showEditButton" class = "col-xs-auto">
-					<button class="btn btn-secondary custom m-2" (click)="openModal(template)">Delete</button>
+					<button class="btn btn-secondary custom mt-2 mb-2 mr-2" (click)="openModal(template)">Delete</button>
 				</div>
 				<div *ngIf="_showEditButton" class = "col-xs-auto">
-					<button class="btn btn-primary custom m-2" (click)="openProfileModal()">Edit</button>
+					<button class="btn btn-primary custom mt-2 mb-2" (click)="openProfileModal()">Edit</button>
 				</div>
 			</div>
 		</div>	
 
 		<div *ngIf = "!player.paid && _showEditButton" 
-		class = "col-xs col-md-4 justify-content-start align-self-center rounded border border-danger text-muted pl-1 mt-2">
+		class = "col-md-6 justify-content-start rounded border border-danger text-muted">
 			<p class="mb-2"><strong>Payment Options:</strong></p>
-			<p class="mb-2">1) <i class="fa fa-paypal"></i> via PayPal : <a target="_blank" rel="noopener noreferrer"
+			<p class="mb-2">1) <fa-icon [icon]="faPaypal"></fa-icon> via PayPal : <a target="_blank" rel="noopener noreferrer"
 				href="https://www.paypal.me/PaulMaurer1">www.paypal.me/PaulMaurer1</a></p>
-			<p class="mb-2">2) <i class="fa fa-vimeo-square"></i> via Venmo: <strong>@Paul-Maurer1</strong></p>
-			<p class="mb-2">3) Send <i class="fa fa-usd"></i> to:
+			<p class="mb-2">2) <fa-icon [icon]="faVimeoSquare"></fa-icon> via Venmo: <a target="_blank" rel="noopener noreferrer"
+        href="https://account.venmo.com/u/Paul-Maurer1">@Paul-Maurer1</a></p>
+      <p class="mb-2">3) Mail <fa-icon [icon]="faUsd"></fa-icon> to:
 			Paul Maurer, 3227 N. Seminary Avenue, Chicago, IL 60657</p>
 		</div>
-		<div class = "col hidden-xs"></div>
+		<!-- <div class = "col d-none d-lg-table"></div> -->
 	</div>
 </div>
 

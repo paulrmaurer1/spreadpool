@@ -4,7 +4,11 @@
 	<h4>{{ _pageTitle }} Info</h4>
 	<app-profile-details [player] = "user"></app-profile-details>
 	<br>
-	<h4>{{ _pageTitle }} Teams</h4>
+  <div class="d-flex flex-row align-items-center">
+    <div class="h4">{{ _pageTitle }} Teams</div>
+    <div class="d-inline d-md-none pl-3"><span class="rotate"><fa-icon [icon]="faRotate"></fa-icon>&nbsp;Rotate to see Next Game(s)</span></div>
+  </div>
+	<!-- <h4>{{ _pageTitle }} Teams</h4> -->
 	<app-team-details [player] = "user"></app-team-details>
 	<br>
 </div>

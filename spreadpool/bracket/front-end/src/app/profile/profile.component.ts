@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IUserData } from '../shared/interfaces';
 import { PlayerService } from '../core/player.service';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +12,9 @@ import { tap } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
 	user: IUserData; // for passing player info to sub-components (profile-details & profile-edit)
 	_pageTitle: string;
+
+  // fortawesome icons
+  faRotate = faRotate;
 	
 	constructor(private route: ActivatedRoute,
 		private _playerService: PlayerService) { }
