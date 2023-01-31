@@ -2410,7 +2410,7 @@ class AppComponent {
     // Login via _userService to establish token with preset values ***
     else {
       // this._userService.id = 1;
-      this._userService.beforeTourney = false;
+      this._userService.beforeTourney = true;
       // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
       this._userService.id = 2;
       this._userService.login({
@@ -5932,13 +5932,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty.js */ 7797);
 /* harmony import */ var _core_player_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/player.service */ 8464);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ 9306);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ 9200);
-/* harmony import */ var _profile_details_profile_details_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile-details/profile-details.component */ 7911);
-/* harmony import */ var _team_details_team_details_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../team-details/team-details.component */ 2129);
+/* harmony import */ var _core_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/user.service */ 5760);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ 9306);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 4666);
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ 9200);
+/* harmony import */ var _profile_details_profile_details_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile-details/profile-details.component */ 7911);
+/* harmony import */ var _team_details_team_details_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../team-details/team-details.component */ 2129);
 
 
 
@@ -5950,36 +5951,49 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ProfileComponent_div_0_Template(rf, ctx) {
+
+
+function ProfileComponent_div_0_div_9_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](1, "br");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](2, "h4");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](4, "app-profile-details", 1)(5, "br");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](6, "div", 2)(7, "div", 3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "div", 4)(10, "span", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](11, "fa-icon", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](12, "\u00A0Rotate to see Next Game(s)");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](13, "app-team-details", 1)(14, "br");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 5)(1, "span", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](2, "fa-icon", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3, "\u00A0Rotate to see Next Game(s)");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"]("", ctx_r0._pageTitle, " Info");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("player", ctx_r0.user);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"]("", ctx_r0._pageTitle, " Teams");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("icon", ctx_r0.faRotate);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("player", ctx_r0.user);
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("icon", ctx_r1.faRotate);
+  }
+}
+function ProfileComponent_div_0_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "br");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](4, "app-profile-details", 1)(5, "br");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "div", 2)(7, "div", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](9, ProfileComponent_div_0_div_9_Template, 4, 1, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](10, "app-team-details", 1)(11, "br");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("", ctx_r0._pageTitle, " Info");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("player", ctx_r0.user);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("", ctx_r0._pageTitle, " Teams");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx_r0._userService.beforeTourney);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("player", ctx_r0.user);
   }
 }
 class ProfileComponent {
@@ -5987,14 +6001,16 @@ class ProfileComponent {
 
   // fortawesome icons
 
-  constructor(route, _playerService) {
+  constructor(route, _playerService, _userService) {
     (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "route", void 0);
     (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "_playerService", void 0);
+    (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "_userService", void 0);
     (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "user", void 0);
     (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "_pageTitle", void 0);
-    (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "faRotate", _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faRotate);
+    (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "faRotate", _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faRotate);
     this.route = route;
     this._playerService = _playerService;
+    this._userService = _userService;
   }
   ngOnInit() {
     // this.user = this.route.snapshot.data.loggedInUser;
@@ -6013,23 +6029,23 @@ class ProfileComponent {
   }
 }
 (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ProfileComponent, "\u0275fac", function ProfileComponent_Factory(t) {
-  return new (t || ProfileComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_core_player_service__WEBPACK_IMPORTED_MODULE_1__.PlayerService));
+  return new (t || ProfileComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_core_player_service__WEBPACK_IMPORTED_MODULE_1__.PlayerService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_core_user_service__WEBPACK_IMPORTED_MODULE_2__.UserService));
 });
-(0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ProfileComponent, "\u0275cmp", /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
+(0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ProfileComponent, "\u0275cmp", /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
   type: ProfileComponent,
   selectors: [["app-profile"]],
   decls: 1,
   vars: 1,
-  consts: [[4, "ngIf"], [3, "player"], [1, "d-flex", "flex-row", "align-items-center"], [1, "h4"], [1, "d-inline", "d-md-none", "pl-3"], [1, "rotate"], [3, "icon"]],
+  consts: [[4, "ngIf"], [3, "player"], [1, "d-flex", "flex-row", "align-items-center"], [1, "h4"], ["class", "d-inline d-md-none pl-3", 4, "ngIf"], [1, "d-inline", "d-md-none", "pl-3"], [1, "rotate"], [3, "icon"]],
   template: function ProfileComponent_Template(rf, ctx) {
     if (rf & 1) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](0, ProfileComponent_div_0_Template, 15, 5, "div", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, ProfileComponent_div_0_Template, 12, 5, "div", 0);
     }
     if (rf & 2) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx.user);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.user);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.NgIf, _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_8__.FaIconComponent, _profile_details_profile_details_component__WEBPACK_IMPORTED_MODULE_2__.ProfileDetailsComponent, _team_details_team_details_component__WEBPACK_IMPORTED_MODULE_3__.TeamDetailsComponent],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_8__.NgIf, _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_9__.FaIconComponent, _profile_details_profile_details_component__WEBPACK_IMPORTED_MODULE_3__.ProfileDetailsComponent, _team_details_team_details_component__WEBPACK_IMPORTED_MODULE_4__.TeamDetailsComponent],
   styles: ["\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
 }));
 
@@ -7094,7 +7110,9 @@ function TeamDetailsComponent_div_1_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "small");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](7, "Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](8, "br");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
   }
 }
 class TeamDetailsComponent {
@@ -7152,7 +7170,7 @@ class TeamDetailsComponent {
   template: function TeamDetailsComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, TeamDetailsComponent_div_0_Template, 3, 3, "div", 0);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, TeamDetailsComponent_div_1_Template, 8, 0, "div", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, TeamDetailsComponent_div_1_Template, 9, 0, "div", 0);
     }
     if (rf & 2) {
       _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx._userService.beforeTourney);
@@ -7509,7 +7527,7 @@ class LayoutComponent {
   ngContentSelectors: _c0,
   decls: 4,
   vars: 0,
-  consts: [[1, "container"]],
+  consts: [[1, "container", "mb-3"]],
   template: function LayoutComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵprojectionDef"]();

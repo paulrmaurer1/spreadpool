@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IUserData } from '../shared/interfaces';
 import { PlayerService } from '../core/player.service';
+import { UserService } from '../core/user.service';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
   faRotate = faRotate;
 	
 	constructor(private route: ActivatedRoute,
-		private _playerService: PlayerService) { }
+		private _playerService: PlayerService,
+    public _userService: UserService,) { }
 
 	ngOnInit() {
 		// this.user = this.route.snapshot.data.loggedInUser;
