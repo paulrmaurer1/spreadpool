@@ -167,9 +167,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # or AFTER tourney start date (False).  This will affect which front-end pages & features are shown to user
 # Setting is passed by the views.IndexView object via index.html, then set on the user.service.UserService injectable
 # in the beforeTourney variable within Angular
-BEFORE_TOURNEY = True
+BEFORE_TOURNEY = False
 
 # This is the time (ET) by which Counter on login.html will display remaining time
 REGISTRATION_DEADLINE_COUNTER = "Mar 16, 2023 10:00:00"
 # This is the time (ET) that can be used in templates, emails, etc. on Django side
 REGISTRATION_DEADLINE_FRIENDLY = "Thursday, March 16, 10AM ET (9AM CT)"
+
+# (General) ChatGPT3 Settings
+CHATGPT3_ON = True
+CHATGPT3_MODEL = "text-davinci-003"
+CHATGPT3_TEMPERATURE = 0.5

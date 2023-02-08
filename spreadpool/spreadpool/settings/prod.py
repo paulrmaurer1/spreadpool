@@ -39,3 +39,7 @@ EMAIL_PORT = os.environ['MAILGUN_SMTP_PORT']
 EMAIL_HOST_USER = os.environ['MAILGUN_SMTP_LOGIN']
 EMAIL_HOST_PASSWORD = os.environ['MAILGUN_SMTP_PASSWORD']
 DEFAULT_FROM_EMAIL = 'NCAASpreadpool Administrator <noreply@ncaaspreadpool.com>'
+
+# (Production) ChatGPT3 settings
+OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
+OPENAI_ORG_ID = os.environ['OPENAI_ORG_ID']

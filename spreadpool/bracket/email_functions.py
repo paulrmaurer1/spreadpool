@@ -2,6 +2,7 @@
 #import internal entitities
 from .models import Entry, Game, Matchup, Tbracket, Team, Region, User
 from .core_functions import getFriendlyDate, getFriendlyTime
+import openai
 
 #import django functions
 from django.db.models import Q
@@ -9,6 +10,8 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.template import Context
+
+from django.conf import settings
 
 """
 The below functions execute lookups to populate email messages with to, from, subject, message
@@ -219,6 +222,10 @@ def email_team_owners(game, outcome):
 	matchset = Matchup.objects.filter(game=game.id)
 
 	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+
+	# ChatGPT3 base settings
+	openai.api_key = settings.OPENAI_API_KEY
+	openai.organization = settings.OPENAI_ORG_ID
 	
 	# For each match that's related to game
 	for match in matchset:
@@ -269,7 +276,18 @@ def email_team_owners(game, outcome):
 			}
 			c1.update(c)  # merge context elements specific to target1 email
 			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
-			msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
+			if (settings.CHATGPT3_ON):
+				completion = openai.Completion.create(
+					engine=settings.CHATGPT3_MODEL,
+					prompt="Inform Dave that he just won a bet where the odds were long in 3 sentences",
+					max_tokens=60,
+					temperature=settings.CHATGPT3_TEMPERATURE,
+				)
+				msg1_plain = completion.choices[0].text
+				print ("ChatGPT3 in use! -->", msg1_plain)
+			else:
+				print ("ChatGPT3 not in use :-(")
+				msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
 			msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
 			
 			# Construct parts of target 2 email
