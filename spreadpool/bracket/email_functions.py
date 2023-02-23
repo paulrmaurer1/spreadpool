@@ -222,6 +222,7 @@ def email_team_owners(game, outcome):
 	matchset = Matchup.objects.filter(game=game.id)
 
 	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+	prompt_dir = 'bracket/prompts/' # directory where all chatGPT3 prompt templates are located
 
 	# ChatGPT3 base settings
 	openai.api_key = settings.OPENAI_API_KEY
@@ -271,33 +272,61 @@ def email_team_owners(game, outcome):
 			}
 
 			# Construct parts of target 1 email
+			completion1 = ""
+			if (settings.CHATGPT3_ON):
+				prompt1 = render_to_string(prompt_dir + 'prompt_a.txt', c)
+				completion = openai.Completion.create(
+					engine=settings.CHATGPT3_MODEL,
+					prompt=prompt1,
+					max_tokens=settings.CHATGPT3_MAXTOKENS,
+					temperature=settings.CHATGPT3_TEMPERATURE,
+				)
+				completion1 = completion.choices[0].text
+				print ("ChatGPT3 in use! -->", completion1)
+			else:
+				print ("ChatGPT3 not in use :-(")
+				
 			c1 = {
 				'target_email':to_target1,
+				'completion':completion1,
 			}
 			c1.update(c)  # merge context elements specific to target1 email
 			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
 			if (settings.CHATGPT3_ON):
-				completion = openai.Completion.create(
-					engine=settings.CHATGPT3_MODEL,
-					prompt="Inform Dave that he just won a bet where the odds were long in 3 sentences",
-					max_tokens=60,
-					temperature=settings.CHATGPT3_TEMPERATURE,
-				)
-				msg1_plain = completion.choices[0].text
-				print ("ChatGPT3 in use! -->", msg1_plain)
+				msg1_plain = render_to_string(email_dir + 'game_result_wcompletion_a.txt', c1)
+				msg1_html = render_to_string(email_dir + 'game_result_wcompletion_a.html', c1)
 			else:
-				print ("ChatGPT3 not in use :-(")
 				msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
+				msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
 			
 			# Construct parts of target 2 email
+			completion2 = ""
+			if (settings.CHATGPT3_ON):
+				prompt2 = render_to_string(prompt_dir + 'prompt_f.txt', c)
+				completion = openai.Completion.create(
+					engine=settings.CHATGPT3_MODEL,
+					prompt=prompt2,
+					max_tokens=settings.CHATGPT3_MAXTOKENS,
+					temperature=settings.CHATGPT3_TEMPERATURE,
+				)
+				completion2 = completion.choices[0].text
+				print ("ChatGPT3 in use! -->", completion2)
+			else:
+				print ("ChatGPT3 not in use :-(")
+				
 			c2 = {
 				'target_email':to_target2,
+				'completion':completion2,
 			}
+
 			c2.update(c)  # merge context elements specific to target2 email
 			subject2 = 'Your team, ' + str(game.team2) + ', didn\'t beat the spread :('
-			msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_f.html', c2)
+			if (settings.CHATGPT3_ON):
+				msg2_plain = render_to_string(email_dir + 'game_result_wcompletion_f.txt', c2)
+				msg2_html = render_to_string(email_dir + 'game_result_wcompletion_f.html', c2)
+			else:
+				msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
+				msg2_html = render_to_string(email_dir + 'game_result_f.html', c2)
 
 		elif outcome == 2:
 			"""

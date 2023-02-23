@@ -1,0 +1,9 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+Hey {{win_first_name}},<br>
+Your team <b>{{team_w}}</b> won! They were favored by {{spread}} 1/2 and beat <b>{{team_l}}</b> by the score of {{team_w_score}} - {{team_l_score}}.<br>
+<br>
+{{completion}}
+<br>
+{% endblock %}
