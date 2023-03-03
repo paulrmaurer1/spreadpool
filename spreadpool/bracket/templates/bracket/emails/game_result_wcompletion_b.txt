@@ -1,0 +1,1 @@
+Hey {{lose_first_name}}, Your team {{team_l}} was a {{spread}} 1/2 point underdog vs. {{team_w}} and only lost {{team_w_score}} - {{team_l_score}}. That means you inherit {{team_w}} for the next round. {{completion}}

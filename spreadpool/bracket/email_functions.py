@@ -212,6 +212,287 @@ def email_original_teams(tbracket_id):
 
 	return
 
+def getContext(game, match, target_user1, target_user2, outcome):
+	"""
+	This function returns the proper context variables depending on the game outcome. The context
+	is used for including values in the email message or prompts (chatGPT3). For outcome
+	descriptions, reference the buildMessages() function below.
+	"""
+	match outcome:
+		case 1 | 2 | 6 | 7:
+			return {
+				'team_w':game.team1,
+				'team_l':game.team2,
+				'team_w_score':game.team1_score,
+				'team_l_score':game.team2_score,
+				'bracket_id':match.tbracket_id,
+				'spread':game.spread,
+				'win_first_name':target_user1.first_name,
+				'win_short_name':target_user1.short_name,
+				'lose_first_name':target_user2.first_name,
+				'lose_short_name':target_user2.short_name,
+			}
+		case 3 | 4 | 5 | 8:
+			return {
+				'team_w':game.team2,
+				'team_l':game.team1,
+				'team_w_score':game.team2_score,
+				'team_l_score':game.team1_score,
+				'bracket_id':match.tbracket_id,
+				'spread':game.spread,
+				'win_first_name':target_user2.first_name,
+				'win_short_name':target_user2.short_name,
+				'lose_first_name':target_user1.first_name,
+				'lose_short_name':target_user1.short_name,
+			}
+		case _:
+			# default if none of the above match
+			return {}
+
+def buildMessages(context, outcome):
+	"""
+	This function builds the email body for both the plain text & html outgoing
+	email messages. If chatGPT3 is turned on, the messages will contain an additional
+	AI generated message. Each email subject is also declared here.  Email bodies & subjects
+	are returned for subsequent sending & storing. Each game outcome will generate an email 
+	for both participating team's owners within each bracket
+	"""
+	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
+	prompt_dir = 'bracket/prompts/' # directory where all chatGPT3 prompt templates are located
+	completion1 = ""
+	completion2 = ""
+	
+	# ChatGPT3 base settings
+	openai.api_key = settings.OPENAI_API_KEY
+	openai.organization = settings.OPENAI_ORG_ID
+
+	"""
+	Assign proper prompt and email template files based on outcome
+	"""
+	match outcome:
+		case 1:
+			"""
+			When Team 1 (of game) is favored, wins, and covers spread
+			Team 2 (of game) loses, doesn't beat spread, doesn't advance
+			"""
+			subject1 = 'Congrats! Your team, ' + str(context['team_w']) + ', advances to the next round!'
+			prompt1_file = 'prompt_a.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_a.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_a.html'
+			game_result_txtfile1 = 'game_result_a.txt'
+			game_result_htmlfile1 = 'game_result_a.html'
+			subject2 = 'Your team, ' + str(context['team_l']) + ', didn\'t beat the spread :('
+			prompt2_file = 'prompt_f.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_f.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_f.html'
+			game_result_txtfile2 = 'game_result_f.txt'
+			game_result_htmlfile2 = 'game_result_f.html'
+		case 2:
+			"""
+			When Team 1 (of game) is favored, wins, but doesn't cover spread
+			Team 2 (of game) loses but beats spread and advances
+			"""
+			subject1 = 'Your team, ' + str(context['team_w']) + ', won but didn\'t cover the spread :('
+			prompt1_file = 'prompt_e.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_e.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_e.html'
+			game_result_txtfile1 = 'game_result_e.txt'
+			game_result_htmlfile1 = 'game_result_e.html'
+			subject2 = 'Good news! Your team, ' + str(context['team_l']) + ', lost but covered the spread!'
+			prompt2_file = 'prompt_b.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_b.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_b.html'
+			game_result_txtfile2 = 'game_result_b.txt'
+			game_result_htmlfile2 = 'game_result_b.html'
+		case 3:
+			"""
+			When Team 1 (of game) is favored but loses and won't advance
+			Team 2 (of game) wins and advances
+			"""
+			subject1 = 'Your team, ' + str(context['team_l']) + ', lost and won\'t advance :('
+			prompt1_file = 'prompt_e.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_g.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_g.html'
+			game_result_txtfile1 = 'game_result_g.txt'
+			game_result_htmlfile1 = 'game_result_g.html'
+			subject2 = 'Unbelievable. Your team, ' + str(context['team_w']) + ', won despite being an underdog!'
+			prompt2_file = 'prompt_c.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_c.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_c.html'
+			game_result_txtfile2 = 'game_result_c.txt'
+			game_result_htmlfile2 = 'game_result_c.html'
+		case 4:
+			"""
+			When Team 2 (of game) is favored, wins, and covers spread
+			Team 1 (of game) loses, doesn't beat spread, doesn't advance
+			"""
+			subject1 = 'Your team, ' + str(context['team_l']) + ', didn\'t beat the spread :('
+			prompt1_file = 'prompt_f.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_f.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_f.html'
+			game_result_txtfile1 = 'game_result_f.txt'
+			game_result_htmlfile1 = 'game_result_f.html'
+			subject2 = 'Congrats! Your team, ' + str(context['team_w']) + ', advances to the next round!'
+			prompt2_file = 'prompt_a.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_a.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_a.html'
+			game_result_txtfile2 = 'game_result_a.txt'
+			game_result_htmlfile2 = 'game_result_a.html'
+		case 5:
+			"""
+			When Team 2 (of game) is favored, wins, but doesn't cover spread
+			Team 1 (of game) loses but beats spread and advances
+			"""
+			subject1 = 'Good news! Your team, ' + str(context['team_l']) + ', lost but covered the spread'
+			prompt1_file = 'prompt_b.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_b.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_b.html'
+			game_result_txtfile1 = 'game_result_b.txt'
+			game_result_htmlfile1 = 'game_result_b.html'
+			subject2 = 'Your team, ' + str(context['team_w']) + ', won but didn\'t cover the spread :('
+			prompt2_file = 'prompt_e.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_e.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_e.html'
+			game_result_txtfile2 = 'game_result_e.txt'
+			game_result_htmlfile2 = 'game_result_e.html'
+		case 6:
+			"""
+			When Team 2 (of game) is favored but loses and won't advance
+			Team 1 (of game) wins and advances
+			"""
+			subject1 = 'Unbelievable. Your team, ' + str(context['team_w']) + ', won despite being an underdog!'
+			prompt1_file = 'prompt_c.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_c.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_c.html'
+			game_result_txtfile1 = 'game_result_c.txt'
+			game_result_htmlfile1 = 'game_result_c.html'
+			subject2 = 'Your team, ' + str(context['team_l']) + ', lost and won\'t advance :('
+			prompt2_file = 'prompt_g.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_g.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_g.html'
+			game_result_txtfile2 = 'game_result_g.txt'
+			game_result_htmlfile2 = 'game_result_g.html'
+		case 7:
+			"""
+			When Team 1 (of game) & Team 2 are pick'ems
+			and Team 1 wins
+			"""
+			subject1 = 'Woohoo! Your team, ' + str(context['team_w']) + ', won a pick\'em game!'
+			prompt1_file = 'prompt_d.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_d.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_d.html'
+			game_result_txtfile1 = 'game_result_d.txt'
+			game_result_htmlfile1 = 'game_result_d.html'
+			subject2 = 'Your team, ' + str(context['team_l']) + ', will not advance to the next round :('
+			prompt2_file = 'prompt_h.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_h.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_h.html'
+			game_result_txtfile2 = 'game_result_h.txt'
+			game_result_htmlfile2 = 'game_result_h.html'
+		case 8:
+			"""
+			When Team 1 (of game) & Team 2 are pick'ems
+			and Team 2 wins
+			"""
+			subject1 = 'Your team, ' + str(context['team_l']) + ', will not advance to the next round :('
+			prompt1_file = 'prompt_h.txt'
+			game_result_wcompletion_txtfile1 = 'game_result_wcompletion_h.txt'
+			game_result_wcompletion_htmlfile1 = 'game_result_wcompletion_h.html'
+			game_result_txtfile1 = 'game_result_h.txt'
+			game_result_htmlfile1 = 'game_result_h.html'
+			subject2 = 'Woohoo! Your team, ' + str(context['team_w']) + ', won a pick\'em game!'
+			prompt2_file = 'prompt_d.txt'
+			game_result_wcompletion_txtfile2 = 'game_result_wcompletion_d.txt'
+			game_result_wcompletion_htmlfile2 = 'game_result_wcompletion_d.html'
+			game_result_txtfile2 = 'game_result_d.txt'
+			game_result_htmlfile2 = 'game_result_d.html'
+
+	"""
+	Based on chatGPT3 settings, contruct subject lines and txt & html messages for
+	both owners of matchup
+	"""
+	# Construct parts of owner 1 email
+	if (settings.CHATGPT3_ON):
+		prompt1 = render_to_string(prompt_dir + prompt1_file, context)
+		# completion = openai.Completion.create(
+		# 	engine=settings.CHATGPT3_MODEL,
+		# 	prompt=prompt1,
+		# 	max_tokens=settings.CHATGPT3_MAXTOKENS,
+		# 	temperature=settings.CHATGPT3_TEMPERATURE,
+		# )
+		completion = openai.ChatCompletion.create(
+			model=settings.CHATGPT3_MODEL,
+			messages=[
+				{"role": "system", "content": prompt1},
+			],
+			# max_tokens=settings.CHATGPT3_MAXTOKENS,
+			# temperature=settings.CHATGPT3_TEMPERATURE,
+		)
+		# completion1 = completion.choices[0].text
+		completion1 = completion["choices"][0]["message"]["content"]
+		print ("ChatGPT3 in use! -->", completion1)
+		c1 = {
+			'completion':completion1,
+		}
+		c1.update(context)  # merge context elements specific to target1 email
+		msg1_plain = render_to_string(email_dir + game_result_wcompletion_txtfile1, c1)
+		msg1_html = render_to_string(email_dir + game_result_wcompletion_htmlfile1, c1)
+	else:
+		print ("ChatGPT3 not in use :-(")
+		c1 = {
+			'completion':completion1,
+		}
+		c1.update(context)  # merge context elements specific to target1 email
+		msg1_plain = render_to_string(email_dir + game_result_txtfile1, c1)
+		msg1_html = render_to_string(email_dir + game_result_htmlfile1, c1)
+	
+	# Construct parts of owner 2 email
+	if (settings.CHATGPT3_ON):
+		prompt2 = render_to_string(prompt_dir + prompt2_file, context)
+		# completion = openai.Completion.create(
+		# 	engine=settings.CHATGPT3_MODEL,
+		# 	prompt=prompt2,
+		# 	max_tokens=settings.CHATGPT3_MAXTOKENS,
+		# 	temperature=settings.CHATGPT3_TEMPERATURE,
+		# )
+		completion = openai.ChatCompletion.create(
+			model=settings.CHATGPT3_MODEL,
+			messages=[
+				{"role": "system", "content": prompt2},
+			],
+			# max_tokens=settings.CHATGPT3_MAXTOKENS,
+			# temperature=settings.CHATGPT3_TEMPERATURE,
+		)
+		# completion2 = completion.choices[0].text
+		completion2 = completion["choices"][0]["message"]["content"]
+		print ("ChatGPT3 in use! -->", completion2)
+		c2 = {
+			'completion':completion2,
+		}
+		c2.update(context)  # merge context elements specific to target2 email
+		msg2_plain = render_to_string(email_dir + game_result_wcompletion_txtfile2, c2)
+		msg2_html = render_to_string(email_dir + game_result_wcompletion_htmlfile2, c2)
+	else:
+		print ("ChatGPT3 not in use :-(")
+		c2 = {
+			'completion':completion2,
+		}
+		c2.update(context)  # merge context elements specific to target2 email
+		msg2_plain = render_to_string(email_dir + game_result_txtfile2, c2)
+		msg2_html = render_to_string(email_dir + game_result_htmlfile2, c2)
+
+	return subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html
+
+
+def sendMessages(target_user1, target_user2, subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html):
+	"""
+	Send email to each owner of matchup's teams if user.gm_updates = True
+	"""
+	if target_user1.gm_updates:
+		send_mail(subject1, msg1_plain, settings.DEFAULT_FROM_EMAIL, [target_user1.email], html_message=msg1_html)
+	if target_user2.gm_updates:
+		send_mail(subject2, msg2_plain, settings.DEFAULT_FROM_EMAIL, [target_user2.email], html_message=msg2_html)
+
 
 def email_team_owners(game, outcome):
 	"""
@@ -221,394 +502,29 @@ def email_team_owners(game, outcome):
 	# Find Matchups for game and use team_owner_id's to update respective Players' Active Team
 	matchset = Matchup.objects.filter(game=game.id)
 
-	email_dir = 'bracket/emails/' # directory where all txt & html email templates are located
-	prompt_dir = 'bracket/prompts/' # directory where all chatGPT3 prompt templates are located
-
-	# ChatGPT3 base settings
-	openai.api_key = settings.OPENAI_API_KEY
-	openai.organization = settings.OPENAI_ORG_ID
-	
 	# For each match that's related to game
 	for match in matchset:
-		# Make sure owner entry exists that matches on bracket & game.team1, otherwise leave for loop
+		# Make sure owner entry exists that matches on bracket & game.team1, otherwise leave loop
 		try:
 			entry_team1 = Entry.objects.get(Q(team_a=game.team1_id) | Q(team_b=game.team1_id) | Q(team_c=game.team1_id) | Q(team_d=game.team1_id), 
 				tbracket=match.tbracket_id)
 		except Entry.DoesNotExist:
 			continue
-		# Make sure owner entry exists that matches on bracket & game.team2, otherwise leave for loop
+		# Make sure owner entry exists that matches on bracket & game.team2, otherwise leave loop
 		try:
 			entry_team2 = Entry.objects.get(Q(team_a=game.team2_id) | Q(team_b=game.team2_id) | Q(team_c=game.team2_id) | Q(team_d=game.team2_id),
 				tbracket=match.tbracket_id)
 		except Entry.DoesNotExist:
 			continue
 
-		# print ('Processing email actions...')
 		"""
 		Retrieve standard send_mail components across outcomes
 		"""
 		target_user1 = User.objects.get(id=match.team1_owner_id)
-		to_target1 = target_user1.email
 		target_user2 = User.objects.get(id=match.team2_owner_id)
-		to_target2 = target_user2.email
 
-		if outcome == 1:
-			"""
-			When Team 1 (of game) is favored, wins, and covers spread
-			Team 2 (of game) loses, doesn't beat spread, doesn't advance
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team1,
-				'team_l':game.team2,
-				'team_w_score':game.team1_score,
-				'team_l_score':game.team2_score,
-				'bracket_id':match.tbracket_id,
-				'spread':game.spread,
-				'win_first_name':target_user1.first_name,
-				'win_short_name':target_user1.short_name,
-				'lose_first_name':target_user2.first_name,
-				'lose_short_name':target_user2.short_name,
-			}
-
-			# Construct parts of target 1 email
-			completion1 = ""
-			if (settings.CHATGPT3_ON):
-				prompt1 = render_to_string(prompt_dir + 'prompt_a.txt', c)
-				completion = openai.Completion.create(
-					engine=settings.CHATGPT3_MODEL,
-					prompt=prompt1,
-					max_tokens=settings.CHATGPT3_MAXTOKENS,
-					temperature=settings.CHATGPT3_TEMPERATURE,
-				)
-				completion1 = completion.choices[0].text
-				print ("ChatGPT3 in use! -->", completion1)
-			else:
-				print ("ChatGPT3 not in use :-(")
-				
-			c1 = {
-				'target_email':to_target1,
-				'completion':completion1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Congrats! Your team, ' + str(game.team1) + ', advances to the next round!'
-			if (settings.CHATGPT3_ON):
-				msg1_plain = render_to_string(email_dir + 'game_result_wcompletion_a.txt', c1)
-				msg1_html = render_to_string(email_dir + 'game_result_wcompletion_a.html', c1)
-			else:
-				msg1_plain = render_to_string(email_dir + 'game_result_a.txt', c1)
-				msg1_html = render_to_string(email_dir + 'game_result_a.html', c1)
-			
-			# Construct parts of target 2 email
-			completion2 = ""
-			if (settings.CHATGPT3_ON):
-				prompt2 = render_to_string(prompt_dir + 'prompt_f.txt', c)
-				completion = openai.Completion.create(
-					engine=settings.CHATGPT3_MODEL,
-					prompt=prompt2,
-					max_tokens=settings.CHATGPT3_MAXTOKENS,
-					temperature=settings.CHATGPT3_TEMPERATURE,
-				)
-				completion2 = completion.choices[0].text
-				print ("ChatGPT3 in use! -->", completion2)
-			else:
-				print ("ChatGPT3 not in use :-(")
-				
-			c2 = {
-				'target_email':to_target2,
-				'completion':completion2,
-			}
-
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Your team, ' + str(game.team2) + ', didn\'t beat the spread :('
-			if (settings.CHATGPT3_ON):
-				msg2_plain = render_to_string(email_dir + 'game_result_wcompletion_f.txt', c2)
-				msg2_html = render_to_string(email_dir + 'game_result_wcompletion_f.html', c2)
-			else:
-				msg2_plain = render_to_string(email_dir + 'game_result_f.txt', c2)
-				msg2_html = render_to_string(email_dir + 'game_result_f.html', c2)
-
-		elif outcome == 2:
-			"""
-			When Team 1 (of game) is favored, wins, but doesn't cover spread
-			Team 2 (of game) loses but beats spread and advances
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team1,
-				'team_l':game.team2,
-				'team_w_score':game.team1_score,
-				'team_l_score':game.team2_score,
-				'bracket_id':match.tbracket_id,
-				'spread':game.spread,
-				'win_first_name':target_user1.first_name,
-				'win_short_name':target_user1.short_name,
-				'lose_first_name':target_user2.first_name,
-				'lose_short_name':target_user2.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Your team, ' + str(game.team1) + ', won but didn\'t cover the spread :('
-			msg1_plain = render_to_string(email_dir + 'game_result_e.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_e.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Good news! Your team, ' + str(game.team2) + ', lost but covered the spread'
-			msg2_plain = render_to_string(email_dir + 'game_result_b.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_b.html', c2)
-
-		elif outcome == 3:
-			"""
-			When Team 1 (of game) is favored but loses and won't advance
-			Team 2 (of game) wins and advances
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team2,
-				'team_l':game.team1,
-				'team_w_score':game.team2_score,
-				'team_l_score':game.team1_score,
-				'bracket_id':match.tbracket_id,
-				'spread':game.spread,
-				'win_first_name':target_user2.first_name,
-				'win_short_name':target_user2.short_name,
-				'lose_first_name':target_user1.first_name,
-				'lose_short_name':target_user1.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Your team, ' + str(game.team1) + ', lost and won\'t advance :('
-			msg1_plain = render_to_string(email_dir + 'game_result_g.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_g.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Unbelievable. Your team, ' + str(game.team2) + ', won despite being an underdog!'
-			msg2_plain = render_to_string(email_dir + 'game_result_c.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_c.html', c2)
-
-		if outcome == 4:
-			"""
-			When Team 2 (of game) is favored, wins, and covers spread
-			Team 1 (of game) loses, doesn't beat spread, doesn't advance
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team2,
-				'team_l':game.team1,
-				'team_w_score':game.team2_score,
-				'team_l_score':game.team1_score,
-				'bracket_id':match.tbracket_id,
-				'spread':-game.spread,
-				'win_first_name':target_user2.first_name,
-				'win_short_name':target_user2.short_name,
-				'lose_first_name':target_user1.first_name,
-				'lose_short_name':target_user1.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Your team, ' + str(game.team1) + ', didn\'t beat the spread :('
-			msg1_plain = render_to_string(email_dir + 'game_result_f.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_f.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Congrats! Your team, ' + str(game.team2) + ', advances to the next round!'
-			msg2_plain = render_to_string(email_dir + 'game_result_a.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_a.html', c2)
-
-		elif outcome == 5:
-			"""
-			When Team 2 (of game) is favored, wins, but doesn't cover spread
-			Team 1 (of game) loses but beats spread and advances
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team2,
-				'team_l':game.team1,
-				'team_w_score':game.team2_score,
-				'team_l_score':game.team1_score,
-				'bracket_id':match.tbracket_id,
-				'spread':-game.spread,
-				'win_first_name':target_user2.first_name,
-				'win_short_name':target_user2.short_name,
-				'lose_first_name':target_user1.first_name,
-				'lose_short_name':target_user1.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Good news! Your team, ' + str(game.team1) + ', lost but covered the spread'
-			msg1_plain = render_to_string(email_dir + 'game_result_b.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_b.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Your team, ' + str(game.team2) + ', won but didn\'t cover the spread :('
-			msg2_plain = render_to_string(email_dir + 'game_result_e.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_e.html', c2)
-
-		elif outcome == 6:
-			"""
-			When Team 2 (of game) is favored but loses and won't advance
-			Team 1 (of game) wins and advances
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team1,
-				'team_l':game.team2,
-				'team_w_score':game.team1_score,
-				'team_l_score':game.team2_score,
-				'bracket_id':match.tbracket_id,
-				'spread':-game.spread,
-				'win_first_name':target_user1.first_name,
-				'win_short_name':target_user1.short_name,
-				'lose_first_name':target_user2.first_name,
-				'lose_short_name':target_user2.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Unbelievable. Your team, ' + str(game.team1) + ', won despite being an underdog!'
-			msg1_plain = render_to_string(email_dir + 'game_result_c.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_c.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Your team, ' + str(game.team2) + ', lost and won\'t advance :('
-			msg2_plain = render_to_string(email_dir + 'game_result_g.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_g.html', c2)
-
-		elif outcome == 7:
-			"""
-			When Team 1 (of game) & Team 2 are pick'ems
-			and Team 1 wins
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team1,
-				'team_l':game.team2,
-				'team_w_score':game.team1_score,
-				'team_l_score':game.team2_score,
-				'bracket_id':match.tbracket_id,
-				'spread':game.spread,
-				'win_first_name':target_user1.first_name,
-				'win_short_name':target_user1.short_name,
-				'lose_first_name':target_user2.first_name,
-				'lose_short_name':target_user2.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Woohoo! Your team, ' + str(game.team1) + ', won a pick\'em game!'
-			msg1_plain = render_to_string(email_dir + 'game_result_d.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_d.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Your team, ' + str(game.team2) + ', will not advance to the next round :('
-			msg2_plain = render_to_string(email_dir + 'game_result_h.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_h.html', c2)
-
-		elif outcome == 8:
-			"""
-			When Team 1 (of game) & Team 2 are pick'ems
-			and Team 2 wins
-			"""
-			# common context elements to both emails
-			c = {
-				'team_w':game.team2,
-				'team_l':game.team1,
-				'team_w_score':game.team2_score,
-				'team_l_score':game.team1_score,
-				'bracket_id':match.tbracket_id,
-				'spread':game.spread,
-				'win_first_name':target_user2.first_name,
-				'win_short_name':target_user2.short_name,
-				'lose_first_name':target_user1.first_name,
-				'lose_short_name':target_user1.short_name,
-			}
-
-			# Construct parts of target 1 email
-			c1 = {
-				'target_email':to_target1,
-			}
-			c1.update(c)  # merge context elements specific to target1 email
-			subject1 = 'Your team, ' + str(game.team1) + ', will not advance to the next round :('
-			msg1_plain = render_to_string(email_dir + 'game_result_h.txt', c1)
-			msg1_html = render_to_string(email_dir + 'game_result_h.html', c1)
-			
-			# Construct parts of target 2 email
-			c2 = {
-				'target_email':to_target2,
-			}
-			c2.update(c)  # merge context elements specific to target2 email
-			subject2 = 'Woohoo! Your team, ' + str(game.team2) + ', won a pick\'em game!'
-			msg2_plain = render_to_string(email_dir + 'game_result_d.txt', c2)
-			msg2_html = render_to_string(email_dir + 'game_result_d.html', c2)
-
-		# Send email to each target of matchup if gm_updates = True
-		if target_user1.gm_updates:
-			send_mail(subject1, msg1_plain, settings.DEFAULT_FROM_EMAIL, [to_target1], html_message=msg1_html)
-		if target_user2.gm_updates:
-			send_mail(subject2, msg2_plain, settings.DEFAULT_FROM_EMAIL, [to_target2], html_message=msg2_html)
-		
+		context = getContext(game, match, target_user1, target_user2, outcome)
+		subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html = buildMessages(context, outcome)
+		sendMessages(target_user1, target_user2, subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html)
+		""" Put saveMessages function here to write to DB """
 	return
-
-"""
-Need to have these functions here as well as in functions.py because of circular reference
-Put in separate file and import from both function.py & email_functions.py?
-"""
-# def getFriendlyDate(storedDate):
-# 	# Convert the stored tipoff_date_time to a front-end friendly date
-
-# 	friendlyDate = '{dt.month}/{dt.day} ({dt:%a})'.format(dt=storedDate)
-
-# 	return friendlyDate
-
-# def getFriendlyTime(storedDate):
-# 	# Convert the stored tipoff_date_time to a front-end friendly time
-
-# 	friendlyTime = '{dt:%I}:{dt:%M} {dt:%p}'.format(dt=storedDate)
-
-# 	return friendlyTime

@@ -1,0 +1,1 @@
+Hey {{win_first_name}}, your team {{team_w}} won! They were a pick'em vs. {{team_l}} and won by the score of {{team_w_score}} - {{team_l_score}}. {{completion}}
