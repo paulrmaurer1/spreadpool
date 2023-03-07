@@ -414,6 +414,7 @@ def buildMessages(context, outcome):
 	# Construct parts of owner 1 email
 	if (settings.CHATGPT3_ON):
 		prompt1 = render_to_string(prompt_dir + prompt1_file, context)
+		### text-davinci-003 code below ###
 		# completion = openai.Completion.create(
 		# 	engine=settings.CHATGPT3_MODEL,
 		# 	prompt=prompt1,
@@ -425,9 +426,10 @@ def buildMessages(context, outcome):
 			messages=[
 				{"role": "system", "content": prompt1},
 			],
-			# max_tokens=settings.CHATGPT3_MAXTOKENS,
-			# temperature=settings.CHATGPT3_TEMPERATURE,
+			max_tokens=settings.CHATGPT3_MAXTOKENS,
+			temperature=settings.CHATGPT3_TEMPERATURE,
 		)
+		### text-davinci-003 code below ###
 		# completion1 = completion.choices[0].text
 		completion1 = completion["choices"][0]["message"]["content"]
 		print ("ChatGPT3 in use! -->", completion1)
@@ -449,6 +451,7 @@ def buildMessages(context, outcome):
 	# Construct parts of owner 2 email
 	if (settings.CHATGPT3_ON):
 		prompt2 = render_to_string(prompt_dir + prompt2_file, context)
+		### text-davinci-003 code below ###
 		# completion = openai.Completion.create(
 		# 	engine=settings.CHATGPT3_MODEL,
 		# 	prompt=prompt2,
@@ -460,9 +463,10 @@ def buildMessages(context, outcome):
 			messages=[
 				{"role": "system", "content": prompt2},
 			],
-			# max_tokens=settings.CHATGPT3_MAXTOKENS,
-			# temperature=settings.CHATGPT3_TEMPERATURE,
+			max_tokens=settings.CHATGPT3_MAXTOKENS,
+			temperature=settings.CHATGPT3_TEMPERATURE,
 		)
+		### text-davinci-003 code below ###
 		# completion2 = completion.choices[0].text
 		completion2 = completion["choices"][0]["message"]["content"]
 		print ("ChatGPT3 in use! -->", completion2)
@@ -518,7 +522,7 @@ def email_team_owners(game, outcome):
 			continue
 
 		"""
-		Retrieve standard send_mail components across outcomes
+		Retrieve standard email sending components across outcomes
 		"""
 		target_user1 = User.objects.get(id=match.team1_owner_id)
 		target_user2 = User.objects.get(id=match.team2_owner_id)
