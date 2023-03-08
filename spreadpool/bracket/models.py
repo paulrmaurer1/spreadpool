@@ -330,3 +330,29 @@ class Entry(models.Model):
 		null=True,
 		blank=True
 		)
+	
+class Ehist(models.Model):
+	#Table for storing sent emails for historical tracking
+	class Meta:
+		db_table = 'ehist'
+
+	player = models.ForeignKey(  #User to whom email was sent
+		settings.AUTH_USER_MODEL,
+		on_delete=models.CASCADE,
+		)
+	
+	tbracket = models.ForeignKey(  #Bracket to which player is assigned
+		Tbracket,
+		on_delete=models.CASCADE,
+		null=True,
+		blank=True
+		)
+	
+	date_sent = models.DateTimeField(  #email sent date & time; format = YYYY-MM-DD HH:MM
+		blank=True,
+		null=True
+	)
+
+	subject = models.CharField(max_length=255, default='')
+
+	body = models.TextField(default='')

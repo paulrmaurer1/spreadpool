@@ -1,8 +1,9 @@
 # functions.py
 #import internal entitities
-from .models import Entry, Game, Matchup, Tbracket, Team, Region, User
+from .models import Entry, Game, Matchup, Tbracket, Team, Region, User, Ehist
 from .core_functions import getFriendlyDate, getFriendlyTime
 import openai
+from datetime import datetime
 
 #import django functions
 from django.db.models import Q
@@ -40,7 +41,7 @@ def email_thanks_for_paying(player):
 
 	# print (c)
 	send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [player.email], html_message=msg_html)
-
+	storeMessage(player, subject, msg_plain)
 	return
 
 def email_registration_info(player_id):
@@ -67,7 +68,7 @@ def email_registration_info(player_id):
 
 	# print (c)
 	send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [player.email], html_message=msg_html)
-
+	storeMessage(player, subject, msg_plain)
 	return
 
 def email_spreads(tbracket_id, tround):
@@ -153,7 +154,7 @@ def email_spreads(tbracket_id, tround):
 		if target.gm_updates:
 			# print (c)
 			send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
-
+			storeMessage(target, subject, msg_plain, bracket)
 	return
 
 
@@ -209,7 +210,7 @@ def email_original_teams(tbracket_id):
 		if target.gm_updates:
 			# print (c)
 			send_mail(subject, msg_plain, settings.DEFAULT_FROM_EMAIL, [to_target], html_message=msg_html)
-
+			storeMessage(target, subject, msg_plain, bracket)
 	return
 
 def getContext(game, match, target_user1, target_user2, outcome):
@@ -487,17 +488,6 @@ def buildMessages(context, outcome):
 
 	return subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html
 
-
-def sendMessages(target_user1, target_user2, subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html):
-	"""
-	Send email to each owner of matchup's teams if user.gm_updates = True
-	"""
-	if target_user1.gm_updates:
-		send_mail(subject1, msg1_plain, settings.DEFAULT_FROM_EMAIL, [target_user1.email], html_message=msg1_html)
-	if target_user2.gm_updates:
-		send_mail(subject2, msg2_plain, settings.DEFAULT_FROM_EMAIL, [target_user2.email], html_message=msg2_html)
-
-
 def email_team_owners(game, outcome):
 	"""
 	This function prepares & sends emails to each team owner of the passed 'game'
@@ -505,6 +495,7 @@ def email_team_owners(game, outcome):
 	"""
 	# Find Matchups for game and use team_owner_id's to update respective Players' Active Team
 	matchset = Matchup.objects.filter(game=game.id)
+	num_emails_sent = 0
 
 	# For each match that's related to game
 	for match in matchset:
@@ -526,9 +517,29 @@ def email_team_owners(game, outcome):
 		"""
 		target_user1 = User.objects.get(id=match.team1_owner_id)
 		target_user2 = User.objects.get(id=match.team2_owner_id)
+		tbracket_match = Tbracket.objects.get(id=match.tbracket_id)
 
 		context = getContext(game, match, target_user1, target_user2, outcome)
 		subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html = buildMessages(context, outcome)
-		sendMessages(target_user1, target_user2, subject1, msg1_plain, msg1_html, subject2, msg2_plain, msg2_html)
-		""" Put saveMessages function here to write to DB """
+		if target_user1.gm_updates:
+			num_emails_sent += send_mail(subject1, msg1_plain, settings.DEFAULT_FROM_EMAIL, [target_user1.email], html_message=msg1_html)
+			storeMessage(target_user1, subject1, msg1_plain, tbracket_match)
+		if target_user2.gm_updates:
+			num_emails_sent += send_mail(subject2, msg2_plain, settings.DEFAULT_FROM_EMAIL, [target_user2.email], html_message=msg2_html)
+			storeMessage(target_user2, subject2, msg2_plain, tbracket_match)
+
+	print ("Game #", game.id," updated. # emails sent =", num_emails_sent)
+	return
+
+def storeMessage(User, subject, msg_plain, Tbracket_match=None):
+	"""
+	Store content of email messages in the (new) ehist table
+	"""
+	Ehist.objects.create(
+		player=User,
+		tbracket=Tbracket_match,
+		date_sent=datetime.now(),
+		subject=subject,
+		body=msg_plain,
+	)
 	return

@@ -205,11 +205,11 @@ def create_entries():
 			for i in range (player.num_entries):
 				entry_name = player.username + "(" + str(i+1) + "of" + str(player.num_entries) + ')-' + player.mult_entry_type
 				Entry.objects.create(player=player, e_name=entry_name)
-				print (entry_name)
+				# print (entry_name)
 		else:
 			entry_name = player.username
 			Entry.objects.create(player=player, e_name=entry_name)
-			print (entry_name)
+			# print (entry_name)
 
 
 def reset_game(gameid):
