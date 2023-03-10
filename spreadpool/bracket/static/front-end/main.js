@@ -1411,6 +1411,7 @@ class GameDetailComponent {
   }
   updateGame() {
     this.showMsg = false;
+    this.msg = "";
     this._game.team1_score = this.team1_score.value;
     this._game.spread = this.spread.value;
     this._game.team2_score = this.team2_score.value;
@@ -2409,8 +2410,8 @@ class AppComponent {
     // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
     // Login via _userService to establish token with preset values ***
     else {
-      // this._userService.id = 1;
       this._userService.beforeTourney = true;
+      // this._userService.id = 1;
       // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
       this._userService.id = 2;
       this._userService.login({
