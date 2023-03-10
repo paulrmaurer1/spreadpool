@@ -92,14 +92,15 @@ export class GameDetailComponent implements OnInit {
     if (this.send_email.value) {
       this._gameService.updateGame_sendEmail(this._game).subscribe((data) => {
         this.msg = "Game #: " + this._game.id + " has been updated & email sent!";
+        this.showMsg = true;
       });
     } else {
       this._gameService.updateGame(this._game).subscribe((data) => {
         this.msg = "Game #: " + this._game.id + " has been updated!";
+        this.showMsg = true;
       });
     }
     console.log("Game updated with:", this._game);
-    this.showMsg = true;
 	} //end updateGame()
 
 	resetGame() {
