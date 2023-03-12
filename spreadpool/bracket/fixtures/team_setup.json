@@ -5,7 +5,9 @@
         "fields": {
             "seed": 1,
             "region": 1,
-            "short_name": "Gonzaga"
+            "short_name": "Alabama",
+            "long_name": "Alabama Crimson Tide",
+            "school": "University of Alabama"
         }
     },
     {
@@ -14,7 +16,9 @@
         "fields": {
             "seed": 2,
             "region": 1,
-            "short_name": "Duke"
+            "short_name": "Arizona",
+            "long_name": "Arizona Wildcats",
+            "school": "University of Arizona"
         }
     },
     {
@@ -23,7 +27,9 @@
         "fields": {
             "seed": 3,
             "region": 1,
-            "short_name": "Texas Tech"
+            "short_name": "Baylor",
+            "long_name": "Baylor Bears",
+            "school": "Baylor University"
         }
     },
     {
@@ -32,7 +38,9 @@
         "fields": {
             "seed": 4,
             "region": 1,
-            "short_name": "Arkansas"
+            "short_name": "Virginia",
+            "long_name": "Virginia Cavaliers",
+            "school": "University of Virginia"
         }
     },
     {
@@ -41,7 +49,9 @@
         "fields": {
             "seed": 5,
             "region": 1,
-            "short_name": "U Conn"
+            "short_name": "S Diego St",
+            "long_name": "San Diego State Aztecs",
+            "school": "San Diego State University"
         }
     },
     {
@@ -50,7 +60,9 @@
         "fields": {
             "seed": 6,
             "region": 1,
-            "short_name": "Alabama"
+            "short_name": "Creighton",
+            "long_name": "Creighton Bluejays",
+            "school": "Creighton University"
         }
     },
     {
@@ -59,7 +71,9 @@
         "fields": {
             "seed": 7,
             "region": 1,
-            "short_name": "Mich State"
+            "short_name": "Missouri",
+            "long_name": "Missouri Tigers",
+            "school": "University of Missouri"
         }
     },
     {
@@ -68,7 +82,9 @@
         "fields": {
             "seed": 8,
             "region": 1,
-            "short_name": "Boise St"
+            "short_name": "Maryland",
+            "long_name": "Maryland Terrapins",
+            "school": "University of Maryland College Park"
         }
     },
     {
@@ -77,7 +93,9 @@
         "fields": {
             "seed": 9,
             "region": 1,
-            "short_name": "Memphis"
+            "short_name": "W Virginia",
+            "long_name": "West Virginia Mountaineers",
+            "school": "West Virginia University"
         }
     },
     {
@@ -86,7 +104,9 @@
         "fields": {
             "seed": 10,
             "region": 1,
-            "short_name": "Davidson"
+            "short_name": "Utah State",
+            "long_name": "Utah State Aggies",
+            "school": "Utah State University"
         }
     },
     {
@@ -95,7 +115,9 @@
         "fields": {
             "seed": 11,
             "region": 1,
-            "short_name": "Rutg/ND"
+            "short_name": "NC State",
+            "long_name": "NC State Wolfpack",
+            "school": "North Carolina State University"
         }
     },
     {
@@ -104,7 +126,9 @@
         "fields": {
             "seed": 12,
             "region": 1,
-            "short_name": "N Mex St"
+            "short_name": "Charleston",
+            "long_name": "College of Charleston Cougars",
+            "school": "College of Charleston"
         }
     },
     {
@@ -113,7 +137,9 @@
         "fields": {
             "seed": 13,
             "region": 1,
-            "short_name": "Vermont"
+            "short_name": "Furman",
+            "long_name": "Furman Paladins",
+            "school": "Furman University"
         }
     },
     {
@@ -122,7 +148,9 @@
         "fields": {
             "seed": 14,
             "region": 1,
-            "short_name": "Montana St"
+            "short_name": "UCSB",
+            "long_name": "UC Santa Barbara Gauchos",
+            "school": "University of California Santa Barbara"
         }
     },
     {
@@ -131,7 +159,9 @@
         "fields": {
             "seed": 15,
             "region": 1,
-            "short_name": "CS Fullert"
+            "short_name": "Princeton",
+            "long_name": "Princeton Tigers",
+            "school": "Princeton University"
         }
     },
     {
@@ -140,7 +170,7 @@
         "fields": {
             "seed": 16,
             "region": 1,
-            "short_name": "Georgia St"
+            "short_name": "TXCC/SEMO"
         }
     },
     {
@@ -149,7 +179,9 @@
         "fields": {
             "seed": 1,
             "region": 2,
-            "short_name": "Baylor"
+            "short_name": "Purdue",
+            "long_name": "Purdue Boilermakers",
+            "school": "Purdue University"
         }
     },
     {
@@ -158,7 +190,9 @@
         "fields": {
             "seed": 2,
             "region": 2,
-            "short_name": "Kentucky"
+            "short_name": "Marquette",
+            "long_name": "Marquette Golden Eagles",
+            "school": "Marquette University"
         }
     },
     {
@@ -167,7 +201,9 @@
         "fields": {
             "seed": 3,
             "region": 2,
-            "short_name": "Purdue"
+            "short_name": "Kansas St",
+            "long_name": "Kansas State Wildcats",
+            "school": "Kansas State University"
         }
     },
     {
@@ -176,7 +212,9 @@
         "fields": {
             "seed": 4,
             "region": 2,
-            "short_name": "UCLA"
+            "short_name": "Tennessee",
+            "long_name": "Tennessee Volunteers",
+            "school": "University of Tennessee"
         }
     },
     {
@@ -185,7 +223,9 @@
         "fields": {
             "seed": 5,
             "region": 2,
-            "short_name": "St Marys"
+            "short_name": "Duke",
+            "long_name": "Duke Blue Devils",
+            "school": "Duke University"
         }
     },
     {
@@ -194,7 +234,9 @@
         "fields": {
             "seed": 6,
             "region": 2,
-            "short_name": "Texas"
+            "short_name": "Kentucky",
+            "long_name": "Kentucky Wildcats",
+            "school": "University of Kentucky"
         }
     },
     {
@@ -203,7 +245,9 @@
         "fields": {
             "seed": 7,
             "region": 2,
-            "short_name": "Murray St"
+            "short_name": "Mich St",
+            "long_name": "Michigan State Spartans",
+            "school": "Michigan State University"
         }
     },
     {
@@ -212,7 +256,9 @@
         "fields": {
             "seed": 8,
             "region": 2,
-            "short_name": "N Carolina"
+            "short_name": "Memphis",
+            "long_name": "Memphis Tigers",
+            "school": "University of Memphis"
         }
     },
     {
@@ -221,7 +267,9 @@
         "fields": {
             "seed": 9,
             "region": 2,
-            "short_name": "Marquette"
+            "short_name": "FAU",
+            "long_name": "Florida Atlantic Owls",
+            "school": "Florida Atlantic University"
         }
     },
     {
@@ -230,7 +278,9 @@
         "fields": {
             "seed": 10,
             "region": 2,
-            "short_name": "San Fran"
+            "short_name": "USC",
+            "long_name": "USC Trojans",
+            "school": "University of Southern California"
         }
     },
     {
@@ -239,7 +289,9 @@
         "fields": {
             "seed": 11,
             "region": 2,
-            "short_name": "Va Tech"
+            "short_name": "Providence",
+            "long_name": "Providence Friars",
+            "school": "Providence College"
         }
     },
     {
@@ -248,7 +300,9 @@
         "fields": {
             "seed": 12,
             "region": 2,
-            "short_name": "Wyo/Ind"
+            "short_name": "O Roberts",
+            "long_name": "Oral Roberts Golden Eagles",
+            "school": "Oral Roberts University"
         }
     },
     {
@@ -257,7 +311,9 @@
         "fields": {
             "seed": 13,
             "region": 2,
-            "short_name": "Akron"
+            "short_name": "Louisiana",
+            "long_name": "Louisiana-Lafayette Ragin Cajuns",
+            "school": "University of Louisiana at Lafayette"
         }
     },
     {
@@ -266,7 +322,9 @@
         "fields": {
             "seed": 14,
             "region": 2,
-            "short_name": "Yale"
+            "short_name": "Montana St",
+            "long_name": "Montana State Bobcats",
+            "school": "Montana State University"
         }
     },
     {
@@ -275,7 +333,9 @@
         "fields": {
             "seed": 15,
             "region": 2,
-            "short_name": "St Peters"
+            "short_name": "Vermont",
+            "long_name": "Vermont Catamounts",
+            "school": "University of Vermont"
         }
     },
     {
@@ -284,7 +344,7 @@
         "fields": {
             "seed": 16,
             "region": 2,
-            "short_name": "Norfolk St"
+            "short_name": "TXSO/FDU"
         }
     },
     {
@@ -293,7 +353,9 @@
         "fields": {
             "seed": 1,
             "region": 3,
-            "short_name": "Arizona"
+            "short_name": "Houston",
+            "long_name": "Houston Cougars",
+            "school": "University of Houston"
         }
     },
     {
@@ -302,7 +364,9 @@
         "fields": {
             "seed": 2,
             "region": 3,
-            "short_name": "Villanova"
+            "short_name": "Texas",
+            "long_name": "Texas Longhorns",
+            "school": "University of Texas at Austin"
         }
     },
     {
@@ -311,7 +375,9 @@
         "fields": {
             "seed": 3,
             "region": 3,
-            "short_name": "Tennessee"
+            "short_name": "Xavier",
+            "long_name": "Xavier Musketeers",
+            "school": "Xavier University"
         }
     },
     {
@@ -320,7 +386,9 @@
         "fields": {
             "seed": 4,
             "region": 3,
-            "short_name": "Illinois"
+            "short_name": "Indiana",
+            "long_name": "Indiana Hoosiers",
+            "school": "Indiana University"
         }
     },
     {
@@ -329,7 +397,9 @@
         "fields": {
             "seed": 5,
             "region": 3,
-            "short_name": "Houston"
+            "short_name": "Miami",
+            "long_name": "Miami Hurricanes",
+            "school": "University of Miami"
         }
     },
     {
@@ -338,7 +408,9 @@
         "fields": {
             "seed": 6,
             "region": 3,
-            "short_name": "Colrado St"
+            "short_name": "Iowa St",
+            "long_name": "Iowa State Cyclones",
+            "school": "Iowa State University"
         }
     },
     {
@@ -347,7 +419,9 @@
         "fields": {
             "seed": 7,
             "region": 3,
-            "short_name": "Ohio St"
+            "short_name": "Texas A&M",
+            "long_name": "Texas A&M Aggies",
+            "school": "Texas A&M University"
         }
     },
     {
@@ -356,7 +430,9 @@
         "fields": {
             "seed": 8,
             "region": 3,
-            "short_name": "Seton Hall"
+            "short_name": "Iowa",
+            "long_name": "Iowa Hawkeyes",
+            "school": "University of Iowa"
         }
     },
     {
@@ -365,7 +441,9 @@
         "fields": {
             "seed": 9,
             "region": 3,
-            "short_name": "TCU"
+            "short_name": "Auburn",
+            "long_name": "Auburn Tigers",
+            "school": "Auburn University"
         }
     },
     {
@@ -374,7 +452,9 @@
         "fields": {
             "seed": 10,
             "region": 3,
-            "short_name": "Loyola Chi"
+            "short_name": "Penn St",
+            "long_name": "Penn State Nittany Lions",
+            "school": "Pennsylvania State University"
         }
     },
     {
@@ -383,7 +463,7 @@
         "fields": {
             "seed": 11,
             "region": 3,
-            "short_name": "Michigan"
+            "short_name": "MSST/PITT"
         }
     },
     {
@@ -392,7 +472,9 @@
         "fields": {
             "seed": 12,
             "region": 3,
-            "short_name": "UAB"
+            "short_name": "Drake",
+            "long_name": "Drake Bulldogs",
+            "school": "Drake University"
         }
     },
     {
@@ -401,7 +483,9 @@
         "fields": {
             "seed": 13,
             "region": 3,
-            "short_name": "Chattanoga"
+            "short_name": "Kent St",
+            "long_name": "Kent State Golden Flashes",
+            "school": "Kent State University"
         }
     },
     {
@@ -410,7 +494,9 @@
         "fields": {
             "seed": 14,
             "region": 3,
-            "short_name": "Longwood"
+            "short_name": "Kennsaw St",
+            "long_name": "Kennesaw State Owls",
+            "school": "Kennesaw State University"
         }
     },
     {
@@ -419,7 +505,9 @@
         "fields": {
             "seed": 15,
             "region": 3,
-            "short_name": "Delaware"
+            "short_name": "Colgate",
+            "long_name": "Colgate Raiders",
+            "school": "Colgate University"
         }
     },
     {
@@ -428,7 +516,9 @@
         "fields": {
             "seed": 16,
             "region": 3,
-            "short_name": "WRST/BRY"
+            "short_name": "N Kentucky",
+            "long_name": "Northern Kentucky Norse",
+            "school": "Northern Kentucky University"
         }
     },
     {
@@ -437,7 +527,9 @@
         "fields": {
             "seed": 1,
             "region": 4,
-            "short_name": "Kansas"
+            "short_name": "Kansas",
+            "long_name": "Kansas Jayhawks",
+            "school": "University of Kansas"
         }
     },
     {
@@ -446,7 +538,9 @@
         "fields": {
             "seed": 2,
             "region": 4,
-            "short_name": "Auburn"
+            "short_name": "UCLA",
+            "long_name": "UCLA Bruins",
+            "school": "University of California Los Angeles"
         }
     },
     {
@@ -455,7 +549,9 @@
         "fields": {
             "seed": 3,
             "region": 4,
-            "short_name": "Wisconsin"
+            "short_name": "Gonzaga",
+            "long_name": "Gonzaga Bulldogs",
+            "school": "Gonzaga University"
         }
     },
     {
@@ -464,7 +560,9 @@
         "fields": {
             "seed": 4,
             "region": 4,
-            "short_name": "Providence"
+            "short_name": "UConn",
+            "long_name": "Connecticut Huskies",
+            "school": "University of Connecticut"
         }
     },
     {
@@ -473,7 +571,9 @@
         "fields": {
             "seed": 5,
             "region": 4,
-            "short_name": "Iowa"
+            "short_name": "St Marys",
+            "long_name": "Saint Mary's Gaels",
+            "school": "Saint Mary's College of California"
         }
     },
     {
@@ -482,7 +582,9 @@
         "fields": {
             "seed": 6,
             "region": 4,
-            "short_name": "LSU"
+            "short_name": "TCU",
+            "long_name": "TCU Horned Frogs",
+            "school": "Texas Christian University"
         }
     },
     {
@@ -491,7 +593,9 @@
         "fields": {
             "seed": 7,
             "region": 4,
-            "short_name": "USC"
+            "short_name": "Northwestn",
+            "long_name": "Northwestern Wildcats",
+            "school": "Northwestern University"
         }
     },
     {
@@ -500,7 +604,9 @@
         "fields": {
             "seed": 8,
             "region": 4,
-            "short_name": "S Diego St"
+            "short_name": "Arkansas",
+            "long_name": "Arkansas Razorbacks",
+            "school": "University of Arkansas"
         }
     },
     {
@@ -509,7 +615,9 @@
         "fields": {
             "seed": 9,
             "region": 4,
-            "short_name": "Creighton"
+            "short_name": "Illinois",
+            "long_name": "Illinois Fighting Illini",
+            "school": "University of Illinois at Urbana-Champaign"
         }
     },
     {
@@ -518,7 +626,9 @@
         "fields": {
             "seed": 10,
             "region": 4,
-            "short_name": "Miami FL"
+            "short_name": "Boise St",
+            "long_name": "Boise State Broncos",
+            "school": "Boise State University"
         }
     },
     {
@@ -527,7 +637,7 @@
         "fields": {
             "seed": 11,
             "region": 4,
-            "short_name": "Iowa St"
+            "short_name": "ASU/NEV"
         }
     },
     {
@@ -536,7 +646,9 @@
         "fields": {
             "seed": 12,
             "region": 4,
-            "short_name": "Richmond"
+            "short_name": "VCU",
+            "long_name": "VCU Rams",
+            "school": "Virginia Commonwealth University"
         }
     },
     {
@@ -545,7 +657,9 @@
         "fields": {
             "seed": 13,
             "region": 4,
-            "short_name": "S Dak St"
+            "short_name": "Iona",
+            "long_name": "Iona Gaels",
+            "school": "Iona College"
         }
     },
     {
@@ -554,7 +668,9 @@
         "fields": {
             "seed": 14,
             "region": 4,
-            "short_name": "Colgate"
+            "short_name": "Grd Canyon",
+            "long_name": "Grand Canyon Thunder",
+            "school": "Grand Canyon University"
         }
     },
     {
@@ -563,7 +679,9 @@
         "fields": {
             "seed": 15,
             "region": 4,
-            "short_name": "Jax State"
+            "short_name": "UNC Ashe",
+            "long_name": "UNC Asheville Bulldogs",
+            "school": "University of North Carolina at Asheville"
         }
     },
     {
@@ -572,7 +690,9 @@
         "fields": {
             "seed": 16,
             "region": 4,
-            "short_name": "TxSO/TAMC"
+            "short_name": "Howard",
+            "long_name": "Howard Bison",
+            "school": "Howard University"
         }
     }
 ]
