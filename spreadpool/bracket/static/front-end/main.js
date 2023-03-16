@@ -2411,14 +2411,14 @@ class AppComponent {
     // *** For testing purposes when launch Angular via 'ng serve --proxy-config proxyconfig.json' from project folder
     // Login via _userService to establish token with preset values ***
     else {
-      this._userService.beforeTourney = true;
-      // this._userService.id = 1;
-      // this._userService.login({'email': 'paulrmaurer@yahoo.com', 'password': 'Quakers1!'});
-      this._userService.id = 2;
+      this._userService.beforeTourney = false;
+      this._userService.id = 1;
       this._userService.login({
-        'email': 'nhoerner@cubs.com',
-        'password': 'DavidRoss3!'
+        'email': 'paulrmaurer@yahoo.com',
+        'password': 'Quakers1!'
       });
+      // this._userService.id = 2;
+      // this._userService.login({'email': 'nhoerner@cubs.com', 'password': 'DavidRoss3!'});
       // this._userService.id = 8;
       // this._userService.login({'email': 'bzobrist@cubs.com', 'password': 'Maddon55'});
       // this._userService.id = 29;
@@ -6876,7 +6876,7 @@ class StandingsComponent {
   },
   decls: 3,
   vars: 3,
-  consts: [[1, "table-responsive"], ["class", "table table-sm", 4, "ngIf"], [1, "table", "table-sm"], ["scope", "col"], ["scope", "col", 1, "text-center"], ["scope", "col", 1, "d-none", "d-md-table-cell"], [3, "bg-success", "text-white", 4, "ngFor", "ngForOf"], [4, "ngIf"], [1, "text-center"], [1, "d-none", "d-md-table-cell"], [1, "d-none", "d-lg-table-cell"], [3, "routerLink", "queryParams"]],
+  consts: [[1, "table-responsive"], ["class", "table table-sm", 4, "ngIf"], [1, "table", "table-sm"], ["scope", "col"], ["scope", "col", 1, "text-center"], ["scope", "col", 1, "d-none", "d-sm-table-cell"], [3, "bg-success", "text-white", 4, "ngFor", "ngForOf"], [4, "ngIf"], [1, "text-center"], [1, "d-none", "d-sm-table-cell"], [1, "d-none", "d-lg-table-cell"], [3, "routerLink", "queryParams"]],
   template: function StandingsComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](0, "br");
@@ -7168,7 +7168,7 @@ class TeamDetailsComponent {
   },
   decls: 2,
   vars: 2,
-  consts: [[4, "ngIf"], ["class", "table table-borderless table-sm w-100", "id", "my-teams", 4, "ngFor", "ngForOf"], ["id", "my-teams", 1, "table", "table-borderless", "table-sm", "w-100"], [1, "table-active"], ["scope", "col"], ["scope", "col", 1, "d-none", "d-md-table-cell"], [1, "text-primary", "text-pointer", 3, "click"], [1, "d-none", "d-md-table-cell"], [3, "routerLink", "fragment"], [1, "text-center"], [1, "font-italic", "text-muted"]],
+  consts: [[4, "ngIf"], ["class", "table table-borderless table-sm w-100", "id", "my-teams", 4, "ngFor", "ngForOf"], ["id", "my-teams", 1, "table", "table-borderless", "table-sm", "w-100"], [1, "table-active"], ["scope", "col"], ["scope", "col", 1, "d-none", "d-md-table-cell"], [1, "text-primary", "text-pointer", 3, "click"], [1, "d-none", "d-sm-table-cell"], [3, "routerLink", "fragment"], [1, "text-center"], [1, "font-italic", "text-muted"]],
   template: function TeamDetailsComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, TeamDetailsComponent_div_0_Template, 3, 3, "div", 0);

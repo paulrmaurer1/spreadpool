@@ -5,10 +5,10 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col" class="text-center"># Active Teams</th>
-        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[0].name }}</th>
-        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[1].name }}</th>
-        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[2].name }}</th>
-        <th scope="col" class="d-none d-md-table-cell">{{ _regionList[3].name }}</th>
+        <th scope="col" class="d-none d-sm-table-cell">{{ _regionList[0].name }}</th>
+        <th scope="col" class="d-none d-sm-table-cell">{{ _regionList[1].name }}</th>
+        <th scope="col" class="d-none d-sm-table-cell">{{ _regionList[2].name }}</th>
+        <th scope="col" class="d-none d-sm-table-cell">{{ _regionList[3].name }}</th>
       </tr>
     </thead>
     <tbody>
@@ -20,16 +20,16 @@
           <a [routerLink]="['/profile']" [queryParams]="{id: entry.player_id}">{{ entry.player }}</a>
         </td>
         <td class="text-center">{{ entry.team_count }}</td>
-        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_a_status == '(OUT)'">{{ entry.team_a }}
+        <td class="d-none d-sm-table-cell"><span [class.standings-out]="entry.team_a_status == '(OUT)'">{{ entry.team_a }}
           <small class="d-none d-lg-table-cell"> {{ entry.team_a_status }}</small></span>
         </td>
-        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_b_status == '(OUT)'">{{ entry.team_b }}
+        <td class="d-none d-sm-table-cell"><span [class.standings-out]="entry.team_b_status == '(OUT)'">{{ entry.team_b }}
           <small class="d-none d-lg-table-cell"> {{ entry.team_b_status }}</small></span>
         </td>
-        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_c_status == '(OUT)'">{{ entry.team_c }}
+        <td class="d-none d-sm-table-cell"><span [class.standings-out]="entry.team_c_status == '(OUT)'">{{ entry.team_c }}
           <small class="d-none d-lg-table-cell"> {{ entry.team_c_status }}</small></span>
         </td>
-        <td class="d-none d-md-table-cell"><span [class.standings-out]="entry.team_d_status == '(OUT)'">{{ entry.team_d }}
+        <td class="d-none d-sm-table-cell"><span [class.standings-out]="entry.team_d_status == '(OUT)'">{{ entry.team_d }}
           <small class="d-none d-lg-table-cell"> {{ entry.team_d_status }}</small></span>
         </td>
       </tr>
