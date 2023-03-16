@@ -7168,7 +7168,7 @@ class TeamDetailsComponent {
   },
   decls: 2,
   vars: 2,
-  consts: [[4, "ngIf"], ["class", "table table-borderless table-sm w-100", "id", "my-teams", 4, "ngFor", "ngForOf"], ["id", "my-teams", 1, "table", "table-borderless", "table-sm", "w-100"], [1, "table-active"], ["scope", "col"], ["scope", "col", 1, "d-none", "d-md-table-cell"], [1, "text-primary", "text-pointer", 3, "click"], [1, "d-none", "d-sm-table-cell"], [3, "routerLink", "fragment"], [1, "text-center"], [1, "font-italic", "text-muted"]],
+  consts: [[4, "ngIf"], ["class", "table table-borderless table-sm w-100", "id", "my-teams", 4, "ngFor", "ngForOf"], ["id", "my-teams", 1, "table", "table-borderless", "table-sm", "w-100"], [1, "table-active"], ["scope", "col"], ["scope", "col", 1, "d-none", "d-sm-table-cell"], [1, "text-primary", "text-pointer", 3, "click"], [1, "d-none", "d-sm-table-cell"], [3, "routerLink", "fragment"], [1, "text-center"], [1, "font-italic", "text-muted"]],
   template: function TeamDetailsComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, TeamDetailsComponent_div_0_Template, 3, 3, "div", 0);
