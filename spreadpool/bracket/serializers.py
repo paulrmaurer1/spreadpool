@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.forms import IntegerField
 from rest_framework import serializers
 from django.db.models import Q
+import threading
 
 from .models import Entry, Game, Matchup, Tbracket, Region, Team
 from .functions import game_update, determineStatus, getLastGame_Team, getNextUpGameString
@@ -12,26 +13,26 @@ from .core_functions import getFriendlyDate, getFriendlyTime
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
-      'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
+	class Meta:
+		model = User
+		fields = ('id', 'url', 'username', 'email', 'full_name', 'first_name', \
+			'last_name', 'num_entries', 'mult_entry_type', 'is_staff', 'paid', 'gm_updates')
 
-  def update(self, instance, validated_data):
-    instance.first_name = validated_data.get('first_name', instance.first_name)
-    instance.last_name = validated_data.get('last_name', instance.last_name)
-    instance.email = validated_data.get('email', instance.email)
-    instance.num_entries = validated_data.get('num_entries', instance.num_entries)
-    instance.mult_entry_type = validated_data.get('mult_entry_type', instance.mult_entry_type)
-    instance.gm_updates = validated_data.get('gm_updates', instance.gm_updates)
-    # Before updating 'paid' value, check to see if update is changing value from false (not paid) to true (paid)
-    # then trigger "thank you for paying email"
-    if (instance.paid == False and validated_data['paid'] == True):
-      email_thanks_for_paying(instance)
-      # print ("Existing Paid value is:", instance.paid, "Updated value is:", validated_data['paid'],)
-    instance.paid = validated_data.get('paid', instance.paid)
-    instance.save()
-    return instance
+	def update(self, instance, validated_data):
+		instance.first_name = validated_data.get('first_name', instance.first_name)
+		instance.last_name = validated_data.get('last_name', instance.last_name)
+		instance.email = validated_data.get('email', instance.email)
+		instance.num_entries = validated_data.get('num_entries', instance.num_entries)
+		instance.mult_entry_type = validated_data.get('mult_entry_type', instance.mult_entry_type)
+		instance.gm_updates = validated_data.get('gm_updates', instance.gm_updates)
+		# Before updating 'paid' value, check to see if update is changing value from false (not paid) to true (paid)
+		# then trigger "thank you for paying email"
+		if (instance.paid == False and validated_data['paid'] == True):
+			email_thanks_for_paying(instance)
+			# print ("Existing Paid value is:", instance.paid, "Updated value is:", validated_data['paid'],)
+		instance.paid = validated_data.get('paid', instance.paid)
+		instance.save()
+		return instance
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -219,12 +220,16 @@ class GameSerializer(serializers.ModelSerializer):
 		if _send_email is not None:
 			if _send_email == "true":
 				# print ("_send_email is True!")
-				game_update(instance, True)
+				# game_update(instance, True)
+				t = threading.Thread(target=game_update,args=[instance, True],daemon=True)
+				t.start()
 				return instance
 
 		# otherwise, update game without sending emails
 		# print ("_send_email is None or not set to true. It's set to:", _send_email)
-		game_update(instance, False)
+		# game_update(instance, False)
+		t = threading.Thread(target=game_update,args=[instance, False],daemon=True)
+		t.start()
 		return instance
 
 	def to_representation(self, obj):
