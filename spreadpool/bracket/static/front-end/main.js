@@ -1666,6 +1666,8 @@ function SendEmailsComponent_tr_19_Template(rf, ctx) {
   }
 }
 class SendEmailsComponent {
+  // emailTargetList: string[];
+
   constructor(_tbracketService, _entryService, _gameService, modalService) {
     (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "_tbracketService", void 0);
     (0,C_DjangoProjects_spreadpool_project_spreadpool_bracket_front_end_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "_entryService", void 0);
@@ -1692,15 +1694,19 @@ class SendEmailsComponent {
   } // end resetList()
   openSendOrigModal(bracket_id, bracket_name) {
     this._entryService.getEntryListByBracket(bracket_id).subscribe(data => {
-      const emailTargetList = data.map(target => {
-        // Create an array of player names to display in modal
-        return target.player;
-      });
+      // Create an array of player names to display in modal
+      const emailTargetList = data.map(target => ({
+        id: target.player_id,
+        player: target.player
+      }));
+      // console.log("Raw list of players = ", emailTargetList);
       // Create a unique list of targets users, eliminating duplicates of owner(s) having 2+ entries
-      this.emailTargetList = emailTargetList.filter(function (item, pos) {
-        return emailTargetList.indexOf(item) == pos;
-      });
-      // console.log("List of players = ", this.emailTargetList);
+      // this.emailTargetList = emailTargetList.filter((value, index, array) => array.indexOf(value) == index);
+      const ids = emailTargetList.map(o => o.id);
+      this.emailTargetList = emailTargetList.filter(({
+        id
+      }, index) => !ids.includes(id, index + 1));
+      // console.log("De-duped List of players = ", this.emailTargetList);
       const initialState = {
         tbracket_id: bracket_id,
         tbracket_name: bracket_name,
@@ -1998,7 +2004,7 @@ function SendOrigModalComponent_li_13_Template(rf, ctx) {
   if (rf & 2) {
     const target_r1 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](target_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](target_r1.player);
   }
 }
 class SendOrigModalComponent {

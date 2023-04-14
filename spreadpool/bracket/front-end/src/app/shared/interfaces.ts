@@ -53,6 +53,7 @@ export interface EntryNameData {
   player: string;
   e_name: string;
   tbracket: number;
+  player_id: number;
 }
 
 export interface EntryStandingsData {

@@ -9,7 +9,7 @@
 <div class="modal-body">
 	<h6>Are you sure you want to send emails to these {{num_targets}} players of <strong>{{ tbracket_name }}</strong> bracket?</h6>
 	<ol>
-		<li *ngFor = "let target of emailTargetList; let i = index">{{ target }}</li>
+		<li *ngFor = "let target of emailTargetList; let i = index">{{ target.player }}</li>
 	</ol>
 </div>
 <div class="modal-footer">

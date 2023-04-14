@@ -20,7 +20,8 @@ export class SendEmailsComponent implements OnInit {
 	_tbracketList: TBracketData[];
 	sendOrigModalRef: BsModalRef;
 	sendGamesModalRef: BsModalRef;
-	emailTargetList: string[];
+	// emailTargetList: string[];
+  emailTargetList: any[];
 
 	constructor(
 		private _tbracketService: TBracketService,
@@ -43,15 +44,15 @@ export class SendEmailsComponent implements OnInit {
 
 	openSendOrigModal(bracket_id: number, bracket_name: string) {
 		this._entryService.getEntryListByBracket(bracket_id).subscribe(data => {
-			const emailTargetList = data.map(target => {
-				// Create an array of player names to display in modal
-				return target.player;
-			});
-			// Create a unique list of targets users, eliminating duplicates of owner(s) having 2+ entries
-			this.emailTargetList = emailTargetList.filter(function(item, pos) {
-			    return emailTargetList.indexOf(item) == pos;
-			})
-			// console.log("List of players = ", this.emailTargetList);
+      // Create an array of player names to display in modal
+      const emailTargetList = data.map(target => ({ id: target.player_id, player:target.player }));
+      // console.log("Raw list of players = ", emailTargetList);
+			
+      // Create a unique list of targets users, eliminating duplicates of owner(s) having 2+ entries
+      // this.emailTargetList = emailTargetList.filter((value, index, array) => array.indexOf(value) == index);
+      const ids = emailTargetList.map(o => o.id)
+      this.emailTargetList = emailTargetList.filter(({id}, index) => !ids.includes(id, index + 1))
+			// console.log("De-duped List of players = ", this.emailTargetList);
 			const initialState = {
 				tbracket_id: bracket_id,
 				tbracket_name: bracket_name,

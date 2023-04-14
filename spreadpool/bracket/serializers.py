@@ -68,7 +68,7 @@ class EntryPlayerByBracketAndTeamSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = Entry
-		fields = ('id', 'player', 'e_name', 'tbracket')
+		fields = ('id', 'player', 'e_name', 'tbracket', 'player_id')
 
 class EntryBracketsByPlayerSerializer(serializers.ModelSerializer):
 	"""
