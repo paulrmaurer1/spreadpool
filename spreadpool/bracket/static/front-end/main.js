@@ -412,7 +412,7 @@ function CreateBracketsComponent_tr_43_Template(rf, ctx) {
       const ctx_r8 = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵresetView"](ctx_r8.openReassignModal(tbracket_r4.id, tbracket_r4.name));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](14, "(Re)Assign");
+    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](14, "(Re)Assign Teams");
     _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](15, " \u00A0 ");
     _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](16, "button", 24);
