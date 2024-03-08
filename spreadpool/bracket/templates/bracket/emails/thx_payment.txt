@@ -1,6 +1,6 @@
 Hey {{first_name}},
 
-Thanks for your payment of ${{payment}}.00 for entry to the NCAA Spreapool 2023!
+Thanks for your payment of ${{payment}}.00 for entry to the NCAA Spreapool 2024!
 
 To confirm, you registered for {{num_entries}} {% if num_entries == 1 %}entry{% else %}entries{% endif %}.
 {% if mult_entry_type == "S" and num_entries > 1 %}

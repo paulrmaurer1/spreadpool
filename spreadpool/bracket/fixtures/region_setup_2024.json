@@ -1,0 +1,37 @@
+[
+    {
+        "pk": 1,
+        "model": "bracket.Region",
+        "fields": {
+            "name": "West"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "bracket.Region",
+        "fields": {
+            "name": "Midwest"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "bracket.Region",
+        "fields": {
+            "name": "East"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "bracket.Region",
+        "fields": {
+            "name": "South"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "bracket.Region",
+        "fields": {
+            "name": "Final Four"
+        }
+    }
+]
