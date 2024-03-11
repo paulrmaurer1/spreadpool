@@ -264,10 +264,10 @@ def buildMessages(context, outcome):
 	completion1 = ""
 	completion2 = ""
 	
-	client = OpenAI(
-    api_key = settings.OPENAI_API_KEY,
-    organization = settings.OPENAI_ORG_ID,
-  )
+	client = openai.OpenAI(
+		api_key = settings.OPENAI_API_KEY,
+		organization = settings.OPENAI_ORG_ID,
+	)
 
 	"""
 	Assign proper prompt and email template files based on outcome
@@ -446,7 +446,7 @@ def buildMessages(context, outcome):
 	# Construct parts of owner 2 email
 	if (settings.CHATGPT3_ON):
 		prompt2 = render_to_string(prompt_dir + prompt2_file, context)
-    # ChatGPT3 code here...
+		# ChatGPT3 code here...
 		completion = client.chat.completions.create(
 			model = settings.CHATGPT3_MODEL,
 			messages=[
