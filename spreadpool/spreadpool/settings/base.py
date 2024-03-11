@@ -176,7 +176,7 @@ REGISTRATION_DEADLINE_FRIENDLY = "Thursday, March 21, 10AM ET (9AM CT)"
 
 # (General) ChatGPT3 Settings
 CHATGPT3_ON = True
-# CHATGPT3_MODEL = "text-davinci-003"
+# CHATGPT3_MODEL = "gpt-3.5-turbo-instruct"
 CHATGPT3_MODEL = "gpt-3.5-turbo"
 CHATGPT3_TEMPERATURE = 0.5
 CHATGPT3_MAXTOKENS = 80

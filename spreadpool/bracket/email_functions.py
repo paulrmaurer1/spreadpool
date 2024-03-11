@@ -2,7 +2,8 @@
 #import internal entitities
 from .models import Entry, Game, Matchup, Tbracket, Team, Region, User, Ehist
 from .core_functions import getFriendlyDate, getFriendlyTime
-import openai
+# import openai
+from openai import OpenAI
 from datetime import datetime
 
 #import django functions
@@ -263,9 +264,10 @@ def buildMessages(context, outcome):
 	completion1 = ""
 	completion2 = ""
 	
-	# ChatGPT3 base settings
-	openai.api_key = settings.OPENAI_API_KEY
-	openai.organization = settings.OPENAI_ORG_ID
+	client = OpenAI(
+    api_key = settings.OPENAI_API_KEY,
+    organization = settings.OPENAI_ORG_ID,
+  )
 
 	"""
 	Assign proper prompt and email template files based on outcome
@@ -415,24 +417,16 @@ def buildMessages(context, outcome):
 	# Construct parts of owner 1 email
 	if (settings.CHATGPT3_ON):
 		prompt1 = render_to_string(prompt_dir + prompt1_file, context)
-		### text-davinci-003 code below ###
-		# completion = openai.Completion.create(
-		# 	engine=settings.CHATGPT3_MODEL,
-		# 	prompt=prompt1,
-		# 	max_tokens=settings.CHATGPT3_MAXTOKENS,
-		# 	temperature=settings.CHATGPT3_TEMPERATURE,
-		# )
-		completion = openai.ChatCompletion.create(
-			model=settings.CHATGPT3_MODEL,
+		# ChatGPT3 code here...
+		completion = client.chat.completions.create(
+			model = settings.CHATGPT3_MODEL,
 			messages=[
 				{"role": "system", "content": prompt1},
 			],
 			max_tokens=settings.CHATGPT3_MAXTOKENS,
 			temperature=settings.CHATGPT3_TEMPERATURE,
 		)
-		### text-davinci-003 code below ###
-		# completion1 = completion.choices[0].text
-		completion1 = completion["choices"][0]["message"]["content"]
+		completion1 = completion.choices[0].message.content
 		print ("ChatGPT3 in use! -->", completion1)
 		c1 = {
 			'completion':completion1,
@@ -452,24 +446,16 @@ def buildMessages(context, outcome):
 	# Construct parts of owner 2 email
 	if (settings.CHATGPT3_ON):
 		prompt2 = render_to_string(prompt_dir + prompt2_file, context)
-		### text-davinci-003 code below ###
-		# completion = openai.Completion.create(
-		# 	engine=settings.CHATGPT3_MODEL,
-		# 	prompt=prompt2,
-		# 	max_tokens=settings.CHATGPT3_MAXTOKENS,
-		# 	temperature=settings.CHATGPT3_TEMPERATURE,
-		# )
-		completion = openai.ChatCompletion.create(
-			model=settings.CHATGPT3_MODEL,
+    # ChatGPT3 code here...
+		completion = client.chat.completions.create(
+			model = settings.CHATGPT3_MODEL,
 			messages=[
 				{"role": "system", "content": prompt2},
 			],
 			max_tokens=settings.CHATGPT3_MAXTOKENS,
 			temperature=settings.CHATGPT3_TEMPERATURE,
 		)
-		### text-davinci-003 code below ###
-		# completion2 = completion.choices[0].text
-		completion2 = completion["choices"][0]["message"]["content"]
+		completion2 = completion.choices[0].message.content
 		print ("ChatGPT3 in use! -->", completion2)
 		c2 = {
 			'completion':completion2,
