@@ -2,8 +2,8 @@
 #import internal entitities
 from .models import Entry, Game, Matchup, Tbracket, Team, Region, User, Ehist
 from .core_functions import getFriendlyDate, getFriendlyTime
-# import openai
-from openai import OpenAI
+import openai
+# from openai import OpenAI
 from datetime import datetime
 
 #import django functions
