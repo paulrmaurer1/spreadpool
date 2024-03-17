@@ -264,6 +264,7 @@ def buildMessages(context, outcome):
 	completion1 = ""
 	completion2 = ""
 	
+	#client = OpenAI(
 	client = openai.OpenAI(
 		api_key = settings.OPENAI_API_KEY,
 		organization = settings.OPENAI_ORG_ID,
