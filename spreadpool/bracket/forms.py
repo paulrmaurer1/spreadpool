@@ -21,6 +21,18 @@ class CheckNumEntriesMixin(object):
 		if _num_entries > 4 or _num_entries < 0:
 			raise forms.ValidationError("Number of entries must be between 1-4")
 		return _num_entries
+	
+class CheckFirstLastNameMixin(object):
+	'''
+	Mixin to ensure that first_name is different than
+	last_name. Bots register with this approach.
+	'''
+	def clean_last_name(self):
+		_last_name = self.cleaned_data['last_name']
+		_first_name = self.cleaned_data['first_name']
+		if _last_name == _first_name:
+			raise forms.ValidationError("First name and last name cannot be the same.")
+		return _last_name
 
 class MyAuthenticationForm(AuthenticationForm):
 	"""
@@ -30,7 +42,7 @@ class MyAuthenticationForm(AuthenticationForm):
 		data = self.cleaned_data['username']
 		return data.lower()
 
-class SignupForm(CheckNumEntriesMixin, UserCreationForm):
+class SignupForm(CheckNumEntriesMixin, CheckFirstLastNameMixin, UserCreationForm):
 
 	class Meta:
 		model = User
