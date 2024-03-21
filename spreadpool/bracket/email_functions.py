@@ -2,8 +2,8 @@
 #import internal entitities
 from .models import Entry, Game, Matchup, Tbracket, Team, Region, User, Ehist
 from .core_functions import getFriendlyDate, getFriendlyTime
-# import openai
-from openai import OpenAI
+import openai
+# from openai import OpenAI
 from datetime import datetime
 
 #import django functions
@@ -264,8 +264,8 @@ def buildMessages(context, outcome):
 	completion1 = ""
 	completion2 = ""
 	
-	client = OpenAI(
-	# client = openai.OpenAI(
+	# client = OpenAI(
+	client = openai.OpenAI(
 		api_key = settings.OPENAI_API_KEY,
 		organization = settings.OPENAI_ORG_ID,
 	)
