@@ -265,10 +265,11 @@ def buildMessages(context, outcome):
 	completion2 = ""
 	
 	# client = OpenAI(
-	client = openai.OpenAI(
-		api_key = settings.OPENAI_API_KEY,
-		organization = settings.OPENAI_ORG_ID,
-	)
+	# client = openai.OpenAI(
+	# 	api_key = settings.OPENAI_API_KEY,
+	# 	organization = settings.OPENAI_ORG_ID,
+	# )
+	client = ""
 
 	"""
 	Assign proper prompt and email template files based on outcome
