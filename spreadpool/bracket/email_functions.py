@@ -233,6 +233,8 @@ def getContext(game, match, target_user1, target_user2, outcome):
 				'win_short_name':target_user1.short_name,
 				'lose_first_name':target_user2.first_name,
 				'lose_short_name':target_user2.short_name,
+				'win_email':target_user1.email,
+				'lose_email':target_user2.email,
 			}
 		case 3 | 4 | 5 | 8:
 			return {
@@ -246,6 +248,8 @@ def getContext(game, match, target_user1, target_user2, outcome):
 				'win_short_name':target_user2.short_name,
 				'lose_first_name':target_user1.first_name,
 				'lose_short_name':target_user1.short_name,
+				'win_email':target_user2.email,
+				'lose_email':target_user1.email,
 			}
 		case _:
 			# default if none of the above match

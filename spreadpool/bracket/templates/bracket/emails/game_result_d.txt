@@ -1,1 +1,1 @@
-Hey {{win_first_name}}, your team {{team_w}} won! They were a pick'em vs. {{team_l}} and won by the score of {{team_w_score}} - {{team_l_score}}. Incidentally, {{team_l}} was owned by {{lose_short_name}}. Hopefully you got even odds on the side bet! :)
+Hey {{win_first_name}}, your team {{team_w}} won! They were a pick'em vs. {{team_l}} and won by the score of {{team_w_score}} - {{team_l_score}}. Incidentally, {{team_l}} was owned by {{lose_short_name}} ({{lose_email}}). Hopefully you got even odds on the side bet! :)
