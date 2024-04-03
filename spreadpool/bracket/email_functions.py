@@ -204,7 +204,7 @@ def email_original_teams(tbracket_id):
 				'orig_team_d_long_name': orig_team_d.long_name,
 			}
 
-		subject = 'Here are your 4 teams for the 2020 Spreadpool in bracket <' + str(bracket.name) + '>. Good luck!'
+		subject = 'Here are your 4 teams for the Spreadpool in bracket <' + str(bracket.name) + '>. Good luck!'
 		msg_plain = render_to_string(email_dir + 'original_teams.txt', c)
 		msg_html = render_to_string(email_dir + 'original_teams.html', c)
 
