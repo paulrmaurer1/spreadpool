@@ -5,6 +5,7 @@ from .core_functions import getFriendlyDate, getFriendlyTime
 import openai
 # from openai import OpenAI
 from datetime import datetime
+from .api import getOpenaiCompletion
 
 #import django functions
 from django.db.models import Q
@@ -424,15 +425,16 @@ def buildMessages(context, outcome):
 	if (settings.CHATGPT3_ON):
 		prompt1 = render_to_string(prompt_dir + prompt1_file, context)
 		# ChatGPT3 code here...
-		completion = client.chat.completions.create(
-			model = settings.CHATGPT3_MODEL,
-			messages=[
-				{"role": "system", "content": prompt1},
-			],
-			max_tokens=settings.CHATGPT3_MAXTOKENS,
-			temperature=settings.CHATGPT3_TEMPERATURE,
-		)
-		completion1 = completion.choices[0].message.content
+		# completion = client.chat.completions.create(
+		# 	model = settings.CHATGPT3_MODEL,
+		# 	messages=[
+		# 		{"role": "system", "content": prompt1},
+		# 	],
+		# 	max_tokens=settings.CHATGPT3_MAXTOKENS,
+		# 	temperature=settings.CHATGPT3_TEMPERATURE,
+		# )
+		# completion1 = completion.choices[0].message.content
+		completion1 = getOpenaiCompletion(prompt1)
 		print ("ChatGPT3 in use! -->", completion1)
 		c1 = {
 			'completion':completion1,
@@ -453,15 +455,16 @@ def buildMessages(context, outcome):
 	if (settings.CHATGPT3_ON):
 		prompt2 = render_to_string(prompt_dir + prompt2_file, context)
 		# ChatGPT3 code here...
-		completion = client.chat.completions.create(
-			model = settings.CHATGPT3_MODEL,
-			messages=[
-				{"role": "system", "content": prompt2},
-			],
-			max_tokens=settings.CHATGPT3_MAXTOKENS,
-			temperature=settings.CHATGPT3_TEMPERATURE,
-		)
-		completion2 = completion.choices[0].message.content
+		# completion = client.chat.completions.create(
+		# 	model = settings.CHATGPT3_MODEL,
+		# 	messages=[
+		# 		{"role": "system", "content": prompt2},
+		# 	],
+		# 	max_tokens=settings.CHATGPT3_MAXTOKENS,
+		# 	temperature=settings.CHATGPT3_TEMPERATURE,
+		# )
+		# completion2 = completion.choices[0].message.content
+		completion2 = getOpenaiCompletion(prompt2)
 		print ("ChatGPT3 in use! -->", completion2)
 		c2 = {
 			'completion':completion2,
