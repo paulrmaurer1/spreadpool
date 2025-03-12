@@ -7114,7 +7114,7 @@ function TeamDetailsComponent_div_1_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "div", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](3, "br");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](4, "h5", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](5, "** Teams will be assigned by Thursday, March 21, 2024, at 10am CST **");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](5, "** Teams will be assigned by Thursday, March 20, 2025, at 10am CST **");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "small");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](7, "Check back then to see which brackets your entries were assigned (4 teams, 1 per Region, assigned to each entry)");
@@ -7223,7 +7223,7 @@ class FooterComponent {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "nav", 0)(1, "div", 1);
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 2);
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "\u00A0Exit Zero Technologies 2018-2024 ");
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "\u00A0Exit Zero Technologies 2018-2025 ");
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
     }
   },
