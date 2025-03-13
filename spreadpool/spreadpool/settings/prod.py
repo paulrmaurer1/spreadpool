@@ -43,3 +43,7 @@ DEFAULT_FROM_EMAIL = 'NCAASpreadpool Administrator <admin@ncaaspreadpool.com>'
 # (Production) ChatGPT3 settings
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 OPENAI_ORG_ID = os.environ['OPENAI_ORG_ID']
+
+# (Production) Google reCAPTCHA keys
+RECAPTCHA_PUBLIC_KEY = os.environ['RECAPTCHA_PUBLIC_KEY']
+RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']

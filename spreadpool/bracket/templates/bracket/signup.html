@@ -16,6 +16,10 @@
 			}
 		}); //end on('change')
 	}); //end (document).ready
+
+  <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+  <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+
 </script>
 {% endblock %}
 
@@ -87,6 +91,10 @@
 				value = "{{ form.password2.value|default_if_none:'' }}">
 				<small class="form-text text-danger">{{ form.password2.errors }}</small>
 			</div>
+      <!-- reCAPTCHA widget -->
+      <div class="form-group">
+          {{ form.captcha }}
+      </div>
 			<button class="btn btn-success btn-block" type="submit">Sign up</button>
 		</form>
 		<div class= "text-center pt-2 pb-2">

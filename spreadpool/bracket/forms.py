@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.forms import ModelForm
+from django_recaptcha.fields import ReCaptchaField
+
 User = get_user_model()
 
 #Internal modules
@@ -43,10 +45,11 @@ class MyAuthenticationForm(AuthenticationForm):
 		return data.lower()
 
 class SignupForm(CheckNumEntriesMixin, CheckFirstLastNameMixin, UserCreationForm):
+	captcha = ReCaptchaField()
 
 	class Meta:
 		model = User
-		fields = ('first_name', 'last_name', 'num_entries', 'mult_entry_type', 'email', 'password1', 'password2',)
+		fields = ('first_name', 'last_name', 'num_entries', 'mult_entry_type', 'email', 'password1', 'password2', 'captcha')
 		# help_texts = {'num_entries': ('Max number of entries is 4.')}
 
 class ProfileForm(CheckNumEntriesMixin, ModelForm):

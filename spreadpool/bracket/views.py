@@ -86,9 +86,12 @@ class SignUp(CreateView):
 		email = model.email
 		raw_password = form.cleaned_data.get('password1')
 		user = authenticate(email=email, password=raw_password)
-		email_registration_info(model.id)
-		login(self.request, user)
-		return redirect('bracket:home')
+		if user:
+			email_registration_info(model.id)
+			login(self.request, user)
+			return redirect('bracket:home')
+		else:
+			return self.form_invalid(form)
 
 	def form_invalid(self, form, **kwargs):
 		context = self.get_context_data(**kwargs)
