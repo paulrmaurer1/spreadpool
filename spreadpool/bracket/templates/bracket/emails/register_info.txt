@@ -1,5 +1,5 @@
 Hey {{first_name}},
-Thanks for registering for the NCAA Spreapool 2024!
+Thanks for registering for the NCAA Spreapool 2025!
 
 To confirm your entry, you registered with the following info:
 Name: {{full_name}}
