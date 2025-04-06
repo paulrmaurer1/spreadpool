@@ -30,8 +30,19 @@ def getOpenaiCompletion(prompt):
 		json=completion_data
 	).json()
 
-	# print ("This is the response: ", response)
+	print ("This is the response: ", response)
 	
-	completion = response["choices"][0]["message"]["content"]
+	# Check for errors in the response
+	if 'error' in response:
+			error_message = response['error'].get('message', 'Unknown error occurred.')
+			print("Error: ", error_message)
+			completion = ""
+			return completion
+
+	# If no errors, proceed to process the response
+	if response.get("choices") and response["choices"][0]:
+			completion = response["choices"][0].get("message", {}).get("content", "")
+	else:
+			completion = ""
 	
 	return completion
