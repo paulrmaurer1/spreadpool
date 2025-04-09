@@ -1,9 +1,9 @@
 {
-  "addons": ["heroku-postgresql:hobby-dev"],
+  "addons": ["heroku-postgresql:essential-0"],
   "environments": {
     "review": {
-      "stack": "heroku-22",
-      "addons": ["heroku-postgresql:hobby-dev"],
+      "stack": "heroku-24",
+      "addons": ["heroku-postgresql:essential-0"],
       "scripts": {
         "postdeploy": "python spreadpool/manage.py migrate && python spreadpool/manage.py loaddata region_setup.json && python spreadpool/manage.py loaddata team_setup.json && python spreadpool/manage.py loaddata game_setup.json && python spreadpool/manage.py create_test_db"
       }
